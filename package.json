@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "homepage": "https://royco.org",
   "repository": {
-    "url": "https://github.com/githubotoro/royco-sdk"
+    "url": "https://github.com/roycoprotocol/royco-sdk"
   },
   "scripts": {
     "build": "tsup ./src/index.ts --format cjs,esm --dts",
