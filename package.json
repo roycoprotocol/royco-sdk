@@ -1,0 +1,32 @@
+{
+  "name": "royco",
+  "description": "SDK for building frontends on top of Royco Protocol",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "homepage": "https://royco.org",
+  "repository": {
+    "url": "https://github.com/githubotoro/royco-sdk"
+  },
+  "scripts": {
+    "build": "tsup ./src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
+  "keywords": [
+    "royco",
+    "liquidity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "prettier": "^3.2.5",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

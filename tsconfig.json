@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "declaration": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "moduleResolution": "Node10",
+    "module": "ESNext",
+    "noEmit": true,
+    "outDir": "dist",
+    "lib": ["es2022", "dom", "dom.iterable"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
