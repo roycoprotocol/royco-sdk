@@ -3,3 +3,7 @@
 
 .env
 .DS_Store
+
+/temp
+
+/bin

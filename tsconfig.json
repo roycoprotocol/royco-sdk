@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "noImplicitAny": true,
+    "preserveSymlinks": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "skipLibCheck": true,
     "target": "es2022",
@@ -10,15 +11,24 @@
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "declaration": true,
+    "ignoreDeprecations": "5.0",
+    "suppressImplicitAnyIndexErrors": true,
     "isolatedModules": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "Node10",
-    "module": "ESNext",
+    "module": "ES2022",
     "noEmit": true,
     "outDir": "dist",
-    "lib": ["es2022", "dom", "dom.iterable"]
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "jsx": "react-jsx"
   },
-  "include": ["src"],
+
+  "include": ["sdk/**/*.ts", "sdk/**/*.tsx"],
   "exclude": ["node_modules"]
 }
