@@ -1,5 +1,11 @@
 # royco
 
+## 0.2.0
+
+### Minor Changes
+
+- New version in progress
+
 ## 0.1.1
 
 ### Patch Changes
