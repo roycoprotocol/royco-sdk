@@ -1,3 +1,7 @@
+/**
+ * @notice deprecated
+ */
+
 const seedRandom = (seed: number) => {
   const mask = 0xffffffff;
   let m_w = (123456789 + seed) & mask;

@@ -1,6 +1,7 @@
 import { useRoycoClient, type RoycoClient } from "@/sdk/client";
 import { getDistinctAssetsQueryOptions } from "@/sdk/queries";
 import { useQuery } from "@tanstack/react-query";
+import { getSupportedToken } from "../constants";
 
 export type TypedArrayDistinctAsset = {
   ids: Array<string>;
@@ -23,24 +24,28 @@ export const useDistinctAssets = ({
 } = {}) => {
   const client: RoycoClient = useRoycoClient();
 
-  const { data, isLoading, isError, isRefetching } = useQuery({
+  const { data, isLoading, isError, isRefetching, error } = useQuery({
     ...getDistinctAssetsQueryOptions(client),
     select: (data) => {
       if (output === "array") {
-        return data as TypedArrayDistinctAsset[] | null;
+        const new_data = data?.map((element) => {
+          const baseId = element.ids[0];
+
+          return {
+            ...element,
+            ...getSupportedToken(baseId),
+          };
+        });
+
+        return new_data;
       } else if (output === "object") {
         return data
           ? (data as TypedArrayDistinctAsset[]).reduce<
               Record<string, TypedObjectDistinctAsset>
-            >((acc, { ids, image, symbol }) => {
+            >((acc, { ids, symbol }) => {
               ids.forEach((id) => {
-                const [chain_id, contract_address] = id.split("-");
                 acc[id] = {
-                  id,
-                  image,
-                  symbol,
-                  chain_id: parseInt(chain_id, 10),
-                  contract_address,
+                  ...getSupportedToken(id),
                 };
               });
               return acc;

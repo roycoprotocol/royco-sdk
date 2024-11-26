@@ -1,10 +1,16 @@
 "use client";
 
-import React from "react";
+import { createContext } from "react";
+import type { TypedRpcApiKeys } from "../client";
 
-const RoycoContext = React.createContext({
-  roycoUrl: "",
-  roycoKey: "",
+const RoycoContext = createContext({
+  originUrl: "",
+  originKey: "",
+  rpcApiKeys: undefined,
+} as {
+  originUrl: string;
+  originKey: string;
+  rpcApiKeys: TypedRpcApiKeys | undefined;
 });
 
 export { RoycoContext };

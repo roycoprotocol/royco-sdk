@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRoycoClient, type RoycoClient } from "@/sdk/client";
 import { getDistinctIncentivesQueryOptions } from "@/sdk/queries";
+import { getSupportedToken } from "../constants";
 
 export type TypedArrayDistinctIncentive = {
   ids: Array<string>;
@@ -27,20 +28,24 @@ export const useDistinctIncentives = ({
     ...getDistinctIncentivesQueryOptions(client),
     select: (data) => {
       if (output === "array") {
-        return data as TypedArrayDistinctIncentive[] | null;
+        const new_data = data?.map((element) => {
+          const baseId = element.ids[0];
+
+          return {
+            ...element,
+            ...getSupportedToken(baseId),
+          };
+        });
+
+        return new_data;
       } else if (output === "object") {
         return data
           ? (data as TypedArrayDistinctIncentive[]).reduce<
               Record<string, TypedObjectDistinctIncentive>
-            >((acc, { ids, image, symbol }) => {
+            >((acc, { ids }) => {
               ids.forEach((id) => {
-                const [chain_id, contract_address] = id.split("-");
                 acc[id] = {
-                  id,
-                  image,
-                  symbol,
-                  chain_id: parseInt(chain_id, 10),
-                  contract_address,
+                  ...getSupportedToken(id),
                 };
               });
               return acc;

@@ -1,13 +1,7 @@
-import { useRoycoClient, type RoycoClient } from "@/sdk/client";
-import { getBaseChainsQueryOptions } from "@/sdk/queries";
-import { useQuery } from "@tanstack/react-query";
+import { SupportedChainlist } from "@/sdk/constants";
 
 export const useBaseChains = () => {
-  const client: RoycoClient = useRoycoClient();
+  const data = SupportedChainlist.sort((a, b) => a.name.localeCompare(b.name));
 
-  const { data, isLoading, isError, isRefetching } = useQuery(
-    getBaseChainsQueryOptions(client)
-  );
-
-  return { data, isLoading, isError, isRefetching };
+  return { data };
 };
