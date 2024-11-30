@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext } from "react";
-import type { TypedRpcApiKeys } from "../client";
+import type { TypedRpcApiKeys } from "@/sdk/client";
 
 const RoycoContext = createContext({
   originUrl: "",
