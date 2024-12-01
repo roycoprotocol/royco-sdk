@@ -7,17 +7,17 @@ if [ "$1" != "--minor" ] && [ "$1" != "--major" ] && [ "$1" != "--patch" ]; then
 fi
 VERSION_TYPE="${1#--}" # Remove the -- prefix
 
-# Ensure we're in a clean state
-if [ -n "$(git status --porcelain)" ]; then
-    echo "Error: Working directory is not clean. Please commit or stash changes first."
-    exit 1
-fi
+# # Ensure we're in a clean state
+# if [ -n "$(git status --porcelain)" ]; then
+#     echo "Error: Working directory is not clean. Please commit or stash changes first."
+#     exit 1
+# fi
 
 # Create a new changeset with automated message
 CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 echo "Creating new changeset..."
 echo "---
-\"@royco\": ${VERSION_TYPE}
+\"royco\": ${VERSION_TYPE}
 ---
 
 New SDK version @ ${CURRENT_TIME}" > .changeset/automated-${VERSION_TYPE}-release.md

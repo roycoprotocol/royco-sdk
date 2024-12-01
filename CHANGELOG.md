@@ -1,5 +1,11 @@
 # royco
 
+## 0.5.0
+
+### Minor Changes
+
+- 6ed591d: New SDK version @ 2024-12-01 18:42:24 UTC
+
 ## 0.4.0
 
 ### Minor Changes
