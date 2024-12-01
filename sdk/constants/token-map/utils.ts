@@ -6,7 +6,7 @@ export type SupportedToken = {
   symbol: string;
   image: string;
   decimals: number;
-  source: "coinmarketcap" | "coingecko";
+  source: "coinmarketcap" | "coingecko" | "external";
   search_id: string;
   type: "token" | "point";
 };

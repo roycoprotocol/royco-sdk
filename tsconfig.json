@@ -28,6 +28,6 @@
     "jsx": "react-jsx"
   },
 
-  "include": ["sdk/**/*.ts", "sdk/**/*.tsx"],
+  "include": ["sdk/**/*.ts", "sdk/**/*.tsx", "scripts/**/*.ts"],
   "exclude": ["node_modules"]
 }

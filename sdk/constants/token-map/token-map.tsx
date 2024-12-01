@@ -1,14 +1,20 @@
-import { TokenMap1 } from "./token-map-1";
-import { TokenMap42161 } from "./token-map-42161";
-import { TokenMap11155111 } from "./token-map-11155111";
-import { TokenMap8453 } from "./token-map-8453";
+import { TokenMap1 } from "./1";
+import { TokenMap42161 } from "./42161";
+import { TokenMap421614 } from "./421614";
+import { TokenMap11155111 } from "./11155111";
+import { TokenMap8453 } from "./8453";
+import { TokenMap84532 } from "./84532";
+
 import { NULL_ADDRESS } from "../market-utils";
+import type { SupportedToken } from "./utils";
 
 export const SupportedTokenMap = {
   ...TokenMap1,
   ...TokenMap42161,
+  ...TokenMap421614,
   ...TokenMap11155111,
   ...TokenMap8453,
+  ...TokenMap84532,
 } as Record<string, SupportedToken>;
 
 export const SupportedTokenList = Object.values(SupportedTokenMap);
@@ -21,6 +27,9 @@ export const UnknownToken: SupportedToken = {
   symbol: "N/D",
   image: "https://chainlist.org/unknown-logo.png",
   decimals: 18,
+  source: "external",
+  search_id: "unknown",
+  type: "token",
 };
 
 export const getSupportedToken = (
