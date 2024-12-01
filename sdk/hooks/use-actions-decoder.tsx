@@ -25,7 +25,7 @@ export const useActionsDecoder = ({
       contract_name: string;
     }
   >;
-})  => {
+}) => {
   const client: RoycoClient = useRoycoClient();
 
   let data: decodeActionsReturnType["actions"] | null = null;
@@ -84,9 +84,11 @@ export const useActionsDecoder = ({
     if (!!abis) {
       newAbis = [...newAbis, ...abis];
     }
-
     if (!!fetchedAbis) {
-      newAbis = [...newAbis, ...fetchedAbis];
+      /**
+       * @TODO Fix this, currently it's a bit of a hack
+       */
+      newAbis = [...newAbis, ...(fetchedAbis as unknown as TypedAbiElement[])];
     }
 
     if (!!contract_map) {

@@ -1,7 +1,6 @@
 import type { TypedRoycoClient } from "@/sdk/client";
 import type { BaseSortingFilter, CustomTokenData, Database } from "@/sdk/types";
 import type { SupportedChain, SupportedToken } from "@/sdk/constants";
-import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { getSupportedToken } from "@/sdk/constants";
 import {

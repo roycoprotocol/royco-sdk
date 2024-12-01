@@ -475,7 +475,8 @@ export const isERC4626VaultAddressValid = async (
     const results = await Promise.all(
       readOnlyMethods.map(async (method) => {
         try {
-          const result = await contract.read[method]();
+          const result =
+            await contract.read[method as keyof typeof contract.read]();
           return { method, result };
         } catch (error) {
           // console.log(`Error calling ${method}:`, error);

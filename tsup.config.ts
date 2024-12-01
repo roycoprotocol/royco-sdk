@@ -20,5 +20,5 @@ export default defineConfig({
     "sdk/utils/index.tsx",
   ], // Entry point(s)
   format: ["cjs", "esm"], // Output format(s)
-  dts: false,
+  dts: true,
 });

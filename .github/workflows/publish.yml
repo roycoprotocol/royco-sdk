@@ -18,14 +18,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: "npm"
+          cache: "pnpm"
 
-      - run: npm ci
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - run: pnpm install --frozen-lockfile
+
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm run release
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

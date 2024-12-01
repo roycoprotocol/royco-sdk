@@ -13,7 +13,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: "npm"
+          cache: "pnpm"
 
-      - run: npm ci
-      - run: npm run build
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
