@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   type ContractFilter,
   searchContractsQueryOptions,
+  type TypedContract,
 } from "@/sdk/queries";
 import { useRoycoClient, type RoycoClient } from "@/sdk/client";
 
@@ -21,7 +22,7 @@ export const useSearchContracts = ({
   filters: ContractFilter[];
   searchKey?: string;
   pageIndex?: number;
-}) => {
+})  => {
   let data = [];
   let count = 0;
   let totalPages = 0;
@@ -39,6 +40,7 @@ export const useSearchContracts = ({
     !!props.data &&
     !!props.data.data
   ) {
+    // @ts-ignore
     data = props.data.data;
   } else if (props.data === null) {
     data = [];

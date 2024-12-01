@@ -19,7 +19,7 @@ export const useCreateRecipeMarket = ({
   enterMarketActions: MarketActions;
   exitMarketActions: MarketActions;
   rewardStyle: REWARD_STYLE;
-}) => {
+})  => {
   // Check is market is ready to be created
   let isReady = false;
 

@@ -9,7 +9,7 @@ export const useMarketOffersValidator = ({
   offer_ids: string[];
   offerValidationUrl: string;
   enabled?: boolean;
-}) => {
+})  => {
   return useQuery({
     ...getMarketOffersValidatorQueryOptions({
       offer_ids,

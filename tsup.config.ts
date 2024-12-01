@@ -10,11 +10,15 @@ export default defineConfig({
   outDir: "dist", // Output directory
   entry: [
     "sdk/index.tsx",
-    "sdk/provider/index.tsx",
     "sdk/client/index.tsx",
-    "sdk/utils/index.tsx",
-    "sdk/types/index.tsx",
+    "sdk/constants/index.tsx",
+    "sdk/contracts/index.tsx",
+    "sdk/hooks/index.tsx",
+    // "sdk/market/index.tsx",
+    "sdk/provider/index.tsx",
     "sdk/queries/index.tsx",
+    "sdk/types/index.tsx",
+    "sdk/utils/index.tsx",
   ], // Entry point(s)
   format: ["cjs", "esm"], // Output format(s)
 });

@@ -40,7 +40,7 @@ export const getAccountBalanceQueryOptions = (
   chain_id: number,
   account: string,
   tokens: string[],
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "token-balance",
     `chain-id=${chain_id}`,

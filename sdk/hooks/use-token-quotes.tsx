@@ -18,7 +18,7 @@ export const useTokenQuotes = ({
     total_supply?: string;
   }>;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

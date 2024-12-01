@@ -7,7 +7,7 @@ export const getHighestOffersRecipeQueryOptions = (
   client: TypedRoycoClient,
   chain_id: number,
   market_id: string,
-): UseQueryOptions => ({
+)  => ({
   queryKey: ["highest-offers-recipe", chain_id, market_id],
   queryFn: async () => {
     const result = await client.rpc("get_highest_offers_recipe", {

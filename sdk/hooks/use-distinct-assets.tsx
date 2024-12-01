@@ -21,15 +21,16 @@ export const useDistinctAssets = ({
   output = "array",
 }: {
   output?: "array" | "object";
-} = {}) => {
+} = {})  => {
   const client: RoycoClient = useRoycoClient();
 
   const { data, isLoading, isError, isRefetching, error } = useQuery({
     ...getDistinctAssetsQueryOptions(client),
     select: (data) => {
       if (output === "array") {
+        //  
         const new_data = data?.map((element) => {
-          const baseId = element.ids[0];
+          const baseId = element.ids?.[0];
 
           return {
             ...element,

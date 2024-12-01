@@ -49,7 +49,7 @@ export const getEnrichedAccountBalancesRecipeInMarketQueryOptions = (
   market_id: string,
   account_address: string,
   custom_token_data?: CustomTokenData,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "enriched-account-balance-recipe",
     chain_id,

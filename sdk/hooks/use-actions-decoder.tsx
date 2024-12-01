@@ -25,7 +25,7 @@ export const useActionsDecoder = ({
       contract_name: string;
     }
   >;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   let data: decodeActionsReturnType["actions"] | null = null;
@@ -73,7 +73,7 @@ export const useActionsDecoder = ({
         {} as Record<string, { contract_name: string }>,
       );
 
-    let newAbis: any = [];
+    let newAbis: Array<TypedAbiElement> = [];
     let newContractMap: Record<
       string,
       {

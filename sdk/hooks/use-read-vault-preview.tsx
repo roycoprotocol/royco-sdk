@@ -12,7 +12,7 @@ export const useReadVaultPreview = ({
   market: EnrichedMarketDataType | undefined;
   quantity: string;
   enabled?: boolean;
-}) => {
+})  => {
   let incentive_token_ids: string[] = [];
   let incentive_token_rates: string[] = [];
   let incentive_token_amounts: string[] = [];
@@ -51,6 +51,7 @@ export const useReadVaultPreview = ({
   ) {
     try {
       for (let i = 0; i < propsReadContracts.data.length; i++) {
+        // @ts-ignore
         const result = propsReadContracts.data[i].result as BigNumber;
 
         const incentive_token_id = market.incentive_tokens_data[i]?.id;

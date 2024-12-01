@@ -15,7 +15,7 @@ export const useEnrichedAccountBalancesRecipeInMarket = ({
   account_address: string;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

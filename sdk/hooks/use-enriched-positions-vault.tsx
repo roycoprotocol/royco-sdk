@@ -30,7 +30,7 @@ export const useEnrichedPositionsVault = ({
   filters?: Array<BaseQueryFilter>;
   sorting?: Array<BaseSortingFilter>;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();

@@ -6,7 +6,7 @@ export type DistinctAssets = Pick<Tables<"distinct_assets">, "symbol" | "ids">;
 
 export const getDistinctAssetsQueryOptions = (
   client: TypedRoycoClient,
-): UseQueryOptions => ({
+)  => ({
   queryKey: ["distinct-assets"],
   queryFn: async () => {
     return client
@@ -15,6 +15,5 @@ export const getDistinctAssetsQueryOptions = (
       .throwOnError()
       .then((result) => result.data);
   },
-
   refetchInterval: 1000 * 60 * 1, // 1 minute
 });

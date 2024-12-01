@@ -33,7 +33,7 @@ export const useReadMarket = ({
   market_type: TypedRoycoMarketType;
   market_id: string;
   enabled?: boolean;
-}) => {
+})  => {
   const recipeContracts = [
     {
       chainId: chain_id,

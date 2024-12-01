@@ -46,7 +46,7 @@ export const getAccountAllowanceQueryOptions = (
   account: Address,
   spender: Address,
   tokens: Address[],
-): UseQueryOptions => ({
+) => ({
   queryKey: [
     "token-allowance",
     `chain-id=${chain_id}`,

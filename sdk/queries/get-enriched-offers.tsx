@@ -94,7 +94,7 @@ export const getEnrichedOffersQueryOptions = (
   filters?: Array<BaseQueryFilter>,
   sorting?: Array<BaseSortingFilter>,
   custom_token_data?: CustomTokenData,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "enriched-offers",
     `${chain_id}-${market_type}-${market_id}-${creator}-${can_be_filled}-${page_index}`,

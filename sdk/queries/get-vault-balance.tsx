@@ -48,7 +48,7 @@ export const getVaultBalanceQueryOptions = (
   chain_id: number,
   account: string,
   vault_address: string,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "vault-balance",
     `chain-id=${chain_id}`,

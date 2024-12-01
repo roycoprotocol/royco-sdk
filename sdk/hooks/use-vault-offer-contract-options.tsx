@@ -9,7 +9,7 @@ export const getVaultCancelAPOfferTransactionOptions = ({
   offer,
 }: {
   offer: EnrichedOfferDataType;
-}) => {
+})  => {
   // Get contract address and ABI
   const address =
     ContractMap[offer.chain_id as keyof typeof ContractMap]["VaultMarketHub"]

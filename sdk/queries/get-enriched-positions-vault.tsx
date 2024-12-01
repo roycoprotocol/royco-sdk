@@ -87,7 +87,7 @@ export const getEnrichedPositionsVaultQueryOptions = (
   page_index: number = 0,
   filters: Array<BaseQueryFilter> = [],
   sorting?: Array<BaseSortingFilter>,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "enriched-positions-vault",
     account_address,

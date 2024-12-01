@@ -8,7 +8,7 @@ export const useErc4626VaultChecker = ({
 }: {
   chain_id: number;
   contract_address: string | null | undefined;
-}) => {
+})  => {
   const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();
 
   return useQuery({

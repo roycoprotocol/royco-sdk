@@ -6,7 +6,7 @@ import type { UseQueryOptions } from "@tanstack/react-query";
 export const getEnrichedRoycoStatsQueryOptions = (
   client: TypedRoycoClient,
   custom_token_data?: CustomTokenData,
-): UseQueryOptions => ({
+)  => ({
   queryKey: ["get-enriched-royco-stats"],
   queryFn: async () => {
     const result = await client.rpc("get_enriched_royco_stats", {

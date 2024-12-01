@@ -13,7 +13,7 @@ export const useCreateVaultMarket = ({
   vaultAddress: string | undefined | null;
   vaultOwner: string | undefined | null;
   vaultName: string;
-}) => {
+})  => {
   // Check is market is ready to be created
   let isReady = false;
 

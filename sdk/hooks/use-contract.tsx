@@ -8,10 +8,10 @@ export const useContract = ({
 }: {
   chain_id: number;
   contract_address: string;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery(
-    getContractsQueryOptions(client, [{ chain_id, contract_address }])
+    getContractsQueryOptions(client, [{ chain_id, contract_address }]),
   );
 };

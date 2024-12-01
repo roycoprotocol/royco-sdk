@@ -103,7 +103,7 @@ export const searchContractsQueryOptions = (
   filters: ContractFilter[] = [],
   searchKey?: string,
   pageIndex: number = 0,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "search-contracts",
     `searchKey=${searchKey}`,

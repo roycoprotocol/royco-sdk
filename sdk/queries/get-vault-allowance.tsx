@@ -51,7 +51,7 @@ export const getVaultAllowanceQueryOptions = (
   account: string,
   vault_address: string,
   spender: string,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "vault-allowance",
     `chain-id=${chain_id}`,

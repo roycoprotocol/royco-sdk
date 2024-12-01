@@ -8,7 +8,7 @@ export const useActionsEncoder = ({
   marketActions,
 }: {
   marketActions: MarketActions | undefined | null;
-}) => {
+})  => {
   let data: encodeActionsReturnType["script"] | null = null;
 
   if (!!marketActions) {

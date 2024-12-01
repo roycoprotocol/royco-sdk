@@ -6,7 +6,7 @@ import { isSolidityAddressValid } from "@/sdk/utils";
 export const getContractsQueryOptions = (
   client: TypedRoycoClient,
   contracts: Array<{ chain_id: number; contract_address: string }>,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "get-contracts",
     ...contracts.map(

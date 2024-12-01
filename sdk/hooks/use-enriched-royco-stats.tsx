@@ -7,7 +7,7 @@ export const useEnrichedRoycoStats = ({
   custom_token_data,
 }: {
   custom_token_data?: CustomTokenData;
-} = {}) => {
+} = {})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

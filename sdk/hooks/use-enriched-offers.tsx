@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getEnrichedOffersQueryOptions } from "@/sdk/queries";
+import {
+  getEnrichedOffersQueryOptions,
+  type EnrichedOfferDataType,
+} from "@/sdk/queries";
 import { type RoycoClient, useRoycoClient } from "@/sdk/client";
 import type {
   BaseQueryFilter,
@@ -29,7 +32,7 @@ export const useEnrichedOffers = ({
   sorting?: Array<BaseSortingFilter>;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

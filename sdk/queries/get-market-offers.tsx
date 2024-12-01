@@ -12,7 +12,7 @@ export const getMarketOffersQueryOptions = (
   custom_token_data?: CustomTokenData,
   incentive_ids?: string[],
   incentive_amounts?: string[],
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "get-market-offers",
     chain_id,

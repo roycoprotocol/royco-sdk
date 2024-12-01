@@ -56,7 +56,7 @@ export const getEnrichedAccountBalancesVaultInMarketQueryOptions = (
   market_id: string,
   account_address: string,
   custom_token_data?: CustomTokenData,
-): UseQueryOptions => ({
+) => ({
   queryKey: [
     "enriched-account-balance-vault-in-market",
     chain_id,

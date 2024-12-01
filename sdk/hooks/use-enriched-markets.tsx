@@ -30,7 +30,7 @@ export const useEnrichedMarkets = ({
   is_verified?: boolean;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   const props = useQuery({

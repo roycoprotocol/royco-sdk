@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,62 +12,62 @@
   },
   "scripts": {
     "build": "tsup",
-    "release": "pnpm run build && changeset publish",
+    "release": "npm run build && changeset publish",
     "lint": "tsc"
   },
   "keywords": [
     "royco"
   ],
-  "author": "",
+  "author": "Royco Protocol",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./client": {
+      "types": "./dist/client/index.d.ts",
       "import": "./dist/client/index.js",
-      "require": "./dist/client/index.js",
-      "types": "./dist/client/index.d.ts"
+      "require": "./dist/client/index.js"
     },
     "./constants": {
+      "types": "./dist/constants/index.d.ts",
       "import": "./dist/constants/index.js",
-      "require": "./dist/constants/index.js",
-      "types": "./dist/constants/index.d.ts"
+      "require": "./dist/constants/index.js"
     },
     "./hooks": {
+      "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js",
-      "require": "./dist/hooks/index.js",
-      "types": "./dist/hooks/index.d.ts"
+      "require": "./dist/hooks/index.js"
     },
     "./market": {
+      "types": "./dist/market/index.d.ts",
       "import": "./dist/market/index.js",
-      "require": "./dist/market/index.js",
-      "types": "./dist/market/index.d.ts"
+      "require": "./dist/market/index.js"
     },
     "./provider": {
+      "types": "./dist/provider/index.d.ts",
       "import": "./dist/provider/index.js",
-      "require": "./dist/provider/index.js",
-      "types": "./dist/provider/index.d.ts"
+      "require": "./dist/provider/index.js"
     },
     "./queries": {
+      "types": "./dist/queries/index.d.ts",
       "import": "./dist/queries/index.js",
-      "require": "./dist/queries/index.js",
-      "types": "./dist/queries/index.d.ts"
+      "require": "./dist/queries/index.js"
     },
     "./types": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/types/index.js",
-      "require": "./dist/types/index.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/types/index.js"
     },
     "./utils": {
+      "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.js",
-      "types": "./dist/utils/index.d.ts"
+      "require": "./dist/utils/index.js"
     }
   },
   "devDependencies": {
@@ -87,7 +87,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
-    "ethers": "^5.4.4",
     "glob": "^10.4.1",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
@@ -108,7 +107,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@wagmi/core": "^2.10.3",
-    "ethers": "^5.4.4",
     "react": "^18",
     "react-dom": "^18",
     "typescript": "^5.4.5",
@@ -120,6 +118,7 @@
     "@tanstack/react-query-devtools": "^5.61.3",
     "abitype": "^1.0.6",
     "cross-fetch": "^4.0.0",
+    "ethers": "^5.4.4",
     "lucide-react": "^0.379.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"

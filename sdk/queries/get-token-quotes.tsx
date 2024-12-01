@@ -19,7 +19,7 @@ export const getTokenQuotesQueryOptions = (
     fdv?: string;
     total_supply?: string;
   }>,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "tokens-quote",
     token_ids.map((id) => `${id}`).join(":"),

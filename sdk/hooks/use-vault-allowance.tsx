@@ -14,7 +14,7 @@ export const useVaultAllowance = ({
   vault_address: string;
   spender: string;
   enabled?: boolean;
-}) => {
+})  => {
   const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({

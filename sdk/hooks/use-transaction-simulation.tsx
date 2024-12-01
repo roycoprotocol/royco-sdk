@@ -15,7 +15,7 @@ export const useTransactionSimulation = ({
   simulationUrl: string;
   account: string;
   enabled?: boolean;
-}) => {
+})  => {
   return useQuery({
     ...getTransactionSimulationQueryOptions({
       chainId,

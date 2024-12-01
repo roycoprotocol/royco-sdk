@@ -25,7 +25,7 @@ export const useEnrichedPositionsRecipe = ({
   filters?: Array<BaseQueryFilter>;
   sorting?: Array<BaseSortingFilter>;
   enabled?: boolean;
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

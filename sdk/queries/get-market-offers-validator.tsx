@@ -8,7 +8,7 @@ export const getMarketOffersValidatorQueryOptions = ({
 }: {
   offer_ids: string[];
   offerValidationUrl: string;
-}): UseQueryOptions => ({
+})  => ({
   queryKey: [
     "simulate",
     createHash("sha256")

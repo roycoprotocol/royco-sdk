@@ -130,7 +130,7 @@ export const getEnrichedMarketsQueryOptions = (
   search_key: string | undefined,
   is_verified: boolean | undefined,
   custom_token_data: CustomTokenData | undefined,
-): UseQueryOptions => ({
+) => ({
   queryKey: [
     "enriched-markets",
     `${chain_id}-${market_type}-${market_id}-${page_index}`,

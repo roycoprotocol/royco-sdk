@@ -12,7 +12,7 @@ export const useSupportedTokens = ({
   search?: string;
   token_ids?: string[] | undefined | null;
   not_token_ids?: string[] | undefined | null;
-} = {}) => {
+} = {})  => {
   const PAGE_SIZE = 20;
 
   let filteredTokens = SupportedTokenList.filter(

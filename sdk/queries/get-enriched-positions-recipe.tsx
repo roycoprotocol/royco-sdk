@@ -69,7 +69,7 @@ export const getEnrichedPositionsRecipeQueryOptions = (
   page_index: number = 0,
   filters: Array<BaseQueryFilter> = [],
   sorting?: Array<BaseSortingFilter>,
-): UseQueryOptions => ({
+)  => ({
   queryKey: [
     "enriched-positions-recipe",
     account_address,

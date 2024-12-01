@@ -23,7 +23,7 @@ export const useMarketOffers = ({
   custom_token_data?: CustomTokenData;
   incentive_ids?: string[];
   incentive_amounts?: string[];
-}) => {
+})  => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

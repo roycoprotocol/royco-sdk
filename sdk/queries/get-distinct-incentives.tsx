@@ -9,7 +9,7 @@ export type DistinctIncentives = Pick<
 
 export const getDistinctIncentivesQueryOptions = (
   client: TypedRoycoClient,
-): UseQueryOptions => ({
+)  => ({
   queryKey: ["distinct-incentives"],
   queryFn: async () => {
     return client
@@ -18,6 +18,5 @@ export const getDistinctIncentivesQueryOptions = (
       .throwOnError()
       .then((result) => result.data);
   },
-
   refetchInterval: 1000 * 60 * 1, // 1 minute
 });

@@ -16,7 +16,7 @@ export const useTokenAllowance = ({
   spender: Address;
   tokens: Address[];
   enabled?: boolean;
-}) => {
+})  => {
   const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({

@@ -8,7 +8,7 @@ export const getRecipeForfeitTransactionOptions = ({
   position,
 }: {
   position: EnrichedPositionsRecipeDataType;
-}) => {
+})  => {
   // Get contract address and ABI
   const address =
     ContractMap[position.chain_id as keyof typeof ContractMap][
