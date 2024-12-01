@@ -47,3 +47,8 @@ npx changeset publish
 
 # Push changes and tags to remote
 git push --follow-tags
+
+# Create GitHub release from the latest tag
+echo "Creating GitHub release..."
+LATEST_TAG=$(git describe --tags --abbrev=0)
+gh release create "$LATEST_TAG" --generate-notes
