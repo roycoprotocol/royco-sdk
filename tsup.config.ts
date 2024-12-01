@@ -24,9 +24,9 @@ export default defineConfig({
   external: [
     "react",
     "react-dom",
-    "@metamask/sdk",
-    "@wagmi/core",
-    "wagmi",
+    // "@metamask/sdk",
+    // "@wagmi/core",
+    // "wagmi",
     "@tanstack/react-query",
     "@tanstack/react-table",
   ],

@@ -23,8 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@supabase/postgrest-js": ["node_modules/@supabase/postgrest-js"],
-      "@wagmi/*": ["node_modules/@wagmi/*"]
+      "@supabase/postgrest-js": ["node_modules/@supabase/postgrest-js"]
+      // "@wagmi/*": ["node_modules/@wagmi/*"]
     },
     "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
