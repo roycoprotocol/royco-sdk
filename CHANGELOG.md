@@ -1,5 +1,11 @@
 # royco
 
+## 0.5.5
+
+### Patch Changes
+
+- 7bb2dff: New SDK version @ 2024-12-01 20:27:59 UTC
+
 ## 0.5.4
 
 ### Patch Changes

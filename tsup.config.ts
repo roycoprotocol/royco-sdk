@@ -12,7 +12,7 @@ export default defineConfig({
     "sdk/index.tsx",
     "sdk/client/index.tsx",
     "sdk/constants/index.tsx",
-    "sdk/contracts/index.tsx",
+    "sdk/contracts/index.ts",
     "sdk/hooks/index.tsx",
     "sdk/market/index.tsx",
     "sdk/provider/index.tsx",
