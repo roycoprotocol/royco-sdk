@@ -1,12 +1,12 @@
-import { defineConfig, type Options } from "tsup";
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  minify: true, // Minify output
-  sourcemap: true, // Generate sourcemaps
-  treeshake: true, // Remove unused code
-  splitting: true, // Split output into chunks
-  clean: true, // Clean output directory before building
-  outDir: "dist", // Output directory
+  minify: true,
+  sourcemap: false,
+  treeshake: true,
+  splitting: true,
+  clean: true,
+  outDir: "dist",
   entry: [
     "sdk/index.tsx",
     "sdk/client/index.tsx",
@@ -18,7 +18,17 @@ export default defineConfig({
     "sdk/queries/index.tsx",
     "sdk/types/index.tsx",
     "sdk/utils/index.tsx",
-  ], // Entry point(s)
-  format: ["cjs", "esm"], // Output format(s)
+  ],
+  format: ["cjs", "esm"],
   dts: true,
+  external: [
+    "react",
+    "react-dom",
+    "@metamask/sdk",
+    "@wagmi/core",
+    "wagmi",
+    "@tanstack/react-query",
+    "@tanstack/react-table",
+  ],
+  target: "node14",
 });
