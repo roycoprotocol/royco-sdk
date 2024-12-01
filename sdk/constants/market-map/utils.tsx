@@ -16,3 +16,12 @@ export const getVerifiedMarket = (
 
   return MarketMap[marketId];
 };
+
+export type RoycoMarket = {
+  id: string;
+  name: string;
+  description: string;
+  is_verified: boolean;
+};
+
+export const defineMarket = (market: RoycoMarket) => market;

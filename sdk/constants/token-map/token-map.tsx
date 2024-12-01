@@ -4,17 +4,6 @@ import { TokenMap11155111 } from "./token-map-11155111";
 import { TokenMap8453 } from "./token-map-8453";
 import { NULL_ADDRESS } from "../market-utils";
 
-export type SupportedToken = {
-  id: string;
-  chain_id: number;
-  contract_address: string;
-  name: string;
-  symbol: string;
-  image: string;
-  decimals: number;
-  type?: string;
-};
-
 export const SupportedTokenMap = {
   ...TokenMap1,
   ...TokenMap42161,
@@ -35,7 +24,7 @@ export const UnknownToken: SupportedToken = {
 };
 
 export const getSupportedToken = (
-  key: string | null | undefined
+  key: string | null | undefined,
 ): SupportedToken => {
   if (!key) {
     return UnknownToken;
