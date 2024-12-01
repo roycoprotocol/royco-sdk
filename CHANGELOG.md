@@ -1,5 +1,11 @@
 # royco
 
+## 0.5.12
+
+### Patch Changes
+
+- d86e421: New SDK version @ 2024-12-01 23:55:23 UTC
+
 ## 0.5.11
 
 ### Patch Changes
