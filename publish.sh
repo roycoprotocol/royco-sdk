@@ -17,7 +17,7 @@ fi
 CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 echo "Creating new changeset..."
 echo "---
-\"@your-package-name\": ${VERSION_TYPE}
+\"@royco\": ${VERSION_TYPE}
 ---
 
 New SDK version @ ${CURRENT_TIME}" > .changeset/automated-${VERSION_TYPE}-release.md
