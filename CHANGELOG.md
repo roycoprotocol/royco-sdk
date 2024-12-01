@@ -1,5 +1,11 @@
 # royco
 
+## 0.4.0
+
+### Minor Changes
+
+- 0304c36: test
+
 ## 0.3.0
 
 ### Minor Changes
