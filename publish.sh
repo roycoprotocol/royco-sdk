@@ -28,7 +28,7 @@ git commit -m "feat(npm): add changeset"
 
 # Create release
 echo "Creating release..."
-npx changeset version
+pnpm changeset version
 
 # Update package.json files
 git add .
@@ -36,14 +36,14 @@ git commit -m "feat(npm): update versions"
 
 # Build the project 
 echo "Building project..."
-if ! npm run build; then
+if ! pnpm run build; then
     echo "Error: Build failed. Aborting publish."
     exit 1
 fi
 
 # Publish to npm
 echo "Publishing to npm..."
-npx changeset publish
+pnpm changeset publish
 
 # Push changes and tags to remote
 git push --follow-tags

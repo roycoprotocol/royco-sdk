@@ -2,32 +2,34 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "preserveSymlinks": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
     "target": "es2022",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
-    "declaration": true,
+    "declaration": false,
     "ignoreDeprecations": "5.0",
     "isolatedModules": true,
-    "strict": true,
+    "strict": false,
     "noUncheckedIndexedAccess": true,
-    "moduleResolution": "Node10",
+    "moduleResolution": "node",
     "module": "ES2022",
     "noEmit": true,
     "outDir": "dist",
     "lib": ["es2022", "dom", "dom.iterable"],
-    "declarationMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "supabase": ["node_modules/@supabase/*"]
     },
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
   },
 
-  "include": ["sdk/**/*.ts", "sdk/**/*.tsx", "scripts/**/*.ts"],
+  "include": ["sdk/**/*.ts", "sdk/**/*.tsx"],
   "exclude": ["node_modules"]
 }

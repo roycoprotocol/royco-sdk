@@ -1,7 +1,6 @@
 import { defineConfig, type Options } from "tsup";
 
 export default defineConfig({
-  dts: true, // Generate .d.ts files
   minify: true, // Minify output
   sourcemap: true, // Generate sourcemaps
   treeshake: true, // Remove unused code
@@ -21,4 +20,5 @@ export default defineConfig({
     "sdk/utils/index.tsx",
   ], // Entry point(s)
   format: ["cjs", "esm"], // Output format(s)
+  dts: false,
 });
