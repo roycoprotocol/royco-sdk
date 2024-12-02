@@ -1,5 +1,11 @@
 # royco
 
+## 0.5.28
+
+### Patch Changes
+
+- ffc4411: New SDK version @ 2024-12-02 22:50:04 UTC
+
 ## 0.5.27
 
 ### Patch Changes

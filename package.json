@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.5.27",
+  "version": "0.5.28",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -28,47 +28,47 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
     "./client": {
       "types": "./dist/client/index.d.ts",
-      "import": "./dist/client/index.mjs",
+      "import": "./dist/client/index.js",
       "require": "./dist/client/index.js"
     },
     "./constants": {
       "types": "./dist/constants/index.d.ts",
-      "import": "./dist/constants/index.mjs",
+      "import": "./dist/constants/index.js",
       "require": "./dist/constants/index.js"
     },
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
-      "import": "./dist/hooks/index.mjs",
+      "import": "./dist/hooks/index.js",
       "require": "./dist/hooks/index.js"
     },
     "./market": {
       "types": "./dist/market/index.d.ts",
-      "import": "./dist/market/index.mjs",
+      "import": "./dist/market/index.js",
       "require": "./dist/market/index.js"
     },
     "./provider": {
       "types": "./dist/provider/index.d.ts",
-      "import": "./dist/provider/index.mjs",
+      "import": "./dist/provider/index.js",
       "require": "./dist/provider/index.js"
     },
     "./queries": {
       "types": "./dist/queries/index.d.ts",
-      "import": "./dist/queries/index.mjs",
+      "import": "./dist/queries/index.js",
       "require": "./dist/queries/index.js"
     },
     "./types": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.mjs",
+      "import": "./dist/types/index.js",
       "require": "./dist/types/index.js"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.mjs",
+      "import": "./dist/utils/index.js",
       "require": "./dist/utils/index.js"
     }
   },
