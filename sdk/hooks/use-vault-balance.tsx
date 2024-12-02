@@ -10,10 +10,15 @@ export const useVaultBalance = ({
   chain_id: number;
   account: string;
   vault_address: string;
-})  => {
+}) => {
   const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery(
-    getVaultBalanceQueryOptions(RPC_API_KEYS, chain_id, account, vault_address),
+    getVaultBalanceQueryOptions(
+      RPC_API_KEYS ?? {},
+      chain_id,
+      account,
+      vault_address,
+    ),
   );
 };

@@ -20,15 +20,15 @@ export const useEnrichedAccountBalancesVaultInMarket = ({
   account_address: string;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-})  => {
+}) => {
   const client: RoycoClient = useRoycoClient();
 
-  const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();
+  const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({
     ...getEnrichedAccountBalancesVaultInMarketQueryOptions(
       client,
-      RPC_API_KEYS,
+      RPC_API_KEYS ?? {},
       chain_id,
       market_id,
       account_address,

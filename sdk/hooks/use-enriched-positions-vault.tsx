@@ -30,15 +30,15 @@ export const useEnrichedPositionsVault = ({
   filters?: Array<BaseQueryFilter>;
   sorting?: Array<BaseSortingFilter>;
   enabled?: boolean;
-})  => {
+}) => {
   const client: RoycoClient = useRoycoClient();
 
-  const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();
+  const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({
     ...getEnrichedPositionsVaultQueryOptions(
       client,
-      RPC_API_KEYS,
+      RPC_API_KEYS ?? {},
       account_address,
       chain_id,
       market_id,
