@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAccountBalanceQueryOptions } from "@/sdk/queries";
-import {  useTokenQuotes } from "@/sdk/hooks";
+import { useTokenQuotes } from "@/sdk/hooks";
 import { getSupportedToken, type SupportedToken } from "@/sdk/constants";
 import { parseRawAmount, parseRawAmountToTokenAmount } from "@/sdk/utils";
 import { useRpcApiKeys, type TypedRpcApiKeys } from "@/sdk/client";
@@ -19,15 +19,20 @@ export const useAccountBalance = ({
   chain_id: number;
   account: string;
   tokens: string[];
-})  => {
-  const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();
+}) => {
+  const RPC_API_KEYS: TypedRpcApiKeys | undefined = useRpcApiKeys();
 
   let data: AccountBalance[] | null = null;
 
   const token_ids = tokens.map((token) => `${chain_id}-${token.toLowerCase()}`);
 
   const propsAccountInfo = useQuery(
-    getAccountBalanceQueryOptions(RPC_API_KEYS, chain_id, account, tokens),
+    getAccountBalanceQueryOptions(
+      RPC_API_KEYS ?? {},
+      chain_id,
+      account,
+      tokens,
+    ),
   );
 
   const propsTokenQuotes = useTokenQuotes({ token_ids });
@@ -51,8 +56,8 @@ export const useAccountBalance = ({
 
       if (!token_data) {
         token_data = {
-          ...getSupportedToken(token_ids[index] ?? ''),
-          token_id: token_ids[index] ?? '',
+          ...getSupportedToken(token_ids[index] ?? ""),
+          token_id: token_ids[index] ?? "",
           price: 0,
           fdv: 0,
           total_supply: 0,
