@@ -16,12 +16,12 @@ export const useTokenAllowance = ({
   spender: Address;
   tokens: Address[];
   enabled?: boolean;
-})  => {
+}) => {
   const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({
     ...getAccountAllowanceQueryOptions(
-      RPC_API_KEYS,
+      RPC_API_KEYS ?? {},
       chain_id,
       account,
       spender,
