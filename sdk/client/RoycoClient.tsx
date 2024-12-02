@@ -1,7 +1,7 @@
 "use client";
 
 import type { Database } from "@/sdk/types/data";
-// import type { RPC_API_KEYS_OBJECT_TYPE } from "@/sdk/types";
+import type { RPC_API_KEYS_OBJECT_TYPE } from "@/sdk/types";
 
 import { useContext } from "react";
 
@@ -12,12 +12,11 @@ import { RoycoContext } from "@/sdk/provider";
 
 type TypedRoycoClient = SupabaseClient<Database>;
 type RoycoClient = TypedRoycoClient;
-// type TypedRpcApiKeys = RPC_API_KEYS_OBJECT_TYPE;
-type TypedRpcApiKeys = undefined;
+type TypedRpcApiKeys = RPC_API_KEYS_OBJECT_TYPE;
 
 let typedRoycoClient: TypedRoycoClient;
 let roycoClient: RoycoClient;
-// let RPC_API_KEYS: TypedRpcApiKeys;
+let RPC_API_KEYS: TypedRpcApiKeys;
 
 const useRoycoClient = (): RoycoClient => {
   const { originUrl, originKey, rpcApiKeys } = useContext<{
@@ -42,7 +41,7 @@ const useRoycoClient = (): RoycoClient => {
 };
 
 const useRpcApiKeys = (): TypedRpcApiKeys => {
-  // return RPC_API_KEYS;
+  return RPC_API_KEYS;
 };
 
 export {
@@ -50,6 +49,6 @@ export {
   useRpcApiKeys,
   roycoClient,
   typedRoycoClient,
-  // RPC_API_KEYS,
+  RPC_API_KEYS,
 };
 export type { RoycoClient, TypedRoycoClient, TypedRpcApiKeys };
