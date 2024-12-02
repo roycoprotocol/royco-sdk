@@ -8,8 +8,8 @@ export const useErc4626VaultChecker = ({
 }: {
   chain_id: number;
   contract_address: string | null | undefined;
-})  => {
-  const RPC_API_KEYS: TypedRpcApiKeys = useRpcApiKeys();
+}) => {
+  const RPC_API_KEYS: TypedRpcApiKeys | undefined = useRpcApiKeys();
 
   return useQuery({
     queryKey: [
@@ -23,7 +23,7 @@ export const useErc4626VaultChecker = ({
           return false;
         } else {
           const res = await isERC4626VaultAddressValid(
-            RPC_API_KEYS,
+            RPC_API_KEYS ?? {},
             chain_id,
             contract_address,
           );

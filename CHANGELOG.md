@@ -1,5 +1,11 @@
 # royco
 
+## 0.5.20
+
+### Patch Changes
+
+- ecb39e3: New SDK version @ 2024-12-02 00:39:34 UTC
+
 ## 0.5.19
 
 ### Patch Changes
