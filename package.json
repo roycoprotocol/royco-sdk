@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.5.25",
+  "version": "0.5.26",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -72,11 +72,6 @@
       "require": "./dist/utils/index.js"
     }
   },
-  "peerDependencies": {
-    "@supabase/postgrest-js": "^1.15.4",
-    "@wagmi/core": "^2.10.3",
-    "wagmi": "^2.8.1"
-  },
   "dependencies": {
     "@changesets/cli": "^2.27.1",
     "@radix-ui/react-icons": "^1.3.0",
@@ -113,6 +108,8 @@
     "tsup": "^8.0.2",
     "tsx": "^4.19.2",
     "typescript": "^5.4.5",
-    "viem": "^2.10.5"
+    "viem": "^2.10.5",
+    "wagmi": "^2.8.1",
+    "@wagmi/core": "^2.10.3"
   }
 }
