@@ -16,7 +16,7 @@ type TypedRpcApiKeys = RPC_API_KEYS_OBJECT_TYPE;
 
 let typedRoycoClient: TypedRoycoClient;
 let roycoClient: RoycoClient;
-let RPC_API_KEYS: TypedRpcApiKeys;
+let RPC_API_KEYS: TypedRpcApiKeys | undefined;
 
 const useRoycoClient = (): RoycoClient => {
   const { originUrl, originKey, rpcApiKeys } = useContext<{
@@ -24,6 +24,8 @@ const useRoycoClient = (): RoycoClient => {
     originKey: string;
     rpcApiKeys: TypedRpcApiKeys | undefined;
   }>(RoycoContext);
+
+  RPC_API_KEYS = rpcApiKeys;
 
   // if (!RPC_API_KEYS && rpcApiKeys) {
   //   RPC_API_KEYS = rpcApiKeys;
