@@ -1,3 +1,5 @@
+"use client";
+
 import type { Database } from "@/sdk/types/data";
 import type { RPC_API_KEYS_OBJECT_TYPE } from "@/sdk/types";
 
