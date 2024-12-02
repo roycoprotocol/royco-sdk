@@ -333,6 +333,12 @@
           "internalType": "address"
         },
         {
+          "name": "ap",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
           "name": "fundingVault",
           "type": "address",
           "indexed": false,

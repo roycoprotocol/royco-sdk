@@ -1,6 +1,5 @@
 {
   "abi": [
-    { "type": "constructor", "inputs": [], "stateMutability": "nonpayable" },
     {
       "type": "function",
       "name": "DOMAIN_SEPARATOR",

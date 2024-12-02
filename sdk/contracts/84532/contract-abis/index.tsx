@@ -5,6 +5,7 @@ import RecipeMarketHubMetadata from "./RecipeMarketHub.json";
 import VaultMarketHubMetadata from "./VaultMarketHub.json";
 import WeirollWalletMetadata from "./WeirollWallet.json";
 import WeirollWalletHelperMetadata from "./WeirollWalletHelper.json";
+
 export const ContractAbis = {
   WrappedVault: WrappedVaultMetadata.abi,
   WrappedVaultFactory: WrappedVaultFactoryMetadata.abi,

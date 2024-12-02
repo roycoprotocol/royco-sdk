@@ -757,6 +757,12 @@
           "internalType": "bytes32"
         },
         {
+          "name": "ap",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        },
+        {
           "name": "fundingVault",
           "type": "address",
           "indexed": false,
@@ -798,6 +804,12 @@
           "type": "uint256",
           "indexed": true,
           "internalType": "uint256"
+        },
+        {
+          "name": "ip",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
         },
         {
           "name": "fillAmount",
@@ -877,7 +889,7 @@
         {
           "name": "offerID",
           "type": "uint256",
-          "indexed": true,
+          "indexed": false,
           "internalType": "uint256"
         },
         {
@@ -891,6 +903,12 @@
           "type": "bytes32",
           "indexed": true,
           "internalType": "bytes32"
+        },
+        {
+          "name": "ip",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
         },
         {
           "name": "quantity",
@@ -940,6 +958,12 @@
           "type": "bytes32",
           "indexed": true,
           "internalType": "bytes32"
+        },
+        {
+          "name": "ap",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
         },
         {
           "name": "fillAmount",
