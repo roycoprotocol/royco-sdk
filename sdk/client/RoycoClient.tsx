@@ -19,13 +19,13 @@ let roycoClient: RoycoClient;
 let RPC_API_KEYS: TypedRpcApiKeys | undefined;
 
 const useRoycoClient = (): RoycoClient => {
-  const { originUrl, originKey, rpcApiKeys } = useContext<{
+  const { originUrl, originKey } = useContext<{
     originUrl: string;
     originKey: string;
     rpcApiKeys: TypedRpcApiKeys | undefined;
   }>(RoycoContext);
 
-  RPC_API_KEYS = rpcApiKeys;
+  // RPC_API_KEYS = rpcApiKeys;
 
   // if (!RPC_API_KEYS && rpcApiKeys) {
   //   RPC_API_KEYS = rpcApiKeys;
@@ -42,7 +42,19 @@ const useRoycoClient = (): RoycoClient => {
   return roycoClient;
 };
 
-const useRpcApiKeys = (): TypedRpcApiKeys => {
+const useRpcApiKeys = (): TypedRpcApiKeys | undefined => {
+  const { rpcApiKeys } = useContext<{
+    originUrl: string;
+    originKey: string;
+    rpcApiKeys: TypedRpcApiKeys | undefined;
+  }>(RoycoContext);
+
+  if (RPC_API_KEYS) {
+    return RPC_API_KEYS;
+  }
+
+  RPC_API_KEYS = rpcApiKeys;
+
   return RPC_API_KEYS;
 };
 
