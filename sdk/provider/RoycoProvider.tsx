@@ -2,16 +2,12 @@
 
 import { useState } from "react";
 
-/**
- * @TODO Fix the error of type not being found
- */
-// @ts-ignore
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
-/**
- * @TODO Fix the error of type not being found
- */
-// @ts-ignore
 import type { DefaultOptions } from "@tanstack/react-query";
 
 import type { ReactNode } from "react";
