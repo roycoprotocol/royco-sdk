@@ -86,6 +86,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@wagmi/core": "^2.10.3",
     "@weiroll/weiroll.js": "^0.3.0",
     "abitype": "^1.0.6",
     "autoprefixer": "^10.4.19",
@@ -110,6 +111,6 @@
     "typescript": "^5.4.5",
     "viem": "^2.10.5",
     "wagmi": "^2.8.1",
-    "@wagmi/core": "^2.10.3"
+    "zod": "^3.23.8"
   }
 }
