@@ -7,6 +7,15 @@ import { MarketMap84532 } from "./84532";
 
 import type { SupportedMarket } from "./utils";
 
+export {
+  MarketMap1,
+  MarketMap11155111,
+  MarketMap42161,
+  MarketMap421614,
+  MarketMap8453,
+  MarketMap84532,
+};
+
 export const SupportedMarketMap = {
   ...MarketMap1,
   ...MarketMap11155111,

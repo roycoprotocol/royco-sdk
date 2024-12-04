@@ -8,6 +8,15 @@ import { TokenMap84532 } from "./84532";
 import { NULL_ADDRESS } from "../market-utils";
 import type { SupportedToken } from "./utils";
 
+export {
+  TokenMap1,
+  TokenMap42161,
+  TokenMap421614,
+  TokenMap11155111,
+  TokenMap8453,
+  TokenMap84532,
+};
+
 export const SupportedTokenMap = {
   ...TokenMap1,
   ...TokenMap42161,

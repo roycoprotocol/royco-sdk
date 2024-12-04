@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0xf0acf8949e705e0ebb6cb42c2164b0b986454223",
   name: "Barter",
   symbol: "BRTR",
-  image: "https://coin-images.coingecko.com/coins/images/13401/large/BRTR.png?1696513163",
+  image:
+    "https://coin-images.coingecko.com/coins/images/13401/large/BRTR.png?1696513163",
   decimals: 8,
   source: "coingecko",
   search_id: "barter",

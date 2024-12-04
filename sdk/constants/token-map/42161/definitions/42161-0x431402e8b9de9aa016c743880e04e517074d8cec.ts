@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0x431402e8b9de9aa016c743880e04e517074d8cec",
   name: "Hegic",
   symbol: "HEGIC",
-  image: "https://coin-images.coingecko.com/coins/images/12454/large/new.png?1696512274",
+  image:
+    "https://coin-images.coingecko.com/coins/images/12454/large/new.png?1696512274",
   decimals: 18,
   source: "coingecko",
   search_id: "hegic",
