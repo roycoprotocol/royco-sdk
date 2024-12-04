@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -29,47 +29,52 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "require": "./dist/index.cjs"
     },
     "./client": {
       "types": "./dist/client/index.d.ts",
       "import": "./dist/client/index.js",
-      "require": "./dist/client/index.js"
+      "require": "./dist/client/index.cjs"
     },
     "./constants": {
       "types": "./dist/constants/index.d.ts",
       "import": "./dist/constants/index.js",
-      "require": "./dist/constants/index.js"
+      "require": "./dist/constants/index.cjs"
+    },
+    "./contracts": {
+      "types": "./dist/contracts/index.d.ts",
+      "import": "./dist/contracts/index.js",
+      "require": "./dist/contracts/index.cjs"
     },
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js",
-      "require": "./dist/hooks/index.js"
+      "require": "./dist/hooks/index.cjs"
     },
     "./market": {
       "types": "./dist/market/index.d.ts",
       "import": "./dist/market/index.js",
-      "require": "./dist/market/index.js"
+      "require": "./dist/market/index.cjs"
     },
     "./provider": {
       "types": "./dist/provider/index.d.ts",
       "import": "./dist/provider/index.js",
-      "require": "./dist/provider/index.js"
+      "require": "./dist/provider/index.cjs"
     },
     "./queries": {
       "types": "./dist/queries/index.d.ts",
       "import": "./dist/queries/index.js",
-      "require": "./dist/queries/index.js"
+      "require": "./dist/queries/index.cjs"
     },
     "./types": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/types/index.js",
-      "require": "./dist/types/index.js"
+      "require": "./dist/types/index.cjs"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",
       "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.js"
+      "require": "./dist/utils/index.cjs"
     }
   },
   "dependencies": {
