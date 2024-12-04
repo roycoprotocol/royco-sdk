@@ -7,12 +7,14 @@ import type { CustomTokenData } from "@/sdk/types";
 
 export const useEnrichedRoycoStats = ({
   custom_token_data,
+  testnet = false,
 }: {
   custom_token_data?: CustomTokenData;
+  testnet?: boolean;
 } = {}) => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({
-    ...getEnrichedRoycoStatsQueryOptions(client, custom_token_data),
+    ...getEnrichedRoycoStatsQueryOptions(client, custom_token_data, testnet),
   });
 };

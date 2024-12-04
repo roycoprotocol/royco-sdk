@@ -6,6 +6,7 @@ import type { UseQueryOptions } from "@tanstack/react-query";
 export const getEnrichedRoycoStatsQueryOptions = (
   client: TypedRoycoClient,
   custom_token_data?: CustomTokenData,
+  testnet: boolean = false
 )  => ({
   queryKey: ["get-enriched-royco-stats"],
   queryFn: async () => {
@@ -27,10 +28,16 @@ export const getEnrichedRoycoStatsQueryOptions = (
         if (item.chain_id !== null) {
           const chain = getSupportedChain(item.chain_id);
 
-          if (!!chain && chain.testnet === false) {
+          if (testnet === true) {
             total_volume += item.total_volume ?? 0;
             total_tvl += item.total_tvl ?? 0;
             total_incentives += item.total_incentives ?? 0;
+          } else {
+            if (chain?.testnet !== true) {
+              total_volume += item.total_volume ?? 0;
+              total_tvl += item.total_tvl ?? 0;
+              total_incentives += item.total_incentives ?? 0;
+            }
           }
         }
       }
