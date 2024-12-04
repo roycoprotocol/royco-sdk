@@ -1,17 +1,23 @@
 #!/bin/bash
 
+# Stage and commit any changes
+echo "Committing any unstaged changes..."
+git add .
+if [ -n "$(git status --porcelain)" ]; then
+    git commit -m "feat(sdk): automated commits"
+fi
+
+# Switch to main and pull latest
+echo "Switching to main branch and pulling latest changes..."
+git checkout main
+git pull origin main
+
 # Check for version argument
 if [ "$1" != "--minor" ] && [ "$1" != "--major" ] && [ "$1" != "--patch" ]; then
     echo "Error: Please specify version type: --minor, --major, or --patch"
     exit 1
 fi
 VERSION_TYPE="${1#--}" # Remove the -- prefix
-
-# # Ensure we're in a clean state
-# if [ -n "$(git status --porcelain)" ]; then
-#     echo "Error: Working directory is not clean. Please commit or stash changes first."
-#     exit 1
-# fi
 
 # Create a new changeset with automated message
 CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
