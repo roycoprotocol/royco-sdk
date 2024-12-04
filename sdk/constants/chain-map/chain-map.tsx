@@ -5,6 +5,7 @@ import {
   arbitrum as arbitrumOne,
   baseSepolia,
   base,
+  corn,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -43,19 +44,27 @@ const BaseSepolia = {
   symbol: "SBASE",
 };
 
-export const Base = {
+const Base = {
   ...base,
   image: "https://icons.llamao.fi/icons/chains/rsz_base.jpg",
   symbol: "BASE",
 };
 
+const Corn = {
+  ...corn,
+  image:
+    "https://pbs.twimg.com/profile_images/1838599679321182208/igqD6b-Q_400x400.jpg",
+  symbol: "CORN",
+};
+
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
-  [arbitrumSepolia.id]: ArbitrumSepolia,
+  // [arbitrumSepolia.id]: ArbitrumSepolia,
   [arbitrumOne.id]: ArbitrumOne,
-  [baseSepolia.id]: BaseSepolia,
+  // [baseSepolia.id]: BaseSepolia,
   [base.id]: Base,
+  [corn.id]: Corn,
 };
 
 export const SupportedChainlist = Object.values(SupportedChainMap);
