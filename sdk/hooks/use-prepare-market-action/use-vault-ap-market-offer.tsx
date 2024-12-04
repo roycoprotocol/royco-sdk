@@ -144,7 +144,7 @@ export const calculateVaultAPMarketOfferTokenData = ({
 
         // Get incentive token raw amount
         const incentive_token_raw_amount =
-          action_incentive_token_amounts[index];
+          action_incentive_token_amounts[index] ?? "0";
 
         // Get incentive token amount
         const incentive_token_amount = parseFloat(
@@ -173,7 +173,7 @@ export const calculateVaultAPMarketOfferTokenData = ({
         } else {
           annual_change_ratio =
             (incentive_token_amount_usd / input_token_data.token_amount_usd) *
-            ((365 * 24 * 60 * 60) / parseInt(time_left));
+            ((365 * 24 * 60 * 60) / parseInt(time_left ?? "0"));
         }
 
         // Get incentive token data

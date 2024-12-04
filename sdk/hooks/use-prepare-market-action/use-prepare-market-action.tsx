@@ -121,7 +121,6 @@ export const usePrepareMarketAction = ({
     funding_vault,
     custom_token_data,
     frontend_fee_recipient,
-    offer_validation_url,
     enabled: action_type === PrepareMarketActionType.RecipeAPMarketOffer,
   });
 

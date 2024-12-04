@@ -194,7 +194,7 @@ export const calculateRecipeAPLimitOfferTokenData = ({
   // Get input token data
   const input_token_data: TypedMarketActionInputTokenData = {
     ...input_token_quote,
-    raw_amount: quantity === "" ? "0" : quantity ?? "0",
+    raw_amount: quantity === "" ? "0" : (quantity ?? "0"),
     token_amount: parseRawAmountToTokenAmount(
       quantity ?? "0",
       input_token_quote.decimals,
@@ -215,8 +215,8 @@ export const calculateRecipeAPLimitOfferTokenData = ({
           token_quotes: propsTokenQuotes,
         });
 
-        // Get incentive token raw amount
-        const incentive_token_raw_amount = tokenAmounts[index];
+        // Get incentive token raw amount with default "0"
+        const incentive_token_raw_amount = tokenAmounts[index] ?? "0";
 
         // Get incentive token amount
         const incentive_token_amount = parseFloat(

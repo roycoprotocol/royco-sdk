@@ -129,7 +129,7 @@ export const calculateRecipeAPMarketOfferTokenData = ({
       (acc, offer) => {
         offer.token_ids.forEach((token_id, index) => {
           const base_amount: BigNumber = BigNumber.from(
-            offer.token_amounts[index].toString(),
+            offer.token_amounts?.[index]?.toString() ?? "0",
           );
 
           const actual_amount: BigNumber = base_amount
@@ -284,7 +284,6 @@ export const useRecipeAPMarketOffer = ({
   funding_vault,
   custom_token_data,
   frontend_fee_recipient,
-  offer_validation_url,
   enabled,
 }: {
   account: string | undefined;
@@ -299,7 +298,6 @@ export const useRecipeAPMarketOffer = ({
     total_supply?: string;
   }>;
   frontend_fee_recipient?: string;
-  offer_validation_url: string;
   enabled?: boolean;
 }) => {
   let preContractOptions: TransactionOptionsType[] = [];
@@ -336,29 +334,6 @@ export const useRecipeAPMarketOffer = ({
     enabled: isValid.status,
   });
 
-  // Get market offers validator
-  const propsMarketOffersValidator = useMarketOffersValidator({
-    offer_ids: propsMarketOffers.data?.map((offer) => offer.id) ?? [],
-    offerValidationUrl: offer_validation_url,
-    enabled: isValid.status,
-  });
-
-  // Trigger refetch when validator returns non-empty array
-  React.useEffect(() => {
-    if (
-      isValid.status &&
-      !propsMarketOffersValidator.isLoading &&
-      propsMarketOffersValidator.data &&
-      propsMarketOffersValidator.data.length > 0
-    ) {
-      propsMarketOffers.refetch();
-    }
-  }, [
-    isValid.status,
-    propsMarketOffersValidator.isLoading,
-    propsMarketOffersValidator.data,
-  ]);
-
   // Get token quotes - Only proceed if offers are valid
   const propsTokenQuotes = useTokenQuotes({
     token_ids: Array.from(
@@ -368,11 +343,7 @@ export const useRecipeAPMarketOffer = ({
       ]),
     ),
     custom_token_data,
-    enabled:
-      isValid.status &&
-      // Only proceed if validation is complete and returned empty array (all offers valid)
-      !propsMarketOffersValidator.isLoading &&
-      propsMarketOffersValidator.data?.length === 0,
+    enabled: isValid.status,
   });
 
   // Get incentive data
@@ -391,10 +362,7 @@ export const useRecipeAPMarketOffer = ({
     !!baseMarket &&
     !!enrichedMarket &&
     !!incentiveData &&
-    !!inputTokenData &&
-    // Only proceed if validation is complete and returned empty array (all offers valid)
-    !propsMarketOffersValidator.isLoading &&
-    propsMarketOffersValidator.data?.length === 0
+    !!inputTokenData
   ) {
     // Get offer transaction options
     const offerTxOptions: TransactionOptionsType =
@@ -495,16 +463,11 @@ export const useRecipeAPMarketOffer = ({
   const isLoading =
     isLoadingDefaultMarketData ||
     propsMarketOffers.isLoading ||
-    propsMarketOffersValidator.isLoading ||
     propsTokenAllowance.isLoading ||
     propsTokenQuotes.isLoading;
 
   // Update isReady check to ensure offers are valid
-  const isReady =
-    writeContractOptions.length > 0 &&
-    // Only proceed if validation is complete and returned empty array (all offers valid)
-    !propsMarketOffersValidator.isLoading &&
-    propsMarketOffersValidator.data?.length === 0;
+  const isReady = writeContractOptions.length > 0;
 
   // Check if offer can be performed completely or partially
   if (isReady) {

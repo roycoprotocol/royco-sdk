@@ -113,7 +113,7 @@ export const calculateRecipeIPMarketOfferTokenData = ({
       (acc, offer) => {
         offer.token_ids.forEach((token_id, index) => {
           const base_amount: BigNumber = BigNumber.from(
-            offer.token_amounts[index].toString(),
+            offer.token_amounts?.[index]?.toString() ?? "0",
           );
 
           const actual_amount: BigNumber = base_amount
@@ -429,7 +429,7 @@ export const useRecipeIPMarketOffer = ({
             quantity: offer.quantity,
             expiry: offer.expiry,
             incentivesRequested: offer.token_ids.map((token_id) => {
-              const token_address = token_id.split("-")[1];
+              const token_address = token_id.split("-")[1] ?? NULL_ADDRESS;
               return token_address;
             }),
             incentiveAmountsRequested: offer.token_amounts,

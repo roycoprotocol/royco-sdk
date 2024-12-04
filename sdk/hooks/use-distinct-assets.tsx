@@ -17,46 +17,37 @@ export type TypedObjectDistinctAsset = {
   contract_address: string;
 };
 
-export const useDistinctAssets = ({
-  output = "array",
-}: {
-  output?: "array" | "object";
-} = {})  => {
+export const useDistinctAssets = () => {
   const client: RoycoClient = useRoycoClient();
 
-  const { data, isLoading, isError, isRefetching, error } = useQuery({
+  return useQuery({
     ...getDistinctAssetsQueryOptions(client),
     select: (data) => {
-      if (output === "array") {
-        //  
-        const new_data = data?.map((element) => {
-          const baseId = element.ids?.[0];
+      if (data === undefined || data === null) {
+        return null;
+      } else {
+        let new_data = [];
 
-          return {
-            ...element,
-            ...getSupportedToken(baseId),
-          };
-        });
+        for (let i = 0; i < data.length; i++) {
+          const element = data[i];
+
+          if (
+            !!element &&
+            element.ids !== undefined &&
+            element.ids !== null &&
+            element.ids.length > 0
+          ) {
+            const baseId = element.ids[0];
+
+            new_data.push({
+              ...element,
+              ...getSupportedToken(baseId),
+            });
+          }
+        }
 
         return new_data;
-      } else if (output === "object") {
-        return data
-          ? (data as TypedArrayDistinctAsset[]).reduce<
-              Record<string, TypedObjectDistinctAsset>
-            >((acc, { ids, symbol }) => {
-              ids.forEach((id) => {
-                acc[id] = {
-                  ...getSupportedToken(id),
-                };
-              });
-              return acc;
-            }, {})
-          : null;
-      } else {
-        return null;
       }
     },
   });
-
-  return { data, isLoading, isError, isRefetching };
 };

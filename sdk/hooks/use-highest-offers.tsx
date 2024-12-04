@@ -12,7 +12,7 @@ export const useHighestOffers = ({
   chain_id: number;
   market_id: string;
   market_type: number;
-})  => {
+}) => {
   let data: {
     ap_offers: Array<EnrichedOfferDataType>;
     ip_offers: Array<EnrichedOfferDataType>;
@@ -85,7 +85,10 @@ export const useHighestOffers = ({
   ) {
     const enrichedMarket = propsEnrichedMarket.data[0];
 
-    if (enrichedMarket && enrichedMarket.market_type === RoycoMarketType.recipe.value) {
+    if (
+      enrichedMarket &&
+      enrichedMarket.market_type === RoycoMarketType.recipe.value
+    ) {
       // Recipe Market
       data = {
         ap_offers:
@@ -107,7 +110,10 @@ export const useHighestOffers = ({
               (propsEnrichedOffersIP.data.data as Array<EnrichedOfferDataType>)
             : [],
       };
-    } else if (enrichedMarket && enrichedMarket.market_type === RoycoMarketType.vault.value) {
+    } else if (
+      enrichedMarket &&
+      enrichedMarket.market_type === RoycoMarketType.vault.value
+    ) {
       // Vault Market
       /**
        * This is the custom IP offer for the vault market, built for the UI
@@ -124,7 +130,7 @@ export const useHighestOffers = ({
           ? enrichedMarket.id.concat("_offer_id")
           : "no_offer_id",
         market_id: enrichedMarket.id,
-        creator: enrichedMarket.creator,
+        creator: enrichedMarket.owner,
         funding_vault: NULL_ADDRESS,
         input_token_id: enrichedMarket.input_token_id,
         quantity: enrichedMarket.locked_quantity,

@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 
-import {
-  HydrationBoundary,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import type { DefaultOptions } from "@tanstack/react-query";
 

@@ -162,7 +162,7 @@ export const calculateVaultIPRefundIncentivesTokenData = ({
 
         // Get incentive token raw amount
         const incentive_token_raw_amount =
-          action_incentive_token_amounts[existing_incentive_index];
+          action_incentive_token_amounts[existing_incentive_index] ?? "0";
 
         // Get incentive token amount
         const incentive_token_amount = parseRawAmountToTokenAmount(
