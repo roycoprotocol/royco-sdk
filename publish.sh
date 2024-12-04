@@ -34,6 +34,11 @@ pnpm changeset version
 git add .
 git commit -m "feat(npm): update versions"
 
+# Run preparation scripts
+echo "Running preparation scripts..."
+pnpm run prepare:market-map
+pnpm run prepare:token-map
+
 # Build the project 
 echo "Building project..."
 if ! pnpm run build; then
