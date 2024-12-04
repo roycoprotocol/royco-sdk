@@ -60,9 +60,7 @@ const Corn = {
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
-  // [arbitrumSepolia.id]: ArbitrumSepolia,
   [arbitrumOne.id]: ArbitrumOne,
-  // [baseSepolia.id]: BaseSepolia,
   [base.id]: Base,
   [corn.id]: Corn,
 };
