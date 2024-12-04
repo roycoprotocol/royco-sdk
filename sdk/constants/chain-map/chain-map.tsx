@@ -52,6 +52,7 @@ const Base = {
 
 const Corn = {
   ...corn,
+  name: "Corn",
   image:
     "https://pbs.twimg.com/profile_images/1838599679321182208/igqD6b-Q_400x400.jpg",
   symbol: "CORN",
