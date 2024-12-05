@@ -33,7 +33,7 @@ export const getVaultBalance = async ({
     {
       address: vault_address as Address,
       abi: erc4626Abi,
-      functionName: "balanceOf",
+      functionName: "maxWithdraw",
       args: [account],
     },
   ];
@@ -48,7 +48,7 @@ export const getVaultBalanceQueryOptions = (
   chain_id: number,
   account: string,
   vault_address: string,
-)  => ({
+) => ({
   queryKey: [
     "vault-balance",
     `chain-id=${chain_id}`,
@@ -79,7 +79,7 @@ export const getVaultBalanceQueryOptions = (
       // Handle invalid balance
       const raw_amount =
         balanceResult?.status === "success"
-          ? balanceResult.result?.toString() ?? "0"
+          ? (balanceResult.result?.toString() ?? "0")
           : "0";
 
       return {
