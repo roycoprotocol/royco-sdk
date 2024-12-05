@@ -19,11 +19,17 @@ let roycoClient: RoycoClient;
 let RPC_API_KEYS: TypedRpcApiKeys | undefined;
 
 const useRoycoClient = (): RoycoClient => {
-  const { originUrl, originKey } = useContext(RoycoContext);
+  const { originUrl, originKey, originId } = useContext(RoycoContext);
 
   // Memoize client creation
   if (!roycoClient) {
-    roycoClient = createBrowserClient<Database>(originUrl, originKey);
+    roycoClient = createBrowserClient<Database>(originUrl, originKey, {
+      global: {
+        headers: {
+          "x-royco-api-key": originId,
+        },
+      },
+    });
     typedRoycoClient = roycoClient;
   }
 
@@ -34,6 +40,7 @@ const useRpcApiKeys = (): TypedRpcApiKeys | undefined => {
   const { rpcApiKeys } = useContext<{
     originUrl: string;
     originKey: string;
+    originId: string;
     rpcApiKeys: TypedRpcApiKeys | undefined;
   }>(RoycoContext);
 

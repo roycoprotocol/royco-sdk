@@ -15,6 +15,7 @@ interface RoycoProviderProps {
   children: ReactNode;
   originUrl: string;
   originKey: string;
+  originId: string;
   rpcApiKeys: TypedRpcApiKeys | undefined;
   defaultOptions?: DefaultOptions;
 }
@@ -23,6 +24,7 @@ const RoycoProvider = ({
   children,
   originUrl,
   originKey,
+  originId,
   rpcApiKeys,
   defaultOptions = {
     queries: {
@@ -33,7 +35,7 @@ const RoycoProvider = ({
     },
   },
 }: RoycoProviderProps): React.ReactElement => {
-  const value = { originUrl, originKey, rpcApiKeys };
+  const value = { originUrl, originKey, originId, rpcApiKeys };
 
   const [queryClient] = useState(
     () =>
