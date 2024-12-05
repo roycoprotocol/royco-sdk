@@ -1,5 +1,11 @@
 # royco
 
+## 0.7.10
+
+### Patch Changes
+
+- abb59a4: New SDK version @ 2024-12-05 01:48:22 UTC
+
 ## 0.7.9
 
 ### Patch Changes
