@@ -85,12 +85,14 @@ export const getVaultBalanceQueryOptions = (
       return {
         token_id,
         raw_amount,
+        vault_address,
       };
     } catch (error) {
       // If any error occurs, return default values
       return {
         token_id: `${chain_id}-${NULL_ADDRESS}`.toLowerCase(),
         raw_amount: "0",
+        vault_address,
       };
     }
   },
