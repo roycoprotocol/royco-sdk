@@ -69,9 +69,17 @@ jobs:
             CURRENT_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
             
             # Get hash of sdk directory at published version
-            git checkout $PUBLISHED_SHA 2>/dev/null
+            if ! git checkout $PUBLISHED_SHA >/dev/null 2>&1; then
+              echo "Failed to checkout published version, assuming changes needed"
+              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+              exit 0
+            fi
+            
             PUBLISHED_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
-            git checkout - 2>/dev/null
+            
+            if ! git checkout - >/dev/null 2>&1; then
+              echo "Failed to return to original branch, but continuing"
+            fi
             
             echo "Current SDK hash: $CURRENT_SDK_HASH"
             echo "Published SDK hash: $PUBLISHED_SDK_HASH"
