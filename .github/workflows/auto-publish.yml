@@ -1,0 +1,103 @@
+name: Auto Publish Check
+
+# Add these permission settings
+permissions:
+  contents: write # For creating releases and pushing code
+  pull-requests: write # For creating pull requests
+  packages: write # For publishing packages
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs every hour
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for git history
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build and get hash
+        id: build
+        run: |
+          pnpm run build
+          BUILD_HASH=$(find dist -type f -exec sha256sum {} \; | sort | sha256sum | cut -d' ' -f1)
+          echo "BUILD_HASH=${BUILD_HASH}" >> $GITHUB_ENV
+
+      - name: Check NPM version hash
+        id: check_version
+        run: |
+          CURRENT_HASH=$(npm view royco dist-hash 2>/dev/null || echo "none")
+          if [ "$CURRENT_HASH" != "$BUILD_HASH" ]; then
+            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+          else
+            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+          fi
+
+      - name: Configure Git
+        if: env.NEEDS_PUBLISH == 'true'
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Create Changeset and Publish
+        if: env.NEEDS_PUBLISH == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # Create changeset
+          CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          mkdir -p .changeset
+          echo "---
+          \"royco\": patch
+          ---
+
+          New SDK version @ ${CURRENT_TIME}" > .changeset/automated-patch-release.md
+
+          # Add and commit changeset
+          git add .changeset/*.md
+          git commit -m "feat(npm): add changeset"
+
+          # Create release
+          pnpm changeset version
+
+          # Update package.json files
+          git add .
+          git commit -m "feat(npm): update versions"
+
+          # Run preparation scripts
+          pnpm run prepare:market-map
+          pnpm run prepare:token-map
+
+          # Build again
+          pnpm run build
+
+          # Publish to npm
+          pnpm changeset publish
+
+          # Push changes and tags
+          git push --follow-tags
+
+          # Create GitHub release
+          LATEST_TAG=$(git describe --tags --abbrev=0)
+          gh release create "$LATEST_TAG" --generate-notes
