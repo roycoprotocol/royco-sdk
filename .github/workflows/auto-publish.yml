@@ -39,6 +39,14 @@ jobs:
       - name: Build and get hash
         id: build
         run: |
+          # Run preparation scripts
+          pnpm run prepare:market-map
+          pnpm run prepare:token-map
+
+          # Commit any changes from preparation scripts
+          git add .
+          git commit -m "chore: update generated files" || echo "No changes to commit"
+
           pnpm run build
           BUILD_HASH=$(find dist -type f -exec sha256sum {} \; | sort | sha256sum | cut -d' ' -f1)
           echo "BUILD_HASH=${BUILD_HASH}" >> $GITHUB_ENV
@@ -84,10 +92,6 @@ jobs:
           # Update package.json files
           git add .
           git commit -m "feat(npm): update versions"
-
-          # Run preparation scripts
-          pnpm run prepare:market-map
-          pnpm run prepare:token-map
 
           # Build again
           pnpm run build
