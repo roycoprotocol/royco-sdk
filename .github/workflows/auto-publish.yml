@@ -83,7 +83,6 @@ jobs:
               echo "No SDK changes detected"
               echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
               echo "No changes detected - skipping publish"
-              exit 0
             fi
           fi
 
