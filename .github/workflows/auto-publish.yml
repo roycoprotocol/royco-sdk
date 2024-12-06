@@ -1,4 +1,4 @@
-name: Auto Publish Check
+name: Auto Publish
 
 # Add these permission settings
 permissions:
@@ -13,6 +13,8 @@ on:
 
 jobs:
   check-and-publish:
+    # Add branch protection
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
