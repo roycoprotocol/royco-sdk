@@ -58,30 +58,34 @@ jobs:
       - name: Check if publish needed
         id: check_version
         run: |
-          # Get the git SHA from the published package
-          PUBLISHED_SHA=$(npm view royco gitHead 2>/dev/null || echo "none")
+          # Get the git SHA from the published package, with better error handling
+          PUBLISHED_SHA=$(npm view royco gitHead 2>/dev/null || echo "")
 
-          if [ "$PUBLISHED_SHA" = "none" ]; then
-            echo "Package not published yet"
+          if [ -z "$PUBLISHED_SHA" ]; then
+            echo "Package not published yet or cannot fetch version"
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           else
             # Get hash of sdk directory in current state
             CURRENT_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
             
             # Get hash of sdk directory at published version
-            git checkout $PUBLISHED_SHA 2>/dev/null
-            PUBLISHED_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
-            git checkout - 2>/dev/null
-            
-            echo "Current SDK hash: $CURRENT_SDK_HASH"
-            echo "Published SDK hash: $PUBLISHED_SDK_HASH"
-            
-            if [ "$CURRENT_SDK_HASH" != "$PUBLISHED_SDK_HASH" ]; then
-              echo "Changes detected in SDK files"
-              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+            if git checkout $PUBLISHED_SHA 2>/dev/null; then
+              PUBLISHED_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+              git checkout - 2>/dev/null
+              
+              echo "Current SDK hash: $CURRENT_SDK_HASH"
+              echo "Published SDK hash: $PUBLISHED_SDK_HASH"
+              
+              if [ "$CURRENT_SDK_HASH" != "$PUBLISHED_SDK_HASH" ]; then
+                echo "Changes detected in SDK files"
+                echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+              else
+                echo "No SDK changes detected"
+                echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+              fi
             else
-              echo "No SDK changes detected"
-              echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+              echo "Failed to checkout published version, assuming changes needed"
+              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
             fi
           fi
 
