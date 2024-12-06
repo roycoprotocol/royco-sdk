@@ -52,14 +52,21 @@ jobs:
           pnpm run build
           BUILD_HASH=$(find dist -type f -exec sha256sum {} \; | sort | sha256sum | cut -d' ' -f1)
           echo "BUILD_HASH=${BUILD_HASH}" >> $GITHUB_ENV
+          echo "dist-hash=${BUILD_HASH}" >> dist-hash.txt
 
       - name: Check NPM version hash
         id: check_version
         run: |
+          CURRENT_VERSION=$(npm view royco version 2>/dev/null || echo "none")
           CURRENT_HASH=$(npm view royco dist-hash 2>/dev/null || echo "none")
+          echo "Current published hash: $CURRENT_HASH"
+          echo "New build hash: $BUILD_HASH"
+
           if [ "$CURRENT_HASH" != "$BUILD_HASH" ]; then
+            echo "New build detected, needs publishing"
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           else
+            echo "No changes detected, skipping publish"
             echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
           fi
 
@@ -91,9 +98,12 @@ jobs:
           # Create release
           pnpm changeset version
 
+          # Update package.json with new dist-hash
+          node -e "const pkg=require('./package.json'); pkg['dist-hash']='${BUILD_HASH}'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n')"
+
           # Update package.json files
-          git add .
-          git commit -m "feat(npm): update versions"
+          git add package.json
+          git commit -m "feat(npm): update versions and dist-hash"
 
           # Build again
           pnpm run build
