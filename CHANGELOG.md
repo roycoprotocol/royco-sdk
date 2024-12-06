@@ -1,5 +1,11 @@
 # royco
 
+## 0.8.5
+
+### Patch Changes
+
+- b58fcd2: New SDK version @ 2024-12-06 18:09:39 UTC
+
 ## 0.8.4
 
 ### Patch Changes
