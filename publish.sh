@@ -7,6 +7,9 @@ if [ -n "$(git status --porcelain)" ]; then
     git commit -m "feat(sdk): automated commits"
 fi
 
+# Push changes to main
+git push
+
 # Switch to main and pull latest
 echo "Switching to main branch and pulling latest changes..."
 git checkout main

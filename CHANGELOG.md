@@ -1,5 +1,45 @@
 # royco
 
+## 0.9.0
+
+### Minor Changes
+
+- 148cdae: New SDK version @ 2024-12-07 03:03:20 UTC
+
+### Patch Changes
+
+- 6009c14: New SDK version @ 2024-12-06 21:00:29 UTC
+
+## 0.8.7
+
+### Patch Changes
+
+- 6971b7c: New SDK version @ 2024-12-06 18:56:56 UTC
+
+## 0.8.6
+
+### Patch Changes
+
+- 2784d4a: New SDK version @ 2024-12-06 18:54:34 UTC
+
+## 0.8.5
+
+### Patch Changes
+
+- b58fcd2: New SDK version @ 2024-12-06 18:09:39 UTC
+
+## 0.8.4
+
+### Patch Changes
+
+- 8b002b1: New SDK version @ 2024-12-06 17:56:25 UTC
+
+## 0.8.3
+
+### Patch Changes
+
+- 476a872: New SDK version @ 2024-12-06 17:24:24 UTC
+
 ## 0.8.2
 
 ### Patch Changes
