@@ -142,6 +142,51 @@ export const getVaultInputTokenWithdrawalTransactionOptions = ({
   return txOptions;
 };
 
+export const getVaultInputTokenWithdrawalByAssetTransactionOptions = ({
+  account,
+  market_id,
+  chain_id,
+  position,
+}: {
+  account: string;
+  market_id: string;
+  chain_id: number;
+  position:
+    | {
+        token_data: SupportedToken & {
+          raw_amount: string;
+          token_amount: number;
+          token_amount_usd: number;
+          shares: string;
+        };
+      }
+    | undefined
+    | null;
+}) => {
+  // Get contract address and ABI
+  const address = market_id;
+  const abi =
+    ContractMap[chain_id as keyof typeof ContractMap]["WrappedVault"].abi;
+
+  // Get transaction options
+  const txOptions: TransactionOptionsType = {
+    contractId: "WrappedVault",
+    chainId: chain_id,
+    id: "withdraw_partial_input_token",
+    label: "Withdraw Partial Input Token",
+    address,
+    abi,
+    functionName: "withdraw",
+    marketType: RoycoMarketType.vault.id,
+    args: [position?.token_data.raw_amount, account, account],
+    txStatus: "idle",
+    txHash: null,
+    tokensIn: position ? [position.token_data] : [],
+  };
+
+  return txOptions;
+};
+
 export const getVaultIncentiveTokenWithdrawalTransactionOptions = ({
   account,
   market_id,
