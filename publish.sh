@@ -57,22 +57,7 @@ fi
 
 # Publish to npm
 echo "Publishing to npm..."
-MAX_RETRIES=3
-RETRY_COUNT=0
-
-while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-    if pnpm changeset publish; then
-        break
-    else
-        RETRY_COUNT=$((RETRY_COUNT + 1))
-        if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-            echo "Error: Failed to publish to npm after $MAX_RETRIES attempts. Please try again later."
-            exit 1
-        fi
-        echo "Publish failed. Retrying in 10 seconds... (Attempt $RETRY_COUNT of $MAX_RETRIES)"
-        sleep 10
-    fi
-done
+pnpm changeset publish
 
 # Push changes and tags to remote
 git push --follow-tags
@@ -80,8 +65,4 @@ git push --follow-tags
 # Create GitHub release from the latest tag
 echo "Creating GitHub release..."
 LATEST_TAG=$(git describe --tags --abbrev=0)
-if ! gh release view "$LATEST_TAG" >/dev/null 2>&1; then
-    gh release create "$LATEST_TAG" --generate-notes
-else
-    echo "Release for tag $LATEST_TAG already exists, skipping release creation"
-fi
+gh release create "$LATEST_TAG" --generate-notes

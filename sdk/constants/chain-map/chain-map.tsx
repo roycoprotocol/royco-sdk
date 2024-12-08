@@ -1,9 +1,8 @@
+import { defineChain } from "viem";
 import {
   sepolia as ethereumSepolia,
   mainnet as ethereumMainnet,
-  arbitrumSepolia,
   arbitrum as arbitrumOne,
-  baseSepolia,
   base,
   corn,
 } from "viem/chains";
@@ -26,22 +25,10 @@ const EthereumMainnet = {
   symbol: "ETH",
 };
 
-const ArbitrumSepolia = {
-  ...arbitrumSepolia,
-  image: "https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg",
-  symbol: "SARB",
-};
-
 const ArbitrumOne = {
   ...arbitrumOne,
   image: "https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg",
   symbol: "ARB",
-};
-
-const BaseSepolia = {
-  ...baseSepolia,
-  image: "https://icons.llamao.fi/icons/chains/rsz_base.jpg",
-  symbol: "SBASE",
 };
 
 const Base = {
@@ -58,12 +45,45 @@ const Corn = {
   symbol: "CORN",
 };
 
+const plume = defineChain({
+  id: 98_865,
+  name: "Plume Mainnet",
+  nativeCurrency: {
+    name: "Plume Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.plumenetwork.xyz"],
+      webSocket: ["wss://rpc.plumenetwork.xyz"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "Blockscout",
+      url: "https://explorer.plumenetwork.xyz",
+      apiUrl: "https://explorer.plumenetwork.xyz/api",
+    },
+  },
+  sourceId: 1,
+});
+
+const Plume = {
+  ...plume,
+  name: "Plume",
+  image:
+    "https://pbs.twimg.com/profile_images/1854933222569975808/no3lt9ZL_400x400.jpg",
+  symbol: "PLUMS",
+};
+
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
   [arbitrumOne.id]: ArbitrumOne,
   [base.id]: Base,
   [corn.id]: Corn,
+  [plume.id]: Plume,
 };
 
 export const SupportedChainlist = Object.values(SupportedChainMap);
