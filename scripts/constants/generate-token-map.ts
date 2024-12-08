@@ -46,13 +46,22 @@ const generateTokenMap = async () => {
       for (const file of definitionFiles) {
         if (file.endsWith(".ts")) {
           const filePath = path.join(definitionsDir, file);
-          const content = fs.readFileSync(filePath, "utf-8");
-          const formattedContent = await prettier.format(content, {
-            parser: "typescript",
-            semi: true,
-            singleQuote: false,
-          });
-          fs.writeFileSync(filePath, formattedContent);
+
+          try {
+            const content = fs.readFileSync(filePath, "utf-8");
+            const formattedContent = await prettier.format(content, {
+              parser: "typescript",
+              semi: true,
+              singleQuote: false,
+            });
+            fs.writeFileSync(filePath, formattedContent);
+          } catch (error) {
+            console.warn(
+              `Skipping file ${file} due to formatting error:`,
+              error.message,
+            );
+            continue;
+          }
         }
       }
     }
