@@ -66,7 +66,12 @@ jobs:
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           else
             # Get hash of sdk directory in current state
-            CURRENT_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)
+            echo "Files being considered for hash:"
+            find sdk -type f -print0 | sort -z | xargs -0 ls -la
+            
+            # Get hash of sdk directory in current state with verbose output
+            echo "Computing current SDK hash..."
+            CURRENT_SDK_HASH=$(find sdk -type f -print0 | sort -z | xargs -0 sha256sum | tee /dev/stderr | sha256sum | cut -d' ' -f1)
             
             # Get hash of sdk directory at published version
             if ! git checkout $PUBLISHED_SHA >/dev/null 2>&1; then
