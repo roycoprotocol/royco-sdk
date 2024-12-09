@@ -13,31 +13,31 @@ export type SupportedChain = Chain & {
   symbol: string;
 };
 
-const EthereumSepolia = {
+export const EthereumSepolia = {
   ...ethereumSepolia,
   image: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
   symbol: "SETH",
 };
 
-const EthereumMainnet = {
+export const EthereumMainnet = {
   ...ethereumMainnet,
   image: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
   symbol: "ETH",
 };
 
-const ArbitrumOne = {
+export const ArbitrumOne = {
   ...arbitrumOne,
   image: "https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg",
   symbol: "ARB",
 };
 
-const Base = {
+export const Base = {
   ...base,
   image: "https://icons.llamao.fi/icons/chains/rsz_base.jpg",
   symbol: "BASE",
 };
 
-const Corn = {
+export const Corn = {
   ...corn,
   name: "Corn",
   image:
@@ -69,7 +69,7 @@ const plume = defineChain({
   sourceId: 1,
 });
 
-const Plume = {
+export const Plume = {
   ...plume,
   name: "Plume",
   image:
