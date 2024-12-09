@@ -1,7 +1,7 @@
 import { Address } from "abitype";
 
 export const ContractAddresses = {
-  WrappedVault: "0x3c44c20377e252567d283dc7746d1bea67eb3e66",
+  WrappedVault: "0xb0a3960b115e0999f33e8afd4a11f16e04e2bf33",
   WrappedVaultFactory: "0x75e502644284edf34421f9c355d75db79e343bca",
   PointsFactory: "0x19112adbdafb465ddf0b57ecc07e68110ad09c50",
   RecipeMarketHub: "0x783251f103555068c1e9d755f69458f39ed937c0",
