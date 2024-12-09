@@ -1,1 +1,9 @@
-export const TokenMap98865 = {};
+import token_98865_0x2086f755a6d9254045c257ea3d382ef854849b0f from "./definitions/98865-0x2086f755a6d9254045c257ea3d382ef854849b0f";
+import token_98865_0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48 from "./definitions/98865-0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48";
+
+export const TokenMap98865 = {
+  [token_98865_0x2086f755a6d9254045c257ea3d382ef854849b0f.id]:
+    token_98865_0x2086f755a6d9254045c257ea3d382ef854849b0f,
+  [token_98865_0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48.id]:
+    token_98865_0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48,
+};
