@@ -46,6 +46,7 @@ export const Corn = {
 };
 
 const plume = defineChain({
+  sourceId: 1,
   id: 98_865,
   name: "Plume Mainnet",
   nativeCurrency: {
@@ -66,7 +67,12 @@ const plume = defineChain({
       apiUrl: "https://explorer.plumenetwork.xyz/api",
     },
   },
-  sourceId: 1,
+  contracts: {
+    multicall3: {
+      address: "0xca11bde05977b3631167028862be2a173976ca11",
+      blockCreated: 48577,
+    },
+  },
 });
 
 export const Plume = {
