@@ -74,7 +74,7 @@ const Plume = {
   name: "Plume",
   image:
     "https://pbs.twimg.com/profile_images/1854933222569975808/no3lt9ZL_400x400.jpg",
-  symbol: "PLUMS",
+  symbol: "PLUME",
 };
 
 export const SupportedChainMap: Record<number, SupportedChain> = {
