@@ -61,28 +61,17 @@ jobs:
           # Get the current package version
           CURRENT_VERSION=$(node -p "require('./package.json').version")
 
-          # Create a temporary directory to download the published package
-          TEMP_DIR=$(mktemp -d)
+          # Get the latest published version from npm
+          PUBLISHED_VERSION=$(npm show royco version || echo "0.0.0")
 
-          # Try to download and extract the latest published package
-          if npm pack royco@latest --pack-destination=$TEMP_DIR >/dev/null 2>&1; then
-            tar -xzf $TEMP_DIR/royco-*.tgz -C $TEMP_DIR
-            
-            # Compare the dist directories
-            if diff -r dist/ $TEMP_DIR/package/dist/ >/dev/null 2>&1; then
-              echo "No changes in dist/ directory - skipping publish"
-              echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
-            else
-              echo "Changes detected in dist/ directory"
-              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
-            fi
+          # Compare the versions
+          if [ "$CURRENT_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "No version change detected - skipping publish"
+            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
           else
-            echo "Package not found on npm - first publish"
+            echo "Version change detected - current: $CURRENT_VERSION, published: $PUBLISHED_VERSION"
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           fi
-
-          # Cleanup
-          rm -rf $TEMP_DIR
 
       - name: Configure Git
         if: env.NEEDS_PUBLISH == 'true'
