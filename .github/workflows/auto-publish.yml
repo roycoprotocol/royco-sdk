@@ -58,30 +58,31 @@ jobs:
       - name: Check if publish needed
         id: check_version
         run: |
-          # Get the current package version and hash
+          # Get the current package version
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          CURRENT_HASH=$(cat dist-hash.txt | sed 's/^dist-hash=//')
 
-          # Get the published version and hash
-          PUBLISHED_VERSION=$(npm view royco version 2>/dev/null || echo "none")
-          PUBLISHED_HASH=$(npm view royco dist-hash 2>/dev/null || echo "none")
+          # Create a temporary directory to download the published package
+          TEMP_DIR=$(mktemp -d)
 
-          # Add debug output
-          echo "Current version: $CURRENT_VERSION"
-          echo "Published version: $PUBLISHED_VERSION"
-          echo "Current hash: $CURRENT_HASH"
-          echo "Published hash: $PUBLISHED_HASH"
-
-          if [ "$PUBLISHED_VERSION" = "none" ]; then
-            echo "Package not published yet"
-            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
-          elif [ "$CURRENT_HASH" != "$PUBLISHED_HASH" ]; then
-            echo "Build hash changed - new publish needed"
-            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+          # Try to download and extract the latest published package
+          if npm pack royco@latest --pack-destination=$TEMP_DIR >/dev/null 2>&1; then
+            tar -xzf $TEMP_DIR/royco-*.tgz -C $TEMP_DIR
+            
+            # Compare the dist directories
+            if diff -r dist/ $TEMP_DIR/package/dist/ >/dev/null 2>&1; then
+              echo "No changes in dist/ directory - skipping publish"
+              echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+            else
+              echo "Changes detected in dist/ directory"
+              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+            fi
           else
-            echo "No changes detected - skipping publish"
-            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+            echo "Package not found on npm - first publish"
+            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           fi
+
+          # Cleanup
+          rm -rf $TEMP_DIR
 
       - name: Configure Git
         if: env.NEEDS_PUBLISH == 'true'
