@@ -1,0 +1,126 @@
+name: Auto Publish
+
+# Add these permission settings
+permissions:
+  contents: write # For creating releases and pushing code
+  pull-requests: write # For creating pull requests
+  packages: write # For publishing packages
+
+on:
+  schedule:
+    # Run every 15 minutes
+    - cron: "*/15 * * * *"
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  check-and-publish:
+    # Add branch protection
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for git history
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        id: build
+        run: |
+          # Run preparation scripts
+          pnpm run prepare:market-map
+          pnpm run prepare:token-map
+
+          # Configure git for the commit
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+          # Commit any changes from preparation scripts
+          git add .
+          git commit -m "feat(chore): update generated files" || echo "No changes to commit"
+
+          # Push changes if any were made
+          git push origin main || echo "No changes to push"
+
+          pnpm run build
+
+      - name: Check if publish needed
+        id: check_version
+        run: |
+          # Get the last commit hash that doesn't start with "feat(npm):"
+          LAST_RELEVANT_COMMIT=$(git log --format="%H" --grep="^feat(npm):" --invert-match -n 1)
+
+          # Get the stored commit hash from package.json
+          STORED_COMMIT=$(node -e "console.log(require('./package.json').lastPublishedCommit || '')")
+
+          if [ "$LAST_RELEVANT_COMMIT" != "$STORED_COMMIT" ]; then
+            echo "Changes detected since last publish"
+            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+            echo "LAST_RELEVANT_COMMIT=${LAST_RELEVANT_COMMIT}" >> $GITHUB_ENV
+          else
+            echo "No relevant changes since last publish"
+            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+          fi
+
+      - name: Configure Git
+        if: env.NEEDS_PUBLISH == 'true'
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Create Changeset and Publish
+        if: env.NEEDS_PUBLISH == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # Create changeset
+          CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          mkdir -p .changeset
+          echo "---
+          \"royco\": patch
+          ---
+
+          New SDK version @ ${CURRENT_TIME}" > .changeset/automated-patch-release.md
+
+          # Add and commit changeset
+          git add .changeset/*.md
+          git commit -m "feat(npm): add changeset"
+
+          # Create release
+          pnpm changeset version
+
+          # Update package.json with last relevant commit
+          node -e "const pkg=require('./package.json'); pkg['lastPublishedCommit']='${LAST_RELEVANT_COMMIT}'; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n')"
+
+          # Update package.json files
+          git add package.json
+          git commit -m "feat(npm): update versions"
+
+          # Build again
+          pnpm run build
+
+          # Publish to npm
+          pnpm changeset publish
+
+          # Push changes and tags
+          git push --follow-tags
+
+          # Create GitHub release
+          LATEST_TAG=$(git describe --tags --abbrev=0)
+          gh release create "$LATEST_TAG" --generate-notes
