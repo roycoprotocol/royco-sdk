@@ -63,8 +63,8 @@ const plume = defineChain({
   blockExplorers: {
     default: {
       name: "Blockscout",
-      url: "https://explorer.plumenetwork.xyz",
-      apiUrl: "https://explorer.plumenetwork.xyz/api",
+      url: "https://phoenix-explorer.plumenetwork.xyz",
+      apiUrl: "https://phoenix-explorer.plumenetwork.xyz/api",
     },
   },
   contracts: {
