@@ -58,19 +58,26 @@ jobs:
       - name: Check if publish needed
         id: check_version
         run: |
-          # Get the current package version
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-
           # Get the latest published version from npm
           PUBLISHED_VERSION=$(npm show royco version || echo "0.0.0")
 
-          # Compare the versions
-          if [ "$CURRENT_VERSION" = "$PUBLISHED_VERSION" ]; then
-            echo "No version change detected - skipping publish"
-            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
-          else
-            echo "Version change detected - current: $CURRENT_VERSION, published: $PUBLISHED_VERSION"
+          # Get the commit hash of the last published version
+          LAST_PUBLISHED_COMMIT=$(npm show royco gitHead || echo "")
+
+          if [ -z "$LAST_PUBLISHED_COMMIT" ]; then
+            # First publish or no git hash found
+            echo "First publish or no previous git hash found"
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+          else
+            # Check if there are any changes in the sdk directory since last publish
+            CHANGES=$(git diff --name-only $LAST_PUBLISHED_COMMIT HEAD -- sdk/)
+            if [ -n "$CHANGES" ]; then
+              echo "Changes detected in SDK directory since last publish"
+              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+            else
+              echo "No changes in SDK directory since last publish"
+              echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
+            fi
           fi
 
       - name: Configure Git
