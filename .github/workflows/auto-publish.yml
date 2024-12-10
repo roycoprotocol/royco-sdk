@@ -60,7 +60,7 @@ jobs:
         run: |
           # Get the current package version and hash
           CURRENT_VERSION=$(node -p "require('./package.json').version")
-          CURRENT_HASH=$(cat dist-hash.txt)
+          CURRENT_HASH=$(cat dist-hash.txt | sed 's/^dist-hash=//')
 
           # Get the published version and hash
           PUBLISHED_VERSION=$(npm view royco version 2>/dev/null || echo "none")
