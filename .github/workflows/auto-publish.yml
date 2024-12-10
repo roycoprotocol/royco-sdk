@@ -63,7 +63,12 @@ jobs:
         id: check_version
         run: |
           # Get the last commit hash that doesn't start with "feat(npm):"
-          LAST_RELEVANT_COMMIT=$(git log --format="%H" --grep="^feat(npm):" --invert-match -n 1)
+          LAST_RELEVANT_COMMIT=$(git log --format="%H" | while read commit; do
+            if ! git log -1 --format="%s" $commit | grep -q "^feat(npm):"; then
+              echo $commit
+              break
+            fi
+          done)
 
           # Get the stored commit hash from package.json
           STORED_COMMIT=$(node -e "console.log(require('./package.json').lastPublishedCommit || '')")
