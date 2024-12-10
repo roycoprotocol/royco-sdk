@@ -58,28 +58,29 @@ jobs:
       - name: Check if publish needed
         id: check_version
         run: |
-          # Get the git SHA from the published package
-          PUBLISHED_SHA=$(npm view royco gitHead 2>/dev/null || echo "none")
+          # Get the current package version and hash
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          CURRENT_HASH=$(cat dist-hash.txt)
 
-          if [ "$PUBLISHED_SHA" = "none" ]; then
+          # Get the published version and hash
+          PUBLISHED_VERSION=$(npm view royco version 2>/dev/null || echo "none")
+          PUBLISHED_HASH=$(npm view royco dist-hash 2>/dev/null || echo "none")
+
+          # Add debug output
+          echo "Current version: $CURRENT_VERSION"
+          echo "Published version: $PUBLISHED_VERSION"
+          echo "Current hash: $CURRENT_HASH"
+          echo "Published hash: $PUBLISHED_HASH"
+
+          if [ "$PUBLISHED_VERSION" = "none" ]; then
             echo "Package not published yet"
             echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
+          elif [ "$CURRENT_HASH" != "$PUBLISHED_HASH" ]; then
+            echo "Build hash changed - new publish needed"
+            echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
           else
-            # Add debug output for the current state
-            echo "Current commit SHA: $(git rev-parse HEAD)"
-            echo "Published SHA: $PUBLISHED_SHA"
-            
-            # Compare full repository state instead of just SDK directory
-            CURRENT_HASH=$(git rev-parse HEAD)
-            
-            if [ "$CURRENT_HASH" != "$PUBLISHED_SHA" ]; then
-              echo "Changes detected in repository"
-              echo "NEEDS_PUBLISH=true" >> $GITHUB_ENV
-            else
-              echo "No SDK changes detected"
-              echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
-              echo "No changes detected - skipping publish"
-            fi
+            echo "No changes detected - skipping publish"
+            echo "NEEDS_PUBLISH=false" >> $GITHUB_ENV
           fi
 
       - name: Configure Git
