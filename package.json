@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.9.34",
+  "version": "0.9.35",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
