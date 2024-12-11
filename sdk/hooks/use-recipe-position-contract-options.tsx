@@ -8,7 +8,7 @@ export const getRecipeForfeitTransactionOptions = ({
   position,
 }: {
   position: EnrichedPositionsRecipeDataType;
-})  => {
+}) => {
   // Get contract address and ABI
   const address =
     ContractMap[position.chain_id as keyof typeof ContractMap][
@@ -29,7 +29,7 @@ export const getRecipeForfeitTransactionOptions = ({
     abi,
     functionName: "forfeit",
     marketType: RoycoMarketType.recipe.id,
-    args: [position.weiroll_wallet, false], // @note: by default, we are not executing the withdrawal script upon forfeiting
+    args: [position.weiroll_wallet, true], // @note: by default, we are executing the withdrawal script upon forfeiting
     txStatus: "idle",
     txHash: null,
   };
