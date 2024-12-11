@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0x57ab1ec28d129707052df4df418d58a2d46d5f51",
   name: "sUSD",
   symbol: "SUSD",
-  image: "https://assets.coingecko.com/coins/images/5013/standard/sUSD.png?1696505546",
+  image:
+    "https://assets.coingecko.com/coins/images/5013/standard/sUSD.png?1696505546",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "2927",
