@@ -5,6 +5,7 @@ import market_1_1_0x1c0b7b379dede9cc83201620725ba733fc52971f from "./definitions
 import market_1_1_0x2120adcdcf8e0ed9d6dd3df683f076402b79e3bd from "./definitions/1_1_0x2120adcdcf8e0ed9d6dd3df683f076402b79e3bd";
 import market_1_1_0x2785a8814434a589ce47949f4c4d3beea13760af from "./definitions/1_1_0x2785a8814434a589ce47949f4c4d3beea13760af";
 import market_1_1_0x562113d1608a60807e2a474d037465b7868409fc from "./definitions/1_1_0x562113d1608a60807e2a474d037465b7868409fc";
+import market_1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2 from "./definitions/1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2";
 import market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd from "./definitions/1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd";
 import market_1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8 from "./definitions/1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8";
 import market_1_1_0x957e8d86b31847b55f4589999407aeb15b7ada54 from "./definitions/1_1_0x957e8d86b31847b55f4589999407aeb15b7ada54";
@@ -30,6 +31,8 @@ export const MarketMap1 = {
     market_1_1_0x2785a8814434a589ce47949f4c4d3beea13760af,
   [market_1_1_0x562113d1608a60807e2a474d037465b7868409fc.id]:
     market_1_1_0x562113d1608a60807e2a474d037465b7868409fc,
+  [market_1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2.id]:
+    market_1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2,
   [market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd.id]:
     market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd,
   [market_1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8.id]:
