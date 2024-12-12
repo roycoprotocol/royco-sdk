@@ -5,5 +5,5 @@ export default defineMarket({
   name: "Supply WETH into Somellier",
   description: `Supply WETH to Somellier on Arbitrum.
 `,
-  is_verified: true,
+  is_verified: false,
 });
