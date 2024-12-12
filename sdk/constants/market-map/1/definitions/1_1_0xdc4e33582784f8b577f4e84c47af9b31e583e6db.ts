@@ -5,5 +5,5 @@ export default defineMarket({
   name: "Lend USDC on Fluid",
   description:
     "USDC is supplied to Fluid lending market. Users can withdraw USDC at any time.",
-  is_verified: false,
+  is_verified: true,
 });
