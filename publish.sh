@@ -22,6 +22,22 @@ if [ "$1" != "--minor" ] && [ "$1" != "--major" ] && [ "$1" != "--patch" ]; then
 fi
 VERSION_TYPE="${1#--}" # Remove the -- prefix
 
+# Check if publish is needed by comparing commits
+echo "Checking if publish is needed..."
+LAST_RELEVANT_COMMIT=$(git log --format="%H" | while read commit; do
+    if ! git log -1 --format="%s" $commit | grep -q "^feat(npm):"; then
+        echo $commit
+        break
+    fi
+done)
+
+STORED_COMMIT=$(node -e "console.log(require('./package.json').lastPublishedCommit || '')")
+
+if [ "$LAST_RELEVANT_COMMIT" = "$STORED_COMMIT" ]; then
+    echo "No relevant changes since last publish. Skipping..."
+    exit 0
+fi
+
 # Create a new changeset with automated message
 CURRENT_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
 echo "Creating new changeset..."
@@ -38,6 +54,9 @@ git commit -m "feat(npm): add changeset"
 # Create release
 echo "Creating release..."
 pnpm changeset version
+
+# Update package.json with last relevant commit
+node -e "const pkg=require('./package.json'); pkg.lastPublishedCommit='${LAST_RELEVANT_COMMIT}'; const fs=require('fs'); fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n')"
 
 # Update package.json files
 git add .
