@@ -25,6 +25,7 @@ export default defineConfig({
     "react",
     "react-dom",
     "@metamask/sdk",
+    "@web3modal/wagmi",
     "@wagmi/core",
     "wagmi",
     "@tanstack/react-query",

@@ -119,5 +119,8 @@
     "zod": "^3.23.8"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
-  "lastPublishedCommit": "da5e9e055dfeb3e5e69dc3b549f365e7a524cb05"
+  "lastPublishedCommit": "da5e9e055dfeb3e5e69dc3b549f365e7a524cb05",
+  "devDependencies": {
+    "@web3modal/wagmi": "^5.1.11"
+  }
 }

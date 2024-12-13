@@ -1,8 +1,12 @@
-import type { TypedRoycoClient } from "@/sdk/client";
+import type { TypedRoycoClient, TypedRpcApiKeys } from "@/sdk/client";
 import type { BaseSortingFilter, CustomTokenData, Database } from "@/sdk/types";
-import type { SupportedChain, SupportedToken } from "@/sdk/constants";
+import type {
+  SupportedChain,
+  SupportedMarket,
+  SupportedToken,
+} from "@/sdk/constants";
 
-import { getSupportedToken } from "@/sdk/constants";
+import { getSupportedMarket, getSupportedToken } from "@/sdk/constants";
 import {
   constructBaseSortingFilterClauses,
   getSupportedChain,
@@ -12,6 +16,8 @@ import {
   parseTokenAmountToTokenAmountUsd,
 } from "@/sdk/utils";
 import { RoycoMarketType } from "@/sdk/market";
+import { http } from "viem";
+import { createPublicClient } from "viem";
 
 export type MarketFilter = {
   id: string;
@@ -90,6 +96,8 @@ const constructMarketFilterClauses = (
   return filterClauses;
 };
 
+type NativeYieldFn = NonNullable<SupportedMarket["native_yield"]>;
+
 export type EnrichedMarketDataType =
   Database["public"]["CompositeTypes"]["enriched_markets_data_type"] & {
     incentive_tokens_data: Array<
@@ -116,10 +124,12 @@ export type EnrichedMarketDataType =
       total_supply: number;
     };
     chain_data: SupportedChain;
+    native_yield: Awaited<ReturnType<NativeYieldFn>> | undefined;
   };
 
 export const getEnrichedMarketsQueryOptions = (
   client: TypedRoycoClient,
+  RPC_API_KEYS: TypedRpcApiKeys,
   chain_id: number | undefined,
   market_type: number | undefined,
   market_id: string | undefined,
@@ -161,150 +171,181 @@ export const getEnrichedMarketsQueryOptions = (
     if (!!result.data && !!result.data.data && result.data.data.length > 0) {
       const rows = result.data.data;
 
-      const new_rows = rows.map((row) => {
-        if (
-          !!row.input_token_id &&
-          !!row.incentive_ids &&
-          !!row.incentive_token_price_values &&
-          !!row.incentive_token_fdv_values &&
-          !!row.incentive_token_total_supply_values &&
-          !!row.chain_id &&
-          !!row.annual_change_ratios
-        ) {
-          const chain_data = getSupportedChain(row.chain_id);
+      const new_rows = await Promise.all(
+        rows.map(async (row) => {
+          if (
+            !!row.input_token_id &&
+            !!row.incentive_ids &&
+            !!row.incentive_token_price_values &&
+            !!row.incentive_token_fdv_values &&
+            !!row.incentive_token_total_supply_values &&
+            !!row.chain_id &&
+            !!row.annual_change_ratios
+          ) {
+            const market = getSupportedMarket(row.id);
 
-          const input_token_info: SupportedToken = getSupportedToken(
-            row.input_token_id,
-          );
-          const input_token_price: number = parseNumber(row.input_token_price);
-          const input_token_fdv: number = parseNumber(row.input_token_fdv);
-          const input_token_total_supply: number = parseNumber(
-            row.input_token_total_supply,
-          );
-          const input_token_raw_amount: string = parseRawAmount(
-            row.quantity_ap,
-          );
+            let native_yield = undefined;
 
-          const locked_input_token_raw_amount: string = parseRawAmount(
-            row.locked_quantity,
-          );
+            if (!!market && !!market.native_yield) {
+              const chainClient = createPublicClient({
+                chain: getSupportedChain(row.chain_id),
+                transport: http(RPC_API_KEYS[row.chain_id]),
+              });
 
-          const input_token_token_amount: number = parseRawAmountToTokenAmount(
-            input_token_raw_amount,
-            input_token_info.decimals,
-          );
+              native_yield = await market.native_yield({
+                roycoClient: client,
+                chainClient: chainClient,
+              });
+            }
 
-          const locked_input_token_token_amount: number =
-            parseRawAmountToTokenAmount(
-              locked_input_token_raw_amount,
-              input_token_info.decimals,
+            const chain_data = getSupportedChain(row.chain_id);
+
+            const input_token_info: SupportedToken = getSupportedToken(
+              row.input_token_id,
+            );
+            const input_token_price: number = parseNumber(
+              row.input_token_price,
+            );
+            const input_token_fdv: number = parseNumber(row.input_token_fdv);
+            const input_token_total_supply: number = parseNumber(
+              row.input_token_total_supply,
+            );
+            const input_token_raw_amount: string = parseRawAmount(
+              row.quantity_ap,
             );
 
-          const input_token_token_amount_usd = parseTokenAmountToTokenAmountUsd(
-            input_token_token_amount,
-            input_token_price,
-          );
-          const locked_input_token_token_amount_usd =
-            parseTokenAmountToTokenAmountUsd(
-              locked_input_token_token_amount,
-              input_token_price,
+            const locked_input_token_raw_amount: string = parseRawAmount(
+              row.locked_quantity,
             );
 
-          const input_token_data = {
-            ...input_token_info,
-            raw_amount: input_token_raw_amount,
-            token_amount: input_token_token_amount,
-            token_amount_usd: input_token_token_amount_usd,
-            locked_token_amount: locked_input_token_token_amount,
-            locked_token_amount_usd: locked_input_token_token_amount_usd,
-            price: input_token_price,
-            fdv: input_token_fdv,
-            total_supply: input_token_total_supply,
-          };
-
-          const incentive_tokens_data = row.incentive_ids.map(
-            (tokenId, tokenIndex) => {
-              const token_price: number = parseNumber(
-                row.incentive_token_price_values?.[tokenIndex],
-              );
-              const token_fdv: number = parseNumber(
-                row.incentive_token_fdv_values?.[tokenIndex],
-              );
-              const token_total_supply: number = parseNumber(
-                row.incentive_token_total_supply_values?.[tokenIndex],
+            const input_token_token_amount: number =
+              parseRawAmountToTokenAmount(
+                input_token_raw_amount,
+                input_token_info.decimals,
               );
 
-              const token_info: SupportedToken = getSupportedToken(tokenId);
-
-              const raw_amount: string = parseRawAmount(
-                row.incentive_amounts?.[tokenIndex],
+            const locked_input_token_token_amount: number =
+              parseRawAmountToTokenAmount(
+                locked_input_token_raw_amount,
+                input_token_info.decimals,
               );
 
-              const token_amount: number = parseRawAmountToTokenAmount(
-                raw_amount,
-                token_info.decimals,
+            const input_token_token_amount_usd =
+              parseTokenAmountToTokenAmountUsd(
+                input_token_token_amount,
+                input_token_price,
+              );
+            const locked_input_token_token_amount_usd =
+              parseTokenAmountToTokenAmountUsd(
+                locked_input_token_token_amount,
+                input_token_price,
               );
 
-              const token_amount_usd: number = parseTokenAmountToTokenAmountUsd(
-                token_amount,
-                token_price,
-              );
+            const input_token_data = {
+              ...input_token_info,
+              raw_amount: input_token_raw_amount,
+              token_amount: input_token_token_amount,
+              token_amount_usd: input_token_token_amount_usd,
+              locked_token_amount: locked_input_token_token_amount,
+              locked_token_amount_usd: locked_input_token_token_amount_usd,
+              price: input_token_price,
+              fdv: input_token_fdv,
+              total_supply: input_token_total_supply,
+            };
 
-              const annual_change_ratio: number = parseNumber(
-                row.annual_change_ratios?.[tokenIndex],
-              );
+            const incentive_tokens_data = row.incentive_ids.map(
+              (tokenId, tokenIndex) => {
+                const token_price: number = parseNumber(
+                  row.incentive_token_price_values?.[tokenIndex],
+                );
+                const token_fdv: number = parseNumber(
+                  row.incentive_token_fdv_values?.[tokenIndex],
+                );
+                const token_total_supply: number = parseNumber(
+                  row.incentive_token_total_supply_values?.[tokenIndex],
+                );
 
-              let per_input_token = 0;
+                const token_info: SupportedToken = getSupportedToken(tokenId);
 
-              if (market_type === RoycoMarketType.recipe.value) {
-                // recipe
-                per_input_token = token_amount / input_token_data.token_amount;
-              } else {
-                // vault
-                per_input_token =
-                  token_amount / input_token_data.locked_token_amount;
-              }
+                const raw_amount: string = parseRawAmount(
+                  row.incentive_amounts?.[tokenIndex],
+                );
 
-              if (isNaN(per_input_token) || !isFinite(per_input_token))
-                per_input_token = 0;
-
-              let token_rate = 0;
-
-              if (market_type === RoycoMarketType.recipe.value) {
-                // Recipe Market
-                token_rate = 0;
-              } else {
-                // Vault Market
-                // this rate is actually tokens per year
-                token_rate = parseRawAmountToTokenAmount(
-                  row.base_incentive_rates?.[tokenIndex],
+                const token_amount: number = parseRawAmountToTokenAmount(
+                  raw_amount,
                   token_info.decimals,
                 );
-              }
 
-              return {
-                ...token_info,
-                raw_amount,
-                token_amount,
-                token_amount_usd,
-                price: token_price,
-                fdv: token_fdv,
-                total_supply: token_total_supply,
-                annual_change_ratio: annual_change_ratio,
-                per_input_token: per_input_token,
-                token_rate,
-              };
-            },
-          );
+                const token_amount_usd: number =
+                  parseTokenAmountToTokenAmountUsd(token_amount, token_price);
 
-          return {
-            ...row,
-            incentive_tokens_data: incentive_tokens_data,
-            input_token_data,
-            chain_data,
-          };
-        }
-      });
+                const annual_change_ratio: number = parseNumber(
+                  row.annual_change_ratios?.[tokenIndex],
+                );
+
+                let per_input_token = 0;
+
+                if (market_type === RoycoMarketType.recipe.value) {
+                  // recipe
+                  per_input_token =
+                    token_amount / input_token_data.token_amount;
+                } else {
+                  // vault
+                  per_input_token =
+                    token_amount / input_token_data.locked_token_amount;
+                }
+
+                if (isNaN(per_input_token) || !isFinite(per_input_token))
+                  per_input_token = 0;
+
+                let token_rate = 0;
+
+                if (market_type === RoycoMarketType.recipe.value) {
+                  // Recipe Market
+                  token_rate = 0;
+                } else {
+                  // Vault Market
+                  // this rate is actually tokens per year
+                  token_rate = parseRawAmountToTokenAmount(
+                    row.base_incentive_rates?.[tokenIndex],
+                    token_info.decimals,
+                  );
+                }
+
+                return {
+                  ...token_info,
+                  raw_amount,
+                  token_amount,
+                  token_amount_usd,
+                  price: token_price,
+                  fdv: token_fdv,
+                  total_supply: token_total_supply,
+                  annual_change_ratio: annual_change_ratio,
+                  per_input_token: per_input_token,
+                  token_rate,
+                };
+              },
+            );
+
+            let annual_change_ratio = row.annual_change_ratio ?? 0;
+
+            if (!!native_yield) {
+              annual_change_ratio =
+                row.annual_change_ratios.reduce((acc, curr) => acc + curr, 0) +
+                native_yield.native_annual_change_ratio;
+            }
+
+            return {
+              ...row,
+              incentive_tokens_data: incentive_tokens_data,
+              input_token_data,
+              chain_data,
+              native_yield,
+              annual_change_ratio,
+            };
+          }
+        }),
+      );
 
       return {
         count: result.data.count,

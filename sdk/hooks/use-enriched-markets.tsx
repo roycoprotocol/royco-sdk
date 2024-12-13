@@ -4,7 +4,7 @@ import {
   getEnrichedMarketsQueryOptions,
   type MarketFilter,
 } from "@/sdk/queries";
-import { type RoycoClient, useRoycoClient } from "@/sdk/client";
+import { type RoycoClient, useRoycoClient, useRpcApiKeys } from "@/sdk/client";
 import type { BaseSortingFilter, CustomTokenData } from "@/sdk/types";
 
 export const useEnrichedMarkets = ({
@@ -30,12 +30,15 @@ export const useEnrichedMarkets = ({
   is_verified?: boolean;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-})  => {
+}) => {
   const client: RoycoClient = useRoycoClient();
+
+  const RPC_API_KEYS = useRpcApiKeys();
 
   const props = useQuery({
     ...getEnrichedMarketsQueryOptions(
       client,
+      RPC_API_KEYS ?? {},
       chain_id,
       market_type,
       market_id,
@@ -53,7 +56,7 @@ export const useEnrichedMarkets = ({
     ? // @ts-ignore
       (props.data.data as Array<EnrichedMarketDataType>)
     : null;
-  const count = !!props.data ? props.data.count ?? 0 : 0;
+  const count = !!props.data ? (props.data.count ?? 0) : 0;
 
   return {
     ...props,

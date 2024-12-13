@@ -42,3 +42,15 @@ export const getVerifiedMarket = (
 
   return SupportedMarketMap[marketId];
 };
+
+export const getSupportedMarket = (
+  key: string | null | undefined,
+): SupportedMarket | undefined => {
+  if (!key) return undefined;
+
+  const market = SupportedMarketMap[key];
+
+  if (!market) return undefined;
+
+  return market;
+};
