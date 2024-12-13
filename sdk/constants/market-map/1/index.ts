@@ -1,5 +1,6 @@
 import market_1_0_0x021b96a61753074dcb33cc139e873058ecb3b9591fe9e8a7a59a58e9aa8cfebc from "./definitions/1_0_0x021b96a61753074dcb33cc139e873058ecb3b9591fe9e8a7a59a58e9aa8cfebc";
 import market_1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b from "./definitions/1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b";
+import market_1_0_0xea47034ba4ba711a3c9b3d87c84149e7666040e2a31389e8594778feddb28ce2 from "./definitions/1_0_0xea47034ba4ba711a3c9b3d87c84149e7666040e2a31389e8594778feddb28ce2";
 import market_1_1_0x0423561443894edb98a89b0a3d61997b7bd2bf22 from "./definitions/1_1_0x0423561443894edb98a89b0a3d61997b7bd2bf22";
 import market_1_1_0x1c0b7b379dede9cc83201620725ba733fc52971f from "./definitions/1_1_0x1c0b7b379dede9cc83201620725ba733fc52971f";
 import market_1_1_0x2120adcdcf8e0ed9d6dd3df683f076402b79e3bd from "./definitions/1_1_0x2120adcdcf8e0ed9d6dd3df683f076402b79e3bd";
@@ -7,11 +8,13 @@ import market_1_1_0x2785a8814434a589ce47949f4c4d3beea13760af from "./definitions
 import market_1_1_0x562113d1608a60807e2a474d037465b7868409fc from "./definitions/1_1_0x562113d1608a60807e2a474d037465b7868409fc";
 import market_1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2 from "./definitions/1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2";
 import market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd from "./definitions/1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd";
+import market_1_1_0x887d57a509070a0843c6418eb5cffc090dcbbe95 from "./definitions/1_1_0x887d57a509070a0843c6418eb5cffc090dcbbe95";
 import market_1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8 from "./definitions/1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8";
 import market_1_1_0x957e8d86b31847b55f4589999407aeb15b7ada54 from "./definitions/1_1_0x957e8d86b31847b55f4589999407aeb15b7ada54";
 import market_1_1_0xa167f33e07c7d5d0dbf546adc40d647b6f4af1d2 from "./definitions/1_1_0xa167f33e07c7d5d0dbf546adc40d647b6f4af1d2";
 import market_1_1_0xaba9d0d3816e6069d14484149fd50780821ddc0f from "./definitions/1_1_0xaba9d0d3816e6069d14484149fd50780821ddc0f";
 import market_1_1_0xca5e7f3573048f5780a59670da9143dac7dfd4bd from "./definitions/1_1_0xca5e7f3573048f5780a59670da9143dac7dfd4bd";
+import market_1_1_0xd0f81e3a4958c72cbfcdbec7da7e3c003b7e840c from "./definitions/1_1_0xd0f81e3a4958c72cbfcdbec7da7e3c003b7e840c";
 import market_1_1_0xdbf9e533bfbd2aa2a9e6b933dd8657f9de90edb0 from "./definitions/1_1_0xdbf9e533bfbd2aa2a9e6b933dd8657f9de90edb0";
 import market_1_1_0xdc4e33582784f8b577f4e84c47af9b31e583e6db from "./definitions/1_1_0xdc4e33582784f8b577f4e84c47af9b31e583e6db";
 import market_1_1_0xf16cc52c836e6035638843614bc4956d564c5fe0 from "./definitions/1_1_0xf16cc52c836e6035638843614bc4956d564c5fe0";
@@ -21,6 +24,8 @@ export const MarketMap1 = {
     market_1_0_0x021b96a61753074dcb33cc139e873058ecb3b9591fe9e8a7a59a58e9aa8cfebc,
   [market_1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b.id]:
     market_1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b,
+  [market_1_0_0xea47034ba4ba711a3c9b3d87c84149e7666040e2a31389e8594778feddb28ce2.id]:
+    market_1_0_0xea47034ba4ba711a3c9b3d87c84149e7666040e2a31389e8594778feddb28ce2,
   [market_1_1_0x0423561443894edb98a89b0a3d61997b7bd2bf22.id]:
     market_1_1_0x0423561443894edb98a89b0a3d61997b7bd2bf22,
   [market_1_1_0x1c0b7b379dede9cc83201620725ba733fc52971f.id]:
@@ -35,6 +40,8 @@ export const MarketMap1 = {
     market_1_1_0x6402d18a46e56f37edbbe0f6a0aa9e83ee2d34a2,
   [market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd.id]:
     market_1_1_0x78c4fe43b09402a28cb1aa45c2d041f2474018fd,
+  [market_1_1_0x887d57a509070a0843c6418eb5cffc090dcbbe95.id]:
+    market_1_1_0x887d57a509070a0843c6418eb5cffc090dcbbe95,
   [market_1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8.id]:
     market_1_1_0x93359f581040f8c176131529d0d68ddf6ea793c8,
   [market_1_1_0x957e8d86b31847b55f4589999407aeb15b7ada54.id]:
@@ -45,6 +52,8 @@ export const MarketMap1 = {
     market_1_1_0xaba9d0d3816e6069d14484149fd50780821ddc0f,
   [market_1_1_0xca5e7f3573048f5780a59670da9143dac7dfd4bd.id]:
     market_1_1_0xca5e7f3573048f5780a59670da9143dac7dfd4bd,
+  [market_1_1_0xd0f81e3a4958c72cbfcdbec7da7e3c003b7e840c.id]:
+    market_1_1_0xd0f81e3a4958c72cbfcdbec7da7e3c003b7e840c,
   [market_1_1_0xdbf9e533bfbd2aa2a9e6b933dd8657f9de90edb0.id]:
     market_1_1_0xdbf9e533bfbd2aa2a9e6b933dd8657f9de90edb0,
   [market_1_1_0xdc4e33582784f8b577f4e84c47af9b31e583e6db.id]:
