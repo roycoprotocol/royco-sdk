@@ -5,5 +5,5 @@ export default defineMarket({
   name: "Lend USDC on Notional",
   description:
     "Lend USDC to Notional and earn interest paid by borrowers. Withdraw anytime.",
-  is_verified: false,
+  is_verified: true,
 });
