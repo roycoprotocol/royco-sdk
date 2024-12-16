@@ -56,8 +56,8 @@ const plume = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ["https://rpc.plumenetwork.xyz"],
-      webSocket: ["wss://rpc.plumenetwork.xyz"],
+      http: ["https://phoenix-rpc.plumenetwork.xyz"],
+      webSocket: ["wss://phoenix-rpc.plumenetwork.xyz"],
     },
   },
   blockExplorers: {
