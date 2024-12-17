@@ -3,6 +3,10 @@ import { ContractMap } from "@/sdk/contracts";
 import { BigNumber } from "ethers";
 import { type Abi, type Address } from "abitype";
 import type { EnrichedMarketDataType } from "@/sdk/queries";
+import { useRpcApiKeys } from "../client";
+import { useQuery } from "@tanstack/react-query";
+import { createPublicClient, http, erc20Abi } from "viem";
+import { getChain } from "../utils";
 
 export const useReadVaultPreview = ({
   market,
@@ -12,7 +16,9 @@ export const useReadVaultPreview = ({
   market: EnrichedMarketDataType | undefined;
   quantity: string;
   enabled?: boolean;
-})  => {
+}) => {
+  const RPC_API_KEYS = useRpcApiKeys();
+
   let incentive_token_ids: string[] = [];
   let incentive_token_rates: string[] = [];
   let incentive_token_amounts: string[] = [];
@@ -22,7 +28,7 @@ export const useReadVaultPreview = ({
   let vaultContracts = [];
 
   if (!!market && enabled) {
-    market.incentive_tokens_data.map((incentive) => {
+    vaultContracts = market.incentive_tokens_data.map((incentive) => {
       return {
         chainId: market.chain_id,
         address: market.market_id as Address,
@@ -38,10 +44,27 @@ export const useReadVaultPreview = ({
   // @ts-ignore
   const contractsToRead = vaultContracts;
 
-  const propsReadContracts = useReadContracts({
-    // @ts-ignore
-    contracts: contractsToRead,
+  const publicClient = createPublicClient({
+    batch: {
+      multicall: true,
+    },
+    chain: getChain(market?.chain_id as number),
+    transport: http(RPC_API_KEYS?.[market?.chain_id as number]),
   });
+
+  const propsReadContracts = useQuery({
+    queryKey: ["read-vault-preview", market?.chain_id, market?.market_id],
+    queryFn: () =>
+      publicClient.multicall({
+        // @ts-ignore
+        contracts: contractsToRead,
+      }),
+  });
+
+  // const propsReadContracts = useReadContracts({
+  //   // @ts-ignore
+  //   contracts: contractsToRead,
+  // });
 
   if (
     enabled &&

@@ -1,4 +1,4 @@
-import { useReadContracts } from "wagmi";
+import { createPublicClient, http, erc20Abi } from "viem";
 import { ContractMap } from "../contracts";
 import { BigNumber } from "ethers";
 import { NULL_ADDRESS } from "../constants";
@@ -8,6 +8,9 @@ import {
   type TypedRoycoMarketType,
 } from "@/sdk/market";
 import { type Abi, type Address } from "abitype";
+import { getChain } from "../utils";
+import { useRpcApiKeys } from "../client";
+import { useQuery } from "@tanstack/react-query";
 
 export type ReadMarketDataType = {
   protocol_fee: string;
@@ -33,7 +36,9 @@ export const useReadMarket = ({
   market_type: TypedRoycoMarketType;
   market_id: string;
   enabled?: boolean;
-})  => {
+}) => {
+  const RPC_API_KEYS = useRpcApiKeys();
+
   const recipeContracts = [
     {
       chainId: chain_id,
@@ -117,11 +122,28 @@ export const useReadMarket = ({
     lockup_time: "0",
   };
 
-  const propsReadContracts = useReadContracts({
-    // @ts-ignore
-    contracts: enabled ? contractsToRead : [],
-    enabled,
+  const publicClient = createPublicClient({
+    batch: {
+      multicall: true,
+    },
+    chain: getChain(chain_id),
+    transport: http(RPC_API_KEYS?.[chain_id]),
   });
+
+  const propsReadContracts = useQuery({
+    queryKey: ["read-market", chain_id, market_id, market_type],
+    queryFn: () =>
+      publicClient.multicall({
+        // @ts-ignore
+        contracts: contractsToRead,
+      }),
+  });
+
+  // const propsReadContracts = useReadContracts({
+  //   // @ts-ignore
+  //   contracts: enabled ? contractsToRead : [],
+  //   enabled,
+  // });
 
   if (
     enabled &&
