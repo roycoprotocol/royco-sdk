@@ -122,29 +122,24 @@ export const useReadMarket = ({
     lockup_time: "0",
   };
 
-  const publicClient = createPublicClient({
-    batch: {
-      multicall: true,
-    },
-    chain: getSupportedChain(chain_id),
-    transport: http(RPC_API_KEYS?.[chain_id]),
-  });
-
   const propsReadContracts = useQuery({
     queryKey: ["read-market", chain_id, market_id, market_type],
-    queryFn: () =>
-      publicClient.multicall({
+    queryFn: async () => {
+      const publicClient = createPublicClient({
+        batch: {
+          multicall: true,
+        },
+        chain: getSupportedChain(chain_id),
+        transport: http(RPC_API_KEYS?.[chain_id]),
+      });
+
+      return publicClient.multicall({
         // @ts-ignore
         contracts: contractsToRead,
-      }),
-    enabled: chain_id !== undefined,
+      });
+    },
+    enabled: chain_id !== undefined && RPC_API_KEYS?.[chain_id] !== undefined,
   });
-
-  // const propsReadContracts = useReadContracts({
-  //   // @ts-ignore
-  //   contracts: enabled ? contractsToRead : [],
-  //   enabled,
-  // });
 
   if (
     enabled &&

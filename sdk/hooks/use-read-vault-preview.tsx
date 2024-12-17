@@ -44,22 +44,25 @@ export const useReadVaultPreview = ({
   // @ts-ignore
   const contractsToRead = vaultContracts;
 
-  const publicClient = createPublicClient({
-    batch: {
-      multicall: true,
-    },
-    chain: getSupportedChain(market?.chain_id as number),
-    transport: http(RPC_API_KEYS?.[market?.chain_id as number]),
-  });
-
   const propsReadContracts = useQuery({
     queryKey: ["read-vault-preview", market?.chain_id, market?.market_id],
-    queryFn: () =>
-      publicClient.multicall({
+    queryFn: async () => {
+      const publicClient = createPublicClient({
+        batch: {
+          multicall: true,
+        },
+        chain: getSupportedChain(market?.chain_id as number),
+        transport: http(RPC_API_KEYS?.[market?.chain_id as number]),
+      });
+
+      return publicClient.multicall({
         // @ts-ignore
         contracts: contractsToRead,
-      }),
-    enabled: market?.chain_id !== undefined,
+      });
+    },
+    enabled:
+      market?.chain_id !== undefined &&
+      RPC_API_KEYS?.[market?.chain_id as number] !== undefined,
   });
 
   // const propsReadContracts = useReadContracts({
