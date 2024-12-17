@@ -6,7 +6,7 @@ import type { EnrichedMarketDataType } from "@/sdk/queries";
 import { useRpcApiKeys } from "../client";
 import { useQuery } from "@tanstack/react-query";
 import { createPublicClient, http, erc20Abi } from "viem";
-import { getChain } from "../utils";
+import { getSupportedChain } from "../utils";
 
 export const useReadVaultPreview = ({
   market,
@@ -48,7 +48,7 @@ export const useReadVaultPreview = ({
     batch: {
       multicall: true,
     },
-    chain: getChain(market?.chain_id as number),
+    chain: getSupportedChain(market?.chain_id as number),
     transport: http(RPC_API_KEYS?.[market?.chain_id as number]),
   });
 
@@ -59,6 +59,7 @@ export const useReadVaultPreview = ({
         // @ts-ignore
         contracts: contractsToRead,
       }),
+    enabled: market?.chain_id !== undefined,
   });
 
   // const propsReadContracts = useReadContracts({

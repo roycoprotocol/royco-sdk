@@ -2,7 +2,7 @@ import { useRoycoClient, type RoycoClient } from "@/sdk/client";
 import { getDistinctAssetsQueryOptions } from "@/sdk/queries";
 import { useQuery } from "@tanstack/react-query";
 import { getSupportedToken } from "@/sdk/constants";
-import { getChain } from "@/sdk/utils";
+import { getSupportedChain } from "@/sdk/utils";
 
 export type TypedArrayDistinctAsset = {
   ids: Array<string>;
@@ -42,8 +42,8 @@ export const useDistinctAssets = () => {
             const sortedIds = element.ids.sort((a, b) => {
               const chainIdA = parseInt(a.split("-")[0] ?? "0");
               const chainIdB = parseInt(b.split("-")[0] ?? "0");
-              const chainA = getChain(chainIdA);
-              const chainB = getChain(chainIdB);
+              const chainA = getSupportedChain(chainIdA);
+              const chainB = getSupportedChain(chainIdB);
 
               // Move testnet chains to the end
               if (chainA?.testnet && !chainB?.testnet) return 1;

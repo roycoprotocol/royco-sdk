@@ -8,7 +8,7 @@ import {
   type TypedRoycoMarketType,
 } from "@/sdk/market";
 import { type Abi, type Address } from "abitype";
-import { getChain } from "../utils";
+import { getSupportedChain } from "../utils";
 import { useRpcApiKeys } from "../client";
 import { useQuery } from "@tanstack/react-query";
 
@@ -126,7 +126,7 @@ export const useReadMarket = ({
     batch: {
       multicall: true,
     },
-    chain: getChain(chain_id),
+    chain: getSupportedChain(chain_id),
     transport: http(RPC_API_KEYS?.[chain_id]),
   });
 
@@ -137,6 +137,7 @@ export const useReadMarket = ({
         // @ts-ignore
         contracts: contractsToRead,
       }),
+    enabled: chain_id !== undefined,
   });
 
   // const propsReadContracts = useReadContracts({
