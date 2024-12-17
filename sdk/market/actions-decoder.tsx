@@ -105,7 +105,7 @@ export const decodeActions = ({
 
       if (abis) {
         for (const abi of abis) {
-          if (abi.type === "function") {
+          if (abi && abi.type === "function") {
             const inputs = abi.inputs.map((input) => input.type).join(",");
             const raw_signature = `${abi.name}(${inputs})` as `0x${string}`;
             const functionSelector = keccak256(raw_signature).slice(0, 10);
