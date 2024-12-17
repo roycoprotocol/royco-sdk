@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0x1ac493d3efdee9fbffa1b311c6c1cbe17deda7cf",
   name: "Hinkal Points",
   symbol: "HINK",
-  image: "https://drive.google.com/file/d/1L3DgqBhASyesZvEWeM8kyGT82oCGxZxQ/view?usp=sharing",
+  image:
+    "https://drive.google.com/file/d/1L3DgqBhASyesZvEWeM8kyGT82oCGxZxQ/view?usp=sharing",
   decimals: 18,
   source: "external",
   search_id: "none",
