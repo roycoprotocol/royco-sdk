@@ -283,6 +283,8 @@ export const useVaultAPMarketOffer = ({
     enabled: isValid.status,
   });
 
+  console.log("propsReadVaultPreview", propsReadVaultPreview.data);
+
   // Get token quotes
   const propsTokenQuotes = useTokenQuotes({
     token_ids: Array.from(

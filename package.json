@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.9.56",
+  "version": "0.9.64",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -80,6 +80,7 @@
   "dependencies": {
     "@changesets/cli": "^2.27.1",
     "@radix-ui/react-icons": "^1.3.0",
+    "@rainbow-me/rainbowkit": "^2.2.1",
     "@supabase-cache-helpers/postgrest-react-query": "^1.6.2",
     "@supabase/postgrest-js": "^1.16.3",
     "@supabase/ssr": "^0.3.0",
@@ -119,5 +120,5 @@
     "zod": "^3.23.8"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
-  "lastPublishedCommit": "56c9fb3d8342876a78229ea328d3c7cd7eed456d"
+  "lastPublishedCommit": "6a386258979419be80466ea7e55f28239b0acc88"
 }
