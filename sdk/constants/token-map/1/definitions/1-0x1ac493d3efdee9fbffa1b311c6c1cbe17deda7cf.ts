@@ -7,7 +7,7 @@ export default defineToken({
   name: "Hinkal Points",
   symbol: "HINK",
   image:
-    "https://drive.google.com/file/d/1L3DgqBhASyesZvEWeM8kyGT82oCGxZxQ/view?usp=sharing",
+    "https://i.postimg.cc/zBvZSx9n/512x512-hinkal-logo.png",
   decimals: 18,
   source: "external",
   search_id: "none",
