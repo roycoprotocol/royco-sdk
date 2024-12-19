@@ -18,3 +18,8 @@ export * from "./get-vault-balance";
 export * from "./get-vault-allowance";
 export * from "./get-market-offers-validator";
 export * from "./get-enriched-positions-vault";
+export * from "./get-enriched-point-program";
+export * from "./get-enriched-point-balance";
+export * from "./get-authorized-point-issuer-checker";
+export * from "./get-allowed-ip-points";
+export * from "./get-allowed-ap-points";

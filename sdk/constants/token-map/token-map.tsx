@@ -37,7 +37,7 @@ export const UnknownToken: SupportedToken = {
   image: "https://chainlist.org/unknown-logo.png",
   decimals: 18,
   source: "external",
-  search_id: "unknown",
+  search_id: "none",
   type: "token",
 };
 
