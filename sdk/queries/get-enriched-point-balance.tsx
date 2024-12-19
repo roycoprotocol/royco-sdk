@@ -7,18 +7,21 @@ import {
 import { getSupportedToken, SupportedToken } from "@/sdk/constants";
 
 export type GetEnrichedPointBalanceQueryParams = {
-  client: TypedRoycoClient;
   chain_id: number;
   contract_address: string;
   account_address: string;
 };
+
+export type GetEnrichedPointBalanceQueryOptionsParams = {
+  client: TypedRoycoClient;
+} & GetEnrichedPointBalanceQueryParams;
 
 export const getEnrichedPointBalanceQueryFunction = async ({
   client,
   chain_id,
   contract_address,
   account_address,
-}: GetEnrichedPointBalanceQueryParams) => {
+}: GetEnrichedPointBalanceQueryOptionsParams) => {
   const [
     { data: raw_point_balances_data },
     { data: raw_points_data },
@@ -104,18 +107,19 @@ export const getEnrichedPointBalanceQueryOptions = ({
   chain_id,
   contract_address,
   account_address,
-}: GetEnrichedPointBalanceQueryParams) => ({
+}: GetEnrichedPointBalanceQueryOptionsParams) => ({
   queryKey: generateQueryKey("get-enriched-point-balance", {
     chain_id,
     contract_address,
     account_address,
   }),
-  queryFn: getEnrichedPointBalanceQueryFunction({
-    client,
-    chain_id,
-    contract_address,
-    account_address,
-  }),
+  queryFn: () =>
+    getEnrichedPointBalanceQueryFunction({
+      client,
+      chain_id,
+      contract_address,
+      account_address,
+    }),
   placeholderData: (previousData: any) => previousData,
   refetchInterval: 1000 * 60, // 1 min
   refetchOnWindowFocus: false,

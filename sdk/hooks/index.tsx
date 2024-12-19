@@ -39,3 +39,4 @@ export * from "./use-enriched-point-program";
 export * from "./use-allowed-ap-points";
 export * from "./use-allowed-ip-points";
 export * from "./use-allowed-tokens";
+export * from "./use-enriched-point-balance";
