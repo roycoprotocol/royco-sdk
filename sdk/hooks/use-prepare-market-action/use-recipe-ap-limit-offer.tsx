@@ -18,6 +18,7 @@ import {
   useVaultAllowance,
   getTokenQuote,
   useTokenQuotes,
+  useAccountBalance,
 } from "@/sdk/hooks";
 
 import {
@@ -492,6 +493,15 @@ export const useRecipeAPLimitOffer = ({
     enabled: isValid.status,
   });
 
+  // Get token balance
+  const propsTokenBalance = useAccountBalance({
+    chain_id,
+    account: account ? account : NULL_ADDRESS,
+    tokens: inputTokenData?.contract_address
+      ? [inputTokenData?.contract_address]
+      : [],
+  });
+
   if (!propsTokenAllowance.isLoading && !propsVaultAllowance.isLoading) {
     if (funding_vault !== NULL_ADDRESS) {
       // Refine vault transaction options
@@ -515,15 +525,19 @@ export const useRecipeAPLimitOffer = ({
     isLoadingDefaultMarketData ||
     propsTokenAllowance.isLoading ||
     propsVaultAllowance.isLoading ||
-    propsTokenQuotes.isLoading;
+    propsTokenQuotes.isLoading ||
+    propsTokenBalance.isLoading;
 
   // Check if ready
   const isReady = writeContractOptions.length > 0;
 
   // Check if offer can be performed completely or partially
-  if (isReady) {
-    canBePerformedCompletely = true;
-    canBePerformedPartially = true;
+  if (isReady && inputTokenData) {
+    const hasBalance = BigNumber.from(
+      propsTokenBalance.data?.[0]?.raw_amount || "0",
+    ).gte(BigNumber.from(inputTokenData.raw_amount));
+    canBePerformedCompletely = hasBalance;
+    canBePerformedPartially = hasBalance;
   }
 
   return {
