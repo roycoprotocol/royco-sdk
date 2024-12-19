@@ -619,9 +619,6 @@ export const useVaultIPAddIncentives = ({
     preContractOptions = approvalTxOptions;
   }
 
-  // console.log("preContractOptions", preContractOptions);
-  // console.log("postContractOptions", postContractOptions);
-
   // Get token allowance
   const propsTokenAllowance = useTokenAllowance({
     chain_id: chain_id,

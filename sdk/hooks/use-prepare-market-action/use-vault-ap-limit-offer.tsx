@@ -11,6 +11,7 @@ import {
   getTokenQuote,
   useTokenQuotes,
   useReadVaultPreview,
+  useAccountBalance,
 } from "@/sdk/hooks";
 import { NULL_ADDRESS } from "@/sdk/constants";
 import { ContractMap } from "@/sdk/contracts";
@@ -475,6 +476,15 @@ export const useVaultAPLimitOffer = ({
     enabled: isValid.status,
   });
 
+  // Get token balance
+  const propsTokenBalance = useAccountBalance({
+    chain_id,
+    account: account ? account : NULL_ADDRESS,
+    tokens: inputTokenData?.contract_address
+      ? [inputTokenData?.contract_address]
+      : [],
+  });
+
   if (!propsTokenAllowance.isLoading) {
     // Refine transaction options
     writeContractOptions = refineTransactionOptions({
@@ -489,15 +499,19 @@ export const useVaultAPLimitOffer = ({
     isLoadingDefaultMarketData ||
     propsReadVaultPreview.isLoading ||
     propsTokenAllowance.isLoading ||
-    propsTokenQuotes.isLoading;
+    propsTokenQuotes.isLoading ||
+    propsTokenBalance.isLoading;
 
   // Check if ready
   const isReady = writeContractOptions.length > 0;
 
   // Check if offer can be performed completely or partially
-  if (isReady) {
-    canBePerformedCompletely = true;
-    canBePerformedPartially = true;
+  if (isReady && inputTokenData) {
+    const hasBalance = BigNumber.from(
+      propsTokenBalance.data?.[0]?.raw_amount || "0",
+    ).gte(BigNumber.from(inputTokenData.raw_amount));
+    canBePerformedCompletely = hasBalance;
+    canBePerformedPartially = hasBalance;
   }
 
   return {
