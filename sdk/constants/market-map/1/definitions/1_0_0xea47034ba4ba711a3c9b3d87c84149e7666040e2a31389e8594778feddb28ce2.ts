@@ -5,5 +5,5 @@ export default defineMarket({
   name: "Deposit hETH into Spectra",
   description:
     "When hETH is provided it gets deposited into the Spectra LP pool for hETH.",
-  is_verified: false,
+  is_verified: true,
 });
