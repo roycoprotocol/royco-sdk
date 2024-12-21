@@ -1,6 +1,5 @@
 import type { TypedRoycoClient } from "@/sdk/client";
 import {
-  generateQueryKey,
   parseRawAmountToTokenAmount,
   parseTokenAmountToTokenAmountUsd,
 } from "@/sdk/utils";
@@ -108,11 +107,14 @@ export const getEnrichedPointBalanceQueryOptions = ({
   contract_address,
   account_address,
 }: GetEnrichedPointBalanceQueryOptionsParams) => ({
-  queryKey: generateQueryKey("get-enriched-point-balance", {
-    chain_id,
-    contract_address,
-    account_address,
-  }),
+  queryKey: [
+    "get-enriched-point-balance",
+    {
+      chain_id,
+      contract_address,
+      account_address,
+    },
+  ],
   queryFn: () =>
     getEnrichedPointBalanceQueryFunction({
       client,

@@ -1,5 +1,4 @@
 import type { TypedRoycoClient } from "@/sdk/client";
-import { generateQueryKey } from "@/sdk/utils";
 import { getSupportedToken, SupportedToken } from "@/sdk/constants";
 
 export type GetAllowedApPointsQueryParams = {
@@ -40,9 +39,12 @@ export const getAllowedApPointsQueryOptions = ({
   client,
   id,
 }: GetAllowedApPointsQueryOptionsParams) => ({
-  queryKey: generateQueryKey("get-allowed-ap-points", {
-    id,
-  }),
+  queryKey: [
+    "get-allowed-ap-points",
+    {
+      id,
+    },
+  ],
   queryFn: () =>
     getAllowedApPointsQueryFunction({
       client,

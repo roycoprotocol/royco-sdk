@@ -96,8 +96,6 @@ const constructMarketFilterClauses = (
   return filterClauses;
 };
 
-type NativeYieldFn = NonNullable<SupportedMarket["native_yield"]>;
-
 export type EnrichedMarketDataType =
   Database["public"]["CompositeTypes"]["enriched_markets_data_type"] & {
     incentive_tokens_data: Array<
@@ -124,7 +122,17 @@ export type EnrichedMarketDataType =
       total_supply: number;
     };
     chain_data: SupportedChain;
-    native_yield: Awaited<ReturnType<NativeYieldFn>> | undefined;
+    yield_breakdown: Array<
+      SupportedToken & {
+        category: "base" | "underlying" | "native";
+        label: string;
+        annual_change_ratio: number;
+        total_supply?: number;
+        fdv?: number;
+        price?: number;
+        allocation?: number;
+      }
+    >;
   };
 
 export const getEnrichedMarketsQueryOptions = (
@@ -142,15 +150,17 @@ export const getEnrichedMarketsQueryOptions = (
 ) => ({
   queryKey: [
     "enriched-markets",
-    `${chain_id}-${market_type}-${market_id}-${page_index}`,
-    ...(filters || []).map((filter) => {
-      return `${filter.id}-${filter.value}-${filter.condition}`;
-    }),
-    ...(sorting || []).map(
-      (sort) => `${sort.id}-${sort.desc ? "desc" : "asc"}`,
-    ),
-    search_key,
-    is_verified,
+    {
+      chain_id,
+      market_type,
+      market_id,
+      page_index,
+      filters,
+      sorting,
+      search_key,
+      is_verified,
+      custom_token_data,
+    },
   ],
   queryFn: async () => {
     const filterClauses = constructMarketFilterClauses(filters);
@@ -254,7 +264,7 @@ export const getEnrichedMarketsQueryOptions = (
             };
 
             const incentive_tokens_data = row.incentive_ids.map(
-              (tokenId, tokenIndex) => {
+              (tokenId: string, tokenIndex: number) => {
                 const token_price: number = parseNumber(
                   row.incentive_token_price_values?.[tokenIndex],
                 );
@@ -327,12 +337,118 @@ export const getEnrichedMarketsQueryOptions = (
               },
             );
 
-            let annual_change_ratio = row.annual_change_ratio ?? 0;
+            let yield_breakdown: Array<
+              SupportedToken & {
+                category: string;
+                label: string;
+                annual_change_ratio: number;
+                total_supply?: number;
+                fdv?: number;
+                price?: number;
+                allocation?: number;
+              }
+            > = [];
 
-            if (!!native_yield) {
-              annual_change_ratio =
-                row.annual_change_ratios.reduce((acc, curr) => acc + curr, 0) +
-                native_yield.native_annual_change_ratio;
+            // Base Yields
+            if (
+              !!row.annual_change_ratios &&
+              row.annual_change_ratios.length > 0 &&
+              !!row.incentive_ids &&
+              row.incentive_ids.length > 0
+            ) {
+              for (let i = 0; i < row.annual_change_ratios.length; i++) {
+                const annual_change_ratio = row.annual_change_ratios[i];
+                const token_id = row.incentive_ids[i];
+
+                let allocation = 1;
+
+                const token_data = getSupportedToken(token_id);
+
+                if (token_data.type === "point") {
+                  const raw_amount: string = parseRawAmount(
+                    row.incentive_amounts?.[i],
+                  );
+
+                  const token_amount: number = parseRawAmountToTokenAmount(
+                    raw_amount,
+                    token_data.decimals,
+                  );
+
+                  const total_supply =
+                    row.incentive_token_total_supply_values?.[i] ?? 0;
+
+                  allocation = token_amount / total_supply;
+                }
+
+                if (!!annual_change_ratio && !!token_id) {
+                  yield_breakdown.push({
+                    ...getSupportedToken(token_id),
+                    category: "base",
+                    label: "Royco Yield",
+                    annual_change_ratio: annual_change_ratio,
+                    total_supply: row.incentive_token_total_supply_values?.[i],
+                    fdv: row.incentive_token_fdv_values?.[i],
+                    price: row.incentive_token_price_values?.[i],
+                    allocation,
+                  });
+                }
+              }
+            }
+
+            // Underlying Vault Yields
+            if (!!row.underlying_annual_change_ratio) {
+              yield_breakdown.push({
+                ...getSupportedToken(row.input_token_id),
+                category: "underlying",
+                label: "Underlying Vault Yield",
+                annual_change_ratio: row.underlying_annual_change_ratio,
+              });
+            }
+
+            // Native Yields
+            if (!!row.native_annual_change_ratio && !!native_yield) {
+              let curr_sum = 0;
+
+              for (
+                let i = 0;
+                i < native_yield.native_annual_change_ratios.length;
+                i++
+              ) {
+                if (i === native_yield.native_annual_change_ratios.length - 1) {
+                  // last index
+                  yield_breakdown.push({
+                    ...getSupportedToken(
+                      native_yield.native_annual_change_ratios[i]?.id ?? "",
+                    ),
+                    category: "native",
+                    label:
+                      native_yield.native_annual_change_ratios[i]?.label ??
+                      "Native Yield",
+                    annual_change_ratio: Math.max(
+                      0,
+                      row.native_annual_change_ratio - curr_sum,
+                    ),
+                  });
+                } else {
+                  // not last index
+                  yield_breakdown.push({
+                    ...getSupportedToken(
+                      native_yield.native_annual_change_ratios[i]?.id ?? "",
+                    ),
+                    category: "native",
+                    label:
+                      native_yield.native_annual_change_ratios[i]?.label ??
+                      "Native Yield",
+                    annual_change_ratio:
+                      native_yield.native_annual_change_ratios[i]
+                        ?.annual_change_ratio ?? 0,
+                  });
+                }
+
+                curr_sum +=
+                  native_yield.native_annual_change_ratios[i]
+                    ?.annual_change_ratio ?? 0;
+              }
             }
 
             return {
@@ -340,8 +456,7 @@ export const getEnrichedMarketsQueryOptions = (
               incentive_tokens_data: incentive_tokens_data,
               input_token_data,
               chain_data,
-              native_yield,
-              annual_change_ratio,
+              yield_breakdown,
             };
           }
         }),

@@ -19,7 +19,7 @@ export const useEnrichedOffers = ({
   page_index = 0,
   filters = [],
   sorting = [],
-  custom_token_data = undefined,
+  custom_token_data,
   enabled = true,
 }: {
   chain_id: number;
@@ -32,7 +32,7 @@ export const useEnrichedOffers = ({
   sorting?: Array<BaseSortingFilter>;
   custom_token_data?: CustomTokenData;
   enabled?: boolean;
-})  => {
+}) => {
   const client: RoycoClient = useRoycoClient();
 
   return useQuery({

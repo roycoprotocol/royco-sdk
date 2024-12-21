@@ -3,15 +3,18 @@ import { NULL_ADDRESS } from "@/sdk/constants";
 import { useEnrichedOffers } from "./use-enriched-offers";
 import { RoycoMarketType, RoycoMarketUserType } from "../market";
 import { useEnrichedMarkets } from "./use-enriched-markets";
+import { type CustomTokenData } from "@/sdk/types";
 
 export const useHighestOffers = ({
   chain_id,
   market_id,
   market_type,
+  custom_token_data,
 }: {
   chain_id: number;
   market_id: string;
   market_type: number;
+  custom_token_data?: CustomTokenData;
 }) => {
   let data: {
     ap_offers: Array<EnrichedOfferDataType>;
@@ -25,6 +28,7 @@ export const useHighestOffers = ({
     chain_id,
     market_type,
     market_id,
+    custom_token_data,
   });
 
   const propsEnrichedOffersAP = useEnrichedOffers({
@@ -44,6 +48,7 @@ export const useHighestOffers = ({
         desc: false,
       },
     ],
+    custom_token_data,
   });
 
   const propsEnrichedOffersIP = useEnrichedOffers({
@@ -63,6 +68,7 @@ export const useHighestOffers = ({
         desc: true,
       },
     ],
+    custom_token_data,
   });
 
   const isLoading =

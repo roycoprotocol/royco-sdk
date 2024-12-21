@@ -1,5 +1,4 @@
 import type { TypedRoycoClient } from "@/sdk/client";
-import { generateQueryKey } from "@/sdk/utils";
 import { getSupportedToken, SupportedToken } from "../constants";
 
 export type GetEnrichedPointProgramQueryParams = {
@@ -71,10 +70,13 @@ export const getEnrichedPointProgramQueryOptions = ({
   chain_id,
   contract_address,
 }: GetEnrichedPointProgramQueryOptionsParams) => ({
-  queryKey: generateQueryKey("get-enriched-point-program", {
-    chain_id,
-    contract_address,
-  }),
+  queryKey: [
+    "get-enriched-point-program",
+    {
+      chain_id,
+      contract_address,
+    },
+  ],
   queryFn: () =>
     getEnrichedPointProgramQueryFunction({
       client,

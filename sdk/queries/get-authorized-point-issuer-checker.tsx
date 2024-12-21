@@ -1,5 +1,4 @@
 import type { TypedRoycoClient } from "@/sdk/client";
-import { generateQueryKey } from "@/sdk/utils";
 
 export type GetAuthorizedPointIssuerCheckerQueryParams = {
   chain_id: number;
@@ -45,11 +44,14 @@ export const getAuthorizedPointIssuerCheckerQueryOptions = ({
   contract_address: string;
   account_address: string;
 }) => ({
-  queryKey: generateQueryKey("get-authorized-point-issuer-checker", {
-    chain_id,
-    contract_address,
-    account_address,
-  }),
+  queryKey: [
+    "get-authorized-point-issuer-checker",
+    {
+      chain_id,
+      contract_address,
+      account_address,
+    },
+  ],
   queryFn: () =>
     getAuthorizedPointIssuerCheckerQueryFunction({
       client,

@@ -1,5 +1,3 @@
-import type { Account, Chain, Client, Transport } from "viem";
-
 import { createPublicClient } from "viem";
 
 import type { RoycoClient } from "@/sdk/client";
