@@ -380,7 +380,7 @@ export const getEnrichedMarketsQueryOptions = (
                   allocation = token_amount / total_supply;
                 }
 
-                if (!!annual_change_ratio && !!token_id) {
+                if (annual_change_ratio != undefined && !!token_id) {
                   yield_breakdown.push({
                     ...getSupportedToken(token_id),
                     category: "base",
