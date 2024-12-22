@@ -21,9 +21,20 @@ const generateTokenMap = async () => {
     // Create directories if they don't exist
     fs.mkdirSync(path.dirname(outputFile), { recursive: true });
 
-    // Read all files in the definitions directory
+    // Read all files and convert to lowercase if needed
     const files = fs.existsSync(definitionsDir)
-      ? fs.readdirSync(definitionsDir)
+      ? fs.readdirSync(definitionsDir).map((file) => {
+          if (file.endsWith(".ts")) {
+            const lowercaseFile = file.toLowerCase();
+            if (file !== lowercaseFile) {
+              const oldPath = path.join(definitionsDir, file);
+              const newPath = path.join(definitionsDir, lowercaseFile);
+              fs.renameSync(oldPath, newPath);
+            }
+            return lowercaseFile;
+          }
+          return file;
+        })
       : [];
 
     // Generate import statements and map entries
@@ -48,7 +59,31 @@ const generateTokenMap = async () => {
           const filePath = path.join(definitionsDir, file);
 
           try {
-            const content = fs.readFileSync(filePath, "utf-8");
+            let content = fs.readFileSync(filePath, "utf-8");
+
+            // Find the defineToken argument object
+            const match = content.match(/defineToken\(({[\s\S]*?})\)/);
+            if (match) {
+              const tokenConfig = match[1];
+              // Parse the object
+              const tokenData = eval(`(${tokenConfig})`);
+
+              // Convert specific fields to lowercase
+              if (tokenData.id) {
+                tokenData.id = tokenData.id.toLowerCase();
+              }
+              if (tokenData.contract_address) {
+                tokenData.contract_address =
+                  tokenData.contract_address.toLowerCase();
+              }
+
+              // Create new content preserving the import and structure
+              content = `import { defineToken } from "@/sdk/constants";
+
+export default defineToken(${JSON.stringify(tokenData, null, 2)});
+`;
+            }
+
             const formattedContent = await prettier.format(content, {
               parser: "typescript",
               semi: true,
