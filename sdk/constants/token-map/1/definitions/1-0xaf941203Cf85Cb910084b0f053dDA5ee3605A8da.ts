@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xaf941203Cf85Cb910084b0f053dDA5ee3605A8da",
   name: "YieldCrumbs",
   symbol: "YC",
-  image: "https://s2.coinmarketcap.com/static/img/coins/64x64/3764.png",
+  image: "https://cdn.yield.fi/yfi/yusdTokenIcon.svg",
   decimals: 18,
   source: "external",
   search_id: "none",
