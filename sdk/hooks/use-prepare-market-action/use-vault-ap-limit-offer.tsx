@@ -61,7 +61,7 @@ export const isVaultAPLimitOfferValid = ({
 
     // Check quantity is greater than 10^6 wei
     if (BigNumber.from(quantity).lte(BigNumber.from("1000000"))) {
-      throw new Error("Quantity must be greater than 10^6 wei");
+      throw new Error("Order amount is too low");
     }
 
     // Check funding vault
