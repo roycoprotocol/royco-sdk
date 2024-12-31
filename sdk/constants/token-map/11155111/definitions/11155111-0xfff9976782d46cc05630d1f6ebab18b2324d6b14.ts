@@ -7,7 +7,7 @@ export default defineToken({
   name: "Wrapped Ether",
   symbol: "WETH9",
   image: "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
-  decimals: 6,
+  decimals: 18,
   source: "coinmarketcap",
   search_id: "none",
   type: "token",
