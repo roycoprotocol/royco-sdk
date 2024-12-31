@@ -366,23 +366,19 @@ export const getEnrichedMarketsQueryOptions = (
 
                 const token_data = getSupportedToken(token_id);
 
-                let token_amount = undefined;
+                const raw_amount: string = parseRawAmount(
+                  row.incentive_amounts?.[i],
+                );
 
-                if (token_data.type === "point") {
-                  const raw_amount: string = parseRawAmount(
-                    row.incentive_amounts?.[i],
-                  );
+                let token_amount = parseRawAmountToTokenAmount(
+                  raw_amount,
+                  token_data.decimals,
+                );
 
-                  token_amount = parseRawAmountToTokenAmount(
-                    raw_amount,
-                    token_data.decimals,
-                  );
+                const total_supply =
+                  row.incentive_token_total_supply_values?.[i] ?? 0;
 
-                  const total_supply =
-                    row.incentive_token_total_supply_values?.[i] ?? 0;
-
-                  allocation = token_amount / total_supply;
-                }
+                allocation = token_amount / total_supply;
 
                 if (annual_change_ratio != undefined && !!token_id) {
                   yield_breakdown.push({
@@ -394,7 +390,7 @@ export const getEnrichedMarketsQueryOptions = (
                     fdv: row.incentive_token_fdv_values?.[i],
                     price: row.incentive_token_price_values?.[i],
                     allocation,
-                    ...(token_amount ? { token_amount } : {}),
+                    token_amount,
                   });
                 }
               }
