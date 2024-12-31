@@ -131,6 +131,7 @@ export type EnrichedMarketDataType =
         fdv?: number;
         price?: number;
         allocation?: number;
+        token_amount?: number;
       }
     >;
   };
@@ -346,6 +347,7 @@ export const getEnrichedMarketsQueryOptions = (
                 fdv?: number;
                 price?: number;
                 allocation?: number;
+                token_amount?: number;
               }
             > = [];
 
@@ -364,12 +366,14 @@ export const getEnrichedMarketsQueryOptions = (
 
                 const token_data = getSupportedToken(token_id);
 
+                let token_amount = undefined;
+
                 if (token_data.type === "point") {
                   const raw_amount: string = parseRawAmount(
                     row.incentive_amounts?.[i],
                   );
 
-                  const token_amount: number = parseRawAmountToTokenAmount(
+                  token_amount = parseRawAmountToTokenAmount(
                     raw_amount,
                     token_data.decimals,
                   );
@@ -390,6 +394,7 @@ export const getEnrichedMarketsQueryOptions = (
                     fdv: row.incentive_token_fdv_values?.[i],
                     price: row.incentive_token_price_values?.[i],
                     allocation,
+                    ...(token_amount ? { token_amount } : {}),
                   });
                 }
               }
