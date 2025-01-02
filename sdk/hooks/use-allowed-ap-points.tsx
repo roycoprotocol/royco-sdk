@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-  getAllowedApPointsQueryOptions,
   type GetAllowedApPointsQueryParams,
+  getAllowedApPointsQueryOptions,
 } from "@/sdk/queries";
 import { type RoycoClient, useRoycoClient } from "@/sdk/client";
 

@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import {
-  type EnrichedMarketDataType,
   getEnrichedMarketsQueryOptions,
-  type MarketFilter,
+  type GetEnrichedMarketsQueryParams,
 } from "@/sdk/queries";
 import { type RoycoClient, useRoycoClient, useRpcApiKeys } from "@/sdk/client";
-import type { BaseSortingFilter, CustomTokenData } from "@/sdk/types";
+
+export type UseEnrichedMarketsParams = GetEnrichedMarketsQueryParams & {
+  enabled?: boolean;
+};
 
 export const useEnrichedMarkets = ({
   chain_id,
@@ -18,27 +20,15 @@ export const useEnrichedMarkets = ({
   is_verified,
   custom_token_data,
   enabled = true,
-}: {
-  chain_id?: number;
-  market_type?: number;
-  market_id?: string;
-  creator?: string;
-  page_index?: number;
-  filters?: Array<MarketFilter>;
-  sorting?: Array<BaseSortingFilter>;
-  search_key?: string;
-  is_verified?: boolean;
-  custom_token_data?: CustomTokenData;
-  enabled?: boolean;
-}) => {
+}: UseEnrichedMarketsParams) => {
   const client: RoycoClient = useRoycoClient();
 
   const RPC_API_KEYS = useRpcApiKeys();
 
-  const props = useQuery({
-    ...getEnrichedMarketsQueryOptions(
+  return useQuery({
+    ...getEnrichedMarketsQueryOptions({
       client,
-      RPC_API_KEYS ?? {},
+      RPC_API_KEYS: RPC_API_KEYS ?? {},
       chain_id,
       market_type,
       market_id,
@@ -48,19 +38,19 @@ export const useEnrichedMarkets = ({
       search_key,
       is_verified,
       custom_token_data,
-    ),
+    }),
     enabled,
   });
 
-  const data = !!props.data
-    ? // @ts-ignore
-      (props.data.data as Array<EnrichedMarketDataType>)
-    : null;
-  const count = !!props.data ? (props.data.count ?? 0) : 0;
+  // const data = !!props.data
+  //   ? // @ts-ignore
+  //     (props.data.data as Array<EnrichedMarketDataType>)
+  //   : null;
+  // const count = !!props.data ? (props.data.count ?? 0) : 0;
 
-  return {
-    ...props,
-    data,
-    count,
-  };
+  // return {
+  //   ...props,
+  //   data,
+  //   count,
+  // };
 };

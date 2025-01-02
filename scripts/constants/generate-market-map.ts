@@ -52,11 +52,11 @@ const generateMarketMap = async () => {
           try {
             let content = fs.readFileSync(filePath, "utf-8");
 
-            // Trim whitespace in name and description fields
-            content = content.replace(
-              /(name|description):\s*"([^"]*?)"\s*,/g,
-              (match, field, value) => `${field}: "${value.trim()}",`,
-            );
+            // // Trim whitespace in name and description fields
+            // content = content.replace(
+            //   /(name|description):\s*"([^"]*?)"\s*,/g,
+            //   (match, field, value) => `${field}: "${value.trim()}",`,
+            // );
 
             const formattedContent = await prettier.format(content, {
               parser: "typescript",

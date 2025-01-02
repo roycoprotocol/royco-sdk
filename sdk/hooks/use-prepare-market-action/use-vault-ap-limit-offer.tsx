@@ -1,7 +1,7 @@
 import type { Address } from "viem";
 import type { EnrichedMarketDataType } from "@/sdk/queries";
 import type { TransactionOptionsType } from "@/sdk/types";
-import type { ReadMarketDataType } from "@/sdk/hooks";
+import type { ReadMarketDataType } from "@/sdk/queries";
 
 import { BigNumber, ethers } from "ethers";
 import { RoycoMarketType } from "@/sdk/market";

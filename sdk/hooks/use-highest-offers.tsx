@@ -87,9 +87,10 @@ export const useHighestOffers = ({
   if (
     !isLoading &&
     propsEnrichedMarket.data &&
-    propsEnrichedMarket.data.length > 0
+    propsEnrichedMarket.data.data &&
+    propsEnrichedMarket.data.data.length > 0
   ) {
-    const enrichedMarket = propsEnrichedMarket.data[0];
+    const enrichedMarket = propsEnrichedMarket.data.data[0];
 
     if (
       enrichedMarket &&

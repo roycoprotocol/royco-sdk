@@ -23,3 +23,4 @@ export * from "./get-enriched-point-balance";
 export * from "./get-authorized-point-issuer-checker";
 export * from "./get-allowed-ip-points";
 export * from "./get-allowed-ap-points";
+export * from "./get-read-market";

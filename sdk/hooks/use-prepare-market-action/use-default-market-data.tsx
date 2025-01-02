@@ -1,5 +1,5 @@
 import type { TypedRoycoMarketType } from "@/sdk/market";
-import type { ReadMarketDataType } from "@/sdk/hooks";
+import type { ReadMarketDataType } from "@/sdk/queries";
 
 import { RoycoMarketType } from "@/sdk/market";
 import { useReadMarket, useEnrichedMarkets } from "@/sdk/hooks";
@@ -41,8 +41,10 @@ export const useDefaultMarketData = ({
 
   // Set enriched market data
   const enrichedMarket =
-    propsEnrichedMarket.data && propsEnrichedMarket.data.length > 0
-      ? propsEnrichedMarket.data[0]
+    propsEnrichedMarket.data &&
+    propsEnrichedMarket.data.data &&
+    propsEnrichedMarket.data.data.length > 0
+      ? propsEnrichedMarket.data.data[0]
       : undefined;
 
   // Check if loading
