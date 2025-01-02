@@ -23,11 +23,6 @@ export const useDefaultMarketData = ({
     enabled,
   });
 
-  // Set base market data
-  const baseMarket: ReadMarketDataType | undefined = propsReadMarket.data
-    ? propsReadMarket.data
-    : undefined;
-
   // Get enriched market data
   const propsEnrichedMarket = useEnrichedMarkets({
     chain_id,
@@ -39,20 +34,9 @@ export const useDefaultMarketData = ({
     enabled,
   });
 
-  // Set enriched market data
-  const enrichedMarket =
-    propsEnrichedMarket.data &&
-    propsEnrichedMarket.data.data &&
-    propsEnrichedMarket.data.data.length > 0
-      ? propsEnrichedMarket.data.data[0]
-      : undefined;
-
-  // Check if loading
-  const isLoading = propsReadMarket.isLoading || propsEnrichedMarket.isLoading;
-
   return {
-    baseMarket,
-    enrichedMarket,
-    isLoading,
+    baseMarket: propsReadMarket.data,
+    enrichedMarket: propsEnrichedMarket.data?.[0],
+    isLoading: propsReadMarket.isLoading || propsEnrichedMarket.isLoading,
   };
 };

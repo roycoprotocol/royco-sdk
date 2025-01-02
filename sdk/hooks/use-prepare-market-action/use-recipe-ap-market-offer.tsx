@@ -39,7 +39,7 @@ import { useDefaultMarketData } from "./use-default-market-data";
 export const isRecipeAPMarketOfferValid = ({
   quantity,
   funding_vault,
-  enabled,
+  enabled = true,
 }: {
   quantity: string | undefined;
   funding_vault: string | undefined;
@@ -474,17 +474,20 @@ export const useRecipeAPMarketOffer = ({
     isLoadingDefaultMarketData ||
     propsMarketOffers.isLoading ||
     propsTokenAllowance.isLoading ||
-    propsTokenQuotes.isLoading ||
-    propsTokenBalance.isLoading;
+    propsTokenQuotes.isLoading;
+  // ||
+  // propsTokenBalance.isLoading;
 
   // Update isReady check to ensure offers are valid
   const isReady = writeContractOptions.length > 0;
 
   // Check if offer can be performed completely or partially
-  if (isReady && inputTokenData) {
-    const hasBalance = BigNumber.from(
-      propsTokenBalance.data?.[0]?.raw_amount || "0",
-    ).gte(BigNumber.from(inputTokenData.raw_amount));
+  if (isReady) {
+    // const hasBalance = BigNumber.from(
+    //   propsTokenBalance.data?.[0]?.raw_amount || "0",
+    // ).gte(BigNumber.from(inputTokenData.raw_amount));
+
+    const hasBalance = true;
 
     const fillRequested = parseRawAmount(quantity ?? "0");
     const fillAvailable = parseRawAmount(
