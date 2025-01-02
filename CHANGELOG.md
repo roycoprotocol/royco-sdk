@@ -1,5 +1,11 @@
 # royco
 
+## 0.9.98
+
+### Patch Changes
+
+- 3d19db2: New SDK version @ 2025-01-02 06:50:42 UTC
+
 ## 0.9.96
 
 ### Patch Changes
