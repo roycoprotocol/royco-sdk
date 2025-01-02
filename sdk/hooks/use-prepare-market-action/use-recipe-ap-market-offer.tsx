@@ -21,6 +21,7 @@ import {
   useTokenQuotes,
   useMarketOffers,
   useMarketOffersValidator,
+  useAccountBalance,
 } from "@/sdk/hooks";
 
 import {
@@ -356,6 +357,15 @@ export const useRecipeAPMarketOffer = ({
       enabled,
     });
 
+  // Get token balance
+  const propsTokenBalance = useAccountBalance({
+    chain_id,
+    account: account ? account : NULL_ADDRESS,
+    tokens: inputTokenData?.contract_address
+      ? [inputTokenData?.contract_address]
+      : [],
+  });
+
   // Create transaction options
   if (
     isValid.status &&
@@ -464,13 +474,18 @@ export const useRecipeAPMarketOffer = ({
     isLoadingDefaultMarketData ||
     propsMarketOffers.isLoading ||
     propsTokenAllowance.isLoading ||
-    propsTokenQuotes.isLoading;
+    propsTokenQuotes.isLoading ||
+    propsTokenBalance.isLoading;
 
   // Update isReady check to ensure offers are valid
   const isReady = writeContractOptions.length > 0;
 
   // Check if offer can be performed completely or partially
-  if (isReady) {
+  if (isReady && inputTokenData) {
+    const hasBalance = BigNumber.from(
+      propsTokenBalance.data?.[0]?.raw_amount || "0",
+    ).gte(BigNumber.from(inputTokenData.raw_amount));
+
     const fillRequested = parseRawAmount(quantity ?? "0");
     const fillAvailable = parseRawAmount(
       propsMarketOffers.data?.reduce((acc, offer) => {
@@ -480,7 +495,7 @@ export const useRecipeAPMarketOffer = ({
       }, "0") ?? "0",
     );
 
-    if (BigNumber.from(fillAvailable).lte(0)) {
+    if (BigNumber.from(fillAvailable).lte(0) || !hasBalance) {
       canBePerformedCompletely = false;
       canBePerformedPartially = false;
     } else if (
