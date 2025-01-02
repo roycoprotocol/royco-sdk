@@ -25,7 +25,7 @@ export const useEnrichedMarkets = ({
 
   const RPC_API_KEYS = useRpcApiKeys();
 
-  return useQuery({
+  const props = useQuery({
     ...getEnrichedMarketsQueryOptions({
       client,
       RPC_API_KEYS: RPC_API_KEYS ?? {},
@@ -42,15 +42,18 @@ export const useEnrichedMarkets = ({
     enabled,
   });
 
+  const data = props.data?.data ?? [];
+
   // const data = !!props.data
   //   ? // @ts-ignore
   //     (props.data.data as Array<EnrichedMarketDataType>)
   //   : null;
-  // const count = !!props.data ? (props.data.count ?? 0) : 0;
 
-  // return {
-  //   ...props,
-  //   data,
-  //   count,
-  // };
+  const count = props.data?.count ?? 0;
+
+  return {
+    ...props,
+    data,
+    count,
+  };
 };
