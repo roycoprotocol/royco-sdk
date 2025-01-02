@@ -1,10 +1,10 @@
-import { defineChain } from "viem";
 import {
   sepolia as ethereumSepolia,
   mainnet as ethereumMainnet,
   arbitrum as arbitrumOne,
   base,
   corn,
+  plume,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -44,36 +44,6 @@ export const Corn = {
     "https://pbs.twimg.com/profile_images/1838599679321182208/igqD6b-Q_400x400.jpg",
   symbol: "CORN",
 };
-
-const plume = defineChain({
-  sourceId: 1,
-  id: 98_865,
-  name: "Plume Mainnet",
-  nativeCurrency: {
-    name: "Plume Ether",
-    symbol: "ETH",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: {
-      http: ["https://phoenix-rpc.plumenetwork.xyz"],
-      webSocket: ["wss://phoenix-rpc.plumenetwork.xyz"],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: "Blockscout",
-      url: "https://phoenix-explorer.plumenetwork.xyz",
-      apiUrl: "https://phoenix-explorer.plumenetwork.xyz/api",
-    },
-  },
-  contracts: {
-    multicall3: {
-      address: "0xca11bde05977b3631167028862be2a173976ca11",
-      blockCreated: 48577,
-    },
-  },
-});
 
 export const Plume = {
   ...plume,
