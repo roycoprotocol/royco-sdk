@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98865-0x892DFf5257B39f7afB7803dd7C81E8ECDB6af3E8",
+  id: "98865-0x892dff5257b39f7afb7803dd7c81e8ecdb6af3e8",
   chain_id: 98865,
-  contract_address: "0x892DFf5257B39f7afB7803dd7C81E8ECDB6af3E8",
+  contract_address: "0x892dff5257b39f7afb7803dd7c81e8ecdb6af3e8",
   name: "Nest Yield Vault",
   symbol: "nYIELD",
   image: "",
