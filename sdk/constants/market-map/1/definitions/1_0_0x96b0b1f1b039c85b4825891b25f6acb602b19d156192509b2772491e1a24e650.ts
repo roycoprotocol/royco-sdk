@@ -7,30 +7,27 @@ export default defineMarket({
     "yUSD is YieldFi's yield bearing stablecoin, earning 15% - 25% APY in real yield + incentives",
   is_verified: false,
   native_yield: async ({ roycoClient, chainClient }) => {
-      const yUSDContract = "0x1ce7d9942ff78c328a4181b9f3826fee6d845a97";
-  
-      let yUSD = {
-        ...getSupportedToken(`1-${yUSDContract}`),
-        label: "Native Vault Incentives",
-        annual_change_ratio: 0,
-      };
-  
-      try {
-        const res = await fetch(
-          "https://ctrl.yield.fi/t/apy",
-        );
-  
-        const apy_data = await res.json();
-  
-        yUSD.annual_change_ratio =
-          (Number(apy_data["apy"]) ?? 0) / 100;
-      } catch (error) {
-        console.error(error);
-      }
-  
-      return {
-        native_annual_change_ratio: yUSD.annual_change_ratio,
-        native_annual_change_ratios: [yUSD],
-      };
-    },
+    const yUSDContract = "0x1ce7d9942ff78c328a4181b9f3826fee6d845a97";
+
+    let yUSD = {
+      ...getSupportedToken(`1-${yUSDContract}`),
+      label: "Native Vault Incentives",
+      annual_change_ratio: 0,
+    };
+
+    try {
+      const res = await fetch("https://ctrl.yield.fi/t/apy");
+
+      const apy_data = await res.json();
+
+      yUSD.annual_change_ratio = (Number(apy_data["apy"]) ?? 0) / 100;
+    } catch (error) {
+      console.error(error);
+    }
+
+    return {
+      native_annual_change_ratio: yUSD.annual_change_ratio,
+      native_annual_change_ratios: [yUSD],
+    };
+  },
 });
