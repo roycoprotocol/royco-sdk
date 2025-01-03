@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "21000000-0xda5dDd7270381A7C2717aD10D1c0ecB19e3CDFb2",
+  id: "21000000-0xda5ddd7270381a7c2717ad10d1c0ecb19e3cdfb2",
   chain_id: 21000000,
-  contract_address: "0xda5dDd7270381A7C2717aD10D1c0ecB19e3CDFb2",
+  contract_address: "0xda5ddd7270381a7c2717ad10d1c0ecb19e3cdfb2",
   name: "Wrapped Bitcorn",
   symbol: "WBTCN",
   image:
