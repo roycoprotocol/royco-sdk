@@ -1,4 +1,10 @@
-import type { Address } from "viem";
+import {
+  createPublicClient,
+  erc20Abi,
+  erc4626Abi,
+  http,
+  type Address,
+} from "viem";
 import {
   getEnrichedMarketsQueryFunction,
   getMarketOffersQueryFunction,
@@ -11,15 +17,20 @@ import { getReadMarketQueryFunction, ReadMarketDataType } from "@/sdk/queries";
 import React from "react";
 
 import { BigNumber, ethers } from "ethers";
-import { RoycoMarketType, RoycoMarketUserType } from "@/sdk/market";
 import {
+  RoycoMarketType,
+  RoycoMarketUserType,
+  TypedRoycoMarketType,
+} from "@/sdk/market";
+import {
+  getSupportedChain,
   isSolidityAddressValid,
   isSolidityIntValid,
   parseRawAmount,
   parseRawAmountToTokenAmount,
   parseRawAmountToTokenAmountUsd,
 } from "@/sdk/utils";
-import { NULL_ADDRESS } from "@/sdk/constants";
+import { getSupportedToken, NULL_ADDRESS } from "@/sdk/constants";
 import { ContractMap } from "@/sdk/contracts";
 import {
   useTokenAllowance,
@@ -31,63 +42,81 @@ import {
   extractTokenQuote,
 } from "@/sdk/hooks";
 
-import { z } from "zod";
-import { TypedRpcApiKeys, useRoycoClient } from "@/sdk/client";
+import { z, ZodError } from "zod";
+import { TypedRpcApiKeys, useRoycoClient, useRpcApiKeys } from "@/sdk/client";
 import { RoycoClient, TypedRoycoClient } from "@/sdk/client";
-import {
-  getApprovalContractOptions,
-  getVaultApprovalContractOptions,
-  refineTransactionOptions,
-  refineVaultTransactionOptions,
-} from "./utils";
 import type {
   TypedMarketActionIncentiveDataElement,
   TypedMarketActionInputTokenData,
 } from "./types";
+import {
+  hasWalletBalance,
+  hasVaultBalance,
+  getTokenApprovalContractOptions,
+} from "./utils";
+import { useQuery } from "@tanstack/react-query";
 
-const recipeAPMarketOfferSchema = z.object({
-  quantity: z
-    .string()
-    .refine((val) => isSolidityIntValid("uint256", val), "Quantity is invalid")
-    .refine(
-      (val) => BigNumber.from(val).gt(0),
-      "Quantity must be greater than 0",
-    ),
-  funding_vault: z
-    .string()
-    .refine(
-      (val) => isSolidityAddressValid("address", val),
-      "Funding vault is invalid",
-    ),
-  enabled: z
-    .boolean()
-    .default(false)
-    .refine((val) => val === true, "Market action is not enabled"),
-});
-
-export const isRecipeAPMarketOfferValid = ({
-  quantity,
-  funding_vault,
-  enabled,
+export const getRecipeAPMarketOfferSchema = ({
+  RPC_API_KEYS,
+  chain_id,
+  account_address,
+  enriched_market,
 }: {
-  quantity: string | undefined;
-  funding_vault: string | undefined;
-  enabled?: boolean;
+  RPC_API_KEYS: TypedRpcApiKeys;
+  chain_id: number;
+  account_address: string;
+  enriched_market: EnrichedMarketDataType;
 }) => {
-  try {
-    recipeAPMarketOfferSchema.parse({ quantity, funding_vault, enabled });
+  return z
+    .object({
+      quantity: z
+        .string()
+        .refine(
+          (val) => isSolidityIntValid("uint256", val),
+          "Quantity is invalid",
+        )
+        .refine(
+          (val) => BigNumber.from(val).gt(0),
+          "Quantity must be greater than 0",
+        ),
+      funding_vault: z
+        .string()
+        .refine(
+          (val) => isSolidityAddressValid("address", val),
+          "Funding vault is invalid",
+        ),
+    })
+    .refine(async (ctx) => {
+      if (ctx.funding_vault === NULL_ADDRESS) {
+        const input_token = getSupportedToken(
+          enriched_market.input_token_id ?? "",
+        );
 
-    return {
-      status: true,
-      message: "Valid market action",
-    };
-  } catch (error) {
-    return {
-      status: false,
-      message:
-        (error as z.ZodError)?.errors?.[0]?.message || "Invalid market action",
-    };
-  }
+        return hasWalletBalance({
+          RPC_API_KEYS,
+          chain_id,
+          account_address,
+          target_address: input_token.contract_address,
+          required_balance: ctx.quantity,
+        });
+      }
+    }, "Insufficient balance in wallet")
+    .refine(async (ctx) => {
+      if (ctx.funding_vault !== NULL_ADDRESS) {
+        const input_token = getSupportedToken(
+          enriched_market.input_token_id ?? "",
+        );
+
+        return hasVaultBalance({
+          RPC_API_KEYS,
+          chain_id,
+          account_address,
+          target_address: ctx.funding_vault,
+          required_asset: input_token.contract_address,
+          required_balance: ctx.quantity,
+        });
+      }
+    }, "Insufficient balance in vault");
 };
 
 export const calculateRecipeAPMarketOfferTokenData = ({
@@ -261,7 +290,7 @@ export const getRecipeAPMarketOfferTransactionOptions = ({
   return txOptions;
 };
 
-export const recipeAPMarketOffer = async ({
+export const getRecipeAPMarketOffer = async ({
   client,
   RPC_API_KEYS,
   account,
@@ -295,44 +324,64 @@ export const recipeAPMarketOffer = async ({
   let canBePerformedCompletely: boolean = false;
   let canBePerformedPartially: boolean = false;
 
-  const isValid = isRecipeAPMarketOfferValid({
-    quantity,
-    funding_vault,
-    enabled,
-  });
+  const market_type = RoycoMarketType.recipe.value;
+  const offer_side = RoycoMarketUserType.ip.value;
 
-  if (!isValid.status) {
-    throw new Error(isValid.message);
-  }
-
-  const [baseMarket, enrichedMarket, marketOffers] = await Promise.all([
+  const [baseMarket, enrichedMarkets, marketOffers] = await Promise.all([
     getReadMarketQueryFunction({
       RPC_API_KEYS,
       chain_id,
-      market_type: RoycoMarketType.recipe.value,
+      market_type,
       market_id,
     }),
     getEnrichedMarketsQueryFunction({
       client,
       RPC_API_KEYS,
       chain_id,
-      market_type: RoycoMarketType.recipe.value,
+      market_type,
       market_id,
     }),
     getMarketOffersQueryFunction({
       client,
       chain_id,
-      market_type: RoycoMarketType.recipe.value,
+      market_type,
       market_id,
-      offer_side: RoycoMarketUserType.ip.value,
+      offer_side,
       quantity: quantity ?? "0",
     }),
   ]);
 
+  const enriched_market = enrichedMarkets.data?.[0];
+
+  if (!enriched_market) {
+    throw new Error("Market not found");
+  }
+
+  if (!account) {
+    throw new Error("Wallet not connected");
+  }
+
+  const schema = getRecipeAPMarketOfferSchema({
+    RPC_API_KEYS,
+    chain_id,
+    account_address: account,
+    enriched_market,
+  });
+
+  // Add try-catch block around schema validation
+  try {
+    await schema.parseAsync({ quantity, funding_vault });
+  } catch (error) {
+    if (error instanceof ZodError) {
+      throw new Error(error.errors[0]?.message ?? "Invalid input");
+    }
+    throw error;
+  }
+
   const tokenQuotes = await getTokenQuotesQueryFunction({
     client,
     token_ids: [
-      enrichedMarket.data?.[0]?.input_token_id ?? "",
+      enriched_market.input_token_id ?? "",
       ...(marketOffers?.flatMap((offer) => offer.token_ids) ?? []),
     ],
     custom_token_data,
@@ -341,10 +390,24 @@ export const recipeAPMarketOffer = async ({
   const { incentiveData, inputTokenData } =
     calculateRecipeAPMarketOfferTokenData({
       baseMarket: baseMarket,
-      enrichedMarket: enrichedMarket.data?.[0],
+      enrichedMarket: enriched_market,
       marketOffers,
       tokenQuotes,
     });
+
+  // Get pre-contract options
+  preContractOptions = await getTokenApprovalContractOptions({
+    RPC_API_KEYS,
+    chain_id,
+    account_address: account,
+    spender:
+      ContractMap[chain_id as keyof typeof ContractMap]["RecipeMarketHub"]
+        .address ?? "",
+    funding_vault: funding_vault ?? NULL_ADDRESS,
+    market_type: RoycoMarketType.recipe.id,
+    token_ids: [enriched_market.input_token_id ?? ""],
+    required_approval_amounts: [quantity ?? "0"],
+  });
 
   // Get offer transaction options
   const offerTxOptions: TransactionOptionsType =
@@ -365,4 +428,99 @@ export const recipeAPMarketOffer = async ({
       tokensOut: [inputTokenData],
     },
   ];
+
+  writeContractOptions = [...preContractOptions, ...postContractOptions];
+
+  const fillRequested = parseRawAmount(quantity ?? "0");
+  const fillAvailable = parseRawAmount(
+    marketOffers?.reduce((acc, offer) => {
+      return BigNumber.from(acc)
+        .add(BigNumber.from(offer.fill_quantity))
+        .toString();
+    }, "0") ?? "0",
+  );
+
+  if (BigNumber.from(fillAvailable).lte(0)) {
+    canBePerformedCompletely = false;
+    canBePerformedPartially = false;
+  } else if (BigNumber.from(fillAvailable).eq(BigNumber.from(fillRequested))) {
+    canBePerformedCompletely = true;
+    canBePerformedPartially = true;
+  } else {
+    canBePerformedCompletely = false;
+    canBePerformedPartially = true;
+  }
+
+  return {
+    incentiveData,
+    writeContractOptions,
+    canBePerformedCompletely,
+    canBePerformedPartially,
+  };
+};
+
+export const useRecipeAPMarketOffer = ({
+  account,
+  chain_id,
+  market_id,
+  quantity,
+  funding_vault,
+  custom_token_data,
+  frontend_fee_recipient,
+  enabled,
+}: {
+  account: string | undefined;
+  chain_id: number;
+  market_id: string;
+  quantity: string | undefined;
+  funding_vault: string | undefined;
+  custom_token_data?: Array<{
+    token_id: string;
+    price?: string;
+    fdv?: string;
+    total_supply?: string;
+  }>;
+  frontend_fee_recipient?: string;
+  enabled?: boolean;
+}) => {
+  const client = useRoycoClient();
+  const RPC_API_KEYS = useRpcApiKeys();
+
+  const props = useQuery({
+    queryKey: [
+      "recipe-ap-market-offer",
+      account,
+      chain_id,
+      market_id,
+      quantity,
+      funding_vault,
+      custom_token_data,
+      frontend_fee_recipient,
+      enabled,
+    ],
+    queryFn: () =>
+      getRecipeAPMarketOffer({
+        client,
+        RPC_API_KEYS: RPC_API_KEYS ?? {},
+        account,
+        chain_id,
+        market_id,
+        quantity,
+        funding_vault,
+      }),
+    enabled,
+  });
+
+  return {
+    ...props,
+    isValid: {
+      status: props.isLoading === false && props.isSuccess === true,
+      message: props.error?.message,
+    },
+    isReady: props.isLoading === false && props.isSuccess === true,
+    incentiveData: props.data?.incentiveData ?? [],
+    writeContractOptions: props.data?.writeContractOptions ?? [],
+    canBePerformedCompletely: props.data?.canBePerformedCompletely ?? false,
+    canBePerformedPartially: props.data?.canBePerformedPartially ?? false,
+  };
 };

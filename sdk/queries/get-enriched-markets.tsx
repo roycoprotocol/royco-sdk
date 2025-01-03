@@ -378,7 +378,9 @@ export const getEnrichedMarketsQueryFunction = async ({
               const total_supply =
                 row.incentive_token_total_supply_values?.[i] ?? 0;
 
-              allocation = token_amount / total_supply;
+              if (total_supply !== 0) {
+                allocation = token_amount / total_supply;
+              }
 
               if (annual_change_ratio != undefined && !!token_id) {
                 yield_breakdown.push({
