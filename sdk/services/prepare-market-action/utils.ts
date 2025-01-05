@@ -150,7 +150,7 @@ export const hasVaultBalance = async ({
   }
 };
 
-export const getTokenApprovalContractOptions = async ({
+export const getMarketTokenApprovalContractOptions = async ({
   market_type,
   token_ids,
   required_approval_amounts,
