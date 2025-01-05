@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0x892dff5257b39f7afb7803dd7c81e8ecdb6af3e8",
   name: "Nest Yield Vault",
   symbol: "nYIELD",
-  image:
-    "https://assets.plumenetwork.xyz/images/logos/nest/nYIELD-token.png",
+  image: "https://assets.plumenetwork.xyz/images/logos/nest/nYIELD-token.png",
   decimals: 6,
   source: "coinmarketcap",
   search_id: "",

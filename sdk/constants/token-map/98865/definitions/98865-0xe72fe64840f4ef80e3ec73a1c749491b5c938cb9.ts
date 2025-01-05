@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xe72fe64840f4ef80e3ec73a1c749491b5c938cb9",
   name: "Nest Treasuries Vault",
   symbol: "nTBILL",
-  image:
-    "https://assets.plumenetwork.xyz/images/logos/nest/nTBILL-token.png",
+  image: "https://assets.plumenetwork.xyz/images/logos/nest/nTBILL-token.png",
   decimals: 6,
   source: "coinmarketcap",
   search_id: "",
