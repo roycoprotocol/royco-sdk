@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x626613b473f7ef65747967017c11225436efaed7",
   name: "Wrapped ETH",
   symbol: "WETH",
-  image: "https://assets.plumenetwork.xyz/images/logos/nest/nYIELD-token.png",
+  image: "https://www.svgrepo.com/show/349356/ethereum.svg",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "",
