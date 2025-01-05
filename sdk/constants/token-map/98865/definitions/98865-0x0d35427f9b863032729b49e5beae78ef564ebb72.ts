@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://assets.plumenetwork.xyz/images/logos/pAPY-token.png",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "papy-hardcoded",
   type: "point",
 });
