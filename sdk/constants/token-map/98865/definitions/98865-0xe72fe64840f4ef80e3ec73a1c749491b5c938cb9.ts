@@ -7,7 +7,7 @@ export default defineToken({
   name: "Nest Treasuries Vault",
   symbol: "nTBILL",
   image:
-    "https://cdn.prod.website-files.com/670fc97cba6a0b3f2e579538/6732070ff8b006c89bbc698e_Logomark%20Red.svg",
+    "https://assets.plumenetwork.xyz/images/logos/nest/nTBILL-token.png",
   decimals: 6,
   source: "coinmarketcap",
   search_id: "",
