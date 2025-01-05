@@ -7,7 +7,7 @@ export default defineToken({
   name: "Plume USD",
   symbol: "pUSD",
   image:
-    "https://cdn.prod.website-files.com/670fc97cba6a0b3f2e579538/677284c8f1625bc0d62eaa68_pUSD-token.svg",
+    "https://assets.plumenetwork.xyz/images/logos/pUSD-token.png",
   decimals: 6,
   source: "coinmarketcap",
   search_id: "",

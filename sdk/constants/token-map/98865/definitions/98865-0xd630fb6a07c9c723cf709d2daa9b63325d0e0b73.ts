@@ -7,7 +7,7 @@ export default defineToken({
   name: "Plume ETH",
   symbol: "pETH",
   image:
-    "https://cdn.prod.website-files.com/670fc97cba6a0b3f2e579538/67728894579669c6657e164d_pETH-token.svg",
+    "https://assets.plumenetwork.xyz/images/logos/pETH-token.png",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "1027",
