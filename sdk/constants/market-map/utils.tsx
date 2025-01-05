@@ -23,6 +23,15 @@ export type SupportedMarket = {
       }
     >;
   }>;
+  underlying_vault_yield?: ({
+    roycoClient,
+    chainClient,
+  }: {
+    roycoClient: RoycoClient;
+    chainClient: ReturnType<typeof createPublicClient>;
+  }) => Promise<{
+    underlying_annual_change_ratio: number;
+  }>;
 };
 
 export const defineMarket = (market: SupportedMarket) => market;

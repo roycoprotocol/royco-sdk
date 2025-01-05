@@ -14,14 +14,14 @@ import {
   RoycoMarketVaultIncentiveAction,
 } from "@/sdk/market";
 
-import { useRecipeAPMarketOffer } from "./use-recipe-ap-market-offer";
-import { useRecipeAPLimitOffer } from "./use-recipe-ap-limit-offer";
+import { useRecipeAPMarketOffer } from "@/sdk/services";
+import { useRecipeAPLimitOffer } from "@/sdk/services";
 
-import { useRecipeIPMarketOffer } from "./use-recipe-ip-market-offer";
-import { useRecipeIPLimitOffer } from "./use-recipe-ip-limit-offer";
+import { useRecipeIPMarketOffer } from "@/sdk/services";
+import { useRecipeIPLimitOffer } from "@/sdk/services";
 
-import { useVaultAPMarketOffer } from "./use-vault-ap-market-offer";
-import { useVaultAPLimitOffer } from "./use-vault-ap-limit-offer";
+import { useVaultAPMarketOffer } from "@/sdk/services";
+import { useVaultAPLimitOffer } from "@/sdk/services";
 
 import { useVaultIPMarketOffer } from "./use-vault-ip-market-offer";
 import { useVaultIPAddIncentives } from "./use-vault-ip-add-incentives";
@@ -187,7 +187,7 @@ export const usePrepareMarketAction = ({
     account,
     quantity,
     token_ids,
-    token_rates,
+    token_amounts: token_rates,
     expiry,
     funding_vault,
     custom_token_data,
