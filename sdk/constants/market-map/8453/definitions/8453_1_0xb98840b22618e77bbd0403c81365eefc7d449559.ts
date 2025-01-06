@@ -5,8 +5,8 @@ export default defineMarket({
   name: "Supply ETH to BakerFi",
   description: `Supply ETH to BakerFi's Recipe "Mille-feuille a la Base", a recursive staking strategy using Lido and Aave as the underlying protocols.`,
   is_verified: false,
-  
-underlying_vault_yield: async ({ roycoClient, chainClient }) => {
+
+  underlying_vault_yield: async ({ roycoClient, chainClient }) => {
     // Variable to store the underlying yield (we refer it as annual_change_ratio)
     let underlying_annual_change_ratio = 0;
 
@@ -21,8 +21,7 @@ underlying_vault_yield: async ({ roycoClient, chainClient }) => {
 
       // Extract the underlying yield from the custom APY data & perform calculations, if needed and then update the underlying_annual_change_ratio
       underlying_annual_change_ratio =
-        (Number(custom_apy_data.currentAPR.actionsAPR["yield"]) ??
-          0) / 100;
+        (Number(custom_apy_data.currentAPR.actionsAPR["yield"]) ?? 0) / 100;
     } catch (error) {
       console.error(error);
     }
