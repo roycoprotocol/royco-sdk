@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://assets.plumenetwork.xyz/images/logos/pUSD-token.png",
   decimals: 6,
   source: "coinmarketcap",
-  search_id: "",
+  search_id: "3408",
   type: "token",
 });
