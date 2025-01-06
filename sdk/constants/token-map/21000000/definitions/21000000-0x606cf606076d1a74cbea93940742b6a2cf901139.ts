@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "21000000-0x606cF606076D1a74cBEA93940742B6a2cF901139",
+  id: "21000000-0x606cf606076d1a74cbea93940742b6a2cf901139",
   chain_id: 21000000,
-  contract_address: "0x606cF606076D1a74cBEA93940742B6a2cF901139",
+  contract_address: "0x606cf606076d1a74cbea93940742b6a2cf901139",
   name: "Corn Kernels",
   symbol: "KERNELS",
   image:
