@@ -40,6 +40,7 @@ export const getTokenQuotesQueryFunction = async ({
     return {
       ...token_data,
       ...quote_data,
+      decimals: quote_data.decimals || token_data.decimals,
     };
   });
 
