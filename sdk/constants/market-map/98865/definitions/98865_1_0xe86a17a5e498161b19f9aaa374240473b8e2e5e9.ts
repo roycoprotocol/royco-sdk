@@ -19,7 +19,8 @@ export default defineMarket({
       const custom_apy_data = await custom_apy_res.json();
 
       // Extract the underlying yield from the custom APY data & perform calculations, if needed and then update the underlying_annual_change_ratio
-      underlying_annual_change_ratio = Number(custom_apy_data.estimatedAPY) ?? 0;
+      underlying_annual_change_ratio =
+        Number(custom_apy_data.estimatedAPY) ?? 0;
     } catch (error) {
       console.error(error);
     }
@@ -28,5 +29,5 @@ export default defineMarket({
     return {
       underlying_annual_change_ratio,
     };
-  }
+  },
 });
