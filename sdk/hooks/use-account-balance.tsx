@@ -39,6 +39,7 @@ export const useAccountBalance = ({
 
   const isLoading = propsAccountInfo.isLoading || propsTokenQuotes.isLoading;
   const isError = propsAccountInfo.isError || propsTokenQuotes.isError;
+  const refetch = () => [propsAccountInfo, propsTokenQuotes].map((query) => query.refetch());
   const isRefetching =
     propsAccountInfo.isRefetching || propsTokenQuotes.isRefetching;
 
@@ -83,6 +84,7 @@ export const useAccountBalance = ({
 
   return {
     data,
+    refetch,
     isLoading,
     isRefetching,
     isError,
