@@ -7,7 +7,7 @@ export default defineToken({
   name: "Wrapped Bitcorn",
   symbol: "WBTCN",
   image:
-    "https://imgproxy-mainnet.routescan.io/Ep-Teqz159w-GRQa32KyqR-2wDoSd6Bkr_OQYZYB8JE/pr:thumb_64/aHR0cHM6Ly9jbXMtY2RuLmF2YXNjYW4uY29tL2NtczIvY29ybl9sb2dvLmJlNzFmNWRjODJiYS5wbmc",
+    "https://docs.usecorn.com/img/guides/Corn_Brand_Assets/Logos/wbtcn_logo.svg",
   decimals: 18,
   source: "",
   search_id: "",
