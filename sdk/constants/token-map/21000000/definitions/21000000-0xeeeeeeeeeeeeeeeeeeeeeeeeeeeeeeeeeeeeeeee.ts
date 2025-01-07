@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "21000000-0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  id: "21000000-0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   chain_id: 21000000,
-  contract_address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+  contract_address: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   name: "Bitcorn",
   symbol: "BTCN",
   image:
