@@ -760,7 +760,6 @@ import token_1_0x9f284e1337a815fe77d2ff4ae46544645b20c5ff from "./definitions/1-
 import token_1_0x9f5f3cfd7a32700c93f971637407ff17b91c7342 from "./definitions/1-0x9f5f3cfd7a32700c93f971637407ff17b91c7342";
 import token_1_0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2 from "./definitions/1-0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2";
 import token_1_0x9fd9278f04f01c6a39a9d1c1cd79f7782c6ade08 from "./definitions/1-0x9fd9278f04f01c6a39a9d1c1cd79f7782c6ade08";
-import token_1_0xca38a876f61794dc7fb77b8895a046d364937a33 from "./definitions/1-0xca38a876f61794dc7fb77b8895a046d364937a33";
 import token_1_0xa01199c61841fce3b3dafb83fefc1899715c8756 from "./definitions/1-0xa01199c61841fce3b3dafb83fefc1899715c8756";
 import token_1_0xa0246c9032bc3a600820415ae600c6388619a14d from "./definitions/1-0xa0246c9032bc3a600820415ae600c6388619a14d";
 import token_1_0xa0385e7283c83e2871e9af49eec0966088421ddd from "./definitions/1-0xa0385e7283c83e2871e9af49eec0966088421ddd";
@@ -954,6 +953,7 @@ import token_1_0xc8c424b91d8ce0137bab4b832b7f7d154156ba6c from "./definitions/1-
 import token_1_0xc944e90c64b2c07662a292be6244bdf05cda44a7 from "./definitions/1-0xc944e90c64b2c07662a292be6244bdf05cda44a7";
 import token_1_0xca1207647ff814039530d7d35df0e1dd2e91fa84 from "./definitions/1-0xca1207647ff814039530d7d35df0e1dd2e91fa84";
 import token_1_0xca14007eff0db1f8135f4c25b34de49ab0d42766 from "./definitions/1-0xca14007eff0db1f8135f4c25b34de49ab0d42766";
+import token_1_0xca38a876f61794dc7fb77b8895a046d364937a33 from "./definitions/1-0xca38a876f61794dc7fb77b8895a046d364937a33";
 import token_1_0xcafe001067cdef266afb7eb5a286dcfd277f3de5 from "./definitions/1-0xcafe001067cdef266afb7eb5a286dcfd277f3de5";
 import token_1_0xcb86c6a22cb56b6cf40cafedb06ba0df188a416e from "./definitions/1-0xcb86c6a22cb56b6cf40cafedb06ba0df188a416e";
 import token_1_0xcb94be6f13a1182e4a4b6140cb7bf2025d28e41b from "./definitions/1-0xcb94be6f13a1182e4a4b6140cb7bf2025d28e41b";
@@ -2715,8 +2715,6 @@ export const TokenMap1 = {
     token_1_0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2,
   [token_1_0x9fd9278f04f01c6a39a9d1c1cd79f7782c6ade08.id]:
     token_1_0x9fd9278f04f01c6a39a9d1c1cd79f7782c6ade08,
-  [token_1_0xca38a876f61794dc7fb77b8895a046d364937a33.id]:
-    token_1_0xca38a876f61794dc7fb77b8895a046d364937a33,
   [token_1_0xa01199c61841fce3b3dafb83fefc1899715c8756.id]:
     token_1_0xa01199c61841fce3b3dafb83fefc1899715c8756,
   [token_1_0xa0246c9032bc3a600820415ae600c6388619a14d.id]:
@@ -3103,6 +3101,8 @@ export const TokenMap1 = {
     token_1_0xca1207647ff814039530d7d35df0e1dd2e91fa84,
   [token_1_0xca14007eff0db1f8135f4c25b34de49ab0d42766.id]:
     token_1_0xca14007eff0db1f8135f4c25b34de49ab0d42766,
+  [token_1_0xca38a876f61794dc7fb77b8895a046d364937a33.id]:
+    token_1_0xca38a876f61794dc7fb77b8895a046d364937a33,
   [token_1_0xcafe001067cdef266afb7eb5a286dcfd277f3de5.id]:
     token_1_0xcafe001067cdef266afb7eb5a286dcfd277f3de5,
   [token_1_0xcb86c6a22cb56b6cf40cafedb06ba0df188a416e.id]:
