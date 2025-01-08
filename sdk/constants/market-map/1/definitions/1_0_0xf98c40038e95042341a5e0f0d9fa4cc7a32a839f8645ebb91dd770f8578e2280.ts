@@ -15,7 +15,7 @@ export default defineMarket({
 
     try {
       const response = await fetch(
-        "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/"
+        "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
       );
       const data = await response.json();
       superUSDC.annual_change_ratio = Number(data.apy) / 100;
