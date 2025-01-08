@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "SuperUSDC",
   image: "https://www.superform.xyz/icon.png?a44c5d00988b5f21",
   decimals: 18,
-  source: "coinmarketcap",
+  source: "",
   search_id: "",
   type: "token",
 });
