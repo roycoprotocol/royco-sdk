@@ -46,3 +46,8 @@ export * from "./use-vault-token-balance";
 export * from "./use-complete-market";
 export * from "./use-wallet-tokens-balance";
 export * from "./use-vault-preview-incentives";
+export * from "./use-leaderboard";
+export * from "./use-expected-spot";
+export * from "./use-username";
+export * from "./use-user-position";
+export * from "./use-leaderboard-stats";

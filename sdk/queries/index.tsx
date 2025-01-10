@@ -30,3 +30,8 @@ export * from "./get-wallet-token-balance";
 export * from "./get-vault-token-balance";
 export * from "./get-wallet-tokens-balance";
 export * from "./get-vault-preview-incentives";
+export * from "./get-leaderboard";
+export * from "./get-expected-spot";
+export * from "./get-username";
+export * from "./get-user-position";
+export * from "./get-leaderboard-stats";
