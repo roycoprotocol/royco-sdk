@@ -94,7 +94,7 @@ export const getEnrichedOffersQueryOptions = (
   filters?: Array<BaseQueryFilter>,
   sorting?: Array<BaseSortingFilter>,
   custom_token_data?: CustomTokenData,
-)  => ({
+) => ({
   queryKey: [
     "enriched-offers",
     `${chain_id}-${market_type}-${market_id}-${creator}-${can_be_filled}-${page_index}`,
@@ -142,11 +142,11 @@ export const getEnrichedOffersQueryOptions = (
           const input_token_total_supply: number =
             row.input_token_total_supply ?? 0;
           const input_token_raw_amount: string = parseRawAmount(
-            row.quantity_remaining ?? "0",
+            row.quantity ?? "0",
           );
 
           const input_token_token_amount: number = parseRawAmountToTokenAmount(
-            row.quantity_remaining ?? "0",
+            row.quantity ?? "0",
             input_token_info.decimals,
           );
 
@@ -167,13 +167,13 @@ export const getEnrichedOffersQueryOptions = (
 
           const tokens_data = row.token_ids.map((tokenId, tokenIndex) => {
             const token_price: number = row.token_price_values
-              ? row.token_price_values[tokenIndex] ?? 0
+              ? (row.token_price_values[tokenIndex] ?? 0)
               : 0;
             const token_fdv: number = row.token_fdv_values
-              ? row.token_fdv_values[tokenIndex] ?? 0
+              ? (row.token_fdv_values[tokenIndex] ?? 0)
               : 0;
             const token_total_supply: number = row.token_total_supply_values
-              ? row.token_total_supply_values[tokenIndex] ?? 0
+              ? (row.token_total_supply_values[tokenIndex] ?? 0)
               : 0;
 
             const token_info: SupportedToken = getSupportedToken(tokenId);
