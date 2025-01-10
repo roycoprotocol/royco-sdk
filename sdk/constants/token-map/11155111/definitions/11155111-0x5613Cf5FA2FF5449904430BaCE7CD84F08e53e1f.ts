@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x5613Cf5FA2FF5449904430BaCE7CD84F08e53e1f",
   name: "Pollen",
   symbol: "POLLEN",
-  image: "https://magic.beraborrow.com/icons/pollen.png",
+  image: "https://dso1ohlhhe8x6.cloudfront.net/icons/pollen.png",
   decimals: 18,
   source: "beraborrow",
   search_id: "none",
