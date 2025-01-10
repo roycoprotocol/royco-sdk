@@ -15,6 +15,7 @@ import token_8453_0xb166e8b140d35d9d8226e40c09f757bac5a4d87d from "./definitions
 import token_8453_0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452 from "./definitions/8453-0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452";
 import token_8453_0xc48e605c7b722a57277e087a6170b9e227e5ac0a from "./definitions/8453-0xc48e605c7b722a57277e087a6170b9e227e5ac0a";
 import token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33 from "./definitions/8453-0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33";
+import token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d from "./definitions/8453-0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d";
 import token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b from "./definitions/8453-0xfa980ced6895ac314e7de34ef1bfae90a5add21b";
 import token_8453_0xfd4330b0312fdeec6d4225075b82e00493ff2e3f from "./definitions/8453-0xfd4330b0312fdeec6d4225075b82e00493ff2e3f";
 
@@ -53,6 +54,8 @@ export const TokenMap8453 = {
     token_8453_0xc48e605c7b722a57277e087a6170b9e227e5ac0a,
   [token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33.id]:
     token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33,
+  [token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d.id]:
+    token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d,
   [token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b.id]:
     token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b,
   [token_8453_0xfd4330b0312fdeec6d4225075b82e00493ff2e3f.id]:
