@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "wUSDL",
   image: "https://etherscan.io/token/images/wusdl_32.png?=v3",
   decimals: 18,
-  source: "",
+  source: "external",
   search_id: "",
   type: "token",
 });
