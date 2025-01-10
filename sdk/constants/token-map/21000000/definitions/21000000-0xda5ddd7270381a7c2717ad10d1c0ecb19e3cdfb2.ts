@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://docs.usecorn.com/img/guides/Corn_Brand_Assets/Logos/wbtcn_logo.svg",
   decimals: 18,
-  source: "",
+  source: "external",
   search_id: "",
   type: "token",
 });
