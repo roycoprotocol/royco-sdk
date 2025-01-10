@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "11155111-0x5613Cf5FA2FF5449904430BaCE7CD84F08e53e1f",
+  id: "11155111-0x5613cf5fa2ff5449904430bace7cd84f08e53e1f",
   chain_id: 11155111,
-  contract_address: "0x5613Cf5FA2FF5449904430BaCE7CD84F08e53e1f",
+  contract_address: "0x5613cf5fa2ff5449904430bace7cd84f08e53e1f",
   name: "Pollen",
   symbol: "POLLEN",
   image: "https://dso1ohlhhe8x6.cloudfront.net/icons/pollen.png",
