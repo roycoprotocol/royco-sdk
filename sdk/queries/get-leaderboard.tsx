@@ -16,9 +16,9 @@ export const getLeaderboardQueryFunction = async ({
 }: GetLeaderboardQueryOptionsParams) => {
   let query = client
     .from("leaderboard")
-    .select("*", { count: "exact", head: true })
+    .select("*", { count: "exact" })
     .limit(page_size)
-    .range(page * page_size, page * page_size + page_size)
+    .range(page * page_size, page * page_size + (page_size - 1))
     .order("rank", { ascending: true });
 
   const { data, count } = await query.throwOnError();

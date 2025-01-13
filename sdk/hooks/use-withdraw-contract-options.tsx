@@ -42,7 +42,7 @@ export const getRecipeInputTokenWithdrawalTransactionOptions = ({
     args: [position?.weiroll_wallet],
     txStatus: "idle",
     txHash: null,
-    tokensIn: position ? [position.token_data] : [],
+    // tokensIn: position ? [position.token_data] : [],
   };
 
   return txOptions;
@@ -91,7 +91,7 @@ export const getRecipeIncentiveTokenWithdrawalTransactionOptions = ({
     ],
     txStatus: "idle",
     txHash: null,
-    tokensIn: position ? [position.token_data] : [],
+    // tokensIn: position ? [position.token_data] : [],
   };
 
   return txOptions;
@@ -181,7 +181,7 @@ export const getVaultInputTokenWithdrawalByAssetTransactionOptions = ({
     args: [position?.token_data.raw_amount, account, account],
     txStatus: "idle",
     txHash: null,
-    tokensIn: position ? [position.token_data] : [],
+    // tokensIn: position ? [position.token_data] : [],
   };
 
   return txOptions;
@@ -225,7 +225,7 @@ export const getVaultIncentiveTokenWithdrawalTransactionOptions = ({
     args: [account, position?.token_data.contract_address],
     txStatus: "idle",
     txHash: null,
-    tokensIn: position ? [position.token_data] : [],
+    // tokensIn: position ? [position.token_data] : [],
   };
 
   return txOptions;
