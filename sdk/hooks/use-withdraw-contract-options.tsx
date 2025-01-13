@@ -136,7 +136,7 @@ export const getVaultInputTokenWithdrawalTransactionOptions = ({
     args: [position?.token_data.shares, account, account],
     txStatus: "idle",
     txHash: null,
-    tokensIn: position ? [position.token_data] : [],
+    // tokensIn: position ? [position.token_data] : [],
   };
 
   return txOptions;
