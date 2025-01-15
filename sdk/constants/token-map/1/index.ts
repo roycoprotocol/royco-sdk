@@ -974,6 +974,7 @@ import token_1_0xcf0c122c6b73ff809c693db761e7baebe62b6a2e from "./definitions/1-
 import token_1_0xcf3c8be2e2c42331da80ef210e9b1b307c03d36a from "./definitions/1-0xcf3c8be2e2c42331da80ef210e9b1b307c03d36a";
 import token_1_0xcf91b70017eabde82c9671e30e5502d312ea6eb2 from "./definitions/1-0xcf91b70017eabde82c9671e30e5502d312ea6eb2";
 import token_1_0xcfeb09c3c5f0f78ad72166d55f9e6e9a60e96eec from "./definitions/1-0xcfeb09c3c5f0f78ad72166d55f9e6e9a60e96eec";
+import token_1_0xcffe9112bfa141ae9170be4d172d40a455662564 from "./definitions/1-0xcffe9112bfa141ae9170be4d172d40a455662564";
 import token_1_0xd0929d411954c47438dc1d871dd6081f5c5e149c from "./definitions/1-0xd0929d411954c47438dc1d871dd6081f5c5e149c";
 import token_1_0xd12a99dbc40036cec6f1b776dccd2d36f5953b94 from "./definitions/1-0xd12a99dbc40036cec6f1b776dccd2d36f5953b94";
 import token_1_0xd13c7342e1ef687c5ad21b27c2b65d772cab5c8c from "./definitions/1-0xd13c7342e1ef687c5ad21b27c2b65d772cab5c8c";
@@ -3146,6 +3147,8 @@ export const TokenMap1 = {
     token_1_0xcf91b70017eabde82c9671e30e5502d312ea6eb2,
   [token_1_0xcfeb09c3c5f0f78ad72166d55f9e6e9a60e96eec.id]:
     token_1_0xcfeb09c3c5f0f78ad72166d55f9e6e9a60e96eec,
+  [token_1_0xcffe9112bfa141ae9170be4d172d40a455662564.id]:
+    token_1_0xcffe9112bfa141ae9170be4d172d40a455662564,
   [token_1_0xd0929d411954c47438dc1d871dd6081f5c5e149c.id]:
     token_1_0xd0929d411954c47438dc1d871dd6081f5c5e149c,
   [token_1_0xd12a99dbc40036cec6f1b776dccd2d36f5953b94.id]:
