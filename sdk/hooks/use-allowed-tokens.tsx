@@ -15,6 +15,7 @@ export const useAllowedTokens = ({
   excluded_token_ids,
   type = "token",
   account_address,
+  vault_address,
   id,
   user_type = RoycoMarketUserType.ap.id,
 }: {
@@ -26,6 +27,7 @@ export const useAllowedTokens = ({
   excluded_token_ids?: string[] | undefined | null;
   type?: "token" | "point";
   account_address?: string;
+  vault_address?: string;
   id?: string; // This is the global market id
   user_type?: TypedRoycoMarketUserType;
 }) => {
@@ -36,6 +38,11 @@ export const useAllowedTokens = ({
   const propsAllowedIpPoints = useAllowedIpPoints({
     chain_id: chain_id ?? 0,
     account_address: account_address ?? "",
+  });
+
+  const propsAllowedVaultPoints = useAllowedIpPoints({
+    chain_id: chain_id ?? 0,
+    account_address: vault_address ?? "",
   });
 
   const filterFunctions = {
@@ -82,7 +89,10 @@ export const useAllowedTokens = ({
       ? SupportedTokenList
       : user_type === RoycoMarketUserType.ap.id
         ? (propsAllowedApPoints.data ?? [])
-        : (propsAllowedIpPoints.data ?? []),
+        : [
+            ...(propsAllowedIpPoints.data ?? []),
+            ...(propsAllowedVaultPoints.data ?? []),
+          ],
   );
 
   const total_pages = Math.ceil(filteredTokens.length / page_size);
@@ -93,7 +103,9 @@ export const useAllowedTokens = ({
     .slice(page * page_size, (page + 1) * page_size);
 
   const isLoading =
-    propsAllowedApPoints.isLoading || propsAllowedIpPoints.isLoading;
+    propsAllowedApPoints.isLoading ||
+    propsAllowedIpPoints.isLoading ||
+    propsAllowedVaultPoints.isLoading;
 
   return {
     isLoading,
