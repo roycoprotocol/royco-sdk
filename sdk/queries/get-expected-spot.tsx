@@ -15,7 +15,7 @@ export const getExpectedSpotQueryFunction = async ({
   let query = client
     .from("leaderboard")
     .select("*")
-    .or(`balance.lt.${balance},and(balance.eq.${balance},created_at.lt.now())`)
+    .or(`balance.lt.${balance}`)
     .order("balance", { ascending: false })
     .order("created_at", { ascending: true })
     .limit(1);
