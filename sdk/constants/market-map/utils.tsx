@@ -32,6 +32,7 @@ export type SupportedMarket = {
   }) => Promise<{
     underlying_annual_change_ratio: number;
   }>;
+  category?: string;
 };
 
 export const defineMarket = (market: SupportedMarket) => market;
