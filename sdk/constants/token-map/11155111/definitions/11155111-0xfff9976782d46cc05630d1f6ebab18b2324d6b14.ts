@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
   decimals: 18,
   source: "coinmarketcap",
-  search_id: "none",
+  search_id: "2396",
   type: "token",
 });
