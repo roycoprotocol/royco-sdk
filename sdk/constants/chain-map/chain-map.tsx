@@ -5,6 +5,7 @@ import {
   base,
   corn,
   plume,
+  sonic,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -53,6 +54,13 @@ export const Plume = {
   symbol: "PLUME",
 };
 
+export const Sonic = {
+  ...sonic,
+  name: "Sonic",
+  image: "https://icons.llamao.fi/icons/chains/rsz_sonic.jpg",
+  symbol: "SONIC",
+};
+
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
@@ -60,6 +68,7 @@ export const SupportedChainMap: Record<number, SupportedChain> = {
   [base.id]: Base,
   [corn.id]: Corn,
   [plume.id]: Plume,
+  [sonic.id]: Sonic,
 };
 
 export const SupportedChainlist = Object.values(SupportedChainMap);

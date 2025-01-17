@@ -5,7 +5,7 @@ export default defineToken({
   chain_id: 42161,
   contract_address: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
   name: "Arbitrum Bridged USDC (Arbitrum)",
-  symbol: "USDC.E",
+  symbol: "USDC.e",
   image:
     "https://coin-images.coingecko.com/coins/images/30691/large/usdc.png?1696529560",
   decimals: 6,
