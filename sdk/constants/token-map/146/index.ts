@@ -1,0 +1,6 @@
+import token_146_0x29219dd400f2bf60e5a23d13be72b486d4038894 from "./definitions/146-0x29219dd400f2bf60e5a23d13be72b486d4038894";
+
+export const TokenMap146 = {
+  [token_146_0x29219dd400f2bf60e5a23d13be72b486d4038894.id]:
+    token_146_0x29219dd400f2bf60e5a23d13be72b486d4038894,
+};
