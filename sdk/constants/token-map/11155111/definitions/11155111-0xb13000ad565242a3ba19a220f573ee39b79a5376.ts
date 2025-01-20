@@ -10,5 +10,5 @@ export default defineToken({
   decimals: 18,
   source: "external",
   search_id: "none",
-  type: "token",
+  type: "point",
 });
