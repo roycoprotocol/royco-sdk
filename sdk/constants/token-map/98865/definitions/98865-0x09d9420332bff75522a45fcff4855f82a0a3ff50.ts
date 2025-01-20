@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0x09d9420332bff75522a45fcff4855f82a0a3ff50",
   name: "Dinero",
   symbol: "DINERO",
-  image:
-    "https://assets.coingecko.com/coins/images/39341/standard/dinero.jpg?1721807902",
+  image: "https://pbs.twimg.com/profile_images/1813945047093592064/vNgvmosz_400x400.png",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "32492",
