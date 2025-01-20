@@ -5,7 +5,7 @@ export default defineToken({
   chain_id: 21000000,
   contract_address: "0xdf0b24095e15044538866576754f3c964e902ee6",
   name: "Bridged USDC (Corn)",
-  symbol: "USDC.E",
+  symbol: "USDC.e",
   image:
     "https://coin-images.coingecko.com/coins/images/30691/large/usdc.png?1696529560",
   decimals: 6,

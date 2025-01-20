@@ -12,9 +12,12 @@ import token_8453_0x9c632e6aaa3ea73f91554f8a3cb2ed2f29605e0c from "./definitions
 import token_8453_0xa067436db77ab18b1a315095e4b816791609897c from "./definitions/8453-0xa067436db77ab18b1a315095e4b816791609897c";
 import token_8453_0xab36452dbac151be02b16ca17d8919826072f64a from "./definitions/8453-0xab36452dbac151be02b16ca17d8919826072f64a";
 import token_8453_0xb166e8b140d35d9d8226e40c09f757bac5a4d87d from "./definitions/8453-0xb166e8b140d35d9d8226e40c09f757bac5a4d87d";
+import token_8453_0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842 from "./definitions/8453-0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842";
 import token_8453_0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452 from "./definitions/8453-0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452";
 import token_8453_0xc48e605c7b722a57277e087a6170b9e227e5ac0a from "./definitions/8453-0xc48e605c7b722a57277e087a6170b9e227e5ac0a";
+import token_8453_0xca38a876f61794dc7fb77b8895a046d364937a33 from "./definitions/8453-0xca38a876f61794dc7fb77b8895a046d364937a33";
 import token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33 from "./definitions/8453-0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33";
+import token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d from "./definitions/8453-0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d";
 import token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b from "./definitions/8453-0xfa980ced6895ac314e7de34ef1bfae90a5add21b";
 import token_8453_0xfd4330b0312fdeec6d4225075b82e00493ff2e3f from "./definitions/8453-0xfd4330b0312fdeec6d4225075b82e00493ff2e3f";
 
@@ -47,12 +50,18 @@ export const TokenMap8453 = {
     token_8453_0xab36452dbac151be02b16ca17d8919826072f64a,
   [token_8453_0xb166e8b140d35d9d8226e40c09f757bac5a4d87d.id]:
     token_8453_0xb166e8b140d35d9d8226e40c09f757bac5a4d87d,
+  [token_8453_0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842.id]:
+    token_8453_0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842,
   [token_8453_0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452.id]:
     token_8453_0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452,
   [token_8453_0xc48e605c7b722a57277e087a6170b9e227e5ac0a.id]:
     token_8453_0xc48e605c7b722a57277e087a6170b9e227e5ac0a,
+  [token_8453_0xca38a876f61794dc7fb77b8895a046d364937a33.id]:
+    token_8453_0xca38a876f61794dc7fb77b8895a046d364937a33,
   [token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33.id]:
     token_8453_0xd1917629b3e6a72e6772aab5dbe58eb7fa3c2f33,
+  [token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d.id]:
+    token_8453_0xe3cf8dbcbdc9b220ddead0bd6342e245daff934d,
   [token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b.id]:
     token_8453_0xfa980ced6895ac314e7de34ef1bfae90a5add21b,
   [token_8453_0xfd4330b0312fdeec6d4225075b82e00493ff2e3f.id]:
