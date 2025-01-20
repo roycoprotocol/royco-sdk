@@ -31,7 +31,7 @@ export default defineMarket({
 
       USDC.annual_change_ratio = base;
       rewardToken = {
-        ...getSupportedToken(`1-${data.rewards[0].token}`),
+        ...getSupportedToken(`8453-${data.rewards[0].token}`),
         label: "Reward APY",
         annual_change_ratio: reward,
       };
