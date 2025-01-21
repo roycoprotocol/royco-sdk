@@ -49,10 +49,10 @@ import token_1_0x090185f2135308bad17527004364ebcc2d37e5f6 from "./definitions/1-
 import token_1_0x094c0e36210634c3cfa25dc11b96b562e0b07624 from "./definitions/1-0x094c0e36210634c3cfa25dc11b96b562e0b07624";
 import token_1_0x0954906da0bf32d5479e25f46056d22f08464cab from "./definitions/1-0x0954906da0bf32d5479e25f46056d22f08464cab";
 import token_1_0x09617f6fd6cf8a71278ec86e23bbab29c04353a7 from "./definitions/1-0x09617f6fd6cf8a71278ec86e23bbab29c04353a7";
-import token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b from "./definitions/1-0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b";
 import token_1_0x09a3ecafa817268f77be1283176b946c4ff2e608 from "./definitions/1-0x09a3ecafa817268f77be1283176b946c4ff2e608";
 import token_1_0x09ccd2da5dcdd0510268d4979e792381337138b8 from "./definitions/1-0x09ccd2da5dcdd0510268d4979e792381337138b8";
 import token_1_0x09d4214c03d01f49544c0448dbe3a27f768f2b34 from "./definitions/1-0x09d4214c03d01f49544c0448dbe3a27f768f2b34";
+import token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b from "./definitions/1-0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b";
 import token_1_0x0a2d9370cf74da3fd3df5d764e394ca8205c50b6 from "./definitions/1-0x0a2d9370cf74da3fd3df5d764e394ca8205c50b6";
 import token_1_0x0a661f6ad63a1500d714ed1eeedb64ec493a54a8 from "./definitions/1-0x0a661f6ad63a1500d714ed1eeedb64ec493a54a8";
 import token_1_0x0a913bead80f321e7ac35285ee10d9d922659cb7 from "./definitions/1-0x0a913bead80f321e7ac35285ee10d9d922659cb7";
@@ -1320,14 +1320,14 @@ export const TokenMap1 = {
     token_1_0x0954906da0bf32d5479e25f46056d22f08464cab,
   [token_1_0x09617f6fd6cf8a71278ec86e23bbab29c04353a7.id]:
     token_1_0x09617f6fd6cf8a71278ec86e23bbab29c04353a7,
-  [token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b.id]:
-    token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b,
   [token_1_0x09a3ecafa817268f77be1283176b946c4ff2e608.id]:
     token_1_0x09a3ecafa817268f77be1283176b946c4ff2e608,
   [token_1_0x09ccd2da5dcdd0510268d4979e792381337138b8.id]:
     token_1_0x09ccd2da5dcdd0510268d4979e792381337138b8,
   [token_1_0x09d4214c03d01f49544c0448dbe3a27f768f2b34.id]:
     token_1_0x09d4214c03d01f49544c0448dbe3a27f768f2b34,
+  [token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b.id]:
+    token_1_0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b,
   [token_1_0x0a2d9370cf74da3fd3df5d764e394ca8205c50b6.id]:
     token_1_0x0a2d9370cf74da3fd3df5d764e394ca8205c50b6,
   [token_1_0x0a661f6ad63a1500d714ed1eeedb64ec493a54a8.id]:
