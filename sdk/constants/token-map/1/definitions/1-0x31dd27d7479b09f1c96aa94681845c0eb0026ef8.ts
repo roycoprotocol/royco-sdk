@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "1-0x31DD27D7479b09F1C96AA94681845C0eb0026EF8",
+  id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
   chain_id: 1,
-  contract_address: "0x31DD27D7479b09F1C96AA94681845C0eb0026EF8",
+  contract_address: "0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
   name: "Kodiak Boyco Points",
   symbol: "BODIAK",
   image: "https://app.kodiak.finance/images/KodiakToken.svg",
@@ -12,4 +12,3 @@ export default defineToken({
   search_id: "none",
   type: "point",
 });
-
