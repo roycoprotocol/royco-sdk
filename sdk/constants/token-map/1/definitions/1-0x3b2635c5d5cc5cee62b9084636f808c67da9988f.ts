@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x77d17183055303a15208c809b716dc02261129B7",
   name: "Infrared Points",
   symbol: "IRP",
-  image: "https://drive.google.com/file/d/1i_g9OhvMp0_ZIf9YWXntDCKMoKvT4yG1/view?usp=sharing",
+  image: "https://github.com/orionStrategos/infraredimage/blob/main/infrared-logo-64x64.png",
   decimals: 18,
   source: "external",
   search_id: "none",
