@@ -8,8 +8,8 @@ export default defineMarket({
   is_verified: true,
   native_yield: [
     {
-      token_id: "1-0xf7de3c70f2db39a188a81052d2f3c8e3e217822a",
-      label: "Total APY",
+      token_id: "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      label: "Base APY",
       annual_change_ratio: async ({ roycoClient, chainClient }) => {
         let annual_change_ratio = 0;
 
@@ -17,8 +17,32 @@ export default defineMarket({
           const response = await fetch(
             "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
           );
+
           const data = await response.json();
-          annual_change_ratio = Number(data.apy) / 100;
+          const totalApy = Number(data.apy) / 100;
+          const reward = Number(data.rewards[0].reward_rate) / 100;
+          annual_change_ratio = totalApy - reward;
+        } catch (error) {
+          console.error(error);
+        }
+
+        return annual_change_ratio;
+      },
+    },
+    {
+      token_id: "1-0xf7de3c70f2db39a188a81052d2f3c8e3e217822a",
+      label: "Reward APY",
+      annual_change_ratio: async ({ roycoClient, chainClient }) => {
+        let annual_change_ratio = 0;
+
+        try {
+          const response = await fetch(
+            "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
+          );
+
+          const data = await response.json();
+          const totalApy = Number(data.apy) / 100;
+          annual_change_ratio = Number(data.rewards[0].reward_rate) / 100;
         } catch (error) {
           console.error(error);
         }

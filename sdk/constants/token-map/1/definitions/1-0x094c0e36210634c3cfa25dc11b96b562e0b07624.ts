@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "11155111-0x6bb8f9606c147f22e2a541ea93d6bad768db69a9",
-  chain_id: 11155111,
-  contract_address: "0x6bb8f9606c147f22e2a541ea93d6bad768db69a9",
+  id: "1-0x094c0e36210634c3cfa25dc11b96b562e0b07624",
+  chain_id: 1,
+  contract_address: "0x094c0e36210634c3cfa25dc11b96b562e0b07624",
   name: "StakeStone Bitcoin",
   symbol: "SBTC",
   image: "https://s2.coinmarketcap.com/static/img/coins/64x64/32272.png",
