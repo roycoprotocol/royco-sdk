@@ -147,6 +147,7 @@ export type GetEnrichedMarketsQueryParams = {
   market_type?: number;
   market_id?: string;
   page_index?: number;
+  page_size?: number;
   filters?: Array<MarketFilter>;
   sorting?: Array<BaseSortingFilter>;
   search_key?: string;
@@ -157,16 +158,15 @@ export type GetEnrichedMarketsQueryParams = {
 export type GetEnrichedMarketsQueryOptionsParams =
   GetEnrichedMarketsQueryParams & {
     client: TypedRoycoClient;
-    RPC_API_KEYS: TypedRpcApiKeys;
   };
 
 export const getEnrichedMarketsQueryFunction = async ({
   client,
-  RPC_API_KEYS,
   chain_id,
   market_type,
   market_id,
   page_index,
+  page_size,
   filters,
   sorting,
   search_key,
@@ -181,6 +181,7 @@ export const getEnrichedMarketsQueryFunction = async ({
     market_type,
     market_id,
     page_index,
+    page_size,
     filters: filter_clauses,
     sorting: sorting_clauses,
     search_key,
@@ -467,11 +468,11 @@ export const getEnrichedMarketsQueryFunction = async ({
 
 export const getEnrichedMarketsQueryOptions = ({
   client,
-  RPC_API_KEYS,
   chain_id,
   market_type,
   market_id,
   page_index,
+  page_size,
   filters,
   sorting,
   search_key,
@@ -485,6 +486,7 @@ export const getEnrichedMarketsQueryOptions = ({
       market_type,
       market_id,
       page_index,
+      page_size,
       filters,
       sorting,
       search_key,
@@ -495,11 +497,11 @@ export const getEnrichedMarketsQueryOptions = ({
   queryFn: () =>
     getEnrichedMarketsQueryFunction({
       client,
-      RPC_API_KEYS,
       chain_id,
       market_type,
       market_id,
       page_index,
+      page_size,
       filters,
       sorting,
       search_key,

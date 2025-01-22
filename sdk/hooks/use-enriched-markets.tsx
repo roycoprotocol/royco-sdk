@@ -14,6 +14,7 @@ export const useEnrichedMarkets = ({
   market_type,
   market_id,
   page_index = 0,
+  page_size = 20,
   filters = [],
   sorting = [],
   search_key,
@@ -23,16 +24,14 @@ export const useEnrichedMarkets = ({
 }: UseEnrichedMarketsParams) => {
   const client: RoycoClient = useRoycoClient();
 
-  const RPC_API_KEYS = useRpcApiKeys();
-
   const props = useQuery({
     ...getEnrichedMarketsQueryOptions({
       client,
-      RPC_API_KEYS: RPC_API_KEYS ?? {},
       chain_id,
       market_type,
       market_id,
       page_index,
+      page_size,
       filters,
       sorting,
       search_key,
