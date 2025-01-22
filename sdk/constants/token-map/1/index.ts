@@ -3681,6 +3681,6 @@ export const TokenMap1 = {
     token_1_0xffc63b9146967a1ba33066fb057ee3722221acf0,
   [token_1_0xffe02ee4c69edf1b340fcad64fbd6b37a7b9e265.id]:
     token_1_0xffe02ee4c69edf1b340fcad64fbd6b37a7b9e265,
-  [token_1_0x3b2635C5D5CC5cEe62b9084636F808C67dA9988f.id]:
-    token_1_0x3b2635C5D5CC5cEe62b9084636F808C67dA9988f,
+  [token_1_0x77d17183055303a15208c809b716dc02261129B7.id]:
+    token_1_0x77d17183055303a15208c809b716dc02261129B7,
 };
