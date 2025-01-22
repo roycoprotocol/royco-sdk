@@ -1,0 +1,22 @@
+{
+  "background.customImages": [
+    "file:///d:/projects/waymont/main-app/.vscode/anya-pointing-left.png",
+    "file:///d:/projects/waymont/main-app/.vscode/sleep-toro.png"
+  ],
+
+  "background.style": {
+    "opacity": 0.2
+  },
+  "background.styles": [
+    {
+      "background-position": "right 103%",
+      "background-size": "20rem auto"
+    },
+    {
+      "background-position": "right 103%",
+      "background-size": "20rem auto"
+    },
+    { "background-position": "right 102%", "background-size": "15rem auto" },
+    { "background-position": "right bottom", "background-size": "20rem auto" }
+  ]
+}
