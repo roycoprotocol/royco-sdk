@@ -125,13 +125,19 @@ export type EnrichedMarketDataType =
     yield_breakdown: Array<
       SupportedToken & {
         category: "base" | "underlying" | "native";
-        label: string;
+        label?: string;
         annual_change_ratio: number;
         total_supply?: number;
         fdv?: number;
         price?: number;
         allocation?: number;
         token_amount?: number;
+      }
+    >;
+    external_incentives: Array<
+      SupportedToken & {
+        label?: string;
+        value: string;
       }
     >;
   };
@@ -141,6 +147,7 @@ export type GetEnrichedMarketsQueryParams = {
   market_type?: number;
   market_id?: string;
   page_index?: number;
+  page_size?: number;
   filters?: Array<MarketFilter>;
   sorting?: Array<BaseSortingFilter>;
   search_key?: string;
@@ -151,16 +158,15 @@ export type GetEnrichedMarketsQueryParams = {
 export type GetEnrichedMarketsQueryOptionsParams =
   GetEnrichedMarketsQueryParams & {
     client: TypedRoycoClient;
-    RPC_API_KEYS: TypedRpcApiKeys;
   };
 
 export const getEnrichedMarketsQueryFunction = async ({
   client,
-  RPC_API_KEYS,
   chain_id,
   market_type,
   market_id,
   page_index,
+  page_size,
   filters,
   sorting,
   search_key,
@@ -175,6 +181,7 @@ export const getEnrichedMarketsQueryFunction = async ({
     market_type,
     market_id,
     page_index,
+    page_size,
     filters: filter_clauses,
     sorting: sorting_clauses,
     search_key,
@@ -197,20 +204,6 @@ export const getEnrichedMarketsQueryFunction = async ({
           !!row.annual_change_ratios
         ) {
           const market = getSupportedMarket(row.id);
-
-          let native_yield = undefined;
-
-          if (!!market && !!market.native_yield) {
-            const chainClient = createPublicClient({
-              chain: getSupportedChain(row.chain_id),
-              transport: http(RPC_API_KEYS[row.chain_id]),
-            });
-
-            native_yield = await market.native_yield({
-              roycoClient: client,
-              chainClient: chainClient,
-            });
-          }
 
           const chain_data = getSupportedChain(row.chain_id);
 
@@ -409,48 +402,43 @@ export const getEnrichedMarketsQueryFunction = async ({
           }
 
           // Native Yields
-          if (!!row.native_annual_change_ratio && !!native_yield) {
-            let curr_sum = 0;
+          if (!!row.native_annual_change_ratio && !!market?.native_yield) {
+            for (let i = 0; i < market.native_yield.length; i++) {
+              const nativeYield = market.native_yield[i];
+              if (!nativeYield) continue;
 
-            for (
-              let i = 0;
-              i < native_yield.native_annual_change_ratios.length;
-              i++
-            ) {
-              if (i === native_yield.native_annual_change_ratios.length - 1) {
-                // last index
-                yield_breakdown.push({
-                  ...getSupportedToken(
-                    native_yield.native_annual_change_ratios[i]?.id ?? "",
-                  ),
-                  category: "native",
-                  label:
-                    native_yield.native_annual_change_ratios[i]?.label ??
-                    "Native Yield",
-                  annual_change_ratio: Math.max(
-                    0,
-                    row.native_annual_change_ratio - curr_sum,
-                  ),
-                });
-              } else {
-                // not last index
-                yield_breakdown.push({
-                  ...getSupportedToken(
-                    native_yield.native_annual_change_ratios[i]?.id ?? "",
-                  ),
-                  category: "native",
-                  label:
-                    native_yield.native_annual_change_ratios[i]?.label ??
-                    "Native Yield",
-                  annual_change_ratio:
-                    native_yield.native_annual_change_ratios[i]
-                      ?.annual_change_ratio ?? 0,
-                });
-              }
+              const annual_change_ratio =
+                row.native_annual_change_ratios?.[i] ?? 0;
 
-              curr_sum +=
-                native_yield.native_annual_change_ratios[i]
-                  ?.annual_change_ratio ?? 0;
+              yield_breakdown.push({
+                ...getSupportedToken(nativeYield.token_id),
+                category: "native",
+                label: nativeYield.label ?? "Native Yield",
+                annual_change_ratio,
+              });
+            }
+          }
+
+          let external_incentives: Array<
+            SupportedToken & {
+              label: string;
+              value: string;
+            }
+          > = [];
+
+          // External Incentives
+          if (!!market?.external_incentives) {
+            for (let i = 0; i < market.external_incentives.length; i++) {
+              const externalIncentive = market.external_incentives[i];
+              if (!externalIncentive) continue;
+
+              const value = row.external_incentive_values?.[i] ?? "0";
+
+              external_incentives.push({
+                ...getSupportedToken(externalIncentive.token_id),
+                label: externalIncentive.label ?? "External Yield",
+                value,
+              });
             }
           }
 
@@ -460,6 +448,7 @@ export const getEnrichedMarketsQueryFunction = async ({
             input_token_data,
             chain_data,
             yield_breakdown,
+            external_incentives,
           };
         }
       }),
@@ -479,11 +468,11 @@ export const getEnrichedMarketsQueryFunction = async ({
 
 export const getEnrichedMarketsQueryOptions = ({
   client,
-  RPC_API_KEYS,
   chain_id,
   market_type,
   market_id,
   page_index,
+  page_size,
   filters,
   sorting,
   search_key,
@@ -497,6 +486,7 @@ export const getEnrichedMarketsQueryOptions = ({
       market_type,
       market_id,
       page_index,
+      page_size,
       filters,
       sorting,
       search_key,
@@ -507,11 +497,11 @@ export const getEnrichedMarketsQueryOptions = ({
   queryFn: () =>
     getEnrichedMarketsQueryFunction({
       client,
-      RPC_API_KEYS,
       chain_id,
       market_type,
       market_id,
       page_index,
+      page_size,
       filters,
       sorting,
       search_key,

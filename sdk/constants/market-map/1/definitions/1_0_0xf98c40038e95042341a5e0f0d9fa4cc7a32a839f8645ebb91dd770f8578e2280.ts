@@ -6,43 +6,49 @@ export default defineMarket({
   description: `Deposit USDC into Superform SuperUSDC on Ethereum for 3 months. SuperUSDC optimizes across blue-chip lending yield on Ethereum to earn the best returns.
     `,
   is_verified: true,
-  native_yield: async () => {
-    let USDC = {
-      ...getSupportedToken("1-0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"),
+  native_yield: [
+    {
+      token_id: "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
       label: "Base APY",
-      annual_change_ratio: 0,
-    };
+      annual_change_ratio: async ({ roycoClient, chainClient }) => {
+        let annual_change_ratio = 0;
 
-    let rewardToken = {
-      ...getSupportedToken("1-0xF7DE3c70F2db39a188A81052d2f3C8e3e217822a"),
+        try {
+          const response = await fetch(
+            "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
+          );
+
+          const data = await response.json();
+          const totalApy = Number(data.apy) / 100;
+          const reward = Number(data.rewards[0].reward_rate) / 100;
+          annual_change_ratio = totalApy - reward;
+        } catch (error) {
+          console.error(error);
+        }
+
+        return annual_change_ratio;
+      },
+    },
+    {
+      token_id: "1-0xf7de3c70f2db39a188a81052d2f3c8e3e217822a",
       label: "Reward APY",
-      annual_change_ratio: 0,
-    };
+      annual_change_ratio: async ({ roycoClient, chainClient }) => {
+        let annual_change_ratio = 0;
 
-    let totalApy = 0;
+        try {
+          const response = await fetch(
+            "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
+          );
 
-    try {
-      const response = await fetch(
-        "https://www.superform.xyz/api/proxy/stats/vault/supervault/vL7k-5ZgYCoFgi6kz2jIJ/",
-      );
-      const data = await response.json();
-      totalApy = Number(data.apy) / 100;
-      const reward = Number(data.rewards[0].reward_rate) / 100;
-      const base = totalApy - reward;
+          const data = await response.json();
+          const totalApy = Number(data.apy) / 100;
+          annual_change_ratio = Number(data.rewards[0].reward_rate) / 100;
+        } catch (error) {
+          console.error(error);
+        }
 
-      USDC.annual_change_ratio = base;
-      rewardToken = {
-        ...getSupportedToken(`1-${data.rewards[0].token}`),
-        label: "Reward APY",
-        annual_change_ratio: reward,
-      };
-    } catch (error) {
-      console.error(error);
-    }
-
-    return {
-      native_annual_change_ratio: totalApy,
-      native_annual_change_ratios: [USDC, rewardToken],
-    };
-  },
+        return annual_change_ratio;
+      },
+    },
+  ],
 });

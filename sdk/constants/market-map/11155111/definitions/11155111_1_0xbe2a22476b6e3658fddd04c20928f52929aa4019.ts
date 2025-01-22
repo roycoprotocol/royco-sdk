@@ -5,9 +5,9 @@ export default defineMarket({
   name: "Sepolia Test Vault USDC Market",
   description: "Sepolia Test Vault USDC Market",
   is_verified: false,
-  underlying_vault_yield: async ({ roycoClient, chainClient }) => {
+  underlying_yield: async ({ roycoClient, chainClient }) => {
     // Variable to store the underlying yield (we refer it as annual_change_ratio)
-    let underlying_annual_change_ratio = 0;
+    let annual_change_ratio = 0;
 
     try {
       // Fetch the custom APY from your API
@@ -19,7 +19,7 @@ export default defineMarket({
       const custom_apy_data = await custom_apy_res.json();
 
       // Extract the underlying yield from the custom APY data & perform calculations, if needed and then update the underlying_annual_change_ratio
-      underlying_annual_change_ratio =
+      annual_change_ratio =
         (Number(custom_apy_data.currentAPR.actionsAPR["ethereum-stkgho"]) ??
           0) / 100;
     } catch (error) {
@@ -27,8 +27,6 @@ export default defineMarket({
     }
 
     // Finally, return the underlying yield
-    return {
-      underlying_annual_change_ratio,
-    };
+    return annual_change_ratio;
   },
 });
