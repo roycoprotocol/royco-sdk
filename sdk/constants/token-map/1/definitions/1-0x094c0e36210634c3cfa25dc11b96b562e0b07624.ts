@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x094c0e36210634c3cfa25dc11b96b562e0b07624",
   name: "StakeStone Bitcoin",
   symbol: "SBTC",
-  image: "https://s2.coinmarketcap.com/static/img/coins/64x64/32272.png",
+  image: "https://static.stakestone.io/stone/logo/sbtc-token-o.svg",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "32272",
