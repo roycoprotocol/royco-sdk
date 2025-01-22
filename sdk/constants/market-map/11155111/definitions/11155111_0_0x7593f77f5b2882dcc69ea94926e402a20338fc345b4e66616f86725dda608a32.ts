@@ -3,13 +3,16 @@ import { defineMarket } from "@/sdk/constants";
 /**
  * @note This example illustrates how to add native, underlying and external incentives to a market
  *
- * Native Yield: This is the yield for native incentives that are not on Royco
- * Underlying Yield: This is the yield that underlying ERC4626 vault has (only relevant for Royco Vault Markets, ignore this for Royco Recipe Markets)
- * External Incentives: This is the yield that external incentives have
+ * 1. Native Yield: This is the yield for native incentives that are not on Royco
+ * 2. Underlying Yield: This is the yield that underlying ERC4626 vault has
+ * 3. External Incentives: This is the yield that external incentives have
  */
 
 /**
- * @optional We are passing 2 params here to all async functions -- roycoClient and chainClient and you can use them to make any kind of API calls that you want to retrieve data from royco db or chain RPC respectively
+ * @optional We are passing 2 params here to all async functions
+ * -- roycoClient and chainClient and you can use them to make
+ * any kind of API calls that you want
+ * -- to retrieve data from royco db or chain RPC respectively
  */
 
 export default defineMarket({
@@ -37,7 +40,11 @@ export default defineMarket({
       token_id: "11155111-0xb13000ad565242a3ba19a220f573ee39b79a5376",
 
       /**
-       * @note This label is optional -- so if you don't want custom labels, just don't add this field (don't leave it empty string -- i repeat: "DON'T LEAVE IT EMPTY STRING", just don't add the key itself if you don't want custom labels) -- Search for "HOW NOT TO ADD A LABEL 101" in this file to learn more
+       * @note This label is optional -- so if you don't want custom labels,
+       * just don't add this field (don't leave it empty string
+       * -- i repeat: "DON'T LEAVE IT EMPTY STRING",
+       * (just don't add the key itself if you don't want custom labels)
+       * -- Search for "HOW NOT TO ADD A LABEL 101" in this file to learn more
        */
       label: "BURR Native Yield",
 
@@ -59,23 +66,30 @@ export default defineMarket({
 
           /**
            * @note This must be a ratio (not the percentage)
-           * For example, if you want to show 10% Yield on UI, you must return "0.1" (which is 10 / 100 = 0.1)
+           * For example, if you want to show 10% Yield on UI,
+           * you must return "0.1" (which is 10 / 100 = 0.1)
            */
           annual_change_ratio = data.id / 100;
         } catch (err) {
-          // Don't log the error when you make PR, because it will be called server side and we don't want to fill server side logs with failed API calls
+          // Don't log the error when you make PR,
+          // because it will be called server side and
+          // we don't want to fill server side logs with failed API calls
         }
 
-        // Don't forget to return the value, else there's no point in adding this native yield
+        // Don't forget to return the value,
+        // else there's no point in adding this native yield
         return annual_change_ratio;
       },
     },
   ],
 
   /**
-   * @note This is the yield that underlying ERC4626 vault has -- it's only relevant for Royco Vault Markets, ignore this for Royco Recipe Markets
+   * @note This is the yield that underlying ERC4626 vault has
+   * -- it's only relevant for Royco Vault Markets,
+   * ignore this for Royco Recipe Markets
    *
-   * @note This returns a number, not an array -- i repeat, "NOT AN ARRAY", repeating again, "NOT AN ARRAY"
+   * @note This returns a number, not an array
+   * -- i repeat, "NOT AN ARRAY", repeating again, "NOT AN ARRAY"
    */
   underlying_yield: async ({ roycoClient, chainClient }) => {
     // Add a fallback value just in case the API call fails
@@ -92,11 +106,14 @@ export default defineMarket({
 
       /**
        * @note This must be a ratio (not the percentage)
-       * For example, if you want to show 25% Yield on UI, you must return "0.25" (which is 25 / 100 = 0.25)
+       * For example, if you want to show 25% Yield on UI,
+       * you must return "0.25" (which is 25 / 100 = 0.25)
        */
       annual_change_ratio = data.id / 100;
     } catch (err) {
-      // Don't log the error when you make PR, because it will be called server side and we don't want to fill server side logs with failed API calls
+      // Don't log the error when you make PR,
+      // because it will be called server side and
+      // we don't want to fill server side logs with failed API calls
     }
 
     // Don't forget to return the value, because why not?
@@ -104,7 +121,9 @@ export default defineMarket({
   },
 
   /**
-   * @note Use this to add any kind of external incentives via any random API or any other kind of custom typescipt logic or even better, "HARDCODE IT"
+   * @note Use this to add any kind of external incentives
+   *  via any random API or any other kind of custom typescipt logic
+   * or even better, "HARDCODE IT"
    *
    * @note This is an array, so it allows you to add multiple external incentives
    */
@@ -118,7 +137,11 @@ export default defineMarket({
       token_id: "11155111-0xb13000ad565242a3ba19a220f573ee39b79a5376",
 
       /**
-       * @note This label is optional -- so if you don't want custom labels, just don't add this field (don't leave it empty string -- i repeat: "DON'T LEAVE IT EMPTY STRING", just don't add the key itself if you don't want custom labels) -- search for "HOW NOT TO ADD A LABEL 101" in this file to learn more
+       * @note This label is optional -- so if you don't want custom labels,
+       * just don't add this field (don't leave it empty string
+       * -- i repeat: "DON'T LEAVE IT EMPTY STRING",
+       * (just don't add the key itself if you don't want custom labels)
+       * -- search for "HOW NOT TO ADD A LABEL 101" in this file to learn more
        */
       label: "BURR Multiplier",
 
@@ -134,14 +157,17 @@ export default defineMarket({
     },
     {
       /**
-       * @note Again, make sure that below token_id is in "LOWERCASE" in the name of holy lord
+       * @note Again, make sure that below token_id is in "LOWERCASE"
+       * in the name of holy lord
        */
       token_id: "11155111-0xb13000ad565242a3ba19a220f573ee39b79a5376",
 
       /**
        * @note HOW NOT TO ADD A LABEL 101 -- yay, you found it :)
        *
-       * See here, I have not added any label, because I don't want to show any custom label and I am fine whatever label ROYCO gives me :)
+       * See here, I have not added any label,
+       * because I don't want to show any custom label
+       * and I am fine whatever label ROYCO gives me :)
        */
 
       /**
@@ -163,10 +189,13 @@ export default defineMarket({
 
           value = `${data.id * 10}% per $TVL`;
         } catch (err) {
-          // Don't log the error when you make PR, because it will be called server side and we don't want to fill server side logs with failed API calls
+          // Don't log the error when you make PR,
+          // because it will be called server side
+          // and we don't want to fill server side logs with failed API calls
         }
 
-        // Don't forget to return the value, else all your hard work will go to vain
+        // Don't forget to return the value,
+        // else all your hard work will go to vain
         return value;
       },
     },
