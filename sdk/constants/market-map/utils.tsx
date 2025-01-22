@@ -1,7 +1,6 @@
 import { createPublicClient } from "viem";
 
 import type { RoycoClient } from "@/sdk/client";
-import type { SupportedToken } from "@/sdk/constants";
 
 export type BaseYield = {
   token_id: string;
