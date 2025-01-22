@@ -40,7 +40,6 @@ export const getCompleteMarketQueryFunction = async ({
       }),
       getEnrichedMarketsQueryFunction({
         client,
-        RPC_API_KEYS,
         chain_id,
         market_type,
         market_id,
