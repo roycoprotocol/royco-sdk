@@ -1,10 +1,6 @@
 import type { TypedRoycoClient, TypedRpcApiKeys } from "@/sdk/client";
 import type { BaseSortingFilter, CustomTokenData, Database } from "@/sdk/types";
-import type {
-  SupportedChain,
-  SupportedMarket,
-  SupportedToken,
-} from "@/sdk/constants";
+import type { SupportedChain, SupportedToken } from "@/sdk/constants";
 
 import { getSupportedMarket, getSupportedToken } from "@/sdk/constants";
 import {
@@ -16,8 +12,6 @@ import {
   parseTokenAmountToTokenAmountUsd,
 } from "@/sdk/utils";
 import { RoycoMarketType } from "@/sdk/market";
-import { http } from "viem";
-import { createPublicClient } from "viem";
 
 export type MarketFilter = {
   id: string;
@@ -480,7 +474,7 @@ export const getEnrichedMarketsQueryOptions = ({
   custom_token_data,
 }: GetEnrichedMarketsQueryOptionsParams) => ({
   queryKey: [
-    "enriched-markets",
+    "get-enriched-markets",
     {
       chain_id,
       market_type,
