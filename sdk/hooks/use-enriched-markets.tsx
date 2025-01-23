@@ -3,7 +3,7 @@ import {
   getEnrichedMarketsQueryOptions,
   type GetEnrichedMarketsQueryParams,
 } from "@/sdk/queries";
-import { type RoycoClient, useRoycoClient, useRpcApiKeys } from "@/sdk/client";
+import { type RoycoClient, useRoycoClient } from "@/sdk/client";
 
 export type UseEnrichedMarketsParams = GetEnrichedMarketsQueryParams & {
   enabled?: boolean;
