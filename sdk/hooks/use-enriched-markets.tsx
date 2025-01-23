@@ -43,11 +43,6 @@ export const useEnrichedMarkets = ({
 
   const data = props.data?.data ?? [];
 
-  // const data = !!props.data
-  //   ? // @ts-ignore
-  //     (props.data.data as Array<EnrichedMarketDataType>)
-  //   : null;
-
   const count = props.data?.count ?? 0;
 
   return {

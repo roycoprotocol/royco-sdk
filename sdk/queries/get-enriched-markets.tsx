@@ -186,8 +186,8 @@ export const getEnrichedMarketsQueryFunction = async ({
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
     const rows = result.data.data;
 
-    const new_rows = await Promise.all(
-      rows.map(async (row) => {
+    const new_rows = rows
+      .map((row) => {
         if (
           !!row.input_token_id &&
           !!row.incentive_ids &&
@@ -445,8 +445,10 @@ export const getEnrichedMarketsQueryFunction = async ({
             external_incentives,
           };
         }
-      }),
-    );
+
+        return null;
+      })
+      .filter((row) => !!row);
 
     return {
       count: result.data.count ?? 0,
