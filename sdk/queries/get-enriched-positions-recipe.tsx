@@ -221,7 +221,7 @@ export const getEnrichedPositionsRecipeQueryFunction = async ({
             total_supply: input_token_total_supply,
           };
 
-          const lockup_time = Number(row.lockup_time ?? "0");
+          const lockup_time = Number(row.lockup_time ?? 0);
 
           const quantity_value_usd = input_token_data.token_amount_usd;
           const incentive_value_usd = tokens_data.reduce(

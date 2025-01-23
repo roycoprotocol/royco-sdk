@@ -1,16 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import { useRpcApiKeys, type RoycoClient, useRoycoClient } from "@/sdk/client";
 import {
-  useRpcApiKeys,
-  type RoycoClient,
-  type TypedRpcApiKeys,
-  useRoycoClient,
-} from "@/sdk/client";
-import { getEnrichedPositionsVaultQueryOptions } from "@/sdk/queries";
-import type {
-  BaseQueryFilter,
-  BaseSortingFilter,
-  CustomTokenData,
-} from "@/sdk/types";
+  getEnrichedPositionsVaultQueryOptions,
+  type GetEnrichedPositionsVaultQueryParams,
+} from "@/sdk/queries";
+
+export type UseEnrichedPositionsVaultParams =
+  GetEnrichedPositionsVaultQueryParams & {
+    enabled?: boolean;
+  };
 
 export const useEnrichedPositionsVault = ({
   account_address,
@@ -18,35 +16,27 @@ export const useEnrichedPositionsVault = ({
   market_id,
   custom_token_data,
   page_index = 0,
+  page_size = 20,
   filters = [],
-  sorting,
+  sorting = [],
   enabled = true,
-}: {
-  account_address: string;
-  chain_id?: number;
-  market_id?: string;
-  custom_token_data?: CustomTokenData;
-  page_index?: number;
-  filters?: Array<BaseQueryFilter>;
-  sorting?: Array<BaseSortingFilter>;
-  enabled?: boolean;
-}) => {
+}: UseEnrichedPositionsVaultParams) => {
   const client: RoycoClient = useRoycoClient();
-
   const RPC_API_KEYS = useRpcApiKeys();
 
   return useQuery({
-    ...getEnrichedPositionsVaultQueryOptions(
+    ...getEnrichedPositionsVaultQueryOptions({
       client,
-      RPC_API_KEYS ?? {},
+      RPC_API_KEYS: RPC_API_KEYS ?? {},
       account_address,
       chain_id,
       market_id,
       custom_token_data,
       page_index,
+      page_size,
       filters,
       sorting,
-    ),
+    }),
     enabled,
   });
 };
