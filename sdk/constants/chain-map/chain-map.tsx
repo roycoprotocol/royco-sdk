@@ -1,3 +1,4 @@
+import { defineChain } from "viem";
 import {
   sepolia as ethereumSepolia,
   mainnet as ethereumMainnet,
@@ -61,6 +62,63 @@ export const Sonic = {
   symbol: "SONIC",
 };
 
+export const BerachainTestnet = defineChain({
+  id: 80000,
+  name: "Berachain cArtio",
+  nativeCurrency: {
+    name: "BERA Token",
+    symbol: "BERA",
+    decimals: 18,
+  },
+  contracts: {
+    multicall3: {
+      address: "0xca11bde05977b3631167028862be2a173976ca11 ",
+      blockCreated: 121028,
+    },
+  },
+  rpcUrls: {
+    default: { http: ["https://app.royco.org/api/rpc/80000"] },
+  },
+  blockExplorers: {
+    default: {
+      name: "Berascan",
+      url: "https://80000.testnet.routescan.io",
+    },
+  },
+  testnet: true,
+  image:
+    "https://pbs.twimg.com/profile_images/1775162753499508736/2XBUzQhl_400x400.jpg",
+  symbol: "CBERA",
+});
+
+export const BerachainMainnet = defineChain({
+  id: 80094,
+  name: "Berachain",
+  nativeCurrency: {
+    name: "BERA Token",
+    symbol: "BERA",
+    decimals: 18,
+  },
+  contracts: {
+    multicall3: {
+      address: "0xca11bde05977b3631167028862be2a173976ca11 ",
+      blockCreated: 0,
+    },
+  },
+  rpcUrls: {
+    default: { http: ["https://app.royco.org/api/rpc/80094"] },
+  },
+  blockExplorers: {
+    default: {
+      name: "Berascan",
+      url: "https://80094.routescan.io",
+    },
+  },
+  image:
+    "https://pbs.twimg.com/profile_images/1775162753499508736/2XBUzQhl_400x400.jpg",
+  symbol: "BERA",
+});
+
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
@@ -69,6 +127,8 @@ export const SupportedChainMap: Record<number, SupportedChain> = {
   [corn.id]: Corn,
   [plume.id]: Plume,
   [sonic.id]: Sonic,
+  [BerachainTestnet.id]: BerachainTestnet,
+  [BerachainMainnet.id]: BerachainMainnet,
 };
 
 export const SupportedChainlist = Object.values(SupportedChainMap);
