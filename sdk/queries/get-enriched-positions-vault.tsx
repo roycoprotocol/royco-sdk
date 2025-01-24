@@ -287,8 +287,8 @@ export const getEnrichedPositionsVaultQueryOptions = ({
   custom_token_data,
   page_index = 0,
   page_size = 20,
-  filters,
-  sorting,
+  filters = [],
+  sorting = [],
 }: GetEnrichedPositionsVaultQueryOptionsParams) => ({
   queryKey: [
     "get-enriched-positions-vault",

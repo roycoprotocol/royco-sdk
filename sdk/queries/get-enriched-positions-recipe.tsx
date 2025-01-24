@@ -275,7 +275,7 @@ export const getEnrichedPositionsRecipeQueryOptions = ({
   page_index = 0,
   page_size = 20,
   filters = [],
-  sorting,
+  sorting = [],
 }: GetEnrichedPositionsRecipeQueryOptionsParams) => ({
   queryKey: [
     "get-enriched-positions-recipe",
