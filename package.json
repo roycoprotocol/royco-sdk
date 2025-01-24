@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.9.265",
+  "version": "0.9.266",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -121,7 +121,7 @@
     "zod": "^3.23.8"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
-  "lastPublishedCommit": "cd86eecc87e1ab55aeaae4860eace34b6974a42c",
+  "lastPublishedCommit": "2f5a3a252bd11c48e9a9cf0c7b5313cc96fecf73",
   "devDependencies": {
     "supabase": "^2.6.8"
   }
