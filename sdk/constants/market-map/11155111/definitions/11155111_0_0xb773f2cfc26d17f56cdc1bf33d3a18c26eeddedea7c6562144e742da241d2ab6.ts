@@ -5,4 +5,5 @@ export default defineMarket({
   name: "Test Market - LP wETH/HONEY on Kodiak",
   description: "Supply wETH/Honey to Kodiak on Cartio.",
   is_verified: false,
+  category: "boyco",
 });
