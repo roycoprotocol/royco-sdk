@@ -40,7 +40,7 @@ export const getAccountBalanceQueryOptions = (
   chain_id: number,
   account: string,
   tokens: string[],
-)  => ({
+) => ({
   queryKey: [
     "token-balance",
     `chain-id=${chain_id}`,
@@ -59,6 +59,6 @@ export const getAccountBalanceQueryOptions = (
   },
 
   placeholderData: (previousData: any) => previousData,
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  refetchInterval: 1000 * 10, // 10 sec
   refetchOnWindowFocus: false,
 });
