@@ -1,4 +1,9 @@
-import { SupportedChainMap, type SupportedChain } from "@/sdk/constants";
+import {
+  BerachainMainnet,
+  BerachainTestnet,
+  SupportedChainMap,
+  type SupportedChain,
+} from "@/sdk/constants";
 
 export type UseSupportedChainsReturnType = {
   data: SupportedChain[];
@@ -10,6 +15,8 @@ export const useSupportedChains = ({
 }: {
   testnet?: boolean;
 } = {}): UseSupportedChainsReturnType => {
+  const hiddenChains: number[] = [BerachainTestnet.id, BerachainMainnet.id];
+
   const data = Object.values(SupportedChainMap)
     .filter((chain) => {
       if (testnet === true) {
@@ -22,6 +29,7 @@ export const useSupportedChains = ({
         }
       }
     })
+    .filter((chain) => !hiddenChains.includes(chain.id))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return { data, map: SupportedChainMap };
