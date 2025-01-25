@@ -67,7 +67,7 @@ export const BerachainTestnet = defineChain({
   name: "Berachain cArtio",
   nativeCurrency: {
     name: "BERA Token",
-    symbol: "BERA",
+    symbol: "CBERA",
     decimals: 18,
   },
   contracts: {
@@ -102,7 +102,7 @@ export const BerachainMainnet = defineChain({
   contracts: {
     multicall3: {
       address: "0xca11bde05977b3631167028862be2a173976ca11 ",
-      blockCreated: 0,
+      blockCreated: 1,
     },
   },
   rpcUrls: {
