@@ -6,9 +6,11 @@ export type SupportedToken = {
   symbol: string;
   image: string;
   decimals: number;
-  source: "coinmarketcap" | "coingecko" | "external";
+  source: "coinmarketcap" | "coingecko" | "external" | "lp";
   search_id: string;
-  type: "token" | "point";
+  type: "token" | "point" | "lp";
+  token0?: string;
+  token1?: string;
 };
 
 export const defineToken = (token: SupportedToken) => token;
