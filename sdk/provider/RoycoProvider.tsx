@@ -28,10 +28,12 @@ const RoycoProvider = ({
   rpcApiKeys,
   defaultOptions = {
     queries: {
-      refetchOnWindowFocus: false,
       retry: 3,
+      refetchOnWindowFocus: false,
       refetchIntervalInBackground: true,
-      refetchOnReconnect: true,
+      refetchOnReconnect: false,
+      staleTime: 1000 * 60 * 60, // 1 hour
+      gcTime: 1000 * 60 * 60 * 24, // 1 day
     },
   },
 }: RoycoProviderProps): React.ReactElement => {

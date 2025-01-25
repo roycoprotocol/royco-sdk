@@ -20,7 +20,7 @@ export const useReadMarket = ({
 
   return useQuery({
     queryKey: [
-      "read-market",
+      "get-read-market",
       {
         chain_id,
         market_id,
@@ -35,5 +35,8 @@ export const useReadMarket = ({
         RPC_API_KEYS,
       }),
     enabled,
+    staleTime: 1000 * 60 * 60, // 1 hour
+    refetchOnWindowFocus: false,
+    refetchInterval: 1000 * 60 * 1, // 1 hour
   });
 };
