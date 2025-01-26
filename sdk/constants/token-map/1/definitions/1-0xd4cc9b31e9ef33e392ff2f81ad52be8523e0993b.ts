@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xd4cc9b31e9ef33e392ff2f81ad52be8523e0993b",
   name: "CIAN yield layer pumpBTC",
   symbol: "ylpumpBTC",
-  image:
-    "https://github.com/cian-ai/marketing_kit/blob/main/token/512x512/ylPumpBTC.png",
+  image: "https://img.cian.app/token/yieldlayer/512/ylPumpBTC.png",
   decimals: 8,
   source: "coingecko",
   search_id: "pumpbtc",
