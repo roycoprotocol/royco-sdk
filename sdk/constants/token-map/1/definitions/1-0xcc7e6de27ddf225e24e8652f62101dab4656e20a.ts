@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xcc7e6de27ddf225e24e8652f62101dab4656e20a",
   name: "CIAN YIELD Layer uniBTC",
   symbol: "yluniBTC",
-  image:
-    "https://github.com/cian-ai/marketing_kit/blob/main/token/512x512/yluniBTC.png",
+  image: "https://img.cian.app/token/yieldlayer/512/yluniBTC.png",
   decimals: 8,
   source: "coingecko",
   search_id: "universal-btc",
