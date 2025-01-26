@@ -333,6 +333,7 @@ export const useRecipeAPMarketOffer = ({
     offer_side: RoycoMarketUserType.ip.value,
     quantity: quantity ?? "0",
     enabled: isValid.status,
+    incentive_ids: enrichedMarket?.incentive_ids,
   });
 
   // Get token quotes - Only proceed if offers are valid
