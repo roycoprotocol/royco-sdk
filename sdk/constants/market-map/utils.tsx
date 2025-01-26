@@ -41,6 +41,7 @@ export type SupportedMarket = {
   }) => Promise<number>;
   external_incentives?: Array<BaseIncentive>;
   category?: string;
+  incentive_ids?: Array<string>;
 };
 
 export const defineMarket = (market: SupportedMarket) => market;
