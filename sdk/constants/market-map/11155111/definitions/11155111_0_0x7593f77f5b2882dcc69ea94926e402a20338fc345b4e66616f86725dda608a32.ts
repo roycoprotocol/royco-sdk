@@ -23,6 +23,14 @@ export default defineMarket({
   category: "boyco",
 
   /**
+   * @note You can add multiple incentive ids here
+   * -- these ids will be supported on the frontend
+   * -- PLEASE make sure that the ids are in "LOWERCASE" ONLY
+   * -- and they have been PR'ed into the SDK
+   */
+  incentive_ids: ["11155111-0x6a7fde508d41e65f768665fc18b9ce554dc50507"],
+
+  /**
    * @note Here, you can add any kind of yields that you want to show on UI
    *
    * @note This is an array, so you can add multiple native yields
