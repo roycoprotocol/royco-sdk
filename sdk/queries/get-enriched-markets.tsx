@@ -36,8 +36,11 @@ export const constructEnrichedMarketsFilterClauses = (
     switch (filter.id) {
       case "category":
         if (categoryFilter) categoryFilter += " OR ";
-
-        categoryFilter += `category = '${filter.value}'`;
+        if (filter.condition === "NOT") {
+          notFilter += `category <> '${filter.value}'`;
+        } else {
+          categoryFilter += `category = '${filter.value}'`;
+        }
         break;
       case "input_token_id":
         if (assetFilter) assetFilter += " OR ";
