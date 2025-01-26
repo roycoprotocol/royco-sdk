@@ -141,6 +141,7 @@ export type EnrichedMarketDataType =
         value: string;
       }
     >;
+    incentive_ids?: Array<string>;
   };
 
 export type GetEnrichedMarketsQueryParams = {
@@ -450,6 +451,7 @@ export const getEnrichedMarketsQueryFunction = async ({
             chain_data,
             yield_breakdown,
             external_incentives,
+            incentive_ids: market?.incentive_ids,
           };
         }
 
