@@ -34,14 +34,6 @@ export const constructEnrichedMarketsFilterClauses = (
 
   filters.forEach((filter) => {
     switch (filter.id) {
-      case "category":
-        if (categoryFilter) categoryFilter += " OR ";
-        if (filter.condition === "NOT") {
-          notFilter += `category <> '${filter.value}'`;
-        } else {
-          categoryFilter += `category = '${filter.value}'`;
-        }
-        break;
       case "input_token_id":
         if (assetFilter) assetFilter += " OR ";
         if (filter.condition === "NOT") {
@@ -71,9 +63,19 @@ export const constructEnrichedMarketsFilterClauses = (
       case "chain_id":
         if (chainIdFilter) chainIdFilter += " OR ";
         if (filter.condition === "NOT") {
+          if (notFilter) notFilter += " AND ";
           notFilter += `chain_id <> ${filter.value}`;
         } else {
           chainIdFilter += `chain_id = ${filter.value}`;
+        }
+        break;
+      case "category":
+        if (categoryFilter) categoryFilter += " OR ";
+        if (filter.condition === "NOT") {
+          if (notFilter) notFilter += " AND ";
+          notFilter += `NOT category = '${filter.value}'`;
+        } else {
+          categoryFilter += `category = '${filter.value}'`;
         }
         break;
       case "id":
@@ -96,6 +98,8 @@ export const constructEnrichedMarketsFilterClauses = (
   if (filterClauses) {
     filterClauses = filterClauses.slice(0, -5); // Remove the trailing " AND "
   }
+
+  console.log("filterClauses", filterClauses);
 
   return filterClauses;
 };
