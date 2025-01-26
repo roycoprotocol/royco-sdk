@@ -30,9 +30,15 @@ export const constructEnrichedMarketsFilterClauses = (
   let chainIdFilter = "";
   let idFilter = "";
   let notFilter = "";
+  let categoryFilter = "";
 
   filters.forEach((filter) => {
     switch (filter.id) {
+      case "category":
+        if (categoryFilter) categoryFilter += " OR ";
+
+        categoryFilter += `category = '${filter.value}'`;
+        break;
       case "input_token_id":
         if (assetFilter) assetFilter += " OR ";
         if (filter.condition === "NOT") {
@@ -82,6 +88,7 @@ export const constructEnrichedMarketsFilterClauses = (
   if (chainIdFilter) filterClauses += `(${chainIdFilter}) AND `;
   if (idFilter) filterClauses += `(${idFilter}) AND `;
   if (notFilter) filterClauses += `(${notFilter}) AND `;
+  if (categoryFilter) filterClauses += `(${categoryFilter}) AND `;
 
   if (filterClauses) {
     filterClauses = filterClauses.slice(0, -5); // Remove the trailing " AND "
