@@ -10,7 +10,7 @@ Earn DEX LP fees, as well as rewards from Berachain, PumpBTC, and Kodiak. This i
 3% of the Kodiak token supply is allocated to Boyco, proportional to TVL * multiplier.  This specific market has a ~2x multiplier for Bodiak points. More info on Kodiak's Boyco rewards: https://docs.kodiak.finance/kodiak-boyco`,
   is_verified: true,
   category: `boyco`,
-
+  incentive_ids: ["1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8"],
   external_incentives: [
     {
       token_id: "1-0xadc9c900b05f39f48bb6f402a1bae60929f4f9a8",
