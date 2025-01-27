@@ -7,9 +7,9 @@ export default defineMarket({
   is_verified: true,
   category: `boyco`,
 
-incentive_ids: ["1-0xbd1e5b7fa18f2679070c8ba9ab6415ef786720cc"],
+  incentive_ids: ["1-0xbd1e5b7fa18f2679070c8ba9ab6415ef786720cc"],
 
- external_incentives: [
+  external_incentives: [
     {
       token_id: "1-0xb000000000000000000000000000000000000112",
       label: "ETH",
@@ -28,5 +28,5 @@ incentive_ids: ["1-0xbd1e5b7fa18f2679070c8ba9ab6415ef786720cc"],
         return value;
       },
     },
-   ],
+  ],
 });

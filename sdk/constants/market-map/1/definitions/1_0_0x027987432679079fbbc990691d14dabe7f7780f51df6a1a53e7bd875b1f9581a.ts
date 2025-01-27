@@ -12,7 +12,7 @@ It’s the ultimate strategy for those seeking high-yield opportunities in the B
   category: `boyco`,
 
   incentive_ids: ["1-0x6a8b97bd31394075cb6dbd88dbb65808575b1a48"],
-  
+
   external_incentives: [
     {
       token_id: "1-0xd9d920aa40f578ab794426f5c90f6c731d159def",

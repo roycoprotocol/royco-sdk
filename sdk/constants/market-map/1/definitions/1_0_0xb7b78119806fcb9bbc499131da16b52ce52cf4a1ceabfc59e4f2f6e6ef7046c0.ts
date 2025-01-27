@@ -8,7 +8,6 @@ export default defineMarket({
  HyperBERA.USDC targets consistent and sustainable returns designed to exceed other stablecoin offerings. It’s not a stablecoin but rather a sophisticated ensemble of strategies, dynamically optimized to capitalize on the most attractive opportunities in the Berachain ecosystem in a low risk manner.`,
   is_verified: true,
   category: `boyco`,
-  
-incentive_ids: ["1-0x6a8b97bd31394075cb6dbd88dbb65808575b1a48"],
 
+  incentive_ids: ["1-0x6a8b97bd31394075cb6dbd88dbb65808575b1a48"],
 });
