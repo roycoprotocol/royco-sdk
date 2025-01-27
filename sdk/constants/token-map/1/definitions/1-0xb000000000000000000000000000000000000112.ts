@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xb000000000000000000000000000000000000112",
   name: "Plus Icon",
   symbol: "PLUS",
-  image: "https://imgur.com/kJ5l3WL",
+  image: "https://upload.wikimedia.org/wikipedia/commons/7/75/Plussymbol.png",
   decimals: 18,
   source: "external",
   search_id: "none",
