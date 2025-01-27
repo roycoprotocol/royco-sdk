@@ -7,7 +7,7 @@ export default defineToken({
   name: "Infrared Points",
   symbol: "IRP",
   image:
-    "https://raw.githubusercontent.com/red4626/infrared-brand/refs/heads/main/infrared-logo-512x512.png",
+    "https://i.imgur.com/sJptWp0.png",
   decimals: 18,
   source: "external",
   search_id: "none",
