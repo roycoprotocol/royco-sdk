@@ -6,6 +6,7 @@ export default defineMarket({
   description: `Deposit USDe on Ethereum Mainnet and bridge USDe to Berachain. On Berachain, mint NECT with ~50% of the USDe, then provide liquidity in the USDe-NECT Kodiak Island, an automated liquidity management vault that tokenizes a &quot;concentrated&quot; range Uniswap V3 style liquidity position. This is part of the Berachain&#x27;s Boyco pre-deposit campaign.`,
   is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0xfbca1de031ac44e83850634c098f22137e4647e5"],
   external_incentives: [
     {
       token_id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
