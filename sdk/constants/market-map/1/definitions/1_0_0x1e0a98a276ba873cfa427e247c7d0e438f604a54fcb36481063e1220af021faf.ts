@@ -6,4 +6,16 @@ export default defineMarket({
   description: `Supply USDC into the Dolomite money market on Berachain. This asset will earn lending yield.`,
   is_verified: false,
   category: `boyco`,
+
+external_incentives: [
+    {
+      token_id: "1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b",
+      label: "Dolomite Lending Yield",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Variable Rate";
+        return value;
+      },
+    },
+  ],
 });
