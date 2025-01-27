@@ -6,16 +6,8 @@ export default defineMarket({
   description: `When LBTC is supplied to this market, it is allocated across leading Berachain DEXs and lending applications such as Kodiak and Dolomite. The vault will also allocate to yield opportunities from leading protocols expanding to Berachain. This is part of the Berachain Boyco pre-deposit campaign.`,
   is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d"],
   external_incentives: [
-    {
-      token_id: "1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d",
-      label: "Concrete Bags",
-
-      value: async ({ roycoClient, chainClient }) => {
-        const value = "4x";
-        return value;
-      },
-    },
     {
       token_id: "1-0x8236a87084f8b84306f72007f36f2618a5634494",
       label: "Lombard Lux",
