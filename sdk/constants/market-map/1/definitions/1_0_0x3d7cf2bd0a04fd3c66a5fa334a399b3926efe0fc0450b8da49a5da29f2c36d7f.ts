@@ -6,16 +6,8 @@ export default defineMarket({
   description: `When sUSDe is supplied to this market, it is allocated across leading Berachain DEXs and lending applications such as Kodiak, Dolomite, and Beraborrow. The vault will also allocate to yield opportunities from leading protocols expanding to Berachain. This is part of the Berachain Boyco pre-deposit campaign.`,
   is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d"],
   external_incentives: [
-    {
-      token_id: "1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d",
-      label: "Concrete Bags",
-
-      value: async ({ roycoClient, chainClient }) => {
-        const value = "4x";
-        return value;
-      },
-    },
     {
       token_id: "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
       label: "Ethena Sats",
