@@ -12,4 +12,15 @@ export default defineMarket({
 3. All funds are then deposited into BurrBear&#x27;s NECT&#x2F;USDC&#x2F;HONEY liquidity pool.`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xfbca1de031ac44e83850634c098f22137e4647e5",
+      label: "Beraborrow Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "4x";
+        return value;
+      },
+    },
+  ],
 });
