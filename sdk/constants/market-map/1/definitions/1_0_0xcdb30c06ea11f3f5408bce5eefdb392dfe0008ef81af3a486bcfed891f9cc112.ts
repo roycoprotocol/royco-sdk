@@ -31,5 +31,4 @@ Earn DEX LP fees, as well as rewards from Berachain, Reservoir, and Kodiak. This
       },
     },
   ],
-
 });
