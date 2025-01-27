@@ -7,7 +7,7 @@ export default defineMarket({
   is_verified: true,
   category: `boyco`,
 
-  incentive_ids: ["1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8"],
+  incentive_ids: ["0x460f8d9c78b1bde7da137ce75315bd15d34a369b"],
 
   external_incentives: [
     {
