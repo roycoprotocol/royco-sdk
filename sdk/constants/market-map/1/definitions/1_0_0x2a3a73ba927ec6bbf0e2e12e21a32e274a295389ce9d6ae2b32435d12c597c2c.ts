@@ -6,4 +6,25 @@ export default defineMarket({
   description: `Supply solvBTC.bbn into the Dolomite money market on Berachain. This asset will be collateral only.`,
   is_verified: false,
   category: `boyco`,
+
+  external_incentives: [
+    {
+      token_id: "1-0xd9d920aa40f578ab794426f5c90f6c731d159def",
+      label: "Solv season 2",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "4x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0xb000000000000000000000000000000000000bbb",
+      label: "Babylon points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+  ],
 });

@@ -6,4 +6,25 @@ export default defineMarket({
   description: `Supply sUSDa into the Dolomite money market on Berachain. This asset will be collateral only.`,
   is_verified: false,
   category: `boyco`,
+
+  external_incentives: [
+    {
+      token_id: "1-0x8a60e489004ca22d775c5f2c657598278d17d9c2",
+      label: "Avalon",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "AVL Rewards";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x8a60e489004ca22d775c5f2c657598278d17d9c2",
+      label: "Avalon",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Staking yield";
+        return value;
+      },
+    },
+  ],
 });

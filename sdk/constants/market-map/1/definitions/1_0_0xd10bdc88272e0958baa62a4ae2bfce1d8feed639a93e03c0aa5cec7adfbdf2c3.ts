@@ -6,4 +6,16 @@ export default defineMarket({
   description: `Supply uniBTC into the Dolomite money market on Berachain. This asset is collateral only.`,
   is_verified: false,
   category: `boyco`,
+
+  external_incentives: [
+    {
+      token_id: "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
+      label: "Bedrock diamonds",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "3x";
+        return value;
+      },
+    },
+  ],
 });
