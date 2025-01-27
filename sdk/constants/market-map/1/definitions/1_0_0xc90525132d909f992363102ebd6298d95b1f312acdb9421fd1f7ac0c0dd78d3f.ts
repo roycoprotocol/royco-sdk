@@ -6,7 +6,7 @@ export default defineMarket({
   description: `Supply rswETH into the Dolomite money market on Berachain. This asset will be collateral only.`,
   is_verified: true,
   category: `boyco`,
-
+  incentive_ids: ["1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b"],
   external_incentives: [
     {
       token_id: "1-0xfae103dc9cf190ed75350761e95403b7b8afa6c0",
