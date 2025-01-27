@@ -10,10 +10,10 @@ export default defineMarket({
   external_incentives: [
     {
       token_id: "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
-      label: "Bedrock diamonds",
+      label: "Bedrock Diamonds",
 
       value: async ({ roycoClient, chainClient }) => {
-        const value = "3x";
+        const value = "4M total, pro-rata";
         return value;
       },
     },
