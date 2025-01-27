@@ -313,7 +313,7 @@ import token_1_0x3ab6ed69ef663bd986ee59205ccad8a20f98b4c2 from "./definitions/1-
 import token_1_0x3ac9e11b2ff50652340abafa96ce984240060330 from "./definitions/1-0x3ac9e11b2ff50652340abafa96ce984240060330";
 import token_1_0x3adfc4999f77d04c8341bac5f3a76f58dff5b37a from "./definitions/1-0x3adfc4999f77d04c8341bac5f3a76f58dff5b37a";
 import token_1_0x3affcca64c2a6f4e3b6bd9c64cd2c969efd1ecbe from "./definitions/1-0x3affcca64c2a6f4e3b6bd9c64cd2c969efd1ecbe";
-import token_1_0x3b2635c5d5cc5cee62b9084636f808c67da9988f from "./definitions/1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f";
+import token_1_0x3b2635c5d5cc5cee62b9084636f808c67da9988f from "./definitions/1-0x77d17183055303a15208c809b716dc02261129b7";
 import token_1_0x3b484b82567a09e2588a13d54d032153f0c0aee0 from "./definitions/1-0x3b484b82567a09e2588a13d54d032153f0c0aee0";
 import token_1_0x3b544e6fcf6c8dce9d8b45a4fdf21c9b02f9fda9 from "./definitions/1-0x3b544e6fcf6c8dce9d8b45a4fdf21c9b02f9fda9";
 import token_1_0x3b604747ad1720c01ded0455728b62c0d2f100f0 from "./definitions/1-0x3b604747ad1720c01ded0455728b62c0d2f100f0";

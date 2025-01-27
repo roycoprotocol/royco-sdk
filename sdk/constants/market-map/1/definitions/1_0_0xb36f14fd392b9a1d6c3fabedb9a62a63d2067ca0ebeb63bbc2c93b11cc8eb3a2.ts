@@ -28,7 +28,7 @@ wBTC supplied will be paired against eBTC on mainnet for DeFi usage.`,
       },
     },
     {
-      token_id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
+      token_id: "1-0x77d17183055303a15208c809b716dc02261129b7",
       label: "Infrared Points (for eligible assets)",
 
       value: async ({ roycoClient, chainClient }) => {
