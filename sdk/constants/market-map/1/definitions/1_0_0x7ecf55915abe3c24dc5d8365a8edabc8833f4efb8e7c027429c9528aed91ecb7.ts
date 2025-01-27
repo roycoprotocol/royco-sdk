@@ -15,7 +15,7 @@ Earn DEX LP fees, as well as rewards from Berachain, Stakestone, Infrared and Ko
 
   external_incentives: [
     {
-      token_id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
+      token_id: "1-0x77d17183055303a15208c809b716dc02261129b7",
       label: "Infrared Points",
 
       value: async ({ roycoClient, chainClient }) => {
