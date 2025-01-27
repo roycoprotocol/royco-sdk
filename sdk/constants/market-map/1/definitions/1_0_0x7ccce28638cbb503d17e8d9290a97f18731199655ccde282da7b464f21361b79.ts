@@ -9,7 +9,7 @@ export default defineMarket({
   incentive_ids: ["11155111-0x6a7fde508d41e65f768665fc18b9ce554dc50507"],
   external_incentives: [
     {
-      token_id: "1-0x9c80538ffcbaee0db71caabe87ee99785ffc4f55",
+      token_id: "1-0x7122985656e38bdc0302db86685bb972b145bd3c",
       label: "StakeStone",
 
       value: async ({ roycoClient, chainClient }) => {
