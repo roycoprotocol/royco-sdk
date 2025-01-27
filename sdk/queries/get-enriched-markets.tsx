@@ -13,6 +13,12 @@ import {
 } from "@/sdk/utils";
 import { RoycoMarketType } from "@/sdk/market";
 
+import {
+  BERA_TOKEN_ID,
+  calculateBeraYield,
+  getAllBeraMarkets,
+} from "@/sdk/boyco";
+
 export type MarketFilter = {
   id: string;
   value: string | number | boolean;
@@ -160,6 +166,7 @@ export type GetEnrichedMarketsQueryParams = {
   search_key?: string;
   is_verified?: boolean;
   custom_token_data?: CustomTokenData;
+  category?: string;
 };
 
 export type GetEnrichedMarketsQueryOptionsParams =
@@ -179,6 +186,7 @@ export const getEnrichedMarketsQueryFunction = async ({
   search_key,
   is_verified,
   custom_token_data,
+  category,
 }: GetEnrichedMarketsQueryOptionsParams) => {
   const filter_clauses = constructEnrichedMarketsFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
@@ -194,6 +202,7 @@ export const getEnrichedMarketsQueryFunction = async ({
     search_key,
     is_verified,
     custom_token_data,
+    category,
   });
 
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
@@ -476,6 +485,80 @@ export const getEnrichedMarketsQueryFunction = async ({
   };
 };
 
+export const getEnrichedMarketsWithBeraYield = async ({
+  client,
+  chain_id,
+  market_type,
+  market_id,
+  page_index,
+  page_size,
+  filters,
+  sorting,
+  search_key,
+  is_verified,
+  custom_token_data,
+}: GetEnrichedMarketsQueryOptionsParams) => {
+  const [allBeraMarkets, result] = await Promise.all([
+    getAllBeraMarkets({
+      client,
+      customTokenData: custom_token_data ?? [],
+    }),
+    getEnrichedMarketsQueryFunction({
+      client,
+      chain_id,
+      market_type,
+      market_id,
+      page_index,
+      page_size,
+      filters,
+      sorting,
+      search_key,
+      is_verified,
+      custom_token_data,
+    }),
+  ]);
+
+  if (!!result.data && !!allBeraMarkets) {
+    // Bera Yield
+    const bera_yield_rows = result.data.map((row) => {
+      if (row.category === "boyco") {
+        const bera_annual_change_ratio = calculateBeraYield({
+          enrichedMarket: row as EnrichedMarketDataType,
+          customTokenData: custom_token_data ?? [],
+          markets: allBeraMarkets,
+        });
+
+        const yield_breakdown = [
+          ...row.yield_breakdown,
+          {
+            ...getSupportedToken(BERA_TOKEN_ID),
+            category: "native",
+            label: "Bera Yield",
+            annual_change_ratio: bera_annual_change_ratio,
+          },
+        ];
+
+        return {
+          ...row,
+          yield_breakdown,
+        };
+      }
+
+      return row;
+    });
+
+    return {
+      count: result.count ?? 0,
+      data: bera_yield_rows as Array<EnrichedMarketDataType> | null,
+    };
+  }
+
+  return {
+    count: 0,
+    data: null as Array<EnrichedMarketDataType> | null,
+  };
+};
+
 export const getEnrichedMarketsQueryOptions = ({
   client,
   chain_id,
@@ -505,7 +588,7 @@ export const getEnrichedMarketsQueryOptions = ({
     },
   ],
   queryFn: () =>
-    getEnrichedMarketsQueryFunction({
+    getEnrichedMarketsWithBeraYield({
       client,
       chain_id,
       market_type,

@@ -962,6 +962,7 @@ import token_1_0xbe0ed4138121ecfc5c0e56b40517da27e6c5226b from "./definitions/1-
 import token_1_0xbe428c3867f05dea2a89fc76a102b544eac7f772 from "./definitions/1-0xbe428c3867f05dea2a89fc76a102b544eac7f772";
 import token_1_0xbe6c8f2810ef39420d2dc2901b8414c8c45fee6d from "./definitions/1-0xbe6c8f2810ef39420d2dc2901b8414c8c45fee6d";
 import token_1_0xbe9895146f7af43049ca1c1ae358b0541ea49704 from "./definitions/1-0xbe9895146f7af43049ca1c1ae358b0541ea49704";
+import token_1_0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a from "./definitions/1-0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a";
 import token_1_0xbea98c05eeae2f3bc8c3565db7551eb738c8ccab from "./definitions/1-0xbea98c05eeae2f3bc8c3565db7551eb738c8ccab";
 import token_1_0xbf2179859fc6d5bee9bf9158632dc51678a4100e from "./definitions/1-0xbf2179859fc6d5bee9bf9158632dc51678a4100e";
 import token_1_0xbf5495efe5db9ce00f80364c8b423567e58d2110 from "./definitions/1-0xbf5495efe5db9ce00f80364c8b423567e58d2110";
@@ -3198,6 +3199,8 @@ export const TokenMap1 = {
     token_1_0xbe6c8f2810ef39420d2dc2901b8414c8c45fee6d,
   [token_1_0xbe9895146f7af43049ca1c1ae358b0541ea49704.id]:
     token_1_0xbe9895146f7af43049ca1c1ae358b0541ea49704,
+  [token_1_0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a.id]:
+    token_1_0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a,
   [token_1_0xbea98c05eeae2f3bc8c3565db7551eb738c8ccab.id]:
     token_1_0xbea98c05eeae2f3bc8c3565db7551eb738c8ccab,
   [token_1_0xbf2179859fc6d5bee9bf9158632dc51678a4100e.id]:
