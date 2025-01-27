@@ -19,7 +19,7 @@ export default defineMarket({
     },
     {
       token_id: "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
-      label: "Ethena sats",
+      label: "Ethena Sats",
 
       value: async ({ roycoClient, chainClient }) => {
         const value = "5x";

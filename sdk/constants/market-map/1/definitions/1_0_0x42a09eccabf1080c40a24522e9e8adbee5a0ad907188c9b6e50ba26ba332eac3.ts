@@ -17,5 +17,14 @@ export default defineMarket({
         return value;
       },
     },
+    {
+      token_id: "1-0x7122985656e38bdc0302db86685bb972b145bd3c",
+      label: "Stakestone Boyco Boost",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
   ],
 });
