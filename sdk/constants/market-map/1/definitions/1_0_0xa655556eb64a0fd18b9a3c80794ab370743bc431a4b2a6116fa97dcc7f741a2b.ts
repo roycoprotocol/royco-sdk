@@ -6,24 +6,5 @@ export default defineMarket({
   description: `USDC tokens supplied to this Berachain predeposit market earn bKAMI valued at $69M FDV pro-rata accordingly to TVL (40% APR). bKAMI are non-transferable points that will be redeemable 1:1 for KAMI (OrigamiDAO governance token) at TGE. Up to 10% of the KAMI token supply is allocated for a maximum of $69M TVL in this market. OrigamiDAO will utilise the USDC in a major stable LP e.g. HONEY, USDC, BYUSD to farm BGT and iBGT PoL rewards. Boyco USDC deposits will be locked for 3 months and will be fully redeemable for the original USDC deposit amount at the end of the 3 months, directly on Berachain. Any potential fees or slippage during the stablecoin LP unwinding process will be 100% covered by OrigamiDAO. More information can be found at: https:&#x2F;&#x2F;docs.origami.finance&#x2F;boyco`,
   is_verified: true,
   category: `boyco`,
-  external_incentives: [
-    {
-      token_id: "1-0xb000000000000000000000000000000000000112",
-      label: "DEX Fees",
-
-      value: async ({ roycoClient, chainClient }) => {
-        const value = "Variable Rate";
-        return value;
-      },
-    },
-    {
-      token_id: "1-0xb000000000000000000000000000000000000112",
-      label: "Berachain BGT Emissions (if PoL eligible)",
-
-      value: async ({ roycoClient, chainClient }) => {
-        const value = "";
-        return value;
-      },
-    },
-  ],
+  incentive_ids: ["1-0xcffe9112bfa141ae9170be4d172d40a455662564"],
 });
