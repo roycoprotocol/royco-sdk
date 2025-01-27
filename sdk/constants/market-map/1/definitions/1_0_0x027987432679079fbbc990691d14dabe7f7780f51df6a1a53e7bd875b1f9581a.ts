@@ -10,4 +10,24 @@ At its core, the strategy integrates looping mechanics through Dolomite and BERA
 It’s the ultimate strategy for those seeking high-yield opportunities in the Berachain ecosystem.`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xd9d920aa40f578ab794426f5c90f6c731d159def",
+      label: "Solv S2 Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "4x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+      label: "Ether.fi Rewards",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "3x";
+        return value;
+      },
+    },
+  ],
 });
