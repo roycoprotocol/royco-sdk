@@ -6,4 +6,15 @@ export default defineMarket({
   description: `Deposit LBTC into SatLayer, which is restaked to bring Bitcoin shared security to applications and infrastructure on Berachain and leading ecosystems.`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xb000000000000000000000000000000000000bbb",
+      label: "Babylon Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+  ],
 });

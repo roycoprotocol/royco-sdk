@@ -6,4 +6,24 @@ export default defineMarket({
   description: `Deposit uniBTC into SatLayer, which is restaked to bring Bitcoin shared security to applications and infrastructure on Berachain and leading ecosystems.`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xb000000000000000000000000000000000000bbb",
+      label: "Babylon Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
+      label: "Bedrock Diamonds",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "4M";
+        return value;
+      },
+    },
+  ],
 });
