@@ -6,7 +6,7 @@ export default defineMarket({
   description: `After mainnet, vaults will run DeFi strategies on Berachain protocols participating in Boyco. Examples of applications include: Kodiak, Infrared, and Dolomite. 
 
 wBTC supplied will be paired against eBTC on mainnet for DeFi usage.`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
   external_incentives: [
     {
