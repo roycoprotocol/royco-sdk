@@ -35,5 +35,5 @@ export default defineMarket({
         return value;
       },
     },
-  ]
+  ],
 });
