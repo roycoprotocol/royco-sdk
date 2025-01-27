@@ -15,7 +15,8 @@
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
     "prepare:market-map": "tsx scripts/constants/generate-market-map.ts",
-    "prepare:token-map": "tsx scripts/constants/generate-token-map.ts"
+    "prepare:token-map": "tsx scripts/constants/generate-token-map.ts",
+    "prepare:test": "tsx temp/test/index.ts"
   },
   "keywords": [
     "royco"
@@ -89,7 +90,7 @@
     "@tanstack/react-query": "^5.62.0",
     "@tanstack/react-query-devtools": "^5.61.3",
     "@tanstack/react-table": "^8.17.0",
-    "@types/node": "^20",
+    "@types/node": "^20.17.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@wagmi/core": "^2.10.3",
@@ -100,6 +101,7 @@
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "cross-fetch": "^4.0.0",
+    "csv-parse": "^5.6.0",
     "dotenv": "^16.4.5",
     "ethers": "^5.4.4",
     "glob": "^10.4.1",

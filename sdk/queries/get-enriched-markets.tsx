@@ -75,7 +75,7 @@ export const constructEnrichedMarketsFilterClauses = (
           if (notFilter) notFilter += " AND ";
           notFilter += `NOT category = '${filter.value}'`;
         } else {
-          categoryFilter += `category = '${filter.value}'`;
+          categoryFilter += `category = '${filter.value}'::text`;
         }
         break;
       case "id":
@@ -98,8 +98,6 @@ export const constructEnrichedMarketsFilterClauses = (
   if (filterClauses) {
     filterClauses = filterClauses.slice(0, -5); // Remove the trailing " AND "
   }
-
-  console.log("filterClauses", filterClauses);
 
   return filterClauses;
 };
