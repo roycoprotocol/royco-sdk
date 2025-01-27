@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xb000000000000000000000000000000000000555",
   name: "Babylon Icon",
   symbol: "BABY",
-  image:
-    "https://img.cryptorank.io/coins/symbiotic1718118641068.png",
+  image: "https://img.cryptorank.io/coins/symbiotic1718118641068.png",
   decimals: 18,
   source: "external",
   search_id: "none",

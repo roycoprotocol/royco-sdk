@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xb000000000000000000000000000000000000eee",
   name: "Eigenlayer Icon",
   symbol: "EIGEN",
-  image:
-    "https://zengo.com/wp-content/uploads/Eigenlayer-1.png",
+  image: "https://zengo.com/wp-content/uploads/Eigenlayer-1.png",
   decimals: 18,
   source: "external",
   search_id: "none",
