@@ -6,9 +6,7 @@ export default defineMarket({
   description: `Earn PETALS (Dahlia Points) and BERA incentives for lending WETH on Dahlia STONE&#x2F;WETH (91% LLTV) lending market on Berachain.`,
   is_verified: true,
   category: `boyco`,
-
   incentive_ids: ["1-0xbd1e5b7fa18f2679070c8ba9ab6415ef786720cc"],
-
   external_incentives: [
     {
       token_id: "1-0xb000000000000000000000000000000000000112",
