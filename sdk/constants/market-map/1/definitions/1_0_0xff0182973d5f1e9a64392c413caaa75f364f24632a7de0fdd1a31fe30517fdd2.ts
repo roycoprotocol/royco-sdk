@@ -4,8 +4,9 @@ export default defineMarket({
   id: `1_0_0xff0182973d5f1e9a64392c413caaa75f364f24632a7de0fdd1a31fe30517fdd2`,
   name: `Veda x Ether.fi weETH Vault`,
   description: `After mainnet, vaults will run DeFi strategies on Berachain protocols participating in Boyco. Examples of applications include: Kodiak, Infrared, and Dolomite. weETH supplied will be used for DeFi activity on Berachain Mainnet.`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0x3badc21d6bff9248ae4c3923093e04d505a52fef"],
   external_incentives: [
     {
       token_id: "1-0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
