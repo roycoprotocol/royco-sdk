@@ -6,4 +6,34 @@ export default defineMarket({
   description: `Supply ylpumpBTC into the Dolomite money market on Berachain. This asset will be collateral only.`,
   is_verified: false,
   category: `boyco`,
+
+  external_incentives: [
+    {
+      token_id: "1-0xb000000000000000000000000000000000000ccc",
+      label: "Cian points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0xadc9c900b05f39f48bb6f402a1bae60929f4f9a8",
+      label: "pumpBTC points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0xb000000000000000000000000000000000000bbb",
+      label: "Babylon points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1x";
+        return value;
+      },
+    },
+  ],
 });
