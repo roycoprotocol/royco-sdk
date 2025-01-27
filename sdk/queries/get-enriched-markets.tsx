@@ -538,9 +538,13 @@ export const getEnrichedMarketsWithBeraYield = async ({
           },
         ];
 
+        const annual_change_ratio =
+          row.annual_change_ratio ?? 0 + bera_annual_change_ratio;
+
         return {
           ...row,
           yield_breakdown,
+          annual_change_ratio,
         };
       }
 
