@@ -24,7 +24,7 @@ This is part of Berachains Boyco pre-deposit campaign.`,
       label: "Infrared Yield",
 
       value: async ({ roycoClient, chainClient }) => {
-        const value = "Retrodrop";
+        const value = "Variable Rate";
         return value;
       },
     },
