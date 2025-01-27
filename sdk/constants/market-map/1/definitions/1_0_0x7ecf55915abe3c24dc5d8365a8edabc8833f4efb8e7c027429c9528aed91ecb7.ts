@@ -8,8 +8,10 @@ export default defineMarket({
 Earn DEX LP fees, as well as rewards from Berachain, Stakestone, Infrared and Kodiak. This is part of the Berachain&#x27;s Boyco pre-deposit campaign. 
 
 3% of the Kodiak token supply is allocated to Boyco, proportional to TVL * multiplier.  This specific market has a ~2x multiplier for Bodiak points. More info on Kodiak's Boyco rewards: https://docs.kodiak.finance/kodiak-boyco`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
+
+  incentive_ids: ["1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8"],
 
   external_incentives: [
     {
@@ -23,10 +25,10 @@ Earn DEX LP fees, as well as rewards from Berachain, Stakestone, Infrared and Ko
     },
     {
       token_id: "1-0x7122985656e38bdc0302db86685bb972b145bd3c",
-      label: "StakeStone Boyco Bonus",
+      label: "StakeStone",
 
       value: async ({ roycoClient, chainClient }) => {
-        const value = "6x";
+        const value = "6x Boost (0.45%)";
         return value;
       },
     },
