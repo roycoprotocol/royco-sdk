@@ -8,4 +8,51 @@ export default defineMarket({
 wBTC supplied will be paired against eBTC on mainnet for DeFi usage.`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xfe0c30065b384f05761f15d0cc899d4f9f9cc0eb",
+      label: "Ether.fi Rewards",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "4x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
+      label: "Bodiak Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "3x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
+      label: "Infrared Points (for eligible assets)",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "1.25x";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b",
+      label: "Dolomite: veDOLO Rewards",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x3b7795688ea8c095600bae9d6d866d04c230ba16",
+      label: "Goldilocks Rewards",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "";
+        return value;
+      },
+    },
+  ],
 });
