@@ -6,4 +6,16 @@ export default defineMarket({
   description: `Supply STONE into the Dolomite money market on Berachain. This asset will be collateral only.`,
   is_verified: false,
   category: `boyco`,
+
+  external_incentives: [
+    {
+      token_id: "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      label: "ETH Staking Yield",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Variable Rate";
+        return value;
+      },
+    },
+  ],
 });
