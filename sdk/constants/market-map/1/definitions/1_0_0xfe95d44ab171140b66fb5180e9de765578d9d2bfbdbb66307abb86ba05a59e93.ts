@@ -8,6 +8,7 @@ Deposit pumpBTC into Boyco. pumpBTC is bridged &amp; deposited into Beraborrow. 
 This is part of the Berachain Boyco pre-deposit campaign.`,
   is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0xfbca1de031ac44e83850634c098f22137e4647e5"],
   external_incentives: [
     {
       token_id: "1-0xfbca1de031ac44e83850634c098f22137e4647e5",
