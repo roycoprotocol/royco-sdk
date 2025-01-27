@@ -1,4 +1,4 @@
-import { getSupportedToken, type SupportedToken } from "@/sdk/constants";
+import { getSupportedToken, SupportedToken } from "@/sdk/constants";
 import { EnrichedMarketDataType } from "@/sdk/queries";
 
 // Use market input token to get the market type and the asset type in order to get the multiplier
@@ -6,9 +6,16 @@ export const getMarketMultiplier = (
   market: EnrichedMarketDataType,
 ): MULTIPLIERS => {
   const inputToken = market?.input_token_data;
-  const assetType = getMarketAssetType(inputToken!);
+  const isOverridden = overrideMarketMap.find(
+    (ovrItem) => ovrItem.marketid === market.market_id,
+  );
 
-  const marketType = getMarketType(market);
+  let assetType = getMarketAssetType(inputToken!);
+  let marketType = getMarketType(market);
+  if (isOverridden) {
+    assetType = isOverridden.assetType;
+    marketType = isOverridden.marketType;
+  }
 
   let multiplier = 1;
 
@@ -51,9 +58,7 @@ export const getMarketAssetType = (
 // Calculate the market type base on the native asset of the market
 // from that get the underlying dApp behind that market and then calculate the market type
 export const getMarketType = (market: EnrichedMarketDataType) => {
-  const marketAppId = market?.yield_breakdown.find(
-    (breakdown) => breakdown.category === "native",
-  )?.id;
+  const marketAppId = market?.incentive_ids?.[0];
 
   // should never happen
   if (!marketAppId) {
@@ -236,8 +241,84 @@ const MajorTokens = [
   { name: "WETH", id: "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2" },
 ];
 
-// List of all the dApps that are supported in Boyco with their respective native asset id
+const overrideMarketMap = [
+  {
+    marketid:
+      "0xd77d3e3e075394a6c94a8c83dab114bb7266b96c5234e4a98476f41339029c30",
+    dapp: MULTIPLIER_MARKET_DAPP.BERABORROW,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0xbe5cd829fcb3cdfe8224ad72fc3379198d38da26131c5b7ab6664c8f56a9730d",
+    dapp: MULTIPLIER_MARKET_DAPP.DOLOMITE,
+    marketType: MULTIPLIER_MARKET_TYPE.SINGLE_SIDED,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x258ac521d801d5112a484ad1b82e6fd2efc24aba29e5cd3d56db83f4a173dc90",
+    dapp: MULTIPLIER_MARKET_DAPP.DOLOMITE,
+    marketType: MULTIPLIER_MARKET_TYPE.SINGLE_SIDED,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x1997c604de34a71974228bca4a66f601427c48960b6e59ff7ebc8e34f43f3ecf",
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0xaf2a845c9d6007128b7aec375a4fcdee2b12bbaeb78caf928d3bd08e104417d6",
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.HYBRID,
+  },
+  {
+    marketid:
+      "0x219169d9e78064768cddd0397c2202dc9e5c2bc0e1dbc13465363b0458d33c34",
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x25f7a422282a1f26d9d96b5d1c43fa5c6f8c355b0ed7a4755ac8d04a504817f5",
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x3ef317447bd10825f0a053565f8474a460cfb22cda414ea30b671e304f0691b6",
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x2240151f263be555a4ef61476a5c111373e0efe8cd539f179b4b5850977e9d4e",
+    dapp: MULTIPLIER_MARKET_DAPP.BERABORROW,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+  },
+  {
+    marketid:
+      "0x62bb6fb784e059f338340a9724b35ef2ef8fde5e65613e9fcaacd097d81dc67e",
+    dapp: MULTIPLIER_MARKET_DAPP.BERABORROW,
+    marketType: MULTIPLIER_MARKET_TYPE.STABLESWAP,
+    assetType: MULTIPLIER_ASSET_TYPE.HYBRID,
+  },
+];
+
 const dAppsPointsId = [
+  {
+    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
+    id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
+  },
   {
     dapp: MULTIPLIER_MARKET_DAPP.BERABORROW,
     id: "1-0xfbca1de031ac44e83850634c098f22137e4647e5",
@@ -246,23 +327,25 @@ const dAppsPointsId = [
     dapp: MULTIPLIER_MARKET_DAPP.DOLOMITE,
     id: "1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b",
   },
-  {
-    dapp: MULTIPLIER_MARKET_DAPP.KODIAK,
-    id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
-  },
+  //   {
+  //     dapp: "Dolomite",
+  //     id: "1-d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
+  //   },
   {
     dapp: MULTIPLIER_MARKET_DAPP.BURR_BEAR,
     id: "1-0xac672544ff301415547ac98558ca2988a26b9cbd",
   },
-  { dapp: MULTIPLIER_MARKET_DAPP.CONCRETE, id: "" },
-  { dapp: MULTIPLIER_MARKET_DAPP.VEDA_ETHER_FI, id: "" },
+  {
+    dapp: MULTIPLIER_MARKET_DAPP.CONCRETE,
+    id: "1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d",
+  },
   {
     dapp: MULTIPLIER_MARKET_DAPP.GOLDILocks,
     id: "1-0x3b7795688ea8c095600bae9d6d866d04c230ba16",
   },
   {
     dapp: MULTIPLIER_MARKET_DAPP.D2_FINANCE,
-    id: "1-0x6a8B97bD31394075Cb6DBd88dBB65808575b1A48",
+    id: "1-0x6a8b97bd31394075cb6dbd88dbb65808575b1a48",
   },
   {
     dapp: MULTIPLIER_MARKET_DAPP.DAHLIA,
@@ -282,6 +365,10 @@ const dAppsPointsId = [
   },
   {
     dapp: MULTIPLIER_MARKET_DAPP.INFRARED,
-    id: "1-0x77d17183055303a15208c809b716dc02261129b7",
+    id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
+  },
+  {
+    dapp: MULTIPLIER_MARKET_DAPP.VEDA_ETHER_FI,
+    id: "1-0x3badc21d6bff9248ae4c3923093e04d505a52fef",
   },
 ];
