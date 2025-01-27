@@ -8,4 +8,42 @@ The Island receipt token is deposited into Beraborrow, and used to mint NECT at 
 This is part of the Berachain Boyco pre-deposit campaign`,
   is_verified: false,
   category: `boyco`,
+  external_incentives: [
+    {
+      token_id: "1-0xfbca1de031ac44e83850634c098f22137e4647e5",
+      label: "LSP Yield",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Variable Rate";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
+      label: "Kodiak DEX Fees",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Estimated 15-30% APY";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
+      label: "Infrared Yield",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "Retrodrop";
+        return value;
+      },
+    },
+    {
+      token_id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
+      label: "Bodiak Points",
+
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "6x";
+        return value;
+      },
+    },
+  ],
 });
