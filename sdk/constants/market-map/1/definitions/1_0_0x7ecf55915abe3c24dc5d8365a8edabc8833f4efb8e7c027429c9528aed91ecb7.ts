@@ -31,20 +31,11 @@ Earn DEX LP fees, as well as rewards from Berachain, Stakestone, Infrared and Ko
       },
     },
     {
-      token_id: "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-      label: "ETH Staking",
-
-      value: async ({ roycoClient, chainClient }) => {
-        const value = "Estimated 3% APY (for eligible assets)";
-        return value;
-      },
-    },
-    {
       token_id: "1-0xb000000000000000000000000000000000000112",
-      label: "Restaking Rewards",
+      label: "ETH (Re)Staking Rewards",
 
       value: async ({ roycoClient, chainClient }) => {
-        const value = "Variable Rate (on eligible assets)";
+        const value = "Variable Rate (for eligible assets)";
         return value;
       },
     },
