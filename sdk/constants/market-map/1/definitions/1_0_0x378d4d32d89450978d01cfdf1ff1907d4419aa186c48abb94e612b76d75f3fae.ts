@@ -8,7 +8,7 @@ export default defineMarket({
 Earn DEX LP fees, as well as rewards from Berachain, Solv, and Kodiak. This is part of the Berachain&#x27;s Boyco pre-deposit campaign.    
 
 3% of the Kodiak token supply is allocated to Boyco, proportional to TVL * multiplier.  This specific market has a ~1x multiplier for Bodiak points. More info on Kodiak's Boyco rewards: https://docs.kodiak.finance/kodiak-boyco`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
 
   external_incentives: [
