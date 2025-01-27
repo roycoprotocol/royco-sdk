@@ -6,7 +6,7 @@ export default defineMarket({
   description: `Deposit WBTC-USDC Uniswap V2 LP token(s) on Ethereum Mainnet and bridge the assets to Berachain. On Berachain, mint HONEY with all of the USDC, then provide liquidity in the WBTC-USDC Kodiak Island, an automated liquidity management vault that tokenizes a &quot;wide&quot; range Uniswap V3 style liquidity position.
 The Island receipt token is deposited into Beraborrow, and used to mint NECT at 300% collateral ratio. NECT is then supplied into the Liquid Stability Pool.
 This is part of the Berachain Boyco pre-deposit campaign`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
   external_incentives: [
     {
