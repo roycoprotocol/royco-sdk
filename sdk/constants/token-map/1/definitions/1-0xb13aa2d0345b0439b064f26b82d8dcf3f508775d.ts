@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "ylstETH",
   image: "https://img.cian.app/token/yieldlayer/512/ylstETH.png",
   decimals: 18,
-  source: "coingecko",
-  search_id: "lido-staked-ether",
+  source: "coinmarketcap",
+  search_id: "8085",
   type: "token",
 });
