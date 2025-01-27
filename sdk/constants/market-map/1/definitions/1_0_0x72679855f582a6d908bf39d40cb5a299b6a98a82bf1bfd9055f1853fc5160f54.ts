@@ -8,6 +8,7 @@ export default defineMarket({
 Deposit uniBTC on Ethereum Mainnet and bridge the asset to Berachain. On Berachain, mint uniBTC-OT and uniBTC-YT with a portion of the uniBTC via Goldilocks, then pair the minted uniBTC-OT and remaining uniBTC to provide liquidity in the uniBTC&lt;&gt;uniBTC-OT Kodiak Island, an automated liquidity management vault that tokenizes a &quot;concentrated&quot; range Uniswap V3 style liquidity position.`,
   is_verified: false,
   category: `boyco`,
+  incentive_ids: ["1-0x3b7795688ea8c095600bae9d6d866d04c230ba16"],
   external_incentives: [
     {
       token_id: "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
