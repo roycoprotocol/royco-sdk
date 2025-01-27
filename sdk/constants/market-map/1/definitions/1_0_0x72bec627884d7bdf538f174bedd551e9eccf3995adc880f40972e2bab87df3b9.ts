@@ -11,6 +11,8 @@ Earn DEX LP fees, as well as rewards from Berachain, Infrared and Kodiak. This i
   is_verified: true,
   category: `boyco`,
 
+  incentive_ids: ["1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8"],
+
   external_incentives: [
     {
       token_id: "1-0x3b2635c5d5cc5cee62b9084636f808c67da9988f",
