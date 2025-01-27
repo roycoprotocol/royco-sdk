@@ -6,7 +6,7 @@ export default defineMarket({
   description: `Single sided Liquid Stability Pool:
 Deposit SolvBTC into Boyco. SolvBTC is bridged &amp; deposited into Beraborrow. SolvBTC is then used to mint NECT at 300% collateral ratio, and then NECT is supplied into the Liquid Stability Pool.
 This is part of Berachains Boyco pre-deposit campaign.`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
   external_incentives: [
     {
