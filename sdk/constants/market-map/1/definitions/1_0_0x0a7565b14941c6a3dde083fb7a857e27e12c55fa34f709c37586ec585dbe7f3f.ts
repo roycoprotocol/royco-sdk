@@ -4,8 +4,10 @@ export default defineMarket({
   id: `1_0_0x0a7565b14941c6a3dde083fb7a857e27e12c55fa34f709c37586ec585dbe7f3f`,
   name: `Supply wETH on Dolomite x Infrared`,
   description: `Supply wETH into the Dolomite money market on Berachain. This asset will earn lending yield and be eligible for potential Infrared incentives.`,
-  is_verified: false,
+  is_verified: true,
   category: `boyco`,
+
+  incentive_ids: ["1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b"],
 
   external_incentives: [
     {
