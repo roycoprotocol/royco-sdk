@@ -76,6 +76,9 @@ export const getEnrichedAccountBalancesVaultInMarketQueryOptions = (
         in_account_address: account_address,
         custom_token_data,
       },
+      {
+        get: true,
+      },
     );
 
     if (result.data && result.data.length > 0) {
@@ -185,7 +188,7 @@ export const getEnrichedAccountBalancesVaultInMarketQueryOptions = (
 
       const raw_input_token_amount_ap = parseRawAmount(
         raw_input_token_amount_ap_data[0]?.status === "success"
-          ? raw_input_token_amount_ap_data[0]?.result?.toString() ?? "0"
+          ? (raw_input_token_amount_ap_data[0]?.result?.toString() ?? "0")
           : "0",
       );
 

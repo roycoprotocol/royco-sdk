@@ -9,9 +9,15 @@ export const getEnrichedRoycoStatsQueryOptions = (
 ) => ({
   queryKey: ["get-enriched-royco-stats"],
   queryFn: async () => {
-    const result = await client.rpc("get_enriched_royco_stats", {
-      custom_token_data,
-    });
+    const result = await client.rpc(
+      "get_enriched_royco_stats",
+      {
+        custom_token_data,
+      },
+      {
+        get: true,
+      },
+    );
 
     let total_volume = 0;
     let total_tvl = 0;
