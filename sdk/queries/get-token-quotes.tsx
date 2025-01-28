@@ -58,6 +58,9 @@ export const getTokenQuotesQueryOptions = ({
       token_ids,
       custom_token_data,
     },
+    {
+      get: true,
+    },
   ],
   queryFn: () =>
     getTokenQuotesQueryFunction({ client, token_ids, custom_token_data }),

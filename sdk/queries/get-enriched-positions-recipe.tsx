@@ -131,16 +131,22 @@ export const getEnrichedPositionsRecipeQueryFunction = async ({
   const filter_clauses = constructEnrichedPositionsRecipeFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
 
-  const result = await client.rpc("get_enriched_positions_recipe", {
-    account_address,
-    chain_id,
-    market_id,
-    custom_token_data,
-    page_index,
-    page_size,
-    filters: filter_clauses,
-    sorting: sorting_clauses,
-  });
+  const result = await client.rpc(
+    "get_enriched_positions_recipe",
+    {
+      account_address,
+      chain_id,
+      market_id,
+      custom_token_data,
+      page_index,
+      page_size,
+      filters: filter_clauses,
+      sorting: sorting_clauses,
+    },
+    {
+      get: true,
+    },
+  );
 
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
     const rows = result.data.data;
