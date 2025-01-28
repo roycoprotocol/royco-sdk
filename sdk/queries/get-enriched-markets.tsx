@@ -191,25 +191,19 @@ export const getEnrichedMarketsQueryFunction = async ({
   const filter_clauses = constructEnrichedMarketsFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
 
-  const result = await client.rpc(
-    "get_enriched_markets",
-    {
-      chain_id,
-      market_type,
-      market_id,
-      page_index,
-      page_size,
-      filters: filter_clauses,
-      sorting: sorting_clauses,
-      search_key,
-      is_verified,
-      custom_token_data,
-      category,
-    },
-    {
-      get: true,
-    },
-  );
+  const result = await client.rpc("get_enriched_markets", {
+    chain_id,
+    market_type,
+    market_id,
+    page_index,
+    page_size,
+    filters: filter_clauses,
+    sorting: sorting_clauses,
+    search_key,
+    is_verified,
+    custom_token_data,
+    category,
+  });
 
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
     const rows = result.data.data;
