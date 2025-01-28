@@ -46,7 +46,7 @@ export const getEnrichedRoycoStatsQueryOptions = (
   },
 
   placeholderData: (previousData: any) => previousData,
-  staleTime: 1000 * 60 * 1, // 1 min
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  staleTime: 1000 * 60 * 10, // 10 mins
+  refetchInterval: 1000 * 60 * 10, // 10 mins
   refetchOnWindowFocus: false,
 });

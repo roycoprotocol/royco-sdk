@@ -299,6 +299,6 @@ export const getEnrichedOffersQueryOptions = ({
     }),
 
   placeholderData: (previousData: any) => previousData,
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  refetchInterval: 1000 * 60 * 10, // 10 mins
   refetchOnWindowFocus: false,
 });
