@@ -76,9 +76,6 @@ export const getEnrichedAccountBalancesVaultInMarketQueryOptions = (
         in_account_address: account_address,
         custom_token_data,
       },
-      {
-        get: true,
-      },
     );
 
     if (result.data && result.data.length > 0) {

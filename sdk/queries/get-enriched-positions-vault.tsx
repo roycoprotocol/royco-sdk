@@ -107,22 +107,16 @@ export const getEnrichedPositionsVaultQueryFunction = async ({
   const filter_clauses = constructEnrichedPositionsVaultFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
 
-  const result = await client.rpc(
-    "get_enriched_positions_vault",
-    {
-      account_address: account_address,
-      chain_id: chain_id,
-      market_id: market_id,
-      custom_token_data,
-      page_index: page_index,
-      page_size: page_size,
-      filters: filter_clauses,
-      sorting: sorting_clauses,
-    },
-    {
-      get: true,
-    },
-  );
+  const result = await client.rpc("get_enriched_positions_vault", {
+    account_address: account_address,
+    chain_id: chain_id,
+    market_id: market_id,
+    custom_token_data,
+    page_index: page_index,
+    page_size: page_size,
+    filters: filter_clauses,
+    sorting: sorting_clauses,
+  });
 
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
     const rows = result.data.data;
