@@ -279,7 +279,7 @@ const overrideMarketMap: { id: string; multiplier: MULTIPLIERS }[] = [
   },
   {
     id: "0xcdd60ed30d20f9edc3fac624bb623db32103658b6da678949ef53df16139b488",
-    multiplier: 1.369,
+    multiplier: 4.2,
   },
   {
     id: "0xf8663b3c0f78b4efae0422b163e86e79afa1ce90778885d93d53c9d4f6d5c3d8",
@@ -291,7 +291,7 @@ const overrideMarketMap: { id: string; multiplier: MULTIPLIERS }[] = [
   },
   {
     id: "0x54b4b37c355868591a91baed36a3c8083f6480ccb11145106d0dad912d7dffd2",
-    multiplier: 4.2,
+    multiplier: 1.369,
   },
   {
     id: "0xe92ebafbee7aa7a636ff62e04aa2ab9353f60ef72dcdcfdfcf48b67a7ad8ffc7",
