@@ -26,23 +26,8 @@ const useRoycoClient = (): RoycoClient => {
     roycoClient = createBrowserClient<Database>(originUrl, originKey, {
       global: {
         headers: {
-          // "Content-Type": "application/json",
           "x-royco-api-key": originId,
-          // "Cache-Control": "max-age=3600", // Cache for 1 hour
-          // Prefer: "count=exact", // This is a PostgREST specific header
         },
-        // fetch: (url, options) => {
-        //   const redirectedUrl = url.replace(
-        //     `${originUrl}/rest/v1`,
-        //     `${originUrl}/api/test`,
-        //   );
-
-        //   return fetch(redirectedUrl, {
-        //     ...options,
-        //     method: "POST",
-        //     body: JSON.stringify(options?.body),
-        //   });
-        // },
       },
     });
     typedRoycoClient = roycoClient;
