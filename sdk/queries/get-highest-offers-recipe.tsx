@@ -7,7 +7,7 @@ export const getHighestOffersRecipeQueryOptions = (
   client: TypedRoycoClient,
   chain_id: number,
   market_id: string,
-)  => ({
+) => ({
   queryKey: ["highest-offers-recipe", chain_id, market_id],
   queryFn: async () => {
     const result = await client.rpc("get_highest_offers_recipe", {
@@ -63,7 +63,7 @@ export const getHighestOffersRecipeQueryOptions = (
   },
 
   placeholderData: (previousData: any) => previousData,
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  refetchInterval: 1000 * 60 * 10, // 1 min
   // refetchInterval: 1000 * 60 * 1, // 1 min
   // refetchInterval: 1000 * 10 * 1, // 10 seconds
   refetchOnWindowFocus: false,
