@@ -62,6 +62,6 @@ export const getTokenQuotesQueryOptions = ({
   queryFn: () =>
     getTokenQuotesQueryFunction({ client, token_ids, custom_token_data }),
   placeholderData: (previousData: any) => previousData,
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  refetchInterval: 1000 * 60 * 10, // 1 min
   refetchOnWindowFocus: false,
 });

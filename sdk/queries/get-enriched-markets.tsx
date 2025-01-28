@@ -539,16 +539,16 @@ export const getEnrichedMarketsWithBeraYield = async ({
         ];
 
         const annual_change_ratio =
-          row.annual_change_ratio ?? 0 + bera_annual_change_ratio;
+          (row.annual_change_ratio || 0) + bera_annual_change_ratio;
 
         return {
           ...row,
           yield_breakdown,
           annual_change_ratio,
         };
+      } else {
+        return row;
       }
-
-      return row;
     });
 
     return {
@@ -607,7 +607,7 @@ export const getEnrichedMarketsQueryOptions = ({
     }),
 
   placeholderData: (previousData: any) => previousData,
-  refetchInterval: 1000 * 60 * 1, // 1 min
+  refetchInterval: 1000 * 60 * 10, // 10 mins
   refetchOnWindowFocus: false,
 });
 

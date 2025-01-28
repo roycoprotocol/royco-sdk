@@ -6,6 +6,7 @@ export default defineMarket({
   description: `When USDC is supplied to the market, it is bridged to a vault on Berachain mainnet. It is supplied to the USDC-HONEY liquidity pool on Beraswap and deposited into the Set &amp; Forgetti Stable Farm to earn Proof of Liquidity rewards, which are autoharvested and compounded into HENLO. At expiry, users can withdraw their stable deposit plus the accrued HENLO tokens. A Honey Jar joint.`,
   is_verified: true,
   category: `boyco`,
+  incentive_ids: ["1-0x325e05f22af5a3f7e2cb9b112e8f4d9b6c14b8b4"],
   external_incentives: [
     {
       token_id: "1-0xb000000000000000000000000000000000000112",

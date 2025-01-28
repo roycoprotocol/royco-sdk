@@ -27,6 +27,8 @@ const useRoycoClient = (): RoycoClient => {
       global: {
         headers: {
           "x-royco-api-key": originId,
+          "sb-lb-routing-mode": "alpha-all-services",
+          "sb-lb-balance-rpc": "read-replicas",
         },
       },
     });

@@ -185,7 +185,7 @@ export const getEnrichedAccountBalancesVaultInMarketQueryOptions = (
 
       const raw_input_token_amount_ap = parseRawAmount(
         raw_input_token_amount_ap_data[0]?.status === "success"
-          ? raw_input_token_amount_ap_data[0]?.result?.toString() ?? "0"
+          ? (raw_input_token_amount_ap_data[0]?.result?.toString() ?? "0")
           : "0",
       );
 

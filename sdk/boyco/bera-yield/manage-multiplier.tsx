@@ -1,4 +1,4 @@
-import { getSupportedToken, type SupportedToken } from "@/sdk/constants";
+import { getSupportedToken, SupportedToken } from "@/sdk/constants";
 import { EnrichedMarketDataType } from "@/sdk/queries";
 
 // Use market input token to get the market type and the asset type in order to get the multiplier

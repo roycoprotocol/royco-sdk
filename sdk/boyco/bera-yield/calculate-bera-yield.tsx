@@ -12,8 +12,8 @@ import { getBuckets } from "./get-buckets";
 export const BERA_TOKEN_ID = "1-0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a";
 
 export const DEFAULT_BERA_TOKEN_DATA = {
-  fdv: 2000000000,
-  total_supply: 500000000,
+  fdv: 0,
+  total_supply: 0,
 };
 
 export const getAllBeraMarkets = async ({
