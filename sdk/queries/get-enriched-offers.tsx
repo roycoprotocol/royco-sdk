@@ -116,24 +116,18 @@ export const getEnrichedOffersQueryFunction = async ({
   const filter_clauses = constructOfferFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
 
-  const result = await client.rpc(
-    "get_enriched_offers",
-    {
-      chain_id,
-      market_type,
-      market_id,
-      creator,
-      can_be_filled,
-      page_index,
-      page_size,
-      filters: filter_clauses,
-      sorting: sorting_clauses,
-      custom_token_data,
-    },
-    {
-      get: true,
-    },
-  );
+  const result = await client.rpc("get_enriched_offers", {
+    chain_id,
+    market_type,
+    market_id,
+    creator,
+    can_be_filled,
+    page_index,
+    page_size,
+    filters: filter_clauses,
+    sorting: sorting_clauses,
+    custom_token_data,
+  });
 
   if (!!result.data && !!result.data.data && result.data.data.length > 0) {
     const rows = result.data.data;
