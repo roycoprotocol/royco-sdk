@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "1-0x4C3b39EDc50D58C1C59A389A77AEf1e767F6bC3f",
+  id: "1-0x4c3b39edc50d58c1c59a389a77aef1e767f6bc3f",
   chain_id: 1,
-  contract_address: "0x4C3b39EDc50D58C1C59A389A77AEf1e767F6bC3f",
+  contract_address: "0x4c3b39edc50d58c1c59a389a77aef1e767f6bc3f",
   name: "Seeds",
   symbol: "Seeds",
   image: "https://i.imgur.com/i0RF9GR.png",
