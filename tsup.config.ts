@@ -18,6 +18,7 @@ export default defineConfig({
     "sdk/queries/index.tsx",
     "sdk/types/index.tsx",
     "sdk/utils/index.tsx",
+    "sdk/boyco/index.tsx",
   ],
   format: ["cjs", "esm"],
   dts: true,
