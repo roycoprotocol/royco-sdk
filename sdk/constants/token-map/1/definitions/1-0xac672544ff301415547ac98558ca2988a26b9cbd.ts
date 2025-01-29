@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://app.burrbear.io/images/logos/burr_64_64.png",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0xac672544ff301415547ac98558ca2988a26b9cbd",
   type: "point",
 });

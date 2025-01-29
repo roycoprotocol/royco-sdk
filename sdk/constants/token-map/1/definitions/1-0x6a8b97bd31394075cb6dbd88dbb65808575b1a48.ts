@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://d2.finance/logos/edalogo.svg",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0x6a8B97bD31394075Cb6DBd88dBB65808575b1A48",
   type: "point",
 });

@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://static.kodiak.finance/tokens/kdk.png",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0x31dd27d7479b09f1c96aa94681845c0eb0026ef8",
   type: "point",
 });

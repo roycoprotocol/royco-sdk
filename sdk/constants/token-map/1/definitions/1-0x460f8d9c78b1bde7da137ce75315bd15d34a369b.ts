@@ -10,6 +10,6 @@ export default defineToken({
     "https://dolomite.io/static/veDOLO-black-b908253bcce957330226cd87d1fe9c71.png",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b",
   type: "point",
 });

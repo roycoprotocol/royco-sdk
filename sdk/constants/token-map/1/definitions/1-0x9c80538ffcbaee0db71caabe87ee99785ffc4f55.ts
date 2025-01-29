@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://satlayer.xyz/logo/satlayer.svg",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0x9c80538ffcbaee0db71caabe87ee99785ffc4f55",
   type: "point",
 });

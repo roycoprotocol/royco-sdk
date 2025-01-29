@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://i.imgur.com/s1DSZXr.jpeg",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0x5f979f9f7024b41c325a7a39c89cd65e5f6a5f6d",
   type: "point",
 });
