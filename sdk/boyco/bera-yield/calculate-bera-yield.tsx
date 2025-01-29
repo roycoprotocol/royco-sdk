@@ -81,7 +81,7 @@ export const calculateBeraYield = ({
       beraFDV: bera_fdv,
       beraSupply: bera_total_supply,
     };
-    const assetType = getMarketAssetType(enrichedMarket.input_token_data);
+    const assetType = getMarketAssetType(enrichedMarket);
     const buckets = getBuckets(markets);
 
     const bera_annual_change_ratio = getBeraApy(

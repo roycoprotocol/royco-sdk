@@ -6,12 +6,12 @@ import { sumBy } from "lodash";
 export const getBuckets = (markets: EnrichedMarketDataType[]) => {
   const MajorMarkets = markets.filter(
     (market) =>
-      getMarketAssetType(market.input_token_data) ===
+      getMarketAssetType(market) ===
       MULTIPLIER_ASSET_TYPE.MAJOR_ONLY,
   );
   const ThirdPartyMarkets = markets.filter(
     (market) =>
-      getMarketAssetType(market.input_token_data) ===
+      getMarketAssetType(market) ===
       MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
   );
 
