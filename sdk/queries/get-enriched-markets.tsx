@@ -6,6 +6,7 @@ import { getSupportedMarket, getSupportedToken } from "@/sdk/constants";
 import {
   constructBaseSortingFilterClauses,
   getSupportedChain,
+  isSolidityAddressValid,
   parseNumber,
   parseRawAmount,
   parseRawAmountToTokenAmount,
@@ -199,8 +200,13 @@ export const getEnrichedMarketsQueryFunction = async ({
 
     for (let i = 0; i < custom_token_data.length; i++) {
       if (
+        !!custom_token_data[i]?.token_id &&
+        isSolidityAddressValid(
+          "address",
+          custom_token_data[i]?.token_id.split("-")[1],
+        ) &&
         custom_token_data[i]?.token_id.toLowerCase() !==
-        BERA_TOKEN_ID.toLowerCase()
+          BERA_TOKEN_ID.toLowerCase()
       ) {
         nonBeraTokens++;
         function_name = "get_enriched_markets";
