@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://dahlia.xyz/dahlia.svg",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0xbd1e5b7fa18f2679070c8ba9ab6415ef786720cc",
   type: "point",
 });

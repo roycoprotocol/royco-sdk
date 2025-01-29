@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://assets.beraborrow.com/android-chrome-512x512.png",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0xfbca1de031ac44e83850634c098f22137e4647e5",
   type: "point",
 });

@@ -9,6 +9,6 @@ export default defineToken({
   image: "https://origami.finance/light/icons/kami.svg",
   decimals: 18,
   source: "external",
-  search_id: "none",
+  search_id: "1-0xcffe9112bfa141ae9170be4d172d40a455662564",
   type: "point",
 });
