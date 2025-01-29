@@ -191,7 +191,25 @@ export const getEnrichedMarketsQueryFunction = async ({
   const filter_clauses = constructEnrichedMarketsFilterClauses(filters);
   const sorting_clauses = constructBaseSortingFilterClauses(sorting);
 
-  const result = await client.rpc("get_enriched_markets", {
+  let function_name: "get_enriched_markets_view" | "get_enriched_markets" =
+    "get_enriched_markets_view";
+
+  if (!!custom_token_data && custom_token_data.length !== 0) {
+    let nonBeraTokens = 0;
+
+    for (let i = 0; i < custom_token_data.length; i++) {
+      if (
+        custom_token_data[i]?.token_id.toLowerCase() !==
+        BERA_TOKEN_ID.toLowerCase()
+      ) {
+        nonBeraTokens++;
+        function_name = "get_enriched_markets";
+        break;
+      }
+    }
+  }
+
+  const result = await client.rpc(function_name, {
     chain_id,
     market_type,
     market_id,
