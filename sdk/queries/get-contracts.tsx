@@ -23,7 +23,12 @@ export const getContractsQueryOptions = (
     }
 
     return client
-      .rpc("get_contracts", { _contracts: contracts })
+      .rpc("get_contracts", {
+        chain_ids: contracts.map((c) => c.chain_id),
+        contract_addresses: contracts.map((c) =>
+          c.contract_address.toLowerCase(),
+        ),
+      })
       .throwOnError()
       .then((result) => result.data);
   },
