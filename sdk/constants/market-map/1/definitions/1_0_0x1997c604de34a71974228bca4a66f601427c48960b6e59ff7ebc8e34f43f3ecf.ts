@@ -19,7 +19,7 @@ Earn DEX LP fees, as well as rewards from Berachain, Dinero, Stakestone, Infrare
       label: "Infrared Points",
 
       value: async ({ roycoClient, chainClient }) => {
-        const value = "1.5x";
+        const value = "2x";
         return value;
       },
     },
