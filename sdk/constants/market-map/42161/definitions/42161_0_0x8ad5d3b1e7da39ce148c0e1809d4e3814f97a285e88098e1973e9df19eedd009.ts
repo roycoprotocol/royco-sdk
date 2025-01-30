@@ -6,5 +6,5 @@ export default defineMarket({
   description: `Earn 15% - 25% APY + rewards on stable coins. 
 
 More details at (https:&#x2F;&#x2F;yield.fi)`,
-  is_verified: false,
+  is_verified: true,
 });
