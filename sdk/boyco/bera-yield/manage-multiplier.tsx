@@ -216,7 +216,7 @@ const MajorTokens = [
   { name: "WETH", id: "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2" },
 ];
 
-const overrideMarketMap: {
+export const overrideMarketMap: {
   id: string;
   multiplier: MULTIPLIERS;
   assetType: MULTIPLIER_ASSET_TYPE;
