@@ -17,7 +17,7 @@ export default defineMarket({
         return value;
       },
     },
- {
+    {
       token_id: "1-0x8236a87084f8b84306f72007f36f2618a5634494",
       label: "Lombard Lux",
 
@@ -26,6 +26,5 @@ export default defineMarket({
         return value;
       },
     },
-
   ],
 });
