@@ -17,14 +17,11 @@ More details at (https:&#x2F;&#x2F;yield.fi)`,
     };
 
     try {
-      const res = await fetch(
-        "https://ctrl.yield.fi/t/apy",
-      );
+      const res = await fetch("https://ctrl.yield.fi/t/apy");
 
       const apy_data = await res.json();
 
-      yUSD.annual_change_ratio =
-        (Number(apy_data["apy"]) ?? 0) / 100;
+      yUSD.annual_change_ratio = (Number(apy_data["apy"]) ?? 0) / 100;
     } catch (error) {
       console.error(error);
     }
