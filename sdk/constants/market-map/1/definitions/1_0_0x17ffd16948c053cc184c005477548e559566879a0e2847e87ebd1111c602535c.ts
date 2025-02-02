@@ -48,10 +48,15 @@ Earn DEX LP fees, as well as rewards from Berachain, Infrared and Kodiak. This i
             "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd"
           );
           const priceData = await response.json();
-          const stgPrice = priceData.stargate.usd;
+          const stgPrice = priceData["stargate-finance"].usd;
   
-          const totalRewardValueUSD = STG_REWARD_AMOUNT * stgPrice;
-          annual_change_ratio = (totalRewardValueUSD / LOCK_PERIOD_DAYS) * (365 / LOCK_PERIOD_DAYS)
+          // Calculate annual STG rewards value
+          const annualRewardValueUSD = (STG_REWARD_AMOUNT * stgPrice) * (365 / LOCK_PERIOD_DAYS);
+
+          // Calculate APY based on TVL
+          if (market.total_value_locked && market.total_value_locked > 0) {
+            annual_change_ratio = annualRewardValueUSD / market.total_value_locked;
+          }
   
         } catch (error) {
           console.error("Error fetching STG price:", error);
