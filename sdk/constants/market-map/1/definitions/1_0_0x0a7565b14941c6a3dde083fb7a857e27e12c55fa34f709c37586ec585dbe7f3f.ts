@@ -41,7 +41,7 @@ export default defineMarket({
   
         try {
           const response = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=stargate&vs_currencies=usd"
+            "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd"
           );
           const priceData = await response.json();
           const stgPrice = priceData.stargate.usd;
