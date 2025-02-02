@@ -48,7 +48,7 @@ Earn DEX LP fees, as well as rewards from Berachain, Infrared and Kodiak. This i
             chain_id: 1,
             market_type: 0,
             market_id:
-              "0x0a7565b14941c6a3dde083fb7a857e27e12c55fa34f709c37586ec585dbe7f3f",
+              "0x72bec627884d7bdf538f174bedd551e9eccf3995adc880f40972e2bab87df3b9",
             page_index: 0,
             page_size: 1,
           });
