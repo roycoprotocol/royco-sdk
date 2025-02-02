@@ -15,6 +15,13 @@ export default defineMarket({
         const value = "1x";
         return value;
       },
+    {
+      token_id: "1-0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b",
+      label: "Acorn Points",
+      value: async ({ roycoClient, chainClient }) => {
+        const value = "3x";
+        return value;
+      },
     },
   ],
 });
