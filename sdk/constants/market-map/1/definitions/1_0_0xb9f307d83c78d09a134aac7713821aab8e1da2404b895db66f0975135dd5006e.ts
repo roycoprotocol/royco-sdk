@@ -38,26 +38,27 @@ This is part of the Berachain Boyco pre-deposit campaign.`,
         const STG_REWARD_AMOUNT = 499750;
         const LOCK_PERIOD_DAYS = 90;
         let annual_change_ratio = 0;
-  
+
         try {
           const response = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd"
+            "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd",
           );
           const priceData = await response.json();
           const stgPrice = priceData["stargate-finance"].usd;
-  
+
           // Calculate annual STG rewards value
-          const annualRewardValueUSD = (STG_REWARD_AMOUNT * stgPrice) * (365 / LOCK_PERIOD_DAYS);
+          const annualRewardValueUSD =
+            STG_REWARD_AMOUNT * stgPrice * (365 / LOCK_PERIOD_DAYS);
 
           // Calculate APY based on TVL
           if (market.total_value_locked && market.total_value_locked > 0) {
-            annual_change_ratio = annualRewardValueUSD / market.total_value_locked;
+            annual_change_ratio =
+              annualRewardValueUSD / market.total_value_locked;
           }
-  
         } catch (error) {
           console.error("Error fetching STG price:", error);
         }
-  
+
         return annual_change_ratio;
       },
     },
