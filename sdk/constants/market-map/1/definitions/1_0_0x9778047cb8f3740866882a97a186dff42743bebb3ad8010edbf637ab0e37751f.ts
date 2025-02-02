@@ -44,7 +44,7 @@ export default defineMarket({
             chain_id: 1,
             market_type: 0,
             market_id:
-              "0x0a7565b14941c6a3dde083fb7a857e27e12c55fa34f709c37586ec585dbe7f3f",
+              "0x9778047cb8f3740866882a97a186dff42743bebb3ad8010edbf637ab0e37751f",
             page_index: 0,
             page_size: 1,
           });
