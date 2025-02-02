@@ -40,6 +40,17 @@ export default defineMarket({
         let annual_change_ratio = 0;
 
         try {
+          const market_req = await roycoClient.rpc("get_enriched_markets", {
+            chain_id: 1,
+            market_type: 0,
+            market_id:
+              "0x0a7565b14941c6a3dde083fb7a857e27e12c55fa34f709c37586ec585dbe7f3f",
+            page_index: 0,
+            page_size: 1,
+          });
+
+          const market = market_req.data?.data?.[0];
+
           const response = await fetch(
             "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd",
           );
@@ -51,7 +62,7 @@ export default defineMarket({
             STG_REWARD_AMOUNT * stgPrice * (365 / LOCK_PERIOD_DAYS);
 
           // Calculate APY based on TVL
-          if (market.total_value_locked && market.total_value_locked > 0) {
+          if (market?.total_value_locked && market.total_value_locked > 0) {
             annual_change_ratio =
               annualRewardValueUSD / market.total_value_locked;
           }
