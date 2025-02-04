@@ -20,7 +20,7 @@ export default defineMarket({
 
           const data = await response.json();
           const totalApy = Number(data.apy) / 100;
-          const reward = Number(data.rewards[0].reward_rate) / 100;
+          const reward = Number(data.vault.rewards[0].reward_rate) / 100;
           annual_change_ratio = totalApy - reward;
         } catch (error) {
           console.error(error);
@@ -42,7 +42,7 @@ export default defineMarket({
 
           const data = await response.json();
           const totalApy = Number(data.apy) / 100;
-          annual_change_ratio = Number(data.rewards[0].reward_rate) / 100;
+          annual_change_ratio = Number(data.vault.rewards[0].reward_rate) / 100;
         } catch (error) {
           console.error(error);
         }
