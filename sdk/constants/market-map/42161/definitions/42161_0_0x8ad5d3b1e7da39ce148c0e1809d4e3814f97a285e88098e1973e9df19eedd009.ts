@@ -6,7 +6,10 @@ const apy = async (isNative = false) => {
   try {
     const res = await fetch("https://ctrl.yield.fi/t/apy");
     const apy_data = await res.json();
-    annual_change_ratio = (isNative ? (Number(apy_data["napy"]) ?? 0) : (Number(apy_data["uapy"]) ?? 0)) / 100;
+    annual_change_ratio =
+      (isNative
+        ? (Number(apy_data["napy"]) ?? 0)
+        : (Number(apy_data["uapy"]) ?? 0)) / 100;
   } catch (error) {
     console.error(error);
   }
