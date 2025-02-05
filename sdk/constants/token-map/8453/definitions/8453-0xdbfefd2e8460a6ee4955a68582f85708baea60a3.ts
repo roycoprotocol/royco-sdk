@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0xdbfefd2e8460a6ee4955a68582f85708baea60a3",
   name: "Super OETH",
   symbol: "SUPEROETHB",
-  image: "https://coin-images.coingecko.com/coins/images/39828/large/Super_OETH.png?1724208268",
+  image:
+    "https://coin-images.coingecko.com/coins/images/39828/large/Super_OETH.png?1724208268",
   decimals: 18,
   source: "coingecko",
   search_id: "super-oeth",
