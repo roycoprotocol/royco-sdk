@@ -1,13 +1,12 @@
-import { roycoClient } from "@/sdk/client";
 import { defineMarket } from "@/sdk/constants";
 
-const apy = async () => {
+const apy = async (isNative = false) => {
   let annual_change_ratio = 0;
 
   try {
     const res = await fetch("https://ctrl.yield.fi/t/apy");
     const apy_data = await res.json();
-    annual_change_ratio = (Number(apy_data["apy"]) ?? 0) / 100;
+    annual_change_ratio = (isNative ? (Number(apy_data["napy"]) ?? 0) : (Number(apy_data["uapy"]) ?? 0)) / 100;
   } catch (error) {
     console.error(error);
   }
@@ -28,7 +27,7 @@ More details at (https:&#x2F;&#x2F;yield.fi)`,
       token_id: "42161-0x895e15020c3f52ddd4d8e9514eb83c39f53b1579",
       label: "yUSD",
       annual_change_ratio: async ({ roycoClient, chainClient }) => {
-        return await apy();
+        return await apy(true);
       },
     },
   ],
