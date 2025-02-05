@@ -27,7 +27,7 @@ More details at (https:&#x2F;&#x2F;yield.fi)`,
       token_id: "42161-0x895e15020c3f52ddd4d8e9514eb83c39f53b1579",
       label: "yUSD",
       annual_change_ratio: async ({ roycoClient, chainClient }) => {
-        return await apy();
+        return await apy(true);
       },
     },
   ],
