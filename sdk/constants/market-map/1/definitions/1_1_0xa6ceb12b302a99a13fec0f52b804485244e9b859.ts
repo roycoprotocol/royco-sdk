@@ -29,15 +29,17 @@ export default defineMarket({
       token_id: "1-0x4c3b39edc50d58c1c59a389a77aef1e767f6bc3f",
       annual_change_ratio: async ({ roycoClient, chainClient }) => {
         let annual_change_ratio = 0;
-        
+
         try {
-          const response = await fetch("https://gateway.yieldnest.finance/api/v1/graphql", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              query: `
+          const response = await fetch(
+            "https://gateway.yieldnest.finance/api/v1/graphql",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                query: `
                 query GetTokenMetrics {
                   getLRTsData(networkType: mainnet) {
                     tokens {
@@ -53,17 +55,23 @@ export default defineMarket({
                   }
                 }
               `,
-            }),
-          });
+              }),
+            },
+          );
 
           const data: GraphQLResponse = await response.json();
-          const ynETHxData = data.data.getLRTsData.tokens.find((token: TokenData) => token.token === "ynETHx");
+          const ynETHxData = data.data.getLRTsData.tokens.find(
+            (token: TokenData) => token.token === "ynETHx",
+          );
 
           if (ynETHxData) {
-            const blockchainData = ynETHxData.blockchains.find((blockchain: { chainId: number }) => blockchain.chainId === 1);
+            const blockchainData = ynETHxData.blockchains.find(
+              (blockchain: { chainId: number }) => blockchain.chainId === 1,
+            );
 
             if (blockchainData) {
-              annual_change_ratio = blockchainData.apr.apr7d + blockchainData.apr.restaking7dApr;
+              annual_change_ratio =
+                blockchainData.apr.apr7d + blockchainData.apr.restaking7dApr;
             }
           }
         } catch (err) {
