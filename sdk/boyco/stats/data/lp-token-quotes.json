@@ -1,0 +1,233 @@
+[
+  {
+    "token_id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+    "price": "113072684617870.05"
+  },
+  {
+    "token_id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+    "price": "268139731.17903864"
+  },
+  {
+    "token_id": "1-0xbb2b8038a1640196fbe3e38816f3e67cba72d940",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xbb2b8038a1640196fbe3e38816f3e67cba72d940",
+    "price": "4286142947.4264874"
+  },
+  {
+    "token_id": "1-0xc28e4f6798c5ef47c6bcd54f7353ef0ff59fcf06",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xc28e4f6798c5ef47c6bcd54f7353ef0ff59fcf06",
+    "price": "1998741.6473318888"
+  },
+  {
+    "token_id": "1-0xde838aed5b25c956adfe6a377dc056327d1df19a",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xde838aed5b25c956adfe6a377dc056327d1df19a",
+    "price": "2.0532845966060056"
+  },
+  {
+    "token_id": "1-0x19dbb3cb7f6aaa65c436246fb22978b8d89206e2",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x19dbb3cb7f6aaa65c436246fb22978b8d89206e2",
+    "price": "1.9977441287506075"
+  },
+  {
+    "token_id": "1-0xb2c5d104f481d0beb056842bd5312be6fd831429",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xb2c5d104f481d0beb056842bd5312be6fd831429",
+    "price": "998435.6937586741"
+  },
+  {
+    "token_id": "1-0xb2d8385342ebbb6d92355fcec0ccd409487b118f",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xb2d8385342ebbb6d92355fcec0ccd409487b118f",
+    "price": "5912.555882259587"
+  },
+  {
+    "token_id": "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xcde5d40f312b9bcf704babcdb6713d2547a277c4",
+    "price": "1931634684316738.5"
+  },
+  {
+    "token_id": "1-0x032a6c903e588d9548875bef3b23daf912f4f7e4",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x032a6c903e588d9548875bef3b23daf912f4f7e4",
+    "price": "19123603383.514256"
+  },
+  {
+    "token_id": "1-0x16e5060779b75f2f9b748d0e1c0f89a13f35b2de",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x16e5060779b75f2f9b748d0e1c0f89a13f35b2de",
+    "price": "19466154212.622566"
+  },
+  {
+    "token_id": "1-0x8cd64380b991e6d67424b9ae30fd2048947d7ffe",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x8cd64380b991e6d67424b9ae30fd2048947d7ffe",
+    "price": "194472.935598827"
+  },
+  {
+    "token_id": "1-0x8460de55c1d491fb0fde1bd3e40c1319be4dceed",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x8460de55c1d491fb0fde1bd3e40c1319be4dceed",
+    "price": "1912094121916205.8"
+  },
+  {
+    "token_id": "1-0x3ac9e11b2ff50652340abafa96ce984240060330",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x3ac9e11b2ff50652340abafa96ce984240060330",
+    "price": "1890238218739004.2"
+  },
+  {
+    "token_id": "1-0x8a05bc1665059d5e19e30a66cf077f090f88609f",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x8a05bc1665059d5e19e30a66cf077f090f88609f",
+    "price": "1914388854153352.2"
+  },
+  {
+    "token_id": "1-0x42a094364bbdca0efac8af2cf7d6b9ec885ee554",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x42a094364bbdca0efac8af2cf7d6b9ec885ee554",
+    "price": "19552091425.79288"
+  },
+  {
+    "token_id": "1-0x75c240478f358f8a1a817f2a52fb84d61b9939ff",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x75c240478f358f8a1a817f2a52fb84d61b9939ff",
+    "price": "19498407243.080013"
+  },
+  {
+    "token_id": "1-0x325845b0b12b479a0991ea3bac1249ca18254a4d",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x325845b0b12b479a0991ea3bac1249ca18254a4d",
+    "price": "1932836144241732.5"
+  },
+  {
+    "token_id": "1-0xbc15ddb819ce347f8a67b5485910b8a37911f283",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xbc15ddb819ce347f8a67b5485910b8a37911f283",
+    "price": "9735658758.09393"
+  },
+  {
+    "token_id": "1-0xbafc759ca196e83900721d3b840dfbcd40e59617",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xbafc759ca196e83900721d3b840dfbcd40e59617",
+    "price": "951237949581135"
+  },
+  {
+    "token_id": "1-0xa259c4614d02d3a548de5c95d12fc71d296662ff",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xa259c4614d02d3a548de5c95d12fc71d296662ff",
+    "price": "972622123427582.8"
+  },
+  {
+    "token_id": "1-0x94b78ebaf10fdb9d832860f2e2cd8ee52d39f751",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x94b78ebaf10fdb9d832860f2e2cd8ee52d39f751",
+    "price": "5890.3340344924345"
+  },
+  {
+    "token_id": "1-0x761c035187d3670dad9cdaeca7d5591d79268a13",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x761c035187d3670dad9cdaeca7d5591d79268a13",
+    "price": "5963.4461964994625"
+  },
+  {
+    "token_id": "1-0xab2f42fed7f2c1aed5ca8a20139313abea74790b",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xab2f42fed7f2c1aed5ca8a20139313abea74790b",
+    "price": "5705.885076087396"
+  },
+  {
+    "token_id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+    "price": "268139731.17903864"
+  },
+  {
+    "token_id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+    "price": "113072684617870.05"
+  },
+  {
+    "token_id": "1-0xbb2b8038a1640196fbe3e38816f3e67cba72d940",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xbb2b8038a1640196fbe3e38816f3e67cba72d940",
+    "price": "4286142947.4264874"
+  },
+  {
+    "token_id": "1-0x3041cbd36888becc7bbcbc0045e3b1f144466f5f",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x3041cbd36888becc7bbcbc0045e3b1f144466f5f",
+    "price": "2656719331862.1685"
+  },
+  {
+    "token_id": "1-0x1e496fae4613b4e9c4f8fc31826812cdcbd03a90",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x1e496fae4613b4e9c4f8fc31826812cdcbd03a90",
+    "price": "1999074.4955901385"
+  },
+  {
+    "token_id": "1-0x2289f64e11a3c6a3e23d5f0c705bb0bb7661278a",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x2289f64e11a3c6a3e23d5f0c705bb0bb7661278a",
+    "price": "2143007.7629338223"
+  },
+  {
+    "token_id": "1-0xcf21354360fdae8edad02c0529e55cb3e71c36c9",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0xcf21354360fdae8edad02c0529e55cb3e71c36c9",
+    "price": "1001467.4004979599"
+  },
+  {
+    "token_id": "1-0x3def33ec7bbda557daf3995b2ecc5c87ad9d07e7",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x3def33ec7bbda557daf3995b2ecc5c87ad9d07e7",
+    "price": "5828.581824922804"
+  },
+  {
+    "token_id": "1-0x3def33ec7bbda557daf3995b2ecc5c87ad9d07e7",
+    "decimals": 18,
+    "source": "lp",
+    "search_id": "1-0x3def33ec7bbda557daf3995b2ecc5c87ad9d07e7",
+    "price": "5828.581824922804"
+  }
+]
