@@ -1,0 +1,170 @@
+[
+  {
+    "token_id": "1-0x004e9c3ef86bc1ca1f0bb5c7662861ee93350568",
+    "decimals": 8,
+    "source": "coingecko",
+    "search_id": "universal-btc",
+    "price": "95679"
+  },
+  {
+    "token_id": "1-0x094c0e36210634c3cfa25dc11b96b562e0b07624",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "32272",
+    "price": "93859.16271315378"
+  },
+  {
+    "token_id": "1-0x09def5abc67e967d54e8233a4b5ebbc1b3fbe34b",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "3717",
+    "price": "97344.78957748695"
+  },
+  {
+    "token_id": "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+    "decimals": 8,
+    "source": "coinmarketcap",
+    "search_id": "3717",
+    "price": "97344.78957748695"
+  },
+  {
+    "token_id": "1-0x2b66aade1e9c062ff411bd47c44e0ad696d43bd9",
+    "decimals": 18,
+    "source": "coingecko",
+    "search_id": "susda",
+    "price": "1.055"
+  },
+  {
+    "token_id": "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "29470",
+    "price": "0.9987325063417053"
+  },
+  {
+    "token_id": "1-0x6c77bde03952bbcb923815d90a73a7ed7ec895d1",
+    "decimals": 8,
+    "source": "coingecko",
+    "search_id": "ignition-fbtc",
+    "price": "97596"
+  },
+  {
+    "token_id": "1-0x7122985656e38bdc0302db86685bb972b145bd3c",
+    "decimals": 18,
+    "source": "coingecko",
+    "search_id": "stakestone-ether",
+    "price": "2968.51"
+  },
+  {
+    "token_id": "1-0x7a56e1c57c7475ccf742a1832b028f0456652f97",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "33312",
+    "price": "97302.33974254513"
+  },
+  {
+    "token_id": "1-0x8236a87084f8b84306f72007f36f2618a5634494",
+    "decimals": 8,
+    "source": "coinmarketcap",
+    "search_id": "33652",
+    "price": "97341.10348904374"
+  },
+  {
+    "token_id": "1-0x8a60e489004ca22d775c5f2c657598278d17d9c2",
+    "decimals": 18,
+    "source": "coingecko",
+    "search_id": "usda-2",
+    "price": "0.999007"
+  },
+  {
+    "token_id": "1-0x9d39a5de30e57443bff2a8307a4256c8797a3497",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "29471",
+    "price": "1.147387764321679"
+  },
+  {
+    "token_id": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "decimals": 6,
+    "source": "coinmarketcap",
+    "search_id": "3408",
+    "price": "0.9995994068183472"
+  },
+  {
+    "token_id": "1-0xa1290d69c65a6fe4df752f95823fae25cb99e5a7",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "29242",
+    "price": "3028.160280732336"
+  },
+  {
+    "token_id": "1-0xadc9c900b05f39f48bb6f402a1bae60929f4f9a8",
+    "decimals": 8,
+    "source": "coinmarketcap",
+    "search_id": "32272",
+    "price": "93859.16271315378"
+  },
+  {
+    "token_id": "1-0xb13aa2d0345b0439b064f26b82d8dcf3f508775d",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "8085",
+    "price": "2846.971637292976"
+  },
+  {
+    "token_id": "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "2396",
+    "price": "2858.0904822355096"
+  },
+  {
+    "token_id": "1-0xcd5fe23c85820f7b72d0926fc9b05b43e359b7ee",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "28695",
+    "price": "2993.523751764637"
+  },
+  {
+    "token_id": "1-0xd4cc9b31e9ef33e392ff2f81ad52be8523e0993b",
+    "decimals": 8,
+    "source": "coingecko",
+    "search_id": "pumpbtc",
+    "price": "95156"
+  },
+  {
+    "token_id": "1-0xd87a19ff681ae98bf10d2220d1ae3fbd374ade4e",
+    "decimals": 18,
+    "source": "coingecko",
+    "search_id": "kelp-dao-restaked-eth",
+    "price": "2935.76"
+  },
+  {
+    "token_id": "1-0xd9d920aa40f578ab794426f5c90f6c731d159def",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "33310",
+    "price": "97160.4591149114"
+  },
+  {
+    "token_id": "1-0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "decimals": 6,
+    "source": "coinmarketcap",
+    "search_id": "825",
+    "price": "0.9997508221584812"
+  },
+  {
+    "token_id": "1-0xf6718b2701d4a6498ef77d7c152b2137ab28b8a3",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "1",
+    "price": "97633.99870867941"
+  },
+  {
+    "token_id": "1-0xfae103dc9cf190ed75350761e95403b7b8afa6c0",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "29974",
+    "price": "2948.9128942445345"
+  }
+]

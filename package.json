@@ -16,7 +16,9 @@
     "lint": "tsc",
     "prepare:market-map": "tsx scripts/constants/generate-market-map.ts",
     "prepare:token-map": "tsx scripts/constants/generate-token-map.ts",
-    "prepare:test": "tsx temp/test/index.ts"
+    "prepare:test": "tsx temp/test/index.ts",
+    "boyco:stats": "tsx sdk/boyco/stats/index.ts",
+    "boyco:lp": "tsx sdk/boyco/stats/lp-token-quotes.ts"
   },
   "keywords": [
     "royco"
@@ -110,6 +112,7 @@
     "dotenv": "^16.4.5",
     "ethers": "^5.4.4",
     "glob": "^10.4.1",
+    "graphql-request": "^7.1.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.379.0",
     "postcss": "^8.4.38",
@@ -132,6 +135,8 @@
   "lastPublishedCommit": "1155314271101e62737406941cdb00c1722c0853",
   "devDependencies": {
     "@types/lodash": "^4.17.14",
+    "csv-writer": "^1.6.0",
+    "graphql": "^16.10.0",
     "supabase": "^2.6.8"
   }
 }
