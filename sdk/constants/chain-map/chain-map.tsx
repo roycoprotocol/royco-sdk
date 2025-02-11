@@ -58,7 +58,7 @@ export const Plume = {
 export const Sonic = {
   ...sonic,
   name: "Sonic",
-  image: "https://i.ibb.co/67hzh1DZ/Vector-2x-1.png",
+  image: "https://i.ibb.co/8L917D49/Vector-2x.png",
   symbol: "SONIC",
 };
 
