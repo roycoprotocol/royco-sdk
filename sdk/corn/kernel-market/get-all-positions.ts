@@ -178,9 +178,12 @@ async function main() {
         chainId: positionVault.chainId,
         accountAddress: positionVault.accountAddress,
         marketId: positionVault.marketId,
-        shares: positionVault.shares,
-        token1Ids: positionVault.token1Ids,
-        token1Amounts: positionVault.token1Amounts,
+        incentiveTokenId: positionVault.token1Ids[0],
+        incentiveTokenRawAmount: positionVault.token1Amounts[0],
+        incentiveTokenDecimalAmount: ethers.utils.formatUnits(
+          positionVault.token1Amounts[0],
+          18,
+        ),
       };
     });
 
