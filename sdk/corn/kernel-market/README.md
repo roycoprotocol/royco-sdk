@@ -35,6 +35,29 @@ export default defineToken({
 
 This script will do following things:
 
-1. Fetch all the boyco positions from the subgraph
+1. Fetch all the positions from the subgraph
 2. Transform the raw data into a more readable format
-3. Write all the raw + transformed data inside [/data](./data) folder
+3. Write all the transformed data inside [/data](./data) folder with file name `kernel-market-positions.json`
+
+### Run the script
+
+```bash
+pnpm run corn:kernel
+```
+
+### Generated Data
+
+All the generated data is inside [/data](./data) folder and is organized in the following manner:
+
+- [kernel-market-positions.json](./data/kernel-market-positions.json): Kernel market positions data in json format
+
+### Data Definitions
+
+- id: id from Subgraph, `<CHAIN_ID>_<MARKET_ID>_<ACCOUNT_ADDRESS>`
+- rawMarketRefId.id: global market id from Subgraph, `<CHAIN_ID>_<MARKET_TYPE>_<MARKET_ID>`
+- chainId: Chain Id
+- accountAddress: Account Address (address of the account holding the position)
+- marketId: Market Id (address of the wrapped vault)
+- incentiveTokenId: Incentive Point Token Id (`<CHAIN_ID>-<TOKEN_ADDRESS>`)
+- incentiveTokenRawAmount: Incentive Point Token Amount (in wei)
+- incentiveTokenDecimalAmount: Incentive Point Token Amount (in token decimals)
