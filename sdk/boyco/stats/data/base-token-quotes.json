@@ -84,6 +84,20 @@
     "price": "1.147387764321679"
   },
   {
+    "token_id": "1-0x09d4214c03d01f49544c0448dbe3a27f768f2b34",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "3408",
+    "price": "0.9995994068183472"
+  },
+  {
+    "token_id": "1-0x99d8a9c45b2eca8864373a26d1459e3dff1e17f3",
+    "decimals": 18,
+    "source": "coinmarketcap",
+    "search_id": "3408",
+    "price": "0.9995994068183472"
+  },
+  {
     "token_id": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
     "decimals": 6,
     "source": "coinmarketcap",
@@ -127,6 +141,13 @@
   },
   {
     "token_id": "1-0xd4cc9b31e9ef33e392ff2f81ad52be8523e0993b",
+    "decimals": 8,
+    "source": "coingecko",
+    "search_id": "pumpbtc",
+    "price": "95156"
+  },
+  {
+    "token_id": "1-0xc96de26018a54d51c097160568752c4e3bd6c364",
     "decimals": 8,
     "source": "coingecko",
     "search_id": "pumpbtc",
