@@ -18,7 +18,7 @@ export default defineMarket({
           );
           const data = await response.json();
           const totalApy = Number(data.apy) / 100;
-          const reward = Number(data.rewards[0].reward_rate) / 100;
+          const reward = Number(data.vault.rewards[0].reward_rate) / 100;
           const base = totalApy - reward;
 
           annual_change_ratio = base;
@@ -38,7 +38,7 @@ export default defineMarket({
             "https://www.superform.xyz/api/proxy/stats/vault/supervault/zLVQbgScIbXJuSz-NNsK-/",
           );
           const data = await response.json();
-          const reward = Number(data.rewards[0].reward_rate) / 100;
+          const reward = Number(data.vault.rewards[0].reward_rate) / 100;
           annual_change_ratio = reward;
         } catch (error) {}
 
