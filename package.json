@@ -18,7 +18,8 @@
     "prepare:token-map": "tsx scripts/constants/generate-token-map.ts",
     "prepare:test": "tsx temp/test/index.ts",
     "boyco:stats": "tsx sdk/boyco/stats/index.ts",
-    "boyco:lp": "tsx sdk/boyco/stats/lp-token-quotes.ts"
+    "boyco:lp": "tsx sdk/boyco/stats/lp-token-quotes.ts",
+    "corn:kernel": "tsx sdk/corn/kernel-market/get-all-positions.ts"
   },
   "keywords": [
     "royco"
