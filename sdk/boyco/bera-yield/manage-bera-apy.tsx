@@ -69,7 +69,7 @@ export const getBeraApy = (
       : buckets.thirdPartyBucketWeight;
 
   const weightOfBucketOnBoyco =
-    assetType === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY ? 0.55 : 0.45;
+    assetType === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY ? 0.45 : 0.55 ;
   const beraSupplyOnBoyco = 10000000;
 
   const currentMarketWeight = marketTVLMultiplied / marketTypeBucketWeight;
