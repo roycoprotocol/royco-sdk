@@ -8,8 +8,7 @@ export const getBuckets = (markets: EnrichedMarketDataType[]) => {
     (market) => getMarketAssetType(market) === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY,
   );
   const ThirdPartyMarkets = markets.filter(
-    (market) =>
-      getMarketAssetType(market) === MULTIPLIER_ASSET_TYPE.THIRD_PARTY_ONLY,
+    (market) => getMarketAssetType(market) !== MULTIPLIER_ASSET_TYPE.MAJOR_ONLY,
   );
 
   const majorBucketWeight = sumBy(MajorMarkets, (market) => {
