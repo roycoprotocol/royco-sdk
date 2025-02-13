@@ -51,10 +51,16 @@ export const getBeraApy = (
 ) => {
   const multiplier = +getMarketMultiplier(market);
 
+  // console.log("multiplier", multiplier);
+
   const marketTVL = market.total_value_locked;
   if (!marketTVL) return 0;
 
+  // console.log("marketTVL", marketTVL);
+
   const beraPrice = beraInfo.beraFDV / beraInfo.beraSupply;
+
+  // console.log("beraPrice", beraPrice);
 
   const lockupTime =
     Number(market.lockup_time) === 0 ? 7776000 : Number(market.lockup_time);
@@ -63,37 +69,43 @@ export const getBeraApy = (
 
   const marketTVLMultiplied = marketTVL * multiplier;
 
+  // console.log("marketTVLMultiplied", marketTVLMultiplied);
+
   const marketTypeBucketWeight =
     assetType === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY
       ? buckets.majorBucketWeight
       : buckets.thirdPartyBucketWeight;
 
+  // console.log("marketTypeBucketWeight", marketTypeBucketWeight);
+
   const weightOfBucketOnBoyco =
-    assetType === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY ? 0.45 : 0.55 ;
+    assetType === MULTIPLIER_ASSET_TYPE.MAJOR_ONLY ? 0.45 : 0.55;
   const beraSupplyOnBoyco = 10000000;
 
+  // console.log("beraSupplyOnBoyco", beraSupplyOnBoyco);
+
   const currentMarketWeight = marketTVLMultiplied / marketTypeBucketWeight;
-  //   console.log("BERA APY-Market weight", currentMarketWeight);
+  // console.log("BERA APY-Market weight", currentMarketWeight);
 
   const beraSupplyInBucket =
     beraSupplyOnBoyco * beraPrice * weightOfBucketOnBoyco;
-  //   console.log("BERA APY-Bera supply on boyco multiplied", beraSupplyInBucket);
+  // console.log("BERA APY-Bera supply on boyco multiplied", beraSupplyInBucket);
 
   const rebaseIncentives = currentMarketWeight * beraSupplyInBucket;
-  //   console.log("BERA APY-Rebase incentives", rebaseIncentives);
+  // console.log("BERA APY-Rebase incentives", rebaseIncentives);
 
   const rebasedIncentiveOnMarketTVL = rebaseIncentives / marketTVL;
-  //   console.log(
-  //     "BERA APY-Rebased incentive for market TVL",
-  //     rebasedIncentiveOnMarketTVL
-  //   );
+  // console.log(
+  //   "BERA APY-Rebased incentive for market TVL",
+  //   rebasedIncentiveOnMarketTVL,
+  // );
 
   const missingPeriod = year / lockupPeriod;
-  //   console.log("BERA APY-Missing period", missingPeriod);
+  // console.log("BERA APY-Missing period", missingPeriod);
 
   const beraApy = rebasedIncentiveOnMarketTVL * missingPeriod;
 
-  //   console.log("BERA APY", beraApy);
+  // console.log("BERA APY", beraApy);
 
   return beraApy;
 };
