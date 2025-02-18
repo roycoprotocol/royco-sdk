@@ -16,10 +16,20 @@ export const useCreateRecipeMarket = ({
   inputToken: string;
   lockupTime: string;
   frontendFee: string;
-  enterMarketActions: MarketActions;
-  exitMarketActions: MarketActions;
+  enterMarketActions:
+    | MarketActions
+    | {
+        commands: string[];
+        state: string;
+      };
+  exitMarketActions:
+    | MarketActions
+    | {
+        commands: string[];
+        state: string;
+      };
   rewardStyle: REWARD_STYLE;
-})  => {
+}) => {
   // Check is market is ready to be created
   let isReady = false;
 
@@ -32,8 +42,25 @@ export const useCreateRecipeMarket = ({
     undefined;
 
   // Encoded commands and states for market
-  const enterMarket = useActionsEncoder({ marketActions: enterMarketActions });
-  const exitMarket = useActionsEncoder({ marketActions: exitMarketActions });
+  let enterMarket;
+  if (
+    typeof enterMarketActions === "object" &&
+    "commands" in enterMarketActions
+  ) {
+    enterMarket = { data: enterMarketActions };
+  } else {
+    enterMarket = useActionsEncoder({ marketActions: enterMarketActions });
+  }
+
+  let exitMarket;
+  if (
+    typeof exitMarketActions === "object" &&
+    "commands" in exitMarketActions
+  ) {
+    exitMarket = { data: exitMarketActions };
+  } else {
+    exitMarket = useActionsEncoder({ marketActions: exitMarketActions });
+  }
 
   // If all data is ready, set isReady to true and set writeContractOptions
   if (recipeContract && enterMarket.data && exitMarket.data) {
