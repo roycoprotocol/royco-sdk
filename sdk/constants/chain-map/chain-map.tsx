@@ -7,6 +7,7 @@ import {
   corn,
   plume,
   sonic,
+  berachain,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -92,28 +93,8 @@ export const BerachainTestnet = defineChain({
 });
 
 export const BerachainMainnet = defineChain({
-  id: 80094,
+  ...berachain,
   name: "Berachain",
-  nativeCurrency: {
-    name: "BERA Token",
-    symbol: "BERA",
-    decimals: 18,
-  },
-  contracts: {
-    multicall3: {
-      address: "0xca11bde05977b3631167028862be2a173976ca11 ",
-      blockCreated: 1,
-    },
-  },
-  rpcUrls: {
-    default: { http: ["https://app.royco.org/api/rpc/80094"] },
-  },
-  blockExplorers: {
-    default: {
-      name: "Berascan",
-      url: "https://80094.routescan.io",
-    },
-  },
   image:
     "https://pbs.twimg.com/profile_images/1775162753499508736/2XBUzQhl_400x400.jpg",
   symbol: "BERA",
