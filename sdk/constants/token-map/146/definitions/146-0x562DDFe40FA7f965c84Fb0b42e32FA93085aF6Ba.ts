@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://coin-images.coingecko.com/coins/images/52967/large/SS_logo.png?1734881325",
   decimals: 18,
-  source: "",
-  search_id: "",
+  source: "external",
+  search_id: "none",
   type: "point",
 });
