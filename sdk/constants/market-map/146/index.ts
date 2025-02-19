@@ -1,9 +1,12 @@
 import market_146_0_0xdfd26983257f927830585a7da408d598fe3260bc0afd2501bf7988ee1eedf142 from "./definitions/146_0_0xdfd26983257f927830585a7da408d598fe3260bc0afd2501bf7988ee1eedf142";
+import market_146_1_0x4c6bac7f421fbdbb3232070517b948b8dcbdc67f from "./definitions/146_1_0x4c6bac7f421fbdbb3232070517b948b8dcbdc67f";
 import market_146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca from "./definitions/146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca";
 
 export const MarketMap146 = {
   [market_146_0_0xdfd26983257f927830585a7da408d598fe3260bc0afd2501bf7988ee1eedf142.id]:
     market_146_0_0xdfd26983257f927830585a7da408d598fe3260bc0afd2501bf7988ee1eedf142,
+  [market_146_1_0x4c6bac7f421fbdbb3232070517b948b8dcbdc67f.id]:
+    market_146_1_0x4c6bac7f421fbdbb3232070517b948b8dcbdc67f,
   [market_146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca.id]:
     market_146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca,
 };
