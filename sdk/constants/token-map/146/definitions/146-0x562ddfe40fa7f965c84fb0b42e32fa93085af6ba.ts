@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x562DDFe40FA7f965c84Fb0b42e32FA93085aF6Ba",
+  id: "146-0x562ddfe40fa7f965c84fb0b42e32fa93085af6ba",
   chain_id: 146,
-  contract_address: "0x562DDFe40FA7f965c84Fb0b42e32FA93085aF6Ba",
+  contract_address: "0x562ddfe40fa7f965c84fb0b42e32fa93085af6ba",
   name: "Test Points",
   symbol: "TP",
   image:
