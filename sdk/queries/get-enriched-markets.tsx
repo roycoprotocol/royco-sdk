@@ -19,6 +19,8 @@ import {
   calculateBeraYield,
   getAllBeraMarkets,
 } from "@/sdk/boyco";
+import { getTokenQuotesQueryFunction } from "./get-token-quotes";
+import { id } from "ethers/lib/utils";
 
 export type MarketFilter = {
   id: string;
@@ -522,7 +524,7 @@ export const getEnrichedMarketsWithBeraYield = async ({
   is_verified,
   custom_token_data,
 }: GetEnrichedMarketsQueryOptionsParams) => {
-  const [allBeraMarkets, result] = await Promise.all([
+  const [allBeraMarkets, result, beraQuote] = await Promise.all([
     getAllBeraMarkets({
       client,
       customTokenData: custom_token_data ?? [],
@@ -540,7 +542,24 @@ export const getEnrichedMarketsWithBeraYield = async ({
       is_verified,
       custom_token_data,
     }),
+    getTokenQuotesQueryFunction({
+      client,
+      token_ids: [BERA_TOKEN_ID],
+    }),
   ]);
+
+  let currentBeraQuote = undefined;
+
+  if (!!beraQuote && !!beraQuote[0]) {
+    currentBeraQuote = [
+      {
+        token_id: BERA_TOKEN_ID,
+        price: beraQuote[0].price.toString(),
+        total_supply: beraQuote[0].total_supply.toString(),
+        fdv: beraQuote[0].fdv.toString(),
+      },
+    ];
+  }
 
   if (!!result.data && !!allBeraMarkets) {
     // Bera Yield
@@ -548,7 +567,10 @@ export const getEnrichedMarketsWithBeraYield = async ({
       if (row.category === "boyco") {
         const bera_annual_change_ratio = calculateBeraYield({
           enrichedMarket: row as EnrichedMarketDataType,
-          customTokenData: custom_token_data ?? [],
+          customTokenData: [
+            ...(custom_token_data ?? []),
+            ...(currentBeraQuote ?? []),
+          ],
           markets: allBeraMarkets,
         });
 
