@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0xD152f4C29fB0db011c8a5503Aee3Ce60C44F8985",
+  id: "146-0xd152f4c29fb0db011c8a5503aee3ce60c44f8985",
   chain_id: 146,
-  contract_address: "0xD152f4C29fB0db011c8a5503Aee3Ce60C44F8985",
+  contract_address: "0xd152f4c29fb0db011c8a5503aee3ce60c44f8985",
   name: "StableJack Points",
   symbol: "SJP",
   image:
