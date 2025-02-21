@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "80094-0x0000000000000000000000000000000000000000 ",
+  id: "80094-0x0000000000000000000000000000000000000000",
   chain_id: 80094,
-  contract_address: "0x0000000000000000000000000000000000000000 ",
+  contract_address: "0x0000000000000000000000000000000000000000",
   name: "BERA Token",
   symbol: "BERA",
   image:

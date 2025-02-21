@@ -9,7 +9,7 @@ import { getBeraApy } from "./manage-bera-apy";
 import { getMarketAssetType } from "./manage-multiplier";
 import { getBuckets } from "./get-buckets";
 
-export const BERA_TOKEN_ID = "1-0xbe9abe9abe9abe9abe9abe9abe9abe9abe9abe9a";
+export const BERA_TOKEN_ID = "80094-0x0000000000000000000000000000000000000000";
 
 export const DEFAULT_BERA_TOKEN_DATA = {
   fdv: 0,

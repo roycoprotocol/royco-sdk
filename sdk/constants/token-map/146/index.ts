@@ -13,6 +13,7 @@ import token_146_0x949185d3be66775ea648f4a306740ea9eff9c567 from "./definitions/
 import token_146_0x9f0df7799f6fdad409300080cff680f5a23df4b1 from "./definitions/146-0x9f0df7799f6fdad409300080cff680f5a23df4b1";
 import token_146_0xb1e25689d55734fd3fffc939c4c3eb52dff8a794 from "./definitions/146-0xb1e25689d55734fd3fffc939c4c3eb52dff8a794";
 import token_146_0xbc0d0650412ef353d672c0bbd12efff90591b251 from "./definitions/146-0xbc0d0650412ef353d672c0bbd12efff90591b251";
+import token_146_0xd152f4c29fb0db011c8a5503aee3ce60c44f8985 from "./definitions/146-0xd152f4c29fb0db011c8a5503aee3ce60c44f8985";
 import token_146_0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae from "./definitions/146-0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae";
 import token_146_0xe51ee9868c1f0d6cd968a8b8c8376dc2991bfe44 from "./definitions/146-0xe51ee9868c1f0d6cd968a8b8c8376dc2991bfe44";
 import token_146_0xe5da20f15420ad15de0fa650600afc998bbe3955 from "./definitions/146-0xe5da20f15420ad15de0fa650600afc998bbe3955";
@@ -49,6 +50,8 @@ export const TokenMap146 = {
     token_146_0xb1e25689d55734fd3fffc939c4c3eb52dff8a794,
   [token_146_0xbc0d0650412ef353d672c0bbd12efff90591b251.id]:
     token_146_0xbc0d0650412ef353d672c0bbd12efff90591b251,
+  [token_146_0xd152f4c29fb0db011c8a5503aee3ce60c44f8985.id]:
+    token_146_0xd152f4c29fb0db011c8a5503aee3ce60c44f8985,
   [token_146_0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae.id]:
     token_146_0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae,
   [token_146_0xe51ee9868c1f0d6cd968a8b8c8376dc2991bfe44.id]:
