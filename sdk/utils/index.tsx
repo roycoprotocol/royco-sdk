@@ -7,3 +7,4 @@ export * from "./clause-constructors";
 export * from "./formatters";
 export * from "./safe-parsers";
 export * from "./query-helpers";
+export * from "./sonic-market-map";
