@@ -5,6 +5,7 @@ import { TokenMap8453 } from "./8453";
 import { TokenMap21000000 } from "./21000000";
 import { TokenMap98865 } from "./98865";
 import { TokenMap146 } from "./146";
+import { TokenMap80094 } from "./80094";
 
 import { NULL_ADDRESS } from "../market-utils";
 import type { SupportedToken } from "./utils";
@@ -17,6 +18,7 @@ export {
   TokenMap98865,
   TokenMap21000000,
   TokenMap146,
+  TokenMap80094,
 };
 
 export const SupportedTokenMap = {
@@ -27,6 +29,7 @@ export const SupportedTokenMap = {
   ...TokenMap21000000,
   ...TokenMap98865,
   ...TokenMap146,
+  ...TokenMap80094,
 } as Record<string, SupportedToken>;
 
 export const SupportedTokenList = Object.values(SupportedTokenMap);
