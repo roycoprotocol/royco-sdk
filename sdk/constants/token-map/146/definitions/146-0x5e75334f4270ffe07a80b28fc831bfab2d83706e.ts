@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x5e75334F4270FfE07a80b28FC831BfAb2d83706e",
+  id: "146-0x5e75334f4270ffe07a80b28fc831bfab2d83706e",
   chain_id: 146,
-  contract_address: "0x5e75334F4270FfE07a80b28FC831BfAb2d83706e",
+  contract_address: "0x5e75334f4270ffe07a80b28fc831bfab2d83706e",
   name: "Rings Points",
   symbol: "RP",
   image:
