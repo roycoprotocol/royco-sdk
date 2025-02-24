@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x3D10814c737B98de96f5010063ad4EB13D9c188E",
+  id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
   chain_id: 146,
-  contract_address: "0x3D10814c737B98de96f5010063ad4EB13D9c188E",
+  contract_address: "0x3d10814c737b98de96f5010063ad4eb13d9c188e",
   name: "Gems Boost",
   symbol: "GB",
   image:
