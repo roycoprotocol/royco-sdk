@@ -30,4 +30,20 @@ export const sonicMarketMap: {
       url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
     },
   },
+  {
+    id: "146_0_0x74634bc836c8c44e39b87ae656db006d36a6d4e3d618eabb2fabf668960168cf",
+    appType: SONIC_APP_TYPE.SAPPHIRE,
+  },
+  {
+    id: "146_0_0x2f9dabe1388e41ce534c649dfa6bb7fc4293219b422ec3a654663d0f2f181604",
+    appType: SONIC_APP_TYPE.SAPPHIRE,
+  },
+  {
+    id: "146_0_0x2e8fb605f1e044b8a6bc9f0db673b92b6815b5333508e62b85de7e2ff44199a8",
+    appType: SONIC_APP_TYPE.SAPPHIRE,
+  },
+  {
+    id: "146_0_0x38e23d90004295763e6ca3c02aa15de17dd7c2b3cbb16e6ce1e52f3b68dea552",
+    appType: SONIC_APP_TYPE.SAPPHIRE,
+  },
 ];
