@@ -1,8 +1,17 @@
+export const TOTAL_SONIC_AIRDROP = 190_500_000;
+export const TOTAL_SONIC_GEM_DISTRIBUTION = 1_680_000;
+
 export enum SONIC_APP_TYPE {
   EMERALD = "emerald",
   SAPPHIRE = "sapphire",
   RUBY = "ruby",
 }
+
+export const SONIC_GEM_DISTRIBUTION_MAP = {
+  [SONIC_APP_TYPE.EMERALD]: 13_125,
+  [SONIC_APP_TYPE.SAPPHIRE]: 8_750,
+  [SONIC_APP_TYPE.RUBY]: 4_375,
+};
 
 export const sonicMarketMap: {
   id: string;
