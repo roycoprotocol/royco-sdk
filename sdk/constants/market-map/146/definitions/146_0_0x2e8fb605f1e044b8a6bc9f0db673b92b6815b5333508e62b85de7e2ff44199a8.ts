@@ -120,7 +120,7 @@ In exchange, YT-stS holders forgo their points exposure.`,
             abi: [
               {
                 inputs: [],
-                name: "getNavPerShare",
+                name: "nav",
                 outputs: [
                   { internalType: "uint256", name: "", type: "uint256" },
                 ],
@@ -128,7 +128,7 @@ In exchange, YT-stS holders forgo their points exposure.`,
                 type: "function",
               },
             ],
-            functionName: "getNavPerShare",
+            functionName: "nav",
             args: [],
           });
 
