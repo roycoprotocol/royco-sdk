@@ -27,22 +27,22 @@ In exchange, YT-stS holders forgo their points exposure.`,
         let uApy = 4.9;
 
         const url = "https://backend-v3.beets-ftm-node.com/graphql";
-    
+
         const query = {
           query: `{
             stsGetGqlStakedSonicData {
               stakingApr
             }
-          }`
+          }`,
         };
 
         try {
           const response = await fetch(url, {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(query)
+            body: JSON.stringify(query),
           });
 
           const data = await response.json();
