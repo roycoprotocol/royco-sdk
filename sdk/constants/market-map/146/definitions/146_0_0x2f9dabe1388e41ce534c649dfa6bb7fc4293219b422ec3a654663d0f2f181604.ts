@@ -6,7 +6,7 @@ export default defineMarket({
   description: `PT-stS enables investors to farm Sonic points, Gems, and Stable Jack Discount Tickets with leverage while maintaining long stS exposure.
 
 In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
-  is_verified: false,
+  is_verified: true,
   // @dev: Not sure what to add as token_id since discount tickets are not tokens, they are points
   external_incentives: [
     {
