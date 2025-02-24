@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0xe16bb6061b3567ee86285ab7780187cb39acc55e",
   name: "SJ Yield Token wOS",
   symbol: "YT-wOS",
-  image: "https://pbs.twimg.com/profile_images/1826601407648063488/zg6tr9eo_400x400.jpg",
+  image:
+    "https://pbs.twimg.com/profile_images/1826601407648063488/zg6tr9eo_400x400.jpg",
   decimals: 18,
   source: "external",
   search_id: "none",
