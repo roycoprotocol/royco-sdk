@@ -7,6 +7,7 @@ export default defineMarket({
 
 In exchange, YT-wOS holders forgo their points exposure.`,
   is_verified: true,
+  
   // Basically, YT is a yield bearing token, it is ERC4626, so ig it is a native yield?
   // @dev: We are depositing aTokens to YT-wOS and this way the price is increasing
   // @dev: These aTokens are just for internal accounting, so displaying them here might not make sense
