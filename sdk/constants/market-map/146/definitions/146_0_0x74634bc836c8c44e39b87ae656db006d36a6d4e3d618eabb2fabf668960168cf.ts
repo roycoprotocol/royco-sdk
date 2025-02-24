@@ -74,7 +74,7 @@ export default defineMarket({
             abi: [
               {
                 inputs: [],
-                name: "getNavPerShare",
+                name: "nav",
                 outputs: [
                   { internalType: "uint256", name: "", type: "uint256" },
                 ],
@@ -82,7 +82,7 @@ export default defineMarket({
                 type: "function",
               },
             ],
-            functionName: "getNavPerShare",
+            functionName: "nav",
             args: [],
           });
 
@@ -160,7 +160,7 @@ export default defineMarket({
             abi: [
               {
                 inputs: [],
-                name: "getNavPerShare",
+                name: "nav",
                 outputs: [
                   { internalType: "uint256", name: "", type: "uint256" },
                 ],
@@ -168,7 +168,7 @@ export default defineMarket({
                 type: "function",
               },
             ],
-            functionName: "getNavPerShare",
+            functionName: "nav",
             args: [],
           });
 

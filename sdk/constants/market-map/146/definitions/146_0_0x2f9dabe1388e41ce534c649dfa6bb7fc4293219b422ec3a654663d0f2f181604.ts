@@ -75,7 +75,7 @@ In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
             abi: [
               {
                 inputs: [],
-                name: "getNavPerShare",
+                name: "nav",
                 outputs: [
                   { internalType: "uint256", name: "", type: "uint256" },
                 ],
@@ -83,7 +83,7 @@ In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
                 type: "function",
               },
             ],
-            functionName: "getNavPerShare",
+            functionName: "nav",
             args: [],
           });
 
@@ -161,7 +161,7 @@ In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
             abi: [
               {
                 inputs: [],
-                name: "getNavPerShare",
+                name: "nav",
                 outputs: [
                   { internalType: "uint256", name: "", type: "uint256" },
                 ],
@@ -169,7 +169,7 @@ In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
                 type: "function",
               },
             ],
-            functionName: "getNavPerShare",
+            functionName: "nav",
             args: [],
           });
 
