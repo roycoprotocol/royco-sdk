@@ -24,9 +24,31 @@ In exchange, YT-stS holders forgo their points exposure.`,
         const pt_address = "0xFCA91fEEe65DB34448A83a74f4f8970b5dddfa7c";
         const groupId =
           "0x331e33bebec5fe0378b995e9ef7355a166e1dbd4902181d4e149dec9671a68ee";
-        const uApy = 4.9;
+        let uApy = 4.9;
+
+        const url = "https://backend-v3.beets-ftm-node.com/graphql";
+    
+        const query = {
+          query: `{
+            stsGetGqlStakedSonicData {
+              stakingApr
+            }
+          }`
+        };
 
         try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(query)
+          });
+
+          const data = await response.json();
+
+          uApy = data?.data?.stsGetGqlStakedSonicData?.stakingApr * 100;
+
           // tvl * underlying APY / YT Market Cap * 0.8 + vt funding fee
           const tvl_supply = await chainClient.readContract({
             address: treasury,
