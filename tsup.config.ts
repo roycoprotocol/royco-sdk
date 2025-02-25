@@ -19,6 +19,7 @@ export default defineConfig({
     "sdk/types/index.tsx",
     "sdk/utils/index.tsx",
     "sdk/boyco/index.tsx",
+    "sdk/sonic/index.tsx",
   ],
   format: ["cjs", "esm"],
   dts: true,
