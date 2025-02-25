@@ -19,7 +19,7 @@ export default defineMarket({
       },
     },
     {
-      token_id: "not_sure_what_to_add_here",
+      token_id: "146-0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db",
       label: "Discount Tickets",
       value: async ({ roycoClient, chainClient }) => {
         let value = "DT Multiplier";
@@ -105,7 +105,7 @@ export default defineMarket({
       },
     },
     {
-      token_id: "not_sure_what_to_add_here",
+      token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
       label: "Sonic Points",
       value: async ({ roycoClient, chainClient }) => {
         let value = "Sonic Points Multiplier";
