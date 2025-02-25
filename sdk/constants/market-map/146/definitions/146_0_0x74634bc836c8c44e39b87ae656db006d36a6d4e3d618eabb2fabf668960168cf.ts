@@ -7,7 +7,17 @@ export default defineMarket({
   is_verified: true,
 
   // @dev: Not sure what to add as token_id since discount tickets are not tokens, they are points
+  // @note: You need to create a fake token with a random address and PR that into the SDK
+  // because even though it's a point, it's need to be represented somehow in the UI
+  // so that the UI can display it -- see this below for example of "Gems Boost"
   external_incentives: [
+    {
+      token_id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
+      label: "Gems Boost",
+      value: async ({ roycoClient, chainClient }) => {
+        return "420";
+      },
+    },
     {
       token_id: "not_sure_what_to_add_here",
       label: "Discount Tickets",

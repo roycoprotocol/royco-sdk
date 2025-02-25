@@ -155,4 +155,14 @@ In exchange, YT-wOS holders forgo their points exposure.`,
       },
     },
   ],
+
+  external_incentives: [
+    {
+      token_id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
+      label: "Gems Boost",
+      value: async ({ roycoClient, chainClient }) => {
+        return "420";
+      },
+    },
+  ],
 });
