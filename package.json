@@ -84,6 +84,11 @@
       "types": "./dist/boyco/index.d.ts",
       "import": "./dist/boyco/index.js",
       "require": "./dist/boyco/index.cjs"
+    },
+    "./sonic": {
+      "types": "./dist/sonic/index.d.ts",
+      "import": "./dist/sonic/index.js",
+      "require": "./dist/sonic/index.cjs"
     }
   },
   "dependencies": {
