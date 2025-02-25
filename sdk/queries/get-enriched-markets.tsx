@@ -21,6 +21,8 @@ import {
 } from "@/sdk/boyco";
 import { getTokenQuotesQueryFunction } from "./get-token-quotes";
 import { id } from "ethers/lib/utils";
+import { SONIC_CHAIN_ID, SONIC_ROYCO_GEM_BOOST_ID } from "../sonic";
+import { calculateSonicYield } from "../sonic/sonic-yield";
 
 export type MarketFilter = {
   id: string;
@@ -586,6 +588,30 @@ export const getEnrichedMarketsWithBeraYield = async ({
 
         const annual_change_ratio =
           (row.annual_change_ratio || 0) + bera_annual_change_ratio;
+
+        return {
+          ...row,
+          yield_breakdown,
+          annual_change_ratio,
+        };
+      } else if (row.chain_id === SONIC_CHAIN_ID) {
+        const sonic_gem_boost_annual_change_ratio = calculateSonicYield({
+          enrichedMarket: row as EnrichedMarketDataType,
+          customTokenData: [...(custom_token_data ?? [])],
+        });
+
+        const yield_breakdown = [
+          ...row.yield_breakdown,
+          {
+            ...getSupportedToken(SONIC_ROYCO_GEM_BOOST_ID),
+            category: "native",
+            label: "Gem Boost",
+            annual_change_ratio: sonic_gem_boost_annual_change_ratio,
+          },
+        ];
+
+        const annual_change_ratio =
+          (row.annual_change_ratio || 0) + sonic_gem_boost_annual_change_ratio;
 
         return {
           ...row,
