@@ -1,5 +1,3 @@
-// this is a fake token
-
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({

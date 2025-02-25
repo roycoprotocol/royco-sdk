@@ -8,6 +8,7 @@ import token_146_0x29219dd400f2bf60e5a23d13be72b486d4038894 from "./definitions/
 import token_146_0x2d0e0814e62d80056181f5cd932274405966e4f0 from "./definitions/146-0x2d0e0814e62d80056181f5cd932274405966e4f0";
 import token_146_0x3d10814c737b98de96f5010063ad4eb13d9c188e from "./definitions/146-0x3d10814c737b98de96f5010063ad4eb13d9c188e";
 import token_146_0x486b6fa0419b33a0c7a6e4698c231d7e2f2d5299 from "./definitions/146-0x486b6fa0419b33a0c7a6e4698c231d7e2f2d5299";
+import token_146_0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db from "./definitions/146-0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db";
 import token_146_0x50c42deacd8fc9773493ed674b675be577f2634b from "./definitions/146-0x50c42deacd8fc9773493ed674b675be577f2634b";
 import token_146_0x53f753e4b17f4075d6fa2c6909033d224b81e698 from "./definitions/146-0x53f753e4b17f4075d6fa2c6909033d224b81e698";
 import token_146_0x562ddfe40fa7f965c84fb0b42e32fa93085af6ba from "./definitions/146-0x562ddfe40fa7f965c84fb0b42e32fa93085af6ba";
@@ -16,6 +17,7 @@ import token_146_0x63a522f6e7d5b96f7aebb74d2648545e9e14078d from "./definitions/
 import token_146_0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c from "./definitions/146-0x79bbf4508b1391af3a0f4b30bb5fc4aa9ab0e07c";
 import token_146_0x949185d3be66775ea648f4a306740ea9eff9c567 from "./definitions/146-0x949185d3be66775ea648f4a306740ea9eff9c567";
 import token_146_0x9f0df7799f6fdad409300080cff680f5a23df4b1 from "./definitions/146-0x9f0df7799f6fdad409300080cff680f5a23df4b1";
+import token_146_0xaa21e59bf97313b3b3850e9f878ffffc733a946a from "./definitions/146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a";
 import token_146_0xb1e25689d55734fd3fffc939c4c3eb52dff8a794 from "./definitions/146-0xb1e25689d55734fd3fffc939c4c3eb52dff8a794";
 import token_146_0xbc0d0650412ef353d672c0bbd12efff90591b251 from "./definitions/146-0xbc0d0650412ef353d672c0bbd12efff90591b251";
 import token_146_0xd152f4c29fb0db011c8a5503aee3ce60c44f8985 from "./definitions/146-0xd152f4c29fb0db011c8a5503aee3ce60c44f8985";
@@ -46,6 +48,8 @@ export const TokenMap146 = {
     token_146_0x3d10814c737b98de96f5010063ad4eb13d9c188e,
   [token_146_0x486b6fa0419b33a0c7a6e4698c231d7e2f2d5299.id]:
     token_146_0x486b6fa0419b33a0c7a6e4698c231d7e2f2d5299,
+  [token_146_0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db.id]:
+    token_146_0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db,
   [token_146_0x50c42deacd8fc9773493ed674b675be577f2634b.id]:
     token_146_0x50c42deacd8fc9773493ed674b675be577f2634b,
   [token_146_0x53f753e4b17f4075d6fa2c6909033d224b81e698.id]:
@@ -62,6 +66,8 @@ export const TokenMap146 = {
     token_146_0x949185d3be66775ea648f4a306740ea9eff9c567,
   [token_146_0x9f0df7799f6fdad409300080cff680f5a23df4b1.id]:
     token_146_0x9f0df7799f6fdad409300080cff680f5a23df4b1,
+  [token_146_0xaa21e59bf97313b3b3850e9f878ffffc733a946a.id]:
+    token_146_0xaa21e59bf97313b3b3850e9f878ffffc733a946a,
   [token_146_0xb1e25689d55734fd3fffc939c4c3eb52dff8a794.id]:
     token_146_0xb1e25689d55734fd3fffc939c4c3eb52dff8a794,
   [token_146_0xbc0d0650412ef353d672c0bbd12efff90591b251.id]:
