@@ -49,7 +49,7 @@ dependencies:
     version: 18.3.1
   '@wagmi/core':
     specifier: ^2.10.3
-    version: 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
+    version: 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
   '@weiroll/weiroll.js':
     specifier: ^0.3.0
     version: 0.3.0
@@ -86,7 +86,13 @@ dependencies:
   graphql-request:
     specifier: ^7.1.2
     version: 7.1.2(graphql@16.10.0)
+  immer:
+    specifier: ^10.1.1
+    version: 10.1.1
   lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
+  lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
   lucide-react:
@@ -133,7 +139,7 @@ dependencies:
     version: 2.23.2(typescript@5.7.2)(zod@3.23.8)
   wagmi:
     specifier: ^2.8.1
-    version: 2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8)
+    version: 2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8)
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -1784,7 +1790,7 @@ packages:
       react-remove-scroll: 2.6.0(@types/react@18.3.12)(react@18.3.1)
       ua-parser-js: 1.0.39
       viem: 2.23.2(typescript@5.7.2)(zod@3.23.8)
-      wagmi: 2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8)
+      wagmi: 2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8)
     transitivePeerDependencies:
       - '@types/react'
       - babel-plugin-macros
@@ -2403,7 +2409,7 @@ packages:
       '@metamask/sdk': 0.31.1
       '@safe-global/safe-apps-provider': 0.18.4(typescript@5.7.2)(zod@3.23.8)
       '@safe-global/safe-apps-sdk': 9.1.0(typescript@5.7.2)(zod@3.23.8)
-      '@wagmi/core': 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
+      '@wagmi/core': 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
       '@walletconnect/ethereum-provider': 2.17.0(@types/react@18.3.12)(react@18.3.1)
       cbw-sdk: /@coinbase/wallet-sdk@3.9.3
       typescript: 5.7.2
@@ -2431,7 +2437,7 @@ packages:
       - zod
     dev: false
 
-  /@wagmi/core@2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2):
+  /@wagmi/core@2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2):
     resolution: {integrity: sha512-4Bu1JA3HqtKvmBBsesvJ3HyqyLk69XYP0lwmG8jFqa5osfqn9iD8pvjsq5VHbIus+ZFM/UL6ydp9WWdtPNjH7w==}
     peerDependencies:
       '@tanstack/query-core': '>=5.0.0'
@@ -2448,7 +2454,7 @@ packages:
       mipd: 0.0.7(typescript@5.7.2)
       typescript: 5.7.2
       viem: 2.23.2(typescript@5.7.2)(zod@3.23.8)
-      zustand: 5.0.0(@types/react@18.3.12)(react@18.3.1)(use-sync-external-store@1.2.0)
+      zustand: 5.0.0(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(use-sync-external-store@1.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - immer
@@ -4074,6 +4080,10 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
+  /immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
+    dev: false
+
   /imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
@@ -4365,6 +4375,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       p-locate: 4.1.0
+    dev: false
+
+  /lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
   /lodash.isequal@4.5.0:
@@ -5965,7 +5979,7 @@ packages:
       - zod
     dev: false
 
-  /wagmi@2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8):
+  /wagmi@2.13.3(@tanstack/query-core@5.62.1)(@tanstack/react-query@5.62.0)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8):
     resolution: {integrity: sha512-EBtrWUtmSpr7YYkPE1aokXiMn8EF+8kaNJAXtQ0UUSKlOLEbrsDtaiO3mEOOpFQtRXd2UUI2teMnIThCOk71kQ==}
     peerDependencies:
       '@tanstack/react-query': '>=5.0.0'
@@ -5978,7 +5992,7 @@ packages:
     dependencies:
       '@tanstack/react-query': 5.62.0(react@18.3.1)
       '@wagmi/connectors': 5.5.3(@types/react@18.3.12)(@wagmi/core@2.15.2)(react@18.3.1)(typescript@5.7.2)(viem@2.23.2)(zod@3.23.8)
-      '@wagmi/core': 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
+      '@wagmi/core': 2.15.2(@tanstack/query-core@5.62.1)(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(typescript@5.7.2)(use-sync-external-store@1.2.0)(viem@2.23.2)
       react: 18.3.1
       typescript: 5.7.2
       use-sync-external-store: 1.2.0(react@18.3.1)
@@ -6215,7 +6229,7 @@ packages:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
     dev: false
 
-  /zustand@5.0.0(@types/react@18.3.12)(react@18.3.1)(use-sync-external-store@1.2.0):
+  /zustand@5.0.0(@types/react@18.3.12)(immer@10.1.1)(react@18.3.1)(use-sync-external-store@1.2.0):
     resolution: {integrity: sha512-LE+VcmbartOPM+auOjCCLQOsQ05zUTp8RkgwRzefUk+2jISdMMFnxvyTjA4YNWr5ZGXYbVsEMZosttuxUBkojQ==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
@@ -6234,6 +6248,7 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.3.12
+      immer: 10.1.1
       react: 18.3.1
       use-sync-external-store: 1.2.0(react@18.3.1)
     dev: false
