@@ -39,14 +39,21 @@ export const calculateSonicYield = ({
 
   const sonicGemBoostIncentiveUsd =
     appMarketSonicGemDistribution * gemBoostTokenPrice;
-  const sonicLockedQuantityUsd = parseFloat(
-    enrichedMarket.locked_quantity || "0",
-  );
+  const sonicLockedQuantityUsd = enrichedMarket.locked_quantity_usd || 1;
 
-  const new_apr = sonicGemBoostIncentiveUsd / (sonicLockedQuantityUsd || 1);
-  if (isNaN(new_apr) || new_apr < 0) {
-    return 0;
+  const sonicLockupTime = Number(enrichedMarket.lockup_time ?? "1");
+
+  let annual_change_ratio = 0;
+
+  if (
+    sonicLockedQuantityUsd > 0 &&
+    !isNaN(sonicLockupTime) &&
+    sonicLockupTime > 0
+  ) {
+    annual_change_ratio =
+      (sonicGemBoostIncentiveUsd / sonicLockedQuantityUsd) *
+      ((365 * 24 * 60 * 60) / sonicLockupTime);
   }
 
-  return new_apr;
+  return annual_change_ratio;
 };
