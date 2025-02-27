@@ -35,3 +35,4 @@ export * from "./get-expected-spot";
 export * from "./get-username";
 export * from "./get-user-position";
 export * from "./get-leaderboard-stats";
+export * from "./get-enriched-positions-boyco";
