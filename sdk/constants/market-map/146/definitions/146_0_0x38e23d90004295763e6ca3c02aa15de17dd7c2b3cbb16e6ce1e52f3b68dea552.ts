@@ -6,7 +6,7 @@ export default defineMarket({
   description: `YT-wOS enables investors to farm leveraged wOS yield while maintaining long $wOS exposure. 
 
 In exchange, YT-wOS holders forgo their points exposure.`,
-  is_verified: true,
+  is_verified: false,
 
   // Basically, YT is a yield bearing token, it is ERC4626, so ig it is a native yield?
   // @dev: We are depositing aTokens to YT-wOS and this way the price is increasing
