@@ -16,7 +16,7 @@ In exchange, YT-scUSD holders forgo their points exposure.`,
 
         const yt_address = "0xd2901D474b351bC6eE7b119f9c920863B0F781b2";
         const pt_address = "0x11d686EF994648Ead6180c722F122169058389ee";
-        
+
         try {
           const yt_supply = await chainClient.readContract({
             address: yt_address,

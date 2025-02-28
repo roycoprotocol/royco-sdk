@@ -353,7 +353,7 @@ In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
 
           const pt_market_cap =
             (Number(pt_supply ?? 0) * Number(pt_price ?? 0)) / 10 ** 36;
-          const result = (tvl / pt_market_cap);
+          const result = tvl / pt_market_cap;
           value = result.toFixed() + "x Veda Points";
         } catch (error) {}
         return value;
