@@ -1,0 +1,949 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        { "internalType": "address", "name": "_owner", "type": "address" },
+        {
+          "internalType": "address",
+          "name": "_lzV2Endpoint",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_campaignVerifier",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_wrapped_native_asset_token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint32",
+          "name": "_srcChainLzEid",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "_depositLocker",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_validLzV2OFTs",
+          "type": "address[]"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "_sourceMarketHashes",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_campaignOwners",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    { "inputs": [], "name": "ArrayLengthMismatch", "type": "error" },
+    { "inputs": [], "name": "CampaignAlreadyInitialized", "type": "error" },
+    { "inputs": [], "name": "CampaignIsUninitialized", "type": "error" },
+    { "inputs": [], "name": "CampaignIsUnverified", "type": "error" },
+    { "inputs": [], "name": "CampaignTokensNotSet", "type": "error" },
+    { "inputs": [], "name": "CampaignVerificationFailed", "type": "error" },
+    {
+      "inputs": [],
+      "name": "CannotWithdrawBeforeUnlockTimestamp",
+      "type": "error"
+    },
+    { "inputs": [], "name": "CreateFail", "type": "error" },
+    { "inputs": [], "name": "ExceedsMaxLockupTime", "type": "error" },
+    {
+      "inputs": [
+        {
+          "internalType": "contract ERC20",
+          "name": "inputToken",
+          "type": "address"
+        }
+      ],
+      "name": "InputTokenNotReceivedByThisWallet",
+      "type": "error"
+    },
+    { "inputs": [], "name": "InvalidMerkleProof", "type": "error" },
+    { "inputs": [], "name": "InvalidReceiptToken", "type": "error" },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "weirollWallet",
+          "type": "address"
+        }
+      ],
+      "name": "InvalidWeirollWallet",
+      "type": "error"
+    },
+    { "inputs": [], "name": "InvalidWithdrawal", "type": "error" },
+    { "inputs": [], "name": "MustMaxAllowDepositExecutor", "type": "error" },
+    {
+      "inputs": [],
+      "name": "MustReturnReceiptTokensOnDeposit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotFromDepositLockerOnSourceChain",
+      "type": "error"
+    },
+    { "inputs": [], "name": "NotFromLzV2Endpoint", "type": "error" },
+    { "inputs": [], "name": "NotFromValidLzV2OFT", "type": "error" },
+    { "inputs": [], "name": "NotOwner", "type": "error" },
+    { "inputs": [], "name": "OnlyCampaignOwner", "type": "error" },
+    { "inputs": [], "name": "OnlyCampaignVerifier", "type": "error" },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "owner", "type": "address" }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "account", "type": "address" }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    { "inputs": [], "name": "ReceiptTokenIsImmutable", "type": "error" },
+    { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" },
+    { "inputs": [], "name": "UnlockTimestampIsImmutable", "type": "error" },
+    { "inputs": [], "name": "WaitingToReceiveAllTokens", "type": "error" },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "ccdmNonce",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "guid",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "weirollWallet",
+          "type": "address"
+        }
+      ],
+      "name": "CCDMBridgeProcessed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CampaignDepositRecipeSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract ERC20[]",
+          "name": "inputTokens",
+          "type": "address[]"
+        }
+      ],
+      "name": "CampaignInputTokensSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "CampaignOwnerSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "contract ERC20",
+          "name": "receiptToken",
+          "type": "address"
+        }
+      ],
+      "name": "CampaignReceiptTokenSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "unlockTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "CampaignUnlockTimestampSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "verificationStatus",
+          "type": "bool"
+        }
+      ],
+      "name": "CampaignVerificationStatusSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "campaignVerifier",
+          "type": "address"
+        }
+      ],
+      "name": "CampaignVerifierSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "weirollWallet",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "depositor",
+          "type": "address"
+        }
+      ],
+      "name": "IndividualDepositorWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "weirollWallet",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "depositor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "depositLeaf",
+          "type": "bytes32"
+        }
+      ],
+      "name": "MerkleDepositorWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferStarted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "lzV2OFT",
+          "type": "address"
+        }
+      ],
+      "name": "ValidLzOftRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "lzV2OFT",
+          "type": "address"
+        }
+      ],
+      "name": "ValidLzOftSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address[]",
+          "name": "weirollWalletsExecuted",
+          "type": "address[]"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256[]",
+          "name": "receiptTokensReceived",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "WeirollWalletsExecutedDepositRecipe",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DEPOSIT_LOCKER",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "LAYER_ZERO_V2_ENDPOINT",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_CAMPAIGN_LOCKUP_TIME",
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "SOURCE_CHAIN_LZ_EID",
+      "outputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "WEIROLL_WALLET_IMPLEMENTATION",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "WRAPPED_NATIVE_ASSET_TOKEN",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "acceptOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "campaignVerifier",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_weirollWallets",
+          "type": "address[]"
+        }
+      ],
+      "name": "executeDepositRecipes",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getCampaignVerificationHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "campaignVerificationHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "_weirollWallet",
+          "type": "address"
+        }
+      ],
+      "name": "getMerkleInfoForWeirollWallet",
+      "outputs": [
+        { "internalType": "bytes32", "name": "merkleRoot", "type": "bytes32" },
+        {
+          "internalType": "uint256",
+          "name": "totalMerkleTreeSourceAmountLeftToWithdraw",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "_weirollWallet",
+          "type": "address"
+        },
+        { "internalType": "address", "name": "_depositor", "type": "address" },
+        {
+          "internalType": "contract ERC20",
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "name": "getTokenAmountDepositedByDepositorInWeirollWallet",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountDeposited",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "_weirollWallet",
+          "type": "address"
+        },
+        {
+          "internalType": "contract ERC20",
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "name": "getTotalTokenAmountDepositedInWeirollWallet",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalAmountDeposited",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        { "internalType": "uint256", "name": "_ccdmNonce", "type": "uint256" }
+      ],
+      "name": "getWeirollWalletByCcdmNonce",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "weirollWallet",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_unlockTimestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "contract ERC20",
+          "name": "_receiptToken",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bytes32[]",
+              "name": "weirollCommands",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "weirollState",
+              "type": "bytes[]"
+            }
+          ],
+          "internalType": "struct DepositExecutor.Recipe",
+          "name": "_depositRecipe",
+          "type": "tuple"
+        }
+      ],
+      "name": "initializeCampaign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "name": "isValidLzV2OFT",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "_from", "type": "address" },
+        { "internalType": "bytes32", "name": "_guid", "type": "bytes32" },
+        { "internalType": "bytes", "name": "_message", "type": "bytes" },
+        { "internalType": "address", "name": "", "type": "address" },
+        { "internalType": "bytes", "name": "", "type": "bytes" }
+      ],
+      "name": "lzCompose",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_unlockTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "overrideCampaignUnlockTimestamp",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingOwner",
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "_lzV2OFT", "type": "address" }
+      ],
+      "name": "removeValidLzOFT",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bytes32[]",
+              "name": "weirollCommands",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "weirollState",
+              "type": "bytes[]"
+            }
+          ],
+          "internalType": "struct DepositExecutor.Recipe",
+          "name": "_depositRecipe",
+          "type": "tuple"
+        }
+      ],
+      "name": "setCampaignDepositRecipe",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "_sourceMarketHashes",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_campaignOwners",
+          "type": "address[]"
+        }
+      ],
+      "name": "setCampaignOwners",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "contract ERC20",
+          "name": "_receiptToken",
+          "type": "address"
+        }
+      ],
+      "name": "setCampaignReceiptToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_campaignVerifier",
+          "type": "address"
+        }
+      ],
+      "name": "setCampaignVerifier",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "_campaignOwner",
+          "type": "address"
+        }
+      ],
+      "name": "setNewCampaignOwner",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_lzV2OFTs",
+          "type": "address[]"
+        }
+      ],
+      "name": "setValidLzOFTs",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "name": "sourceMarketHashToDepositCampaign",
+      "outputs": [
+        { "internalType": "address", "name": "owner", "type": "address" },
+        { "internalType": "bool", "name": "verified", "type": "bool" },
+        { "internalType": "uint8", "name": "numInputTokens", "type": "uint8" },
+        {
+          "internalType": "contract ERC20",
+          "name": "receiptToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unlockTimestamp",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bytes32[]",
+              "name": "weirollCommands",
+              "type": "bytes32[]"
+            },
+            {
+              "internalType": "bytes[]",
+              "name": "weirollState",
+              "type": "bytes[]"
+            }
+          ],
+          "internalType": "struct DepositExecutor.Recipe",
+          "name": "depositRecipe",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+      "name": "sourceMarketHashToFirstDepositRecipeExecuted",
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "newOwner", "type": "address" }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "unverifyCampaign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_sourceMarketHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_campaignVerificationHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifyCampaign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_weirollWallets",
+          "type": "address[]"
+        }
+      ],
+      "name": "withdrawIndividualDeposits",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_weirollWallet",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_merkleDepositNonce",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amountDepositedOnSource",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "_merkleProof",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "withdrawMerkleDeposit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}
