@@ -10,6 +10,7 @@ import {
   parseRawAmountToTokenAmountUsd,
   parseTokenAmountToTokenAmountUsd,
 } from "@/sdk/utils";
+import { BigNumber } from "ethers";
 
 export const constructEnrichedPositionsBoycoFilterClauses = (
   filters: Array<BaseQueryFilter> | undefined,
@@ -99,8 +100,8 @@ export const getEnrichedPositionsBoycoQueryFunction = async ({
             ),
             token_amount_usd: parseRawAmountToTokenAmountUsd(
               row.token_0_amount ?? "0",
+              token_0_info.decimals ?? 0,
               row.token_0_price ?? 0,
-              token_0_info.decimals,
             ),
             price: row.token_0_price ?? 0,
           };
@@ -109,17 +110,24 @@ export const getEnrichedPositionsBoycoQueryFunction = async ({
             row.receipt_token_id ?? "",
           );
 
+          const receipt_token_amount: string = BigNumber.from(
+            row.token_0_amount ?? "0",
+          )
+            .mul(row.receipt_token_amount ?? "0")
+            .div(row.total_amount_bridged ?? "0")
+            .toString();
+
           const receipt_token_data = {
             ...receipt_token_info,
-            raw_amount: row.receipt_token_amount ?? "0",
+            raw_amount: receipt_token_amount,
             token_amount: parseRawAmountToTokenAmount(
-              row.receipt_token_amount ?? "0",
+              receipt_token_amount,
               row.receipt_token_decimals ?? 0,
             ),
             token_amount_usd: parseRawAmountToTokenAmountUsd(
-              row.receipt_token_amount ?? "0",
-              row.receipt_token_price ?? 0,
+              receipt_token_amount,
               row.receipt_token_decimals ?? 0,
+              row.receipt_token_price ?? 0,
             ),
             price: row.receipt_token_price ?? 0,
           };
