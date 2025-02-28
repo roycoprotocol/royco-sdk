@@ -6,7 +6,7 @@ export default defineMarket({
   description: `YT-stS enables investors to farm leveraged stS yield while maintaining long $stS exposure. 
 
 In exchange, YT-stS holders forgo their points exposure.`,
-  is_verified: true,
+  is_verified: false,
 
   // Basically, YT is a yield bearing token, it is ERC4626, so ig it is a native yield?
   // @dev: We are depositing aTokens to YT-stS and this way the price is increasing
