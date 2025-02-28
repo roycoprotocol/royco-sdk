@@ -6,7 +6,7 @@ export default defineMarket({
   description: `PT-stS enables investors to farm Sonic points, Gems, and Stable Jack Discount Tickets with leverage while maintaining long stS exposure.
 
 In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
-  is_verified: true,
+  is_verified: false,
   // @dev: Not sure what to add as token_id since discount tickets are not tokens, they are points
   // @note: You need to create a fake token with a random address and PR that into the SDK
   // because even though it's a point, it's need to be represented somehow in the UI
