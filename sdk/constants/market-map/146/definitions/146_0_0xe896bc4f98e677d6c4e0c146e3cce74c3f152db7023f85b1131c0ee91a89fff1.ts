@@ -6,7 +6,7 @@ export default defineMarket({
   description: `PT-scUSD enables investors to farm Sonic points, Gems, Rings Points, Veda Points, and Stable Jack Discount Tickets with leverage while maintaining scUSD exposure.
 
 In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
-  is_verified: false,
+  is_verified: true,
   external_incentives: [
     {
       token_id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
