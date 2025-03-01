@@ -6,7 +6,7 @@ export default defineMarket({
   description: `PT-wOS enables investors to farm Sonic points, Gems, and Stable Jack Discount Tickets with leverage while maintaining long wOS exposure. 
 
 In exchange, PT-wOS holders pay a certain fee to YT-wOS holders.`,
-  is_verified: false,
+  is_verified: true,
 
   external_incentives: [
     {
