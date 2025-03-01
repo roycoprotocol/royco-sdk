@@ -6,7 +6,7 @@ export default defineMarket({
   description: `YT-scUSD enables investors to farm leveraged scUSD yield.
 
 In exchange, YT-scUSD holders forgo their points exposure.`,
-  is_verified: false,
+  is_verified: true,
   native_yield: [
     {
       token_id: "146-0xd2901D474b351bC6eE7b119f9c920863B0F781b2",
