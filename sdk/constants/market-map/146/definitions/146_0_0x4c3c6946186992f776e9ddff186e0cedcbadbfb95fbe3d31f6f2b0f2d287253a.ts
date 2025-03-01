@@ -6,7 +6,7 @@ export default defineMarket({
   description: `YT-wOS enables investors to farm leveraged wOS yield while maintaining long $wOS exposure. 
 
 In exchange, YT-wOS holders forgo their points exposure.`,
-  is_verified: false,
+  is_verified: true,
 
   native_yield: [
     {
