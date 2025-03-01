@@ -6,7 +6,7 @@ export default defineMarket({
   description: `YT-stS enables investors to farm leveraged stS yield while maintaining long $stS exposure. 
 
 In exchange, YT-stS holders forgo their points exposure.`,
-  is_verified: false,
+  is_verified: true,
 
   native_yield: [
     {
