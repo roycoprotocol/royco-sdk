@@ -9,7 +9,7 @@ In exchange, YT-scUSD holders forgo their points exposure.`,
   is_verified: true,
   native_yield: [
     {
-      token_id: "146-0xd2901D474b351bC6eE7b119f9c920863B0F781b2",
+      token_id: "146-0xd2901d474b351bc6ee7b119f9c920863b0f781b2",
       label: "YT-scUSD",
       annual_change_ratio: async ({ roycoClient, chainClient }) => {
         let annual_change_ratio = 0;
