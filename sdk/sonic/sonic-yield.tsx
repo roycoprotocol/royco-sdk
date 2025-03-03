@@ -25,6 +25,9 @@ export const calculateSonicYield = ({
   const uniqueAppName = [
     ...new Set(sonicMarketMap.map((market) => market.app)),
   ];
+  if (uniqueAppName.length === 0) {
+    return 0;
+  }
   const appSonicGemDistribution =
     TOTAL_SONIC_GEM_DISTRIBUTION / uniqueAppName.length;
 
@@ -34,6 +37,9 @@ export const calculateSonicYield = ({
   const appSonicMarket = sonicMarketMap.filter(
     (market) => market.app === appName,
   );
+  if (appSonicMarket.length === 0) {
+    return 0;
+  }
   const appMarketSonicGemDistribution =
     appSonicGemDistribution / appSonicMarket.length;
 
