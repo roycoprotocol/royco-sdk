@@ -6,5 +6,5 @@ export default defineMarket({
   description: `YT-scUSD enables investors to farm leveraged scUSD yield.
 
 In exchange, YT-scUSD holders forgo their points exposure.`,
-  is_verified: false,
+  is_verified: true,
 });
