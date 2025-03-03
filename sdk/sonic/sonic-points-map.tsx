@@ -14,10 +14,6 @@ export const sonicPointsMap: {
     appType: SONIC_APP_TYPE.SAPPHIRE,
   },
   {
-    id: "146-0x5e75334f4270ffe07a80b28fc831bfab2d83706e",
-    appType: SONIC_APP_TYPE.EMERALD,
-  },
-  {
     id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
   },
 ];

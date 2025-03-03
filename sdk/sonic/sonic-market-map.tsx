@@ -40,43 +40,43 @@ export const sonicMarketMap: {
   app: SONIC_APP;
 }[] = [
   {
-    id: "146_0_0xb595ee1ce1ed0cb227c4dff793621845baf4d907bc60264349d5e975188ba5c2",
+    id: "146_0_0x74634bc836c8c44e39b87ae656db006d36a6d4e3d618eabb2fabf668960168cf",
     appType: SONIC_APP_TYPE.SAPPHIRE,
-    // info: {
-    //   description:
-    //     "StableJack will distribute 8,750 Sonic Gems, pro-rata to all StableJack Points holders on Royco. Depositors will redeem Gems for $S after Sonic Season 1.",
-    //   url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
-    // },
+    info: {
+      description:
+        "StableJack will distribute 8,750 Sonic Gems, pro-rata to all StableJack Points holders on Royco. Depositors will redeem Gems for $S after Sonic Season 1.",
+      url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
+    },
     app: SONIC_APP.STABLE_JACK,
   },
   {
-    id: "146_0_0x30f002e2f62bc4155d273b9745b5b40863b7ce80ec9f861ba08ca3e33f9e549c",
+    id: "146_0_0x2f9dabe1388e41ce534c649dfa6bb7fc4293219b422ec3a654663d0f2f181604",
     appType: SONIC_APP_TYPE.SAPPHIRE,
+    info: {
+      description:
+        "StableJack will distribute 8,750 Sonic Gems, pro-rata to all StableJack Points holders on Royco. Depositors will redeem Gems for $S after Sonic Season 1.",
+      url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
+    },
     app: SONIC_APP.STABLE_JACK,
   },
   {
-    id: "146_0_0x4c3c6946186992f776e9ddff186e0cedcbadbfb95fbe3d31f6f2b0f2d287253a",
+    id: "146_0_0x2e8fb605f1e044b8a6bc9f0db673b92b6815b5333508e62b85de7e2ff44199a8",
     appType: SONIC_APP_TYPE.SAPPHIRE,
+    info: {
+      description:
+        "StableJack will distribute 8,750 Sonic Gems, pro-rata to all StableJack Points holders on Royco. Depositors will redeem Gems for $S after Sonic Season 1.",
+      url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
+    },
     app: SONIC_APP.STABLE_JACK,
   },
   {
-    id: "146_0_0x0d7700e96d3bea53eb4d4271d02ff798e505b808afd646ea677ba1bb3843d8f5",
+    id: "146_0_0x38e23d90004295763e6ca3c02aa15de17dd7c2b3cbb16e6ce1e52f3b68dea552",
     appType: SONIC_APP_TYPE.SAPPHIRE,
+    info: {
+      description:
+        "StableJack will distribute 8,750 Sonic Gems, pro-rata to all StableJack Points holders on Royco. Depositors will redeem Gems for $S after Sonic Season 1.",
+      url: "https://blog.soniclabs.com/sonic-points-simplified-how-to-qualify-for-200-million-s-airdrop/",
+    },
     app: SONIC_APP.STABLE_JACK,
-  },
-  {
-    id: "146_0_0x4db7f85fc602e994e4043b98abecfeda8acab06bcc186ab266a07a508c8fc92f",
-    appType: SONIC_APP_TYPE.SAPPHIRE,
-    app: SONIC_APP.STABLE_JACK,
-  },
-  {
-    id: "146_0_0xb5f162c88950f16ff2870e8d035ad6f808eb88b0fe367edf3a76a209776f9852",
-    appType: SONIC_APP_TYPE.SAPPHIRE,
-    app: SONIC_APP.STABLE_JACK,
-  },
-  {
-    id: "146_0_0x7d1f2a66eabf9142dd30d1355efcbfd4cfbefd2872d24ca9855641434816a525",
-    appType: SONIC_APP_TYPE.EMERALD,
-    app: SONIC_APP.RINGS,
   },
 ];
