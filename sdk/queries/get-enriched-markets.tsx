@@ -22,7 +22,7 @@ import {
 import { getTokenQuotesQueryFunction } from "./get-token-quotes";
 import { id } from "ethers/lib/utils";
 import { SONIC_CHAIN_ID, SONIC_ROYCO_GEM_BOOST_ID } from "../sonic";
-import { calculateSonicYield } from "../sonic/sonic-yield";
+import { calculateSonicYield, getAllSonicMarkets } from "../sonic/sonic-yield";
 
 export type MarketFilter = {
   id: string;
@@ -526,29 +526,34 @@ export const getEnrichedMarketsWithBeraYield = async ({
   is_verified,
   custom_token_data,
 }: GetEnrichedMarketsQueryOptionsParams) => {
-  const [allBeraMarkets, result, beraQuote] = await Promise.all([
-    getAllBeraMarkets({
-      client,
-      customTokenData: custom_token_data ?? [],
-    }),
-    getEnrichedMarketsQueryFunction({
-      client,
-      chain_id,
-      market_type,
-      market_id,
-      page_index,
-      page_size,
-      filters,
-      sorting,
-      search_key,
-      is_verified,
-      custom_token_data,
-    }),
-    getTokenQuotesQueryFunction({
-      client,
-      token_ids: [BERA_TOKEN_ID],
-    }),
-  ]);
+  const [allBeraMarkets, allSonicMarkets, result, beraQuote] =
+    await Promise.all([
+      getAllBeraMarkets({
+        client,
+        customTokenData: custom_token_data ?? [],
+      }),
+      getAllSonicMarkets({
+        client,
+        customTokenData: custom_token_data ?? [],
+      }),
+      getEnrichedMarketsQueryFunction({
+        client,
+        chain_id,
+        market_type,
+        market_id,
+        page_index,
+        page_size,
+        filters,
+        sorting,
+        search_key,
+        is_verified,
+        custom_token_data,
+      }),
+      getTokenQuotesQueryFunction({
+        client,
+        token_ids: [BERA_TOKEN_ID],
+      }),
+    ]);
 
   let currentBeraQuote = undefined;
 
@@ -598,6 +603,7 @@ export const getEnrichedMarketsWithBeraYield = async ({
         const sonic_gem_boost_annual_change_ratio = calculateSonicYield({
           enrichedMarket: row as EnrichedMarketDataType,
           customTokenData: [...(custom_token_data ?? [])],
+          markets: allSonicMarkets,
         });
 
         const yield_breakdown = [
