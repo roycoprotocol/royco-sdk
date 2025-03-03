@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x9A08cD5691E009cC72E2A4d8e7F2e6EE14E96d6d",
+  id: "146-0x9a08cd5691e009cc72e2a4d8e7f2e6ee14e96d6d",
   chain_id: 146,
-  contract_address: "0x9A08cD5691E009cC72E2A4d8e7F2e6EE14E96d6d",
+  contract_address: "0x9a08cd5691e009cc72e2a4d8e7f2e6ee14e96d6d",
   name: "Stability Gem Season 1",
   symbol: "sGEM1",
   image:
