@@ -9,13 +9,6 @@ In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
   is_verified: true,
   external_incentives: [
     {
-      token_id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
-      label: "Gems Boost",
-      value: async ({ roycoClient, chainClient }) => {
-        return "420";
-      },
-    },
-    {
       token_id: "146-0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db",
       label: "Discount Tickets",
       value: async ({ roycoClient, chainClient }) => {
