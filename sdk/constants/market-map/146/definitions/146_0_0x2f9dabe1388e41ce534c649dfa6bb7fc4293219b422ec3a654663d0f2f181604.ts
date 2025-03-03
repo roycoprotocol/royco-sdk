@@ -7,10 +7,6 @@ export default defineMarket({
 
 In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
   is_verified: false,
-  // @dev: Not sure what to add as token_id since discount tickets are not tokens, they are points
-  // @note: You need to create a fake token with a random address and PR that into the SDK
-  // because even though it's a point, it's need to be represented somehow in the UI
-  // so that the UI can display it -- see this below for example of "Gems Boost"
   external_incentives: [
     {
       token_id: "146-0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db",
