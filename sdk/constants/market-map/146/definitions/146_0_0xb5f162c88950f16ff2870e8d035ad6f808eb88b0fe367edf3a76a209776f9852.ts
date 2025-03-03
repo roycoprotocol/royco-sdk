@@ -1,13 +1,20 @@
 import { defineMarket } from "@/sdk/constants";
 
 export default defineMarket({
-  id: `146_0_0xe896bc4f98e677d6c4e0c146e3cce74c3f152db7023f85b1131c0ee91a89fff1`,
-  name: `Deposit wS to buy PT-scUSD`,
+  id: `146_0_0xb5f162c88950f16ff2870e8d035ad6f808eb88b0fe367edf3a76a209776f9852`,
+  name: `Deposit USDC.e to buy PT-scUSD`,
   description: `PT-scUSD enables investors to farm Sonic points, Gems, Rings Points, Veda Points, and Stable Jack Discount Tickets with leverage while maintaining scUSD exposure.
 
 In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
-  is_verified: false,
+  is_verified: true,
   external_incentives: [
+    {
+      token_id: "146-0x3d10814c737b98de96f5010063ad4eb13d9c188e",
+      label: "Gems Boost",
+      value: async ({ roycoClient, chainClient }) => {
+        return "420";
+      },
+    },
     {
       token_id: "146-0x4b0897b0513fdc7c541b6d9d7e929c4e5364d2db",
       label: "Discount Tickets",

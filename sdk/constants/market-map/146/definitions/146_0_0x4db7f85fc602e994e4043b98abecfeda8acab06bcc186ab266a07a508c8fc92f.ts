@@ -1,12 +1,12 @@
 import { defineMarket } from "@/sdk/constants";
 
 export default defineMarket({
-  id: `146_0_0xa617b6fa04e006f79053160f4c6d531a2285a1c7f685eea02d4b9545b4ea58a1`,
-  name: `Deposit wS to buy YT-scUSD`,
+  id: `146_0_0x4db7f85fc602e994e4043b98abecfeda8acab06bcc186ab266a07a508c8fc92f`,
+  name: `Deposit USDC.e to buy YT-scUSD`,
   description: `YT-scUSD enables investors to farm leveraged scUSD yield.
 
 In exchange, YT-scUSD holders forgo their points exposure.`,
-  is_verified: false,
+  is_verified: true,
   native_yield: [
     {
       token_id: "146-0xd2901d474b351bc6ee7b119f9c920863b0f781b2",
