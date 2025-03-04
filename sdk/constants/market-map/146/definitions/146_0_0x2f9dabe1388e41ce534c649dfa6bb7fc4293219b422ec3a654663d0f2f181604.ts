@@ -5,7 +5,7 @@ export default defineMarket({
   name: `Deposit wS to buy PT-stS`,
   description: `PT-stS enables investors to farm Sonic points, Gems, and Stable Jack Discount Tickets with leverage while maintaining long stS exposure.
 
-In exchange, PT-stS holders pay a certain fee to YT-stS holders.`,
+In exchange, PT-stS holders pay a certain fee to YT-stS holders. Users will received PT-stS upon withdrawal.`,
   is_verified: false,
   external_incentives: [
     {
