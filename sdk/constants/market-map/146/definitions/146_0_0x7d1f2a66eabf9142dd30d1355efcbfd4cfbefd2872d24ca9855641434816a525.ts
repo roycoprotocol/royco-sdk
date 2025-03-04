@@ -5,9 +5,8 @@ export default defineMarket({
   name: `Deposit USDC into Rings to Mint and Stake scUSD`,
   description: `When USDC is deposited in the market it is used to mint scUSD, staked and auto-compounds while collecting points. There is a 5-day redemption period for withdrawals, and the user will receive wstkscusd.`,
   is_verified: true,
-external_incentives: [
+  external_incentives: [
     {
-
       token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
       label: "Sonic Points",
       value: async ({ roycoClient, chainClient }) => {
@@ -93,4 +92,5 @@ external_incentives: [
         return value;
       },
     },
+  ],
 });
