@@ -7,7 +7,7 @@ export default defineToken({
   name: "Wrapped Sonic",
   symbol: "WS",
   image:
-    "https://coin-images.coingecko.com/coins/images/52857/large/wrapped_sonic.png?1734536585",
+    "https://i.ibb.co/MDq6zYhQ/w-S-token-400.png",
   decimals: 18,
   source: "coingecko",
   search_id: "wrapped-sonic",
