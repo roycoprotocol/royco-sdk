@@ -105,6 +105,7 @@ export const sonicMarketMap: {
     info: {
       description:
         "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money. Each $1 of liquidity into Rings receive 48 Rings Points.",
+      url: "https://app.rings.money/#/points",
     },
     app: SONIC_APP.RINGS,
   },
