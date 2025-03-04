@@ -21,6 +21,7 @@
     "boyco:lp": "tsx sdk/boyco/stats/lp-token-quotes.ts",
     "corn:kernel": "tsx sdk/corn/kernel-market/get-all-positions.ts",
     "boyco:receipt": "tsx sdk/boyco/receipt-tokens/insert-tokens.ts",
+    "boyco:input": "tsx sdk/boyco/input-tokens/insert-tokens.ts",
     "boyco:supabase:positions": "tsx sdk/boyco/receipt-tokens/insert-into-supabase.ts"
   },
   "keywords": [
