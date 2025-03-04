@@ -98,7 +98,7 @@ In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
       token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
       label: "Sonic Points",
       value: async ({ roycoClient, chainClient }) => {
-         let value = "Sonic Points Multiplier";
+        let value = "Sonic Points Multiplier";
         const treasury = "0xe445AcA5617aFe568768fa4a4b32FAeFFeCCd1f9";
         const pt_address = "0x11d686EF994648Ead6180c722F122169058389ee";
         const groupId =
@@ -137,7 +137,7 @@ In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
 
           const tvl =
             (Number(tvl_supply ?? 0) * Number(tvl_price ?? 0)) / 10 ** 36;
-      const pt_supply = await chainClient.readContract({
+          const pt_supply = await chainClient.readContract({
             address: pt_address,
             abi: [
               {
