@@ -5,7 +5,7 @@ export default defineMarket({
   name: `Deposit wS to buy PT-wOS`,
   description: `PT-wOS enables investors to farm Sonic points, Gems, and Stable Jack Discount Tickets with leverage while maintaining long wOS exposure. 
 
-In exchange, PT-wOS holders pay a certain fee to YT-wOS holders.`,
+In exchange, PT-wOS holders pay a certain fee to YT-wOS holders. Users will received PT-wOS upon withdrawal.`,
   is_verified: true,
 
   external_incentives: [
