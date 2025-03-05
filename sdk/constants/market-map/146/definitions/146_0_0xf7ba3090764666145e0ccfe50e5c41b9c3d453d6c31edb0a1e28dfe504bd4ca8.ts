@@ -21,7 +21,7 @@ export default defineMarket({
         apy: number; // 1 = 1%
       };
 
-      annual_change_ratio = data.apr / 100; // Fix so .01 = 1%
+      annual_change_ratio = data.apy / 100; // Fix so .01 = 1%
     } catch (err) {
       // Omit error for clean server logs
     }
