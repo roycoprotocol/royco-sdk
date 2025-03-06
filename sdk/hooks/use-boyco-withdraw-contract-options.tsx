@@ -28,7 +28,6 @@ export const getBoycoReceiptTokenWithdrawalTransactionOptions = ({
     marketType: "recipe",
     txStatus: "idle",
     txHash: null,
-    tokensIn: position.receipt_token_data ? [position.receipt_token_data] : [],
   };
 
   return txOptions;
