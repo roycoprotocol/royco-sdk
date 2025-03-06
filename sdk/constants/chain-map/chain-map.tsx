@@ -8,6 +8,7 @@ import {
   plume,
   sonic,
   berachain,
+  berachainTestnet,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -64,32 +65,12 @@ export const Sonic = {
 };
 
 export const BerachainTestnet = defineChain({
-  id: 80000,
-  name: "Berachain cArtio",
-  nativeCurrency: {
-    name: "BERA Token",
-    symbol: "CBERA",
-    decimals: 18,
-  },
-  contracts: {
-    multicall3: {
-      address: "0xca11bde05977b3631167028862be2a173976ca11 ",
-      blockCreated: 121028,
-    },
-  },
-  rpcUrls: {
-    default: { http: ["https://app.royco.org/api/rpc/80000"] },
-  },
-  blockExplorers: {
-    default: {
-      name: "Berascan",
-      url: "https://80000.testnet.routescan.io",
-    },
-  },
+  ...berachainTestnet,
+  id: 80069,
   testnet: true,
   image:
     "https://pbs.twimg.com/profile_images/1775162753499508736/2XBUzQhl_400x400.jpg",
-  symbol: "CBERA",
+  symbol: "ABERA",
 });
 
 export const BerachainMainnet = defineChain({

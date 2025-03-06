@@ -44,6 +44,22 @@ export type EnrichedPositionsBoycoDataType =
         price: number;
       }
     >;
+    dust_token_datas: Array<
+      SupportedToken & {
+        raw_amount: string;
+        token_amount: number;
+        token_amount_usd: number;
+        price: number;
+      }
+    >;
+    incentive_token_datas: Array<
+      SupportedToken & {
+        raw_amount: string;
+        token_amount: number;
+        token_amount_usd: number;
+        price: number;
+      }
+    >;
   };
 
 export type GetEnrichedPositionsBoycoQueryParams = {
@@ -150,11 +166,42 @@ export const getEnrichedPositionsBoycoQueryFunction = async ({
             },
           );
 
+          const dust_token_datas = (row.dust_token_ids ?? [])
+            .map((dust_token_id, index) => {
+              const dust_token_info: SupportedToken =
+                getSupportedToken(dust_token_id);
+
+              const raw_amount = BigNumber.from(row.token_0_amount ?? "0")
+                .mul(row.dust_token_amounts?.[index] ?? "0")
+                .div(row.total_amount_bridged ?? "0")
+                .toString();
+
+              return {
+                ...dust_token_info,
+                raw_amount,
+                token_amount: parseRawAmountToTokenAmount(
+                  raw_amount,
+                  dust_token_info.decimals ?? 0,
+                ),
+                token_amount_usd: parseRawAmountToTokenAmountUsd(
+                  raw_amount,
+                  dust_token_info.decimals ?? 0,
+                  row.dust_token_prices?.[index] ?? 0,
+                ),
+                price: row.dust_token_prices?.[index] ?? 0,
+              };
+            })
+            .filter(
+              (row) => row.raw_amount !== "0" && row.token_amount_usd > 1,
+            );
+
           return {
             ...row,
             token_0_data,
             receipt_token_data,
             token_1_datas,
+            dust_token_datas,
+            incentive_token_datas: [receipt_token_data, ...dust_token_datas],
           };
         }
 
