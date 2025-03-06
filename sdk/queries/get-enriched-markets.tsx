@@ -23,6 +23,7 @@ import { getTokenQuotesQueryFunction } from "./get-token-quotes";
 import { id } from "ethers/lib/utils";
 import { SONIC_CHAIN_ID, SONIC_ROYCO_GEM_BOOST_ID } from "../sonic";
 import { calculateSonicYield, getAllSonicMarkets } from "../sonic/sonic-yield";
+import { boycoLinks } from "../boyco/links";
 
 export type MarketFilter = {
   id: string;
@@ -158,6 +159,14 @@ export type EnrichedMarketDataType =
       }
     >;
     incentive_ids?: Array<string>;
+    boyco?: {
+      bera_merkle_id?: string | null;
+      native_incentive_link?: string | null;
+      external_incentives?: Array<{
+        label: string;
+        link: string;
+      }> | null;
+    };
   };
 
 export type GetEnrichedMarketsQueryParams = {
@@ -594,10 +603,21 @@ export const getEnrichedMarketsWithBeraYield = async ({
         const annual_change_ratio =
           (row.annual_change_ratio || 0) + bera_annual_change_ratio;
 
+        let boyco = null;
+
+        if (!!row && row.market_id) {
+          boyco = {
+            native_incentive_link: boycoLinks["native"][row.market_id],
+            bera_merkle_id: boycoLinks["merkle"][row.market_id],
+            external_incentives: boycoLinks["external"][row.market_id],
+          };
+        }
+
         return {
           ...row,
           yield_breakdown,
           annual_change_ratio,
+          boyco,
         };
       } else if (row.chain_id === SONIC_CHAIN_ID) {
         const sonic_gem_boost_annual_change_ratio = calculateSonicYield({
