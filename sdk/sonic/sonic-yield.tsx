@@ -84,7 +84,7 @@ export const calculateSonicYield = ({
       0,
     ) || 1;
 
-  const sonicLockupTime = Number(enrichedMarket.lockup_time ?? "1");
+  const sonicLockupTime = parseInt(enrichedMarket.lockup_time || "1") || 1;
 
   let annual_change_ratio = 0;
 
