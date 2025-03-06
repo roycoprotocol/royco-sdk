@@ -8,4 +8,24 @@ export default defineMarket({
   // category: "???",
   // incentive_ids: [],
   // external_incentives: [],
+  underlying_yield: async () => {
+    let annual_change_ratio = 0;
+
+    try {
+      const req = await fetch(
+        "https://api.originprotocol.com/api/v2/os/apr/trailing",
+      );
+
+      const data = (await req.json()) as {
+        apr: number; // 1 = 1%
+        apy: number; // 1 = 1%
+      };
+
+      annual_change_ratio = data.apy / 100; // Fix so .01 = 1%
+    } catch (err) {
+      // Omit error for clean server logs
+    }
+
+    return annual_change_ratio;
+  },
 });

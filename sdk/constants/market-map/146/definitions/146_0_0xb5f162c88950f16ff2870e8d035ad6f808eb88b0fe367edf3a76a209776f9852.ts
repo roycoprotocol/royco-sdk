@@ -137,7 +137,6 @@ In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
 
           const tvl =
             (Number(tvl_supply ?? 0) * Number(tvl_price ?? 0)) / 10 ** 36;
-
           const pt_supply = await chainClient.readContract({
             address: pt_address,
             abi: [

@@ -6,8 +6,8 @@ import {
 import { CustomTokenData } from "../types";
 import {
   SONIC_CHAIN_ID,
+  SONIC_ROYCO_GEM_DISTRIBUTION,
   sonicMarketMap,
-  TOTAL_SONIC_GEM_DISTRIBUTION,
 } from "./sonic-market-map";
 import { SONIC_ROYCO_GEM_BOOST_ID } from "./sonic-points-map";
 
@@ -61,7 +61,7 @@ export const calculateSonicYield = ({
     return 0;
   }
   const appSonicGemDistribution =
-    TOTAL_SONIC_GEM_DISTRIBUTION / uniqueAppName.length;
+    SONIC_ROYCO_GEM_DISTRIBUTION / uniqueAppName.length;
 
   const appName = sonicMarketMap.find(
     (market) => market.id === enrichedMarket.id,

@@ -1,6 +1,7 @@
 export const TOTAL_SONIC_AIRDROP = 190_500_000;
 export const TOTAL_SONIC_GEM_DISTRIBUTION = 1_680_000;
 
+export const SONIC_ROYCO_GEM_DISTRIBUTION = 16_800;
 export const SONIC_ROYCO_GEM_DISTRIBUTION_MULTIPLIER = 0.751;
 
 export const SONIC_CHAIN_ID = 146;
@@ -104,7 +105,8 @@ export const sonicMarketMap: {
     appType: SONIC_APP_TYPE.EMERALD,
     info: {
       description:
-        "Rings Protocol incentivizes each $1 of liquidity with 48 Rings Points. Rings Points represent a variable share of the 13,125 gems they were awarded before Sonic Season 1.",
+        "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money. Each $1 of liquidity into Rings receive 48 Rings Points.",
+      url: "https://app.rings.money/#/points",
     },
     app: SONIC_APP.RINGS,
   },
