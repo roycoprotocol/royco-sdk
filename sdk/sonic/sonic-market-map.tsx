@@ -23,6 +23,7 @@ export enum SONIC_APP {
   EULER = "Euler",
   AAVE = "Aave",
   BEETS = "Beets",
+  PENDLE = "Pendle",
 }
 
 export const SONIC_GEM_DISTRIBUTION_MAP = {
@@ -33,7 +34,7 @@ export const SONIC_GEM_DISTRIBUTION_MAP = {
 
 export const sonicMarketMap: {
   id: string;
-  appType: SONIC_APP_TYPE;
+  appType?: SONIC_APP_TYPE;
   info?: {
     description: string;
     url?: string;
@@ -113,11 +114,14 @@ export const sonicMarketMap: {
   {
     id: "146_0_0xf7ba3090764666145e0ccfe50e5c41b9c3d453d6c31edb0a1e28dfe504bd4ca8",
     appType: SONIC_APP_TYPE.EMERALD,
-    // info: {
-    //   description:
-    //     "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money. Each $1 of liquidity into Rings receive 48 Rings Points.",
-    //   url: "https://app.rings.money/#/points",
-    // },
     app: SONIC_APP.SILIO,
+  },
+  {
+    id: "146_0_0xfc54f53282763606c7cbf28db3490b9781c9bbb3ae228bd586b97926816e0244",
+    app: SONIC_APP.PENDLE,
+  },
+  {
+    id: "146_0_0xe536a03ac836edb8ae2fbd6ba611c1faa3fb411db871e7a41bc7f1ad4b70e3a2",
+    app: SONIC_APP.PENDLE,
   },
 ];
