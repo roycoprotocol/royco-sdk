@@ -34,6 +34,7 @@ const constructFilterClauses = (filters: ContractFilter[]): string => {
   let typeFilter = "";
   let sourceFilter = "";
   let chainIdFilter = "";
+
   let whitelistedContractFilter = "";
 
   /**
@@ -103,7 +104,7 @@ export const searchContractsQueryOptions = (
   filters: ContractFilter[] = [],
   searchKey?: string,
   pageIndex: number = 0,
-)  => ({
+) => ({
   queryKey: [
     "search-contracts",
     `searchKey=${searchKey}`,
