@@ -24,6 +24,7 @@ export enum SONIC_APP {
   AAVE = "Aave",
   BEETS = "Beets",
   PENDLE = "Pendle",
+  STABILITY = "Stability",
 }
 
 export const SONIC_GEM_DISTRIBUTION_MAP = {
@@ -118,10 +119,38 @@ export const sonicMarketMap: {
   },
   {
     id: "146_0_0xfc54f53282763606c7cbf28db3490b9781c9bbb3ae228bd586b97926816e0244",
+    info: {
+      description:
+        "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money.",
+      url: "https://app.rings.money/#/points",
+    },
     app: SONIC_APP.PENDLE,
   },
   {
     id: "146_0_0xe536a03ac836edb8ae2fbd6ba611c1faa3fb411db871e7a41bc7f1ad4b70e3a2",
+    info: {
+      description:
+        "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money.",
+      url: "https://app.rings.money/#/points",
+    },
     app: SONIC_APP.PENDLE,
+  },
+  {
+    id: "146_0_0xf88e5c4dc5a93102e0a2b8cd3d0ff1eb2c6e488d6edef7c72a5636843540b4f4",
+    info: {
+      description:
+        "Stability will distribute a pro-rata share of 4,375 Gems between depositors on Royco and rings.money. Stability gems are tokenized.",
+      url: "https://stability.farm/vaults",
+    },
+    app: SONIC_APP.STABILITY,
+  },
+  {
+    id: "146_0_0xc2b6fade2c202f102b59c4f2a1dabcf414deec4bd0b868757e218ed19f3c8ca6",
+    info: {
+      description:
+        "Stability will distribute a pro-rata share of 4,375 Gems between depositors on Royco and rings.money. Stability gems are tokenized.",
+      url: "https://stability.farm/vaults",
+    },
+    app: SONIC_APP.STABILITY,
   },
 ];
