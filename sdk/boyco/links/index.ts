@@ -6,9 +6,9 @@ export const boycoLinks: {
   native: {
     // D2 Finance
     "0xb7b78119806fcb9bbc499131da16b52ce52cf4a1ceabfc59e4f2f6e6ef7046c0":
-      "https://edamame.fun/leaderboard",
+      "https://d2.finance/strategies",
     "0x0964848864e96952ee2454ce58fc93b867f9b2d9a6b44216eec8b08726813d1b":
-      "https://edamame.fun/leaderboard",
+      "https://d2.finance/strategies",
 
     // Dolomite
     "0x2a3a73ba927ec6bbf0e2e12e21a32e274a295389ce9d6ae2b32435d12c597c2c":
