@@ -181,7 +181,7 @@ In exchange, PT-scUSD holders pay a certain fee to YT-scUSD holders.`,
       },
     },
     {
-      token_id: "146-0xbb9beb82ebf43d02d3a3f4fd431906d1e39a117d",
+      token_id: "146-0x5e75334f4270ffe07a80b28fc831bfab2d83706e",
       label: "Rings Points",
       value: async ({ roycoClient, chainClient }) => {
         let value = "Rings Points Multiplier";
