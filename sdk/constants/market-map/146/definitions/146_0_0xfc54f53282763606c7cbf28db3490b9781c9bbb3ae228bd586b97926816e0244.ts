@@ -48,4 +48,28 @@ export default defineMarket({
       },
     },
   ],
+
+  external_incentives: [
+    {
+      token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
+      label: "Sonic Points",
+      value: async ({ roycoClient, chainClient }) => {
+        return "8x Sonic Points";
+      },
+    },
+    {
+      token_id: "146-0xbb9beb82ebf43d02d3a3f4fd431906d1e39a117d",
+      label: "Rings Points",
+      value: async ({ roycoClient, chainClient }) => {
+        return "1.5x Rings Points";
+      },
+    },
+    {
+      token_id: "146-0xab8898b840b681cd406aa53ad5d1c167178441c7",
+      label: "Veda Points",
+      value: async ({ roycoClient, chainClient }) => {
+        return "3x Veda Points";
+      },
+    },
+  ],
 });
