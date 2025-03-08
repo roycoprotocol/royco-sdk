@@ -113,7 +113,7 @@ export const sonicMarketMap: {
     app: SONIC_APP.RINGS,
   },
   {
-    id: "146_0_0xf7ba3090764666145e0ccfe50e5c41b9c3d453d6c31edb0a1e28dfe504bd4ca8",
+    id: "146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca",
     appType: SONIC_APP_TYPE.EMERALD,
     app: SONIC_APP.SILIO,
   },
@@ -133,6 +133,14 @@ export const sonicMarketMap: {
         "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money.",
       url: "https://app.rings.money/#/points",
     },
+    app: SONIC_APP.PENDLE,
+  },
+  {
+    id: "146_0_0x298704e61b0720d95aa73960722c07ab2387d4618b1a769124c157a1420699e1",
+    app: SONIC_APP.PENDLE,
+  },
+  {
+    id: "146_0_0x43089e4f71ca768555542d3229de5a06b9f3ed25f5ba829ba105c0dadc1ea22f",
     app: SONIC_APP.PENDLE,
   },
   {
