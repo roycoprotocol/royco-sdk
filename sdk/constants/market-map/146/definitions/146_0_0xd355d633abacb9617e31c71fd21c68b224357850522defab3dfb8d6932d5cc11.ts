@@ -11,27 +11,31 @@ export default defineMarket({
     let annual_change_ratio = 0.45;
 
     try {
-
       const query = `{
           stsGetGqlStakedSonicData {
             stakingApr
           }
-        }`  
-      const backendResponse = await fetch('https://backend-v3.beets-ftm-node.com/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+        }`;
+      const backendResponse = await fetch(
+        "https://backend-v3.beets-ftm-node.com/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query }),
         },
-        body: JSON.stringify({ query }),
-    });
+      );
 
-      const data = await backendResponse.json() as {stsGetGqlStakedSonicData: {stakingApr: string}};
+      const data = (await backendResponse.json()) as {
+        stsGetGqlStakedSonicData: { stakingApr: string };
+      };
 
-      annual_change_ratio = parseFloat(data.stsGetGqlStakedSonicData.stakingApr)
-    } catch (err) {
-    }
+      annual_change_ratio = parseFloat(
+        data.stsGetGqlStakedSonicData.stakingApr,
+      );
+    } catch (err) {}
 
     return annual_change_ratio;
   },
-
 });
