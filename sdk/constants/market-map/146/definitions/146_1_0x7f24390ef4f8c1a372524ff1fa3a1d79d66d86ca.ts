@@ -5,11 +5,7 @@ export default defineMarket({
   name: `Deposit OS into Origin`,
   description: `Deposits Origin Sonic (OS) to earn passive yield. Learn more at https:&#x2F;&#x2F;www.originprotocol.com&#x2F;os`,
   is_verified: true,
-  // category: "???",
-  // incentive_ids: [],
-  // external_incentives: [],
-  external_incentives: [
- underlying_yield: async () => {
+  underlying_yield: async () => {
     let annual_change_ratio = 0;
 
     try {
@@ -29,7 +25,7 @@ export default defineMarket({
 
     return annual_change_ratio;
   },
-    
+  external_incentives: [
     {
       token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
       label: "Sonic Points",
