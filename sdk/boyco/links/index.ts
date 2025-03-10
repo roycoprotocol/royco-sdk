@@ -31,6 +31,8 @@ export const boycoLinks: {
       "https://app.dolomite.io/boyco",
     "0xc90525132d909f992363102ebd6298d95b1f312acdb9421fd1f7ac0c0dd78d3f":
       "https://app.dolomite.io/boyco",
+    "0xd10bdc88272e0958baa62a4ae2bfce1d8feed639a93e03c0aa5cec7adfbdf2c3":
+      "https://app.dolomite.io/boyco",
   },
   merkle: {
     // D2 Finance
@@ -59,6 +61,8 @@ export const boycoLinks: {
     "0x2dd74f8f8a8d7f27b2a82a6edce57b201f9b4a3c4780934caf99363115e48be6":
       "0x0f3ac8deb622223c93cdbdd32cade88e93ed7d477cdb5334e5060df404735c41",
     "0xc90525132d909f992363102ebd6298d95b1f312acdb9421fd1f7ac0c0dd78d3f":
+      "0x0f3ac8deb622223c93cdbdd32cade88e93ed7d477cdb5334e5060df404735c41",
+    "0xd10bdc88272e0958baa62a4ae2bfce1d8feed639a93e03c0aa5cec7adfbdf2c3":
       "0x0f3ac8deb622223c93cdbdd32cade88e93ed7d477cdb5334e5060df404735c41",
   },
   external: {},
