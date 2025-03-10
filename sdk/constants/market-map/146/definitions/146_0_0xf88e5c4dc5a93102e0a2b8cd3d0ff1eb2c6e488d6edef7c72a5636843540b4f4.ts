@@ -26,4 +26,13 @@ export default defineMarket({
 
     return annual_change_ratio;
   },
+  external_incentives: [
+    {
+      token_id: "146-0xaa21e59bf97313b3b3850e9f878ffffc733a946a",
+      label: "Sonic Points",
+      value: async ({ roycoClient, chainClient }) => {
+        return "76x Sonic Points";
+      },
+    },
+  ],
 });
