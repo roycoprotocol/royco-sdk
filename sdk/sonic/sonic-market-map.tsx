@@ -15,7 +15,7 @@ export enum SONIC_APP_TYPE {
 export enum SONIC_APP {
   STABLE_JACK = "StableJack",
   RINGS = "Rings",
-  SILIO = "Silo",
+  SILO = "Silo",
   ORIGIN = "Origin",
   SWAPX = "SwapX",
   SHADOW = "Shadow",
@@ -114,25 +114,14 @@ export const sonicMarketMap: {
   },
   {
     id: "146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca",
-    appType: SONIC_APP_TYPE.EMERALD,
-    app: SONIC_APP.SILIO,
+    app: SONIC_APP.ORIGIN,
   },
   {
     id: "146_0_0xfc54f53282763606c7cbf28db3490b9781c9bbb3ae228bd586b97926816e0244",
-    info: {
-      description:
-        "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money.",
-      url: "https://app.rings.money/#/points",
-    },
     app: SONIC_APP.PENDLE,
   },
   {
     id: "146_0_0xe536a03ac836edb8ae2fbd6ba611c1faa3fb411db871e7a41bc7f1ad4b70e3a2",
-    info: {
-      description:
-        "Rings will distribute a pro-rata share of 13,125 Gems between depositors on Royco and rings.money.",
-      url: "https://app.rings.money/#/points",
-    },
     app: SONIC_APP.PENDLE,
   },
   {
@@ -145,20 +134,22 @@ export const sonicMarketMap: {
   },
   {
     id: "146_0_0xf88e5c4dc5a93102e0a2b8cd3d0ff1eb2c6e488d6edef7c72a5636843540b4f4",
+    appType: SONIC_APP_TYPE.RUBY,
     info: {
       description:
-        "Stability will distribute a pro-rata share of 4,375 Gems between depositors on Royco and rings.money. Stability gems are tokenized.",
+        "Stability will distribute a pro-rata share of 4,375 Tokenized Gems between depositors on Royco and stability.farm UI. Stability Gems are tokenized.",
       url: "https://stability.farm/vaults",
     },
     app: SONIC_APP.STABILITY,
   },
   {
-    id: "146_0_0xc2b6fade2c202f102b59c4f2a1dabcf414deec4bd0b868757e218ed19f3c8ca6",
+    id: "146_0_0xd355d633abacb9617e31c71fd21c68b224357850522defab3dfb8d6932d5cc11",
+    appType: SONIC_APP_TYPE.SAPPHIRE,
     info: {
       description:
-        "Stability will distribute a pro-rata share of 4,375 Gems between depositors on Royco and rings.money. Stability gems are tokenized.",
-      url: "https://stability.farm/vaults",
+        "Beets will distribute a pro-rata share of 8,750 Sonic Gems between depositors on Royco and beets.fi. Beets Gems are Tokenized.",
+      url: "https://beets.fi/stake",
     },
-    app: SONIC_APP.STABILITY,
+    app: SONIC_APP.BEETS,
   },
 ];
