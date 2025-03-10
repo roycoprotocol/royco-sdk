@@ -8,7 +8,7 @@ export default defineMarket({
 
   underlying_yield: async ({ roycoClient, chainClient }) => {
     // Add a fallback value just in case the API call fails
-    let annual_change_ratio = 0.45;
+    let annual_change_ratio = 0.045;
 
     try {
       const query = `{
