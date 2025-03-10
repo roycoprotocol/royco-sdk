@@ -113,10 +113,6 @@ export const sonicMarketMap: {
     app: SONIC_APP.RINGS,
   },
   {
-    id: "146_1_0x7f24390ef4f8c1a372524ff1fa3a1d79d66d86ca",
-    app: SONIC_APP.ORIGIN,
-  },
-  {
     id: "146_0_0xfc54f53282763606c7cbf28db3490b9781c9bbb3ae228bd586b97926816e0244",
     app: SONIC_APP.PENDLE,
   },
