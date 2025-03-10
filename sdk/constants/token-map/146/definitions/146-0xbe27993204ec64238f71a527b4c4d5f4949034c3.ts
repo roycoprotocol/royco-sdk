@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "PT-wstkscUSD",
   image:
     "https://pbs.twimg.com/profile_images/1621033017337843713/loDsYCJr_400x400.jpg",
-  decimals: 18,
+  decimals: 6,
   source: "",
   search_id: "",
   type: "token",
