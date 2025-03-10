@@ -5,4 +5,33 @@ export default defineMarket({
   name: `Stake S for stS on Beets`,
   description: `When wS is supplied to the market, it is staked for stS on Beets. Users receive stS when they exit the market. `,
   is_verified: false,
+
+  underlying_yield: async ({ roycoClient, chainClient }) => {
+    // Add a fallback value just in case the API call fails
+    let annual_change_ratio = 0.45;
+
+    try {
+
+      const query = `{
+          stsGetGqlStakedSonicData {
+            stakingApr
+          }
+        }`  
+      const backendResponse = await fetch('https://backend-v3.beets-ftm-node.com/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query }),
+    });
+
+      const data = await backendResponse.json() as {stsGetGqlStakedSonicData: {stakingApr: string}};
+
+      annual_change_ratio = parseFloat(data.stsGetGqlStakedSonicData.stakingApr)
+    } catch (err) {
+    }
+
+    return annual_change_ratio;
+  },
+
 });
