@@ -6,18 +6,9 @@ export default defineMarket({
   description: `When wS is supplied to the market, it is staked for stS on Beets. Users receive stS when they exit the market. `,
   is_verified: false,
 
-  
-  /**
-   * @note This is the yield that underlying ERC4626 vault has
-   * -- it's only relevant for Royco Vault Markets,
-   * ignore this for Royco Recipe Markets
-   *
-   * @note This returns a number, not an array
-   * -- i repeat, "NOT AN ARRAY", repeating again, "NOT AN ARRAY"
-   */
   underlying_yield: async ({ roycoClient, chainClient }) => {
     // Add a fallback value just in case the API call fails
-    let annual_change_ratio = 0;
+    let annual_change_ratio = 0.45;
 
     try {
 
@@ -38,12 +29,8 @@ export default defineMarket({
 
       annual_change_ratio = parseFloat(data.stsGetGqlStakedSonicData.stakingApr)
     } catch (err) {
-      // Don't log the error when you make PR,
-      // because it will be called server side and
-      // we don't want to fill server side logs with failed API calls
     }
 
-    // Don't forget to return the value, because why not?
     return annual_change_ratio;
   },
 
