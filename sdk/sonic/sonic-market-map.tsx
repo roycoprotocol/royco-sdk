@@ -129,7 +129,7 @@ export const sonicMarketMap: {
     app: SONIC_APP.PENDLE,
   },
   {
-    id: "146_0_0xf88e5c4dc5a93102e0a2b8cd3d0ff1eb2c6e488d6edef7c72a5636843540b4f4",
+    id: "146_0_0x1909c54081dda4ba39d7c18f53f1cdb34cb4f436557a5e82cb057d1355a0cd86",
     appType: SONIC_APP_TYPE.RUBY,
     info: {
       description:
