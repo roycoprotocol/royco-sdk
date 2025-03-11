@@ -626,6 +626,13 @@ export const getEnrichedMarketsWithBeraYield = async ({
           markets: allSonicMarkets,
         });
 
+        if (
+          sonic_gem_boost_annual_change_ratio === undefined ||
+          sonic_gem_boost_annual_change_ratio === null
+        ) {
+          return row;
+        }
+
         const yield_breakdown = [
           ...row.yield_breakdown,
           {
