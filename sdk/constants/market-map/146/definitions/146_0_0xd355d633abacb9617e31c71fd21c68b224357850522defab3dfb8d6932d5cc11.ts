@@ -28,7 +28,7 @@ export default defineMarket({
       );
 
       const data = (await backendResponse.json()) as {
-        data: { stsGetGqlStakedSonicData: { stakingApr: string };}
+        data: { stsGetGqlStakedSonicData: { stakingApr: string } };
       };
 
       annual_change_ratio = parseFloat(
