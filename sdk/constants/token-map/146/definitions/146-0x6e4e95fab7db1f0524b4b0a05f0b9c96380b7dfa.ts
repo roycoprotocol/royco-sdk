@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://pbs.twimg.com/profile_images/1621033017337843713/loDsYCJr_400x400.jpg",
   decimals: 18,
-  source: "",
-  search_id: "",
+  source: "coingecko",
+  search_id: "rings-scusd",
   type: "token",
 });
