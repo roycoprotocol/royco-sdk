@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x3605509B2C8Bff9808da5dd5c81547d9EDC4Ffa2",
+  id: "146-0x3605509b2c8bff9808da5dd5c81547d9edc4ffa2",
   chain_id: 146,
-  contract_address: "0x3605509B2C8Bff9808da5dd5c81547d9EDC4Ffa2",
+  contract_address: "0x3605509b2c8bff9808da5dd5c81547d9edc4ffa2",
   name: "Silo_PT-wstkscUSD-29MAY2025_USDC.e",
   symbol: "Silo_PT-wstkscUSD-29MAY2025_USDC.e",
   image:
