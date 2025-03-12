@@ -5,4 +5,24 @@ export default defineMarket({
   name: `Deploy stablecoin into OUSD`,
   description: `Deploys USDC, USDT, and DAI into OUSD to earn passive yield. Learn more at https:&#x2F;&#x2F;ousd.com&#x2F;`,
   is_verified: false,
+  underlying_yield: async () => {
+    let annual_change_ratio = 0;
+
+    try {
+      const req = await fetch(
+        "https://api.originprotocol.com/api/v2/ousd/apr/trailing",
+      );
+
+      const data = (await req.json()) as {
+        apr: number; // 1 = 1%
+        apy: number; // 1 = 1%
+      };
+
+      annual_change_ratio = data.apy / 100; // Fix so .01 = 1%
+    } catch (err) {
+      // Omit error for clean server logs
+    }
+
+    return annual_change_ratio;
+  },
 });
