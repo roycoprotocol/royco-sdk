@@ -1,4 +1,6 @@
 import { defineMarket } from "@/sdk/constants";
+import { extractTokenQuote } from "@/sdk/hooks";
+import { getTokenQuotesQueryFunction } from "@/sdk/queries";
 
 export default defineMarket({
   id: `1_0_0x72bec627884d7bdf538f174bedd551e9eccf3995adc880f40972e2bab87df3b9`,
@@ -55,11 +57,17 @@ Earn DEX LP fees, as well as rewards from Berachain, Infrared and Kodiak. This i
 
           const market = market_req.data?.data?.[0];
 
-          const response = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=stargate-finance&vs_currencies=usd",
-          );
-          const priceData = await response.json();
-          const stgPrice = priceData["stargate-finance"].usd;
+          const tokenQuotes = await getTokenQuotesQueryFunction({
+            client: roycoClient,
+            token_ids: ["1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"],
+          });
+
+          const tokenQuote = extractTokenQuote({
+            token_id: "1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+            token_quotes: tokenQuotes,
+          });
+
+          const stgPrice = tokenQuote.price;
 
           // Calculate annual STG rewards value
           const annualRewardValueUSD =
