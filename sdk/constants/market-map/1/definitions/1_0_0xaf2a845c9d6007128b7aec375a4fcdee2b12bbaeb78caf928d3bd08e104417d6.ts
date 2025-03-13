@@ -1,6 +1,4 @@
 import { defineMarket } from "@/sdk/constants";
-import { extractTokenQuote } from "@/sdk/hooks";
-import { getTokenQuotesQueryFunction } from "@/sdk/queries";
 
 export default defineMarket({
   id: `1_0_0xaf2a845c9d6007128b7aec375a4fcdee2b12bbaeb78caf928d3bd08e104417d6`,
@@ -75,17 +73,11 @@ Earn DEX LP fees, as well as rewards from Berachain, Dinero, Infrared and Kodiak
 
           const market = market_req.data?.data?.[0];
 
-          const tokenQuotes = await getTokenQuotesQueryFunction({
-            client: roycoClient,
+          const tokenQuotes = await roycoClient.rpc("get_token_quotes", {
             token_ids: ["1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"],
           });
 
-          const tokenQuote = extractTokenQuote({
-            token_id: "1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
-            token_quotes: tokenQuotes,
-          });
-
-          const stgPrice = tokenQuote.price;
+          const stgPrice = tokenQuotes.data?.[0]?.price ?? 0;
 
           // Calculate annual STG rewards value
           const annualRewardValueUSD =

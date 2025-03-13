@@ -1,6 +1,4 @@
 import { defineMarket } from "@/sdk/constants";
-import { getTokenQuotesQueryFunction } from "@/sdk/queries";
-import { extractTokenQuote } from "@/sdk/hooks";
 
 export default defineMarket({
   id: `1_0_0x71cee3cf3329e9a2803d578cdd6c823d7a16aa39adea3a7053395299bd258800`,
@@ -42,17 +40,11 @@ export default defineMarket({
 
           const market = market_req.data?.data?.[0];
 
-          const tokenQuotes = await getTokenQuotesQueryFunction({
-            client: roycoClient,
+          const tokenQuotes = await roycoClient.rpc("get_token_quotes", {
             token_ids: ["1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6"],
           });
 
-          const tokenQuote = extractTokenQuote({
-            token_id: "1-0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
-            token_quotes: tokenQuotes,
-          });
-
-          const stgPrice = tokenQuote.price;
+          const stgPrice = tokenQuotes.data?.[0]?.price ?? 0;
 
           // Calculate annual STG rewards value
           const annualRewardValueUSD =
