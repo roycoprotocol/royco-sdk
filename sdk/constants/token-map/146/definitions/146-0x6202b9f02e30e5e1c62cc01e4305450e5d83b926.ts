@@ -7,7 +7,7 @@ export default defineToken({
   name: "xUSD",
   symbol: "xUSD",
   image: "https://app.streamprotocol.money/assets/usdc-a6e16350.svg",
-  decimals: 18,
+  decimals: 6,
   source: "",
   search_id: "",
   type: "token",
