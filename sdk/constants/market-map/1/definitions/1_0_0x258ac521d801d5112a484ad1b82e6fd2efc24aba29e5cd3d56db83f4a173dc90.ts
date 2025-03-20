@@ -9,7 +9,7 @@ export default defineMarket({
   incentive_ids: ["1-0x460f8d9c78b1bde7da137ce75315bd15d34a369b"],
   external_incentives: [
     {
-      token_id: "98865-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+      token_id: "1-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
       label: "Dinero",
 
       value: async ({ roycoClient, chainClient }) => {

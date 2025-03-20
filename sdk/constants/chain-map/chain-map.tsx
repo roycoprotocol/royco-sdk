@@ -5,10 +5,10 @@ import {
   arbitrum as arbitrumOne,
   base,
   corn,
-  plume,
   sonic,
   berachain,
   berachainTestnet,
+  plumeMainnet,
 } from "viem/chains";
 import { type Chain } from "viem/chains";
 
@@ -50,7 +50,7 @@ export const Corn = {
 };
 
 export const Plume = {
-  ...plume,
+  ...plumeMainnet,
   name: "Plume",
   image:
     "https://pbs.twimg.com/profile_images/1854933222569975808/no3lt9ZL_400x400.jpg",
@@ -87,7 +87,7 @@ export const SupportedChainMap: Record<number, SupportedChain> = {
   [arbitrumOne.id]: ArbitrumOne,
   [base.id]: Base,
   [corn.id]: Corn,
-  [plume.id]: Plume,
+  [plumeMainnet.id]: Plume,
   [sonic.id]: Sonic,
   [BerachainTestnet.id]: BerachainTestnet,
   [BerachainMainnet.id]: BerachainMainnet,
