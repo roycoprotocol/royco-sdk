@@ -1,8 +1,8 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98865-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
-  chain_id: 98865,
+  id: "1-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+  chain_id: 1,
   contract_address: "0x09d9420332bff75522a45fcff4855f82a0a3ff50",
   name: "Dinero",
   symbol: "DINERO",

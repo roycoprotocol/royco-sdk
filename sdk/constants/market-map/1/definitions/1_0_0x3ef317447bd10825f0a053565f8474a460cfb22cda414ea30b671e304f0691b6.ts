@@ -22,7 +22,7 @@ Earn DEX LP fees, as well as rewards from Berachain, Dinero, Swell, and Kodiak. 
       },
     },
     {
-      token_id: "98865-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
+      token_id: "1-0x09d9420332bff75522a45fcff4855f82a0a3ff50",
       label: "Dinero Points",
 
       value: async ({ roycoClient, chainClient }) => {
