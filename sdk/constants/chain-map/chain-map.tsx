@@ -87,7 +87,7 @@ export const SupportedChainMap: Record<number, SupportedChain> = {
   [arbitrumOne.id]: ArbitrumOne,
   [base.id]: Base,
   [corn.id]: Corn,
-  [plumeMainnet.id]: Plume,
+  [Plume.id]: Plume,
   [sonic.id]: Sonic,
   [BerachainTestnet.id]: BerachainTestnet,
   [BerachainMainnet.id]: BerachainMainnet,
