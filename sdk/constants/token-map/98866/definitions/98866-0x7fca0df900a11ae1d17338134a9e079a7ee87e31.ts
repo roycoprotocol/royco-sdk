@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x7fca0df900a11ae1d17338134a9e079a7ee87e31",
   name: "Nest USDY Vault",
   symbol: "nUSDY",
-  image: "https://app.nest.credit/images/nest-treasury-vault.svg",
+  image: "https://app.nest.credit/images/nest-usdy-vault.svg",
   decimals: 6,
   source: "coinmarketcap",
   search_id: "3408",
