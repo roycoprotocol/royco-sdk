@@ -55,6 +55,12 @@ export const Plume = {
   image:
     "https://pbs.twimg.com/profile_images/1854933222569975808/no3lt9ZL_400x400.jpg",
   symbol: "PLUME",
+  contracts: {
+    multicall3: {
+      address: "0xf9da0ef6635f6134d9d1b7eae025159d26ce5838",
+      blockCreated: 4150,
+    },
+  } as const,
 };
 
 export const Sonic = {
