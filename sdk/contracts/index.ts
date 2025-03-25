@@ -5,6 +5,7 @@ import { Contracts as Contracts_42161 } from "./42161";
 import { Contracts as Contracts_21000000 } from "./21000000";
 import { Contracts as Contracts_98866 } from "./98866";
 import { Contracts as Contracts_146 } from "./146";
+import { Contracts as Contracts_999 } from "./999";
 
 export const ContractMap = {
   11155111: Contracts_11155111,
@@ -14,6 +15,7 @@ export const ContractMap = {
   21000000: Contracts_21000000,
   98866: Contracts_98866,
   146: Contracts_146,
+  999: Contracts_999,
 };
 
 export * from "./utils";

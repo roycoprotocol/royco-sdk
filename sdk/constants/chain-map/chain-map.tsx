@@ -87,6 +87,37 @@ export const BerachainMainnet = defineChain({
   symbol: "BERA",
 });
 
+export const hyperevm = defineChain({
+  id: 999,
+  name: "Hyper EVM",
+  nativeCurrency: {
+    name: "HYPE",
+    symbol: "HYPE",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: {
+      http: ["http://rpc.hyperliquid.xyz/evm"],
+      webSocket: ["wss://rpc.hyperliquid.xyz/ws"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "Hyper Explorer",
+      url: "https://hyperliquid.cloud.blockscout.com",
+      apiUrl: "https://hyperliquid.cloud.blockscout.com/api",
+    },
+  },
+});
+
+export const Hyperevm = {
+  ...hyperevm,
+  name: "Hyper EVM",
+  image:
+    "https://pbs.twimg.com/profile_images/1646991609416806408/vKLEZxhh_400x400.png",
+  symbol: "HYPE",
+};
+
 export const SupportedChainMap: Record<number, SupportedChain> = {
   [ethereumSepolia.id]: EthereumSepolia,
   [ethereumMainnet.id]: EthereumMainnet,
