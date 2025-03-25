@@ -116,6 +116,12 @@ export const Hyperevm = {
   image:
     "https://pbs.twimg.com/profile_images/1646991609416806408/vKLEZxhh_400x400.png",
   symbol: "HYPE",
+  contracts: {
+    multicall3: {
+      address: "0xca11bde05977b3631167028862be2a173976ca11",
+      blockCreated: 13051,
+    },
+  } as const,
 };
 
 export const SupportedChainMap: Record<number, SupportedChain> = {
