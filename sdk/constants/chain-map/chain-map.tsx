@@ -134,6 +134,7 @@ export const SupportedChainMap: Record<number, SupportedChain> = {
   [sonic.id]: Sonic,
   [BerachainTestnet.id]: BerachainTestnet,
   [BerachainMainnet.id]: BerachainMainnet,
+  [Hyperevm.id]: Hyperevm,
 };
 
 export const SupportedChainlist = Object.values(SupportedChainMap);
