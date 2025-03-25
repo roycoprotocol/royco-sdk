@@ -5,6 +5,7 @@ import { MarketMap8453 } from "./8453";
 import { MarketMap21000000 } from "./21000000";
 import { MarketMap146 } from "./146";
 import { MarketMap98866 } from "./98866";
+import { MarketMap999 } from "./999";
 
 import type { SupportedMarket } from "./utils";
 
@@ -16,6 +17,7 @@ export {
   MarketMap21000000,
   MarketMap98866,
   MarketMap146,
+  MarketMap999,
 };
 
 export const SupportedMarketMap = {
@@ -26,6 +28,7 @@ export const SupportedMarketMap = {
   ...MarketMap21000000,
   ...MarketMap98866,
   ...MarketMap146,
+  ...MarketMap999,
 } as Record<string, SupportedMarket>;
 
 export const MarketList = Object.values(SupportedMarketMap);

@@ -4,7 +4,7 @@ import prettier from "prettier";
 
 const projectRoot = process.cwd();
 
-const CHAIN_IDS = [1, 11155111, 8453, 42161, 21000000, 98866, 146, 80094];
+const CHAIN_IDS = [1, 11155111, 8453, 42161, 21000000, 98866, 146, 80094, 999];
 
 const generateTokenMap = async () => {
   // Generate maps for each chain ID
