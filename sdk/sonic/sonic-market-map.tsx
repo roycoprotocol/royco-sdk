@@ -139,6 +139,16 @@ export const sonicMarketMap: {
     app: SONIC_APP.STABILITY,
   },
   {
+    id: "146_0_0xc2b6fade2c202f102b59c4f2a1dabcf414deec4bd0b868757e218ed19f3c8ca6",
+    appType: SONIC_APP_TYPE.RUBY,
+    info: {
+      description:
+        "Stability will distribute a pro-rata share of 4,375 Tokenized Gems between depositors on Royco and stability.farm UI. Stability Gems are tokenized.",
+      url: "https://stability.farm/vaults",
+    },
+    app: SONIC_APP.STABILITY,
+  },
+  {
     id: "146_0_0xd355d633abacb9617e31c71fd21c68b224357850522defab3dfb8d6932d5cc11",
     appType: SONIC_APP_TYPE.SAPPHIRE,
     info: {
