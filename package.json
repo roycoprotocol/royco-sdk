@@ -93,6 +93,11 @@
       "types": "./dist/sonic/index.d.ts",
       "import": "./dist/sonic/index.js",
       "require": "./dist/sonic/index.cjs"
+    },
+    "./vault": {
+      "types": "./dist/vault/index.d.ts",
+      "import": "./dist/vault/index.js",
+      "require": "./dist/vault/index.cjs"
     }
   },
   "dependencies": {
