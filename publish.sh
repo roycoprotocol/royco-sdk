@@ -23,13 +23,13 @@ fi
 VERSION_TYPE="${1#--}" # Remove the -- prefix
 
 # Check if publish is needed by comparing commits
-# echo "Checking if publish is needed..."
-# LAST_RELEVANT_COMMIT=$(git log --format="%H" | while read commit; do
-#     if ! git log -1 --format="%s" $commit | grep -q "^feat(npm):"; then
-#         echo $commit
-#         break
-#     fi
-# done)
+echo "Checking if publish is needed..."
+LAST_RELEVANT_COMMIT=$(git log --format="%H" | while read commit; do
+    if ! git log -1 --format="%s" $commit | grep -q "^feat(npm):"; then
+        echo $commit
+        break
+    fi
+done)
 
 STORED_COMMIT=$(node -e "console.log(require('./package.json').lastPublishedCommit || '')")
 

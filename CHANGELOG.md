@@ -4,11 +4,11 @@
 
 ### Minor Changes
 
-- f48e0fb: New SDK version @ 2025-03-28 20:33:12 UTC
+- d38e1d0: New SDK version @ 2025-03-28 20:57:10 UTC
 
 ### Patch Changes
 
-- 79b5bda: New SDK version @ 2025-03-28 19:14:24 UTC
+- 79b5bda: New SDK version @ 2025-03-28 20:39:49 UTC
 
 ## 0.9.312
 
