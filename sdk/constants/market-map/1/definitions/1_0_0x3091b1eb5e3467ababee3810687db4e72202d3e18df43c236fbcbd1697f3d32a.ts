@@ -17,11 +17,11 @@ export default defineMarket({
           const resp = await fetch(
             "https://levva.fi/api/v1/vaults/1/0x60837bCAf0d157EdE629AC4b5f6639F45Db0aa2e",
           );
-    
+
           const data = await resp.json();
           annual_change_ratio = data.currentApy;
         } catch (err) {}
-    
+
         return annual_change_ratio;
       },
     },
