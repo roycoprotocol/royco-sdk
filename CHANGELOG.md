@@ -1,5 +1,15 @@
 # royco
 
+## 0.10.0
+
+### Minor Changes
+
+- f48e0fb: New SDK version @ 2025-03-28 20:33:12 UTC
+
+### Patch Changes
+
+- 79b5bda: New SDK version @ 2025-03-28 19:14:24 UTC
+
 ## 0.9.312
 
 ### Patch Changes
