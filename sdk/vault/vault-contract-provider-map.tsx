@@ -8,6 +8,7 @@ export const vaultContractProviderMap = [
       lens: "0x90983ebf38e981ae38f7da9e71804380e316a396",
       boringQueue: "0x9ec26125fecde8ce5c67346db2e20c9026225440",
     },
+    chainId: 1,
     decimals: 18,
     baseToken: {
       address: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
@@ -23,6 +24,7 @@ export const vaultContractProviderMap = [
       lens: "0x90983ebf38e981ae38f7da9e71804380e316a396",
       boringQueue: "0xd0885a285f9a00aa2d9734d2d26be1186f850e38",
     },
+    chainId: 146,
     decimals: 18,
     baseToken: {
       address: "0x29219dd400f2bf60e5a23d13be72b486d4038894",
@@ -38,6 +40,7 @@ export const vaultContractProviderMap = [
       lens: "0x90983ebf38e981ae38f7da9e71804380e316a396",
       boringQueue: "0xf7b0f4973b0b6a5457c4af0b29c11158af19c03f",
     },
+    chainId: 42161,
     decimals: 18,
     baseToken: {
       address: "0xaf88d065e77c8cc2239327c5edb3a432268e5831",

@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.10.0",
+  "version": "0.10.14",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -11,7 +11,7 @@
     "url": "https://github.com/roycoprotocol/royco-sdk"
   },
   "scripts": {
-    "build": "node --max-old-space-size=16384 tsup",
+    "build": "set NODE_OPTIONS=--max-old-space-size=16384 && tsup",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc",
     "prepare:market-map": "tsx scripts/constants/generate-market-map.ts",
@@ -116,6 +116,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@wagmi/core": "^2.10.3",
+    "@web3modal/wagmi": "^5.1.11",
     "@weiroll/weiroll.js": "^0.3.0",
     "abitype": "^1.0.6",
     "autoprefixer": "^10.4.19",
@@ -149,7 +150,7 @@
     "zod": "^3.23.8"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
-  "lastPublishedCommit": "",
+  "lastPublishedCommit": "1bfd69b738a1cf0c796eba575da05de3b1fd4b9d",
   "devDependencies": {
     "@types/lodash": "^4.17.14",
     "csv-writer": "^1.6.0",
