@@ -57,8 +57,8 @@ export const Plume = {
   symbol: "PLUME",
   contracts: {
     multicall3: {
-      address: "0xf9da0ef6635f6134d9d1b7eae025159d26ce5838",
-      blockCreated: 4150,
+      address: "0xca11bde05977b3631167028862be2a173976ca11",
+      blockCreated: 39679,
     },
   } as const,
 };
