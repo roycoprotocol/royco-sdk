@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nRWA",
   image: "https://app.nest.credit/images/nest-egg-vault.svg",
   decimals: 6,
-  source: "coinmarketcap",
-  search_id: "3408",
+  source: "plume",
+  search_id: "nest-rwa-vault",
   type: "token",
 });
