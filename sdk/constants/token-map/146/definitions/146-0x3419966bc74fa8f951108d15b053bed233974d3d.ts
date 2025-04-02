@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://raw.githubusercontent.com/balancer/tokenlists/main/src/assets/images/tokens/0x3419966bc74fa8f951108d15b053bed233974d3d.png",
   decimals: 18,
-  source: "",
-  search_id: "",
+  source: "beets",
+  search_id: "146-0x3419966bc74fa8f951108d15b053bed233974d3d",
   type: "token",
 });
