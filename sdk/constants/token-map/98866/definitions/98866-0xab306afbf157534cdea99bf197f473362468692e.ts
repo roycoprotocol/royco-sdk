@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://pbs.twimg.com/profile_images/1821310155075514368/0Kjodwv3_400x400.jpg",
   decimals: 6,
-  source: "coinmarketcap",
-  search_id: "3408",
+  source: "nucleus",
+  search_id: "0xab306afbf157534cdea99bf197f473362468692e",
   type: "token",
 });
