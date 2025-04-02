@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nTBILL",
   image: "https://app.nest.credit/images/nest-treasury-vault.svg",
   decimals: 6,
-  source: "coinmarketcap",
-  search_id: "3408",
+  source: "plume",
+  search_id: "nest-treasury-vault",
   type: "token",
 });
