@@ -2,4 +2,4 @@
 "royco": patch
 ---
 
-New SDK version @ 2025-04-02 22:50:42 UTC
+New SDK version @ 2025-04-03 12:34:10 UTC
