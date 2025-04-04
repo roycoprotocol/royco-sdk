@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nELIXIR",
   image: "https://app.nest.credit/images/nest-elixir-vault.svg",
   decimals: 6,
-  source: "coinmarketcap",
-  search_id: "3408",
+  source: "plume",
+  search_id: "nest-basis-vault",
   type: "token",
 });
