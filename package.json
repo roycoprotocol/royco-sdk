@@ -104,6 +104,7 @@
     "@changesets/cli": "^2.27.1",
     "@supabase/postgrest-js": "^1.16.3",
     "@supabase/ssr": "^0.3.0",
+    "@tanstack/react-query": "^5.62.0",
     "@supabase/supabase-js": "^2.43.1",
     "@types/node": "^20.17.9",
     "@types/react": "^18",
@@ -123,7 +124,6 @@
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
   "lastPublishedCommit": "e5089128e34caa7a6cd2d804d4e9b87db5808c37",
   "peerDependencies": {
-    "@tanstack/react-query": "^5.62.0",
     "@tanstack/react-query-devtools": "^5.61.3",
     "@tanstack/react-table": "^8.17.0",
     "lodash": "^4.17.21",
