@@ -99,7 +99,7 @@ const YourComponent = () => {
 
 ### 1. Custom Hooks
 
-You can create custom hooks by combining multiple queries and hooks together. This can be useful when you want to fetch multiple data points and show them in a single component without repeating the same logic and worrying about caching -- because we have already taken care of keys and data invalidation at regular intervals, so you can keep building your custom components and all the relevant data will be automatically fetched and updated in the most efficient way.
+You can create custom hooks by combining multiple queries and hooks together. This can be useful when you want to fetch multiple data points and show them in a single component without repeating the same logic and worrying about caching -- because we have already taken care of keys and data invalidation at regular intervals, so you can keep building your custom components and all the relevant data will be automatically fetched and updated in the most efficient way
 
 ```tsx
 import { useQuery } from "react-query";
