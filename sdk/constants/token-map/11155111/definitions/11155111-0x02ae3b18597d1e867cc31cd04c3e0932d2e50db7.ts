@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "OETP",
   image: "https://openeden.com/media-kit/logomark-dark.png",
   decimals: 18,
-  source: "",
-  search_id: "",
+  source: "external",
+  search_id: "none",
   type: "point",
 });
