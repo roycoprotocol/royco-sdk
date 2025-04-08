@@ -1,7 +1,7 @@
 {
   "name": "royco",
   "description": "SDK for building frontends on top of Royco Protocol",
-  "version": "0.10.35",
+  "version": "0.10.36",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -120,7 +120,7 @@
     "ethers": "^5.4.4"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
-  "lastPublishedCommit": "703f333723121b53b600f7c81caf58d8a62f9625",
+  "lastPublishedCommit": "e5089128e34caa7a6cd2d804d4e9b87db5808c37",
   "peerDependencies": {
     "@tanstack/react-query": "^5.62.0",
     "@tanstack/react-query-devtools": "^5.61.3",

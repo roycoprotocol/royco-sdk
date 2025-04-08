@@ -1,5 +1,11 @@
 # royco
 
+## 0.10.36
+
+### Patch Changes
+
+- ef564b5: New SDK version @ 2025-04-08 17:46:36 UTC
+
 ## 0.10.0
 
 ### Minor Changes
