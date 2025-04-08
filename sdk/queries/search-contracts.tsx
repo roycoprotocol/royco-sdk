@@ -87,7 +87,7 @@ const constructSortingClauses = (sorting: SortingState): string => {
   }
 
   const sortingClauses = sorting
-    .map((sort) => `${sort.id} ${sort.desc ? "DESC" : "ASC"}`)
+    .map((sort: any) => `${sort.id} ${sort.desc ? "DESC" : "ASC"}`)
     .join(", ");
 
   return sortingClauses;
@@ -108,8 +108,8 @@ export const searchContractsQueryOptions = (
   queryKey: [
     "search-contracts",
     `searchKey=${searchKey}`,
-    ...sorting.map((sort) => `sort=${sort.id}:${sort.desc}`),
-    ...filters.map((filter) => `filter=${filter.id}:${filter.value}`),
+    ...sorting.map((sort: any) => `sort=${sort.id}:${sort.desc}`),
+    ...filters.map((filter: any) => `filter=${filter.id}:${filter.value}`),
     `page=${pageIndex}`,
   ],
   queryFn: async () => {
