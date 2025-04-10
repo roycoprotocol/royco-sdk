@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0xa6CBB3544621152c7002795067Ae8F2F5A18afcf",
+  id: "98866-0xa6cbb3544621152c7002795067ae8f2f5a18afcf",
   chain_id: 98866,
-  contract_address: "0xa6CBB3544621152c7002795067Ae8F2F5A18afcf",
+  contract_address: "0xa6cbb3544621152c7002795067ae8f2f5a18afcf",
   name: "Nucleus op-TBILL",
   symbol: "op-TBILL",
   image:
