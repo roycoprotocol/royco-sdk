@@ -120,13 +120,13 @@
     "zod": "^3.23.8",
     "ethers": "^5.4.4",
     "viem": "2.24.3",
-    "wagmi": "2.14.12",
-    "@tanstack/react-query-devtools": "^5.61.3",
-    "@tanstack/react-table": "^8.17.0"
+    "wagmi": "2.14.12"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
   "lastPublishedCommit": "60e3558383ce356493cd45da97b6bc3ba21b2ac6",
   "peerDependencies": {
+    "@tanstack/react-query-devtools": "^5.61.3",
+    "@tanstack/react-table": "^8.17.0",
     "lodash": "^4.17.21",
     "@wagmi/core": "^2.10.3"
   },
