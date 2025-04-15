@@ -1,1 +1,6 @@
-export const MarketMap999 = {};
+import market_999_0_0xf621135047593cbef90eeb789990566f8c5afaf9fe9d251baf5dc0fc2f816db3 from "./definitions/999_0_0xf621135047593cbef90eeb789990566f8c5afaf9fe9d251baf5dc0fc2f816db3";
+
+export const MarketMap999 = {
+  [market_999_0_0xf621135047593cbef90eeb789990566f8c5afaf9fe9d251baf5dc0fc2f816db3.id]:
+    market_999_0_0xf621135047593cbef90eeb789990566f8c5afaf9fe9d251baf5dc0fc2f816db3,
+};
