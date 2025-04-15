@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463",
+  id: "999-0x9fdbda0a5e284c32744d2f17ee5c74b284993463",
   chain_id: 999,
-  contract_address: "0x9FDBdA0A5e284c32744D2f17Ee5c74B284993463",
+  contract_address: "0x9fdbda0a5e284c32744d2f17ee5c74b284993463",
   name: "Unit BTC",
   symbol: "uBTC",
   image:
