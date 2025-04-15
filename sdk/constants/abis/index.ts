@@ -5,3 +5,4 @@ export * from "./WeirollWallet";
 export * from "./WeirollWalletHelper";
 export * from "./WrappedVault";
 export * from "./WrappedVaultFactory";
+export * from "./abi-map";
