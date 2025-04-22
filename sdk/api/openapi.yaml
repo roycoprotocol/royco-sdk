@@ -5076,7 +5076,7 @@ tags:
   - name: royco
     description: ''
 servers:
-  - url: https://api.royco.org/api
+  - url: https://api.royco.org
 components:
   securitySchemes:
     bearer:
@@ -10340,6 +10340,8 @@ components:
           type: string
         category:
           type: string
+        label:
+          type: string
         address:
           type: string
         functionName:
@@ -10354,6 +10356,7 @@ components:
         - chainId
         - contractId
         - category
+        - label
         - address
         - functionName
         - args
