@@ -41,5 +41,13 @@ export default defineConfig({
     options.chunkNames = "chunks/[name]-[hash]";
     options.treeShaking = true;
     options.minify = true;
+    options.define = {
+      "process.env.NODE_ENV": '"production"',
+    };
+  },
+  async onSuccess() {
+    if (global.gc) {
+      global.gc();
+    }
   },
 });
