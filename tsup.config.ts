@@ -21,6 +21,8 @@ export default defineConfig({
     "sdk/boyco/index.tsx",
     "sdk/sonic/index.tsx",
     "sdk/vault/index.tsx",
+    "sdk/transaction/index.ts",
+    "sdk/api/index.ts",
   ],
   format: ["cjs", "esm"],
   dts: true,
