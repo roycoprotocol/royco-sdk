@@ -34,4 +34,12 @@ export default defineConfig({
     "@tanstack/react-table",
   ],
   target: "node14",
+  noExternal: [],
+  platform: "node",
+  skipNodeModulesBundle: true,
+  esbuildOptions(options) {
+    options.chunkNames = "chunks/[name]-[hash]";
+    options.treeShaking = true;
+    options.minify = true;
+  },
 });
