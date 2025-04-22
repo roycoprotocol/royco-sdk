@@ -23,7 +23,8 @@
     "boyco:receipt": "tsx sdk/boyco/receipt-tokens/insert-tokens.ts",
     "boyco:input": "tsx sdk/boyco/input-tokens/insert-tokens.ts",
     "boyco:static": "tsx sdk/boyco/stats/static-tvl.ts",
-    "boyco:supabase:positions": "tsx sdk/boyco/receipt-tokens/insert-into-supabase.ts"
+    "boyco:supabase:positions": "tsx sdk/boyco/receipt-tokens/insert-into-supabase.ts",
+    "generate:api": "swagger-typescript-api generate --axios --modular -p ./sdk/api/openapi.json -o ./sdk/api"
   },
   "keywords": [
     "royco"
@@ -98,42 +99,55 @@
       "types": "./dist/vault/index.d.ts",
       "import": "./dist/vault/index.js",
       "require": "./dist/vault/index.cjs"
+    },
+    "./transaction": {
+      "types": "./dist/transaction/index.d.ts",
+      "import": "./dist/transaction/index.js",
+      "require": "./dist/transaction/index.cjs"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "import": "./dist/api/index.js",
+      "require": "./dist/api/index.cjs"
     }
   },
   "dependencies": {
     "@changesets/cli": "^2.27.1",
     "@supabase/postgrest-js": "^1.16.3",
     "@supabase/ssr": "^0.3.0",
-    "@tanstack/react-query": "^5.62.0",
     "@supabase/supabase-js": "^2.43.1",
+    "@tanstack/react-query": "^5.62.0",
     "@types/node": "^20.17.9",
     "@types/react": "^18",
     "@weiroll/weiroll.js": "^0.3.0",
     "abitype": "^1.0.6",
+    "axios": "^1.8.4",
     "dotenv": "^16.4.5",
+    "ethers": "^5.4.4",
     "graphql-request": "^7.1.2",
     "prettier": "^3.4.1",
-    "tsx": "^4.19.2",
+    "swagger-typescript-api": "^13.1.1",
     "tsup": "^8.0.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.4.5",
     "validator": "^13.12.0",
-    "zod": "^3.23.8",
-    "ethers": "^5.4.4",
     "viem": "2.24.3",
-    "wagmi": "2.14.12"
+    "wagmi": "2.14.12",
+    "zod": "^3.23.8"
   },
   "dist-hash": "27382c05a5b66ae03c57558dd4ce90fd263683c40902a735efdc4a16916af2da",
   "lastPublishedCommit": "0092eb6192a3d08b4656bda9e9b1f97bf93b4dca",
   "peerDependencies": {
     "@tanstack/react-query-devtools": "^5.61.3",
     "@tanstack/react-table": "^8.17.0",
-    "lodash": "^4.17.21",
-    "@wagmi/core": "^2.10.3"
+    "@wagmi/core": "^2.10.3",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.14",
     "csv-writer": "^1.6.0",
     "graphql": "^16.10.0",
+    "openapi-typescript": "^7.6.1",
     "supabase": "^2.6.8"
   }
 }
