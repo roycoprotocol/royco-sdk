@@ -24,16 +24,13 @@
     "boyco:input": "tsx sdk/boyco/input-tokens/insert-tokens.ts",
     "boyco:static": "tsx sdk/boyco/stats/static-tvl.ts",
     "boyco:supabase:positions": "tsx sdk/boyco/receipt-tokens/insert-into-supabase.ts",
-    "generate:api": "swagger-typescript-api generate --axios --modular -p ./sdk/api/openapi.json -o ./sdk/api"
+    "generate:api": "swagger-typescript-api generate -p ./sdk/api/openapi.json -o ./sdk/api --modular --axios --extract-request-params --extract-request-body --extract-response-body --extract-response-error"
   },
   "keywords": [
     "royco"
   ],
   "author": "Royco Protocol",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
