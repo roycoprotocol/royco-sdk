@@ -1,7 +1,7 @@
 import { type EnrichedTxOption } from "@/sdk/transaction/types";
 import { RawTxOption } from "@/sdk/api";
 import { AbiMap } from "../constants";
-import { type Abi } from "viem";
+import { type Abi, type Address } from "viem";
 
 export const enrichTxOptions = ({
   txOptions,
@@ -14,6 +14,7 @@ export const enrichTxOptions = ({
     return {
       ...txOption,
       abi: abi as Abi,
+      address: txOption.address as Address,
     };
   });
 };
