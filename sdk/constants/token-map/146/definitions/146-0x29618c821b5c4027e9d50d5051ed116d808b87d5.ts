@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "146-0x29618C821B5c4027e9D50D5051Ed116d808b87d5",
+  id: "146-0x29618c821b5c4027e9d50d5051ed116d808b87d5",
   chain_id: 146,
-  contract_address: "0x29618C821B5c4027e9D50D5051Ed116d808b87d5",
+  contract_address: "0x29618c821b5c4027e9d50d5051ed116d808b87d5",
   name: "RFX Particles",
   symbol: "RFXP",
   image:
