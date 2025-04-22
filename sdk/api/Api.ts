@@ -11,52 +11,56 @@
  */
 
 import {
+  ActionControllerRecipeApLimitActionData,
+  ActionControllerRecipeApMarketActionData,
+  ActionControllerRecipeIpLimitActionData,
+  ActionControllerRecipeIpMarketActionData,
+  ActionControllerVaultApLimitActionData,
+  ActionControllerVaultApMarketActionData,
+  AddonsControllerGetIncentivesData,
+  AddonsControllerRefreshIncentivesData,
   BaseRequestBody,
-  BoringPositionResponse,
-  BoycoPositionResponse,
+  ChartControllerGetMarketChartData,
   ChartRequestBody,
-  ChartResponse,
-  ContractResponse,
+  ContractControllerGetContractData,
   CreateMarketBody,
-  CreateMarketResponse,
   ExploreMarketBody,
-  ExploreMarketResponse,
   ExploreSettingsMarketBody,
-  ExploreSettingsMarketResponse,
+  HealthControllerCheckData,
+  HealthControllerCheckError,
   InfoMarketBody,
-  InfoMarketResponse,
+  MarketControllerCreateMarketData,
+  MarketControllerGetMarketData,
+  MarketControllerGetMarketsData,
+  MarketControllerGetMarketSettingsData,
+  PointControllerGetPointDirectoryData,
   PointDirectoryRequestBody,
-  PointDirectoryResponse,
+  PositionControllerGetBoringPositionsData,
+  PositionControllerGetBoycoPositionsData,
+  PositionControllerGetRecipePositionsData,
+  PositionControllerGetSpecificBoringPositionData,
+  PositionControllerGetSpecificBoycoPositionData,
+  PositionControllerGetSpecificRecipePositionData,
+  PositionControllerGetSpecificVaultPositionData,
+  PositionControllerGetVaultPositionsData,
   RecipeAPLimitActionBody,
-  RecipeAPLimitActionResponse,
   RecipeAPMarketActionBody,
-  RecipeAPMarketActionResponse,
   RecipeIPLimitActionBody,
-  RecipeIPLimitActionResponse,
   RecipeIPMarketActionBody,
-  RecipeIPMarketActionResponse,
-  RecipePositionResponse,
   SpecificBoringPositionRequest,
-  SpecificBoringPositionResponse,
   SpecificBoycoPositionRequest,
-  SpecificBoycoPositionResponse,
   SpecificRecipePositionRequest,
-  SpecificRecipePositionResponse,
   SpecificVaultPositionRequest,
-  SpecificVaultPositionResponse,
-  StatsFinalResponse,
+  StatsControllerGetStatsData,
   StatsRequestBody,
+  TokenControllerGetTokenDirectoryData,
+  TokenControllerGetTokenQuoteData,
   TokenDirectoryRequestBody,
-  TokenDirectoryResponse,
   TokenQuoteRequestBody,
-  TokenQuoteResponse,
   VaultAPLimitActionBody,
-  VaultAPLimitActionResponse,
   VaultAPMarketActionBody,
-  VaultAPMarketActionResponse,
+  VaultControllerGetVaultInfoData,
   VaultInfoRequestBody,
-  VaultInfoResponse,
-  VaultPositionResponse,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -72,64 +76,7 @@ export class Api<
    * @secure
    */
   healthControllerCheck = (params: RequestParams = {}) =>
-    this.request<
-      {
-        /** @example "ok" */
-        status?: string;
-        /** @example {"database":{"status":"up"}} */
-        info?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-        /** @example {} */
-        error?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-        /** @example {"database":{"status":"up"}} */
-        details?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-      },
-      {
-        /** @example "error" */
-        status?: string;
-        /** @example {"database":{"status":"up"}} */
-        info?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-        /** @example {"redis":{"status":"down","message":"Could not connect"}} */
-        error?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-        /** @example {"database":{"status":"up"},"redis":{"status":"down","message":"Could not connect"}} */
-        details?: Record<
-          string,
-          {
-            status: string;
-            [key: string]: any;
-          }
-        >;
-      }
-    >({
+    this.request<HealthControllerCheckData, HealthControllerCheckError>({
       path: `/api/health`,
       method: "GET",
       secure: true,
@@ -151,7 +98,7 @@ export class Api<
     data?: TokenQuoteRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<TokenQuoteResponse, any>({
+    this.request<TokenControllerGetTokenQuoteData, any>({
       path: `/api/v1/token/quote/${chainId}/${contractAddress}`,
       method: "POST",
       body: data,
@@ -173,7 +120,7 @@ export class Api<
     data?: TokenDirectoryRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<TokenDirectoryResponse, any>({
+    this.request<TokenControllerGetTokenDirectoryData, any>({
       path: `/api/v1/token/directory`,
       method: "POST",
       body: data,
@@ -190,7 +137,7 @@ export class Api<
    * @request GET:/api/v1/addons/test/{id}
    */
   addonsControllerGetIncentives = (id: string, params: RequestParams = {}) =>
-    this.request<void, any>({
+    this.request<AddonsControllerGetIncentivesData, any>({
       path: `/api/v1/addons/test/${id}`,
       method: "GET",
       ...params,
@@ -206,7 +153,7 @@ export class Api<
     id: string,
     params: RequestParams = {},
   ) =>
-    this.request<void, any>({
+    this.request<AddonsControllerRefreshIncentivesData, any>({
       path: `/api/v1/addons/refresh/${id}`,
       method: "GET",
       ...params,
@@ -225,7 +172,7 @@ export class Api<
     data?: InfoMarketBody,
     params: RequestParams = {},
   ) =>
-    this.request<InfoMarketResponse, any>({
+    this.request<MarketControllerGetMarketData, any>({
       path: `/api/v1/market/info/${id}`,
       method: "POST",
       body: data,
@@ -247,7 +194,7 @@ export class Api<
     data?: ExploreMarketBody,
     params: RequestParams = {},
   ) =>
-    this.request<ExploreMarketResponse, any>({
+    this.request<MarketControllerGetMarketsData, any>({
       path: `/api/v1/market/explore`,
       method: "POST",
       body: data,
@@ -268,7 +215,7 @@ export class Api<
     data?: ExploreSettingsMarketBody,
     params: RequestParams = {},
   ) =>
-    this.request<ExploreSettingsMarketResponse, any>({
+    this.request<MarketControllerGetMarketSettingsData, any>({
       path: `/api/v1/market/explore/settings`,
       method: "POST",
       body: data,
@@ -290,7 +237,7 @@ export class Api<
     data: CreateMarketBody,
     params: RequestParams = {},
   ) =>
-    this.request<CreateMarketResponse, any>({
+    this.request<MarketControllerCreateMarketData, any>({
       path: `/api/v1/market/create`,
       method: "POST",
       body: data,
@@ -313,7 +260,7 @@ export class Api<
     data?: VaultInfoRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<VaultInfoResponse, any>({
+    this.request<VaultControllerGetVaultInfoData, any>({
       path: `/api/v1/vault/info/${id}`,
       method: "POST",
       body: data,
@@ -335,7 +282,7 @@ export class Api<
     data?: BaseRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<RecipePositionResponse, any>({
+    this.request<PositionControllerGetRecipePositionsData, any>({
       path: `/api/v1/position/recipe`,
       method: "POST",
       body: data,
@@ -359,7 +306,7 @@ export class Api<
     data?: SpecificRecipePositionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<SpecificRecipePositionResponse, any>({
+    this.request<PositionControllerGetSpecificRecipePositionData, any>({
       path: `/api/v1/position/recipe/${id}/${accountAddress}`,
       method: "POST",
       body: data,
@@ -381,7 +328,7 @@ export class Api<
     data?: BaseRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<VaultPositionResponse, any>({
+    this.request<PositionControllerGetVaultPositionsData, any>({
       path: `/api/v1/position/vault`,
       method: "POST",
       body: data,
@@ -405,7 +352,7 @@ export class Api<
     data?: SpecificVaultPositionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<SpecificVaultPositionResponse, any>({
+    this.request<PositionControllerGetSpecificVaultPositionData, any>({
       path: `/api/v1/position/vault/${id}/${accountAddress}`,
       method: "POST",
       body: data,
@@ -427,7 +374,7 @@ export class Api<
     data?: BaseRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<BoycoPositionResponse, any>({
+    this.request<PositionControllerGetBoycoPositionsData, any>({
       path: `/api/v1/position/boyco`,
       method: "POST",
       body: data,
@@ -451,7 +398,7 @@ export class Api<
     data?: SpecificBoycoPositionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<SpecificBoycoPositionResponse, any>({
+    this.request<PositionControllerGetSpecificBoycoPositionData, any>({
       path: `/api/v1/position/boyco/${id}/${accountAddress}`,
       method: "POST",
       body: data,
@@ -473,7 +420,7 @@ export class Api<
     data?: BaseRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<BoringPositionResponse, any>({
+    this.request<PositionControllerGetBoringPositionsData, any>({
       path: `/api/v1/position/boring`,
       method: "POST",
       body: data,
@@ -497,7 +444,7 @@ export class Api<
     data?: SpecificBoringPositionRequest,
     params: RequestParams = {},
   ) =>
-    this.request<SpecificBoringPositionResponse, any>({
+    this.request<PositionControllerGetSpecificBoringPositionData, any>({
       path: `/api/v1/position/boring/${id}/${accountAddress}`,
       method: "POST",
       body: data,
@@ -520,7 +467,7 @@ export class Api<
     contractAddress: string,
     params: RequestParams = {},
   ) =>
-    this.request<ContractResponse, any>({
+    this.request<ContractControllerGetContractData, any>({
       path: `/api/v1/contract/${chainId}/${contractAddress}`,
       method: "GET",
       secure: true,
@@ -541,7 +488,7 @@ export class Api<
     data?: ChartRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<ChartResponse, any>({
+    this.request<ChartControllerGetMarketChartData, any>({
       path: `/api/v1/chart/${id}`,
       method: "POST",
       body: data,
@@ -564,7 +511,7 @@ export class Api<
     data?: StatsRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<StatsFinalResponse, any>({
+    this.request<StatsControllerGetStatsData, any>({
       path: `/api/v1/stats/assets/${accountAddress}`,
       method: "POST",
       body: data,
@@ -586,7 +533,7 @@ export class Api<
     data: RecipeAPMarketActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<RecipeAPMarketActionResponse, any>({
+    this.request<ActionControllerRecipeApMarketActionData, any>({
       path: `/api/v1/action/recipe/ap/market`,
       method: "POST",
       body: data,
@@ -608,7 +555,7 @@ export class Api<
     data: RecipeIPMarketActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<RecipeIPMarketActionResponse, any>({
+    this.request<ActionControllerRecipeIpMarketActionData, any>({
       path: `/api/v1/action/recipe/ip/market`,
       method: "POST",
       body: data,
@@ -630,7 +577,7 @@ export class Api<
     data: RecipeIPLimitActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<RecipeIPLimitActionResponse, any>({
+    this.request<ActionControllerRecipeIpLimitActionData, any>({
       path: `/api/v1/action/recipe/ip/limit`,
       method: "POST",
       body: data,
@@ -652,7 +599,7 @@ export class Api<
     data: RecipeAPLimitActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<RecipeAPLimitActionResponse, any>({
+    this.request<ActionControllerRecipeApLimitActionData, any>({
       path: `/api/v1/action/recipe/ap/limit`,
       method: "POST",
       body: data,
@@ -674,7 +621,7 @@ export class Api<
     data: VaultAPMarketActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<VaultAPMarketActionResponse, any>({
+    this.request<ActionControllerVaultApMarketActionData, any>({
       path: `/api/v1/action/vault/ap/market`,
       method: "POST",
       body: data,
@@ -696,7 +643,7 @@ export class Api<
     data: VaultAPLimitActionBody,
     params: RequestParams = {},
   ) =>
-    this.request<VaultAPLimitActionResponse, any>({
+    this.request<ActionControllerVaultApLimitActionData, any>({
       path: `/api/v1/action/vault/ap/limit`,
       method: "POST",
       body: data,
@@ -718,7 +665,7 @@ export class Api<
     data?: PointDirectoryRequestBody,
     params: RequestParams = {},
   ) =>
-    this.request<PointDirectoryResponse, any>({
+    this.request<PointControllerGetPointDirectoryData, any>({
       path: `/api/v1/point/directory`,
       method: "POST",
       body: data,

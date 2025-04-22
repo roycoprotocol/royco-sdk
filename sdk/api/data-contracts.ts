@@ -4964,3 +4964,125 @@ export interface PointDirectoryResponse {
    */
   data: TokenQuote;
 }
+
+export interface HealthControllerCheckData {
+  /** @example "ok" */
+  status?: string;
+  /** @example {"database":{"status":"up"}} */
+  info?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+  /** @example {} */
+  error?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+  /** @example {"database":{"status":"up"}} */
+  details?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+}
+
+export type HealthControllerCheckError = {
+  /** @example "error" */
+  status?: string;
+  /** @example {"database":{"status":"up"}} */
+  info?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+  /** @example {"redis":{"status":"down","message":"Could not connect"}} */
+  error?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+  /** @example {"database":{"status":"up"},"redis":{"status":"down","message":"Could not connect"}} */
+  details?: Record<
+    string,
+    {
+      status: string;
+      [key: string]: any;
+    }
+  >;
+};
+
+export type TokenControllerGetTokenQuoteData = TokenQuoteResponse;
+
+export type TokenControllerGetTokenDirectoryData = TokenDirectoryResponse;
+
+export type AddonsControllerGetIncentivesData = any;
+
+export type AddonsControllerRefreshIncentivesData = any;
+
+export type MarketControllerGetMarketData = InfoMarketResponse;
+
+export type MarketControllerGetMarketsData = ExploreMarketResponse;
+
+export type MarketControllerGetMarketSettingsData =
+  ExploreSettingsMarketResponse;
+
+export type MarketControllerCreateMarketData = CreateMarketResponse;
+
+export type VaultControllerGetVaultInfoData = VaultInfoResponse;
+
+export type PositionControllerGetRecipePositionsData = RecipePositionResponse;
+
+export type PositionControllerGetSpecificRecipePositionData =
+  SpecificRecipePositionResponse;
+
+export type PositionControllerGetVaultPositionsData = VaultPositionResponse;
+
+export type PositionControllerGetSpecificVaultPositionData =
+  SpecificVaultPositionResponse;
+
+export type PositionControllerGetBoycoPositionsData = BoycoPositionResponse;
+
+export type PositionControllerGetSpecificBoycoPositionData =
+  SpecificBoycoPositionResponse;
+
+export type PositionControllerGetBoringPositionsData = BoringPositionResponse;
+
+export type PositionControllerGetSpecificBoringPositionData =
+  SpecificBoringPositionResponse;
+
+export type ContractControllerGetContractData = ContractResponse;
+
+export type ChartControllerGetMarketChartData = ChartResponse;
+
+export type StatsControllerGetStatsData = StatsFinalResponse;
+
+export type ActionControllerRecipeApMarketActionData =
+  RecipeAPMarketActionResponse;
+
+export type ActionControllerRecipeIpMarketActionData =
+  RecipeIPMarketActionResponse;
+
+export type ActionControllerRecipeIpLimitActionData =
+  RecipeIPLimitActionResponse;
+
+export type ActionControllerRecipeApLimitActionData =
+  RecipeAPLimitActionResponse;
+
+export type ActionControllerVaultApMarketActionData =
+  VaultAPMarketActionResponse;
+
+export type ActionControllerVaultApLimitActionData = VaultAPLimitActionResponse;
+
+export type PointControllerGetPointDirectoryData = PointDirectoryResponse;
