@@ -12521,6 +12521,9 @@
           "category": {
             "type": "string"
           },
+          "label": {
+            "type": "string"
+          },
           "address": {
             "type": "string"
           },
@@ -12543,6 +12546,7 @@
           "chainId",
           "contractId",
           "category",
+          "label",
           "address",
           "functionName",
           "args",
