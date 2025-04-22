@@ -5908,7 +5908,7 @@
   ],
   "servers": [
     {
-      "url": "https://api.royco.org/api"
+      "url": "https://api.royco.org"
     }
   ],
   "components": {
