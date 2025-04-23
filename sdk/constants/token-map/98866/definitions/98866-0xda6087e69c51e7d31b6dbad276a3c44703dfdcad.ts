@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0xda6087E69C51E7D31b6DBAD276a3c44703DFdCAd",
+  id: "98866-0xda6087e69c51e7d31b6dbad276a3c44703dfdcad",
   chain_id: 98866,
-  contract_address: "0xda6087E69C51E7D31b6DBAD276a3c44703DFdCAd",
+  contract_address: "0xda6087e69c51e7d31b6dbad276a3c44703dfdcad",
   name: "Tether",
   symbol: "USDT",
   image: "https://cdn.worldvectorlogo.com/logos/tether-1.svg",
