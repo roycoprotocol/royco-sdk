@@ -51,8 +51,8 @@ import {
   SpecificBoycoPositionRequest,
   SpecificRecipePositionRequest,
   SpecificVaultPositionRequest,
+  StatsAssetsRequestBody,
   StatsControllerGetStatsData,
-  StatsRequestBody,
   TokenControllerGetTokenDirectoryData,
   TokenControllerGetTokenQuoteData,
   TokenDirectoryRequestBody,
@@ -508,7 +508,7 @@ export class Api<
    */
   statsControllerGetStats = (
     accountAddress: string,
-    data?: StatsRequestBody,
+    data?: StatsAssetsRequestBody,
     params: RequestParams = {},
   ) =>
     this.request<StatsControllerGetStatsData, any>({

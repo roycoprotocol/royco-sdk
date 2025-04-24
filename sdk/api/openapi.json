@@ -4658,7 +4658,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StatsRequestBody"
+                "$ref": "#/components/schemas/StatsAssetsRequestBody"
               }
             }
           }
@@ -4669,7 +4669,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/StatsFinalResponse"
+                  "$ref": "#/components/schemas/StatsAssetsResponse"
                 },
                 "example": {
                   "inputTokens": [
@@ -6405,13 +6405,21 @@
               "$ref": "#/components/schemas/Filter"
             }
           },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
           "sorting": {
             "title": "Sorting Object",
             "description": "Object type to sort results with",
-            "example": {
-              "id": "tvlUsd",
-              "desc": true
-            },
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Sorting"
@@ -7663,6 +7671,12 @@
             "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
             "example": "0.1"
           },
+          "variableYieldRate": {
+            "type": "number",
+            "title": "Variable Yield Rate",
+            "description": "Variable yield rate from the market which will change based on deposits",
+            "example": 0.1
+          },
           "inputTokenId": {
             "type": "string",
             "title": "Input Token ID",
@@ -7791,6 +7805,12 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
           }
         },
         "required": [
@@ -7809,6 +7829,8 @@
           "capacityRatio",
           "incentivesUsd",
           "yieldRate",
+          "yieldRate",
+          "variableYieldRate",
           "inputTokenId",
           "incentiveTokenIds",
           "inputToken",
@@ -7845,13 +7867,21 @@
               "$ref": "#/components/schemas/Filter"
             }
           },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
           "sorting": {
             "title": "Sorting Object",
             "description": "Object type to sort results with",
-            "example": {
-              "id": "tvlUsd",
-              "desc": true
-            },
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Sorting"
@@ -7992,6 +8022,12 @@
             "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
             "example": "0.1"
           },
+          "variableYieldRate": {
+            "type": "number",
+            "title": "Variable Yield Rate",
+            "description": "Variable yield rate from the market which will change based on deposits",
+            "example": 0.1
+          },
           "inputTokenId": {
             "type": "string",
             "title": "Input Token ID",
@@ -8120,6 +8156,12 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
           }
         },
         "required": [
@@ -8138,6 +8180,8 @@
           "capacityRatio",
           "incentivesUsd",
           "yieldRate",
+          "yieldRate",
+          "variableYieldRate",
           "inputTokenId",
           "incentiveTokenIds",
           "inputToken",
@@ -8201,9 +8245,537 @@
           }
         }
       },
+      "TokenQuoteWithIds": {
+        "type": "object",
+        "properties": {
+          "rawMetadata": {
+            "type": "object",
+            "title": "Raw Metadata",
+            "description": "Raw metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Token ID",
+            "description": "Unique identifier for the token: chainId-contractAddress",
+            "example": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the token",
+            "example": "USDC"
+          },
+          "symbol": {
+            "type": "string",
+            "title": "Symbol",
+            "description": "The symbol of the token",
+            "example": "USDC"
+          },
+          "image": {
+            "type": "string",
+            "title": "Image",
+            "description": "The logo of the token",
+            "example": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+          },
+          "decimals": {
+            "type": "number",
+            "title": "Decimals",
+            "description": "The number of decimals of the token",
+            "example": 6
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "The source for the price feed of the token",
+            "example": "coinmarketcap",
+            "enum": [
+              "coinmarketcap",
+              "coingecko",
+              "lp",
+              "enso",
+              "pendle",
+              "plume",
+              "external"
+            ]
+          },
+          "searchId": {
+            "type": "string",
+            "title": "Search ID",
+            "description": "The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema",
+            "example": "3408"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "The type of the token",
+            "example": "token",
+            "enum": [
+              "token",
+              "point",
+              "lp"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "title": "Price",
+            "description": "The price of the token",
+            "example": 0.99999999
+          },
+          "fdv": {
+            "type": "number",
+            "title": "FDV",
+            "description": "The fully diluted valuation of the token",
+            "example": 59689964490.12
+          },
+          "totalSupply": {
+            "type": "number",
+            "title": "Total Supply",
+            "description": "The total supply of the token",
+            "example": 59689963893.2
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner",
+            "description": "The owner of the point program token",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "issuers": {
+            "title": "Issuers",
+            "description": "Authorized issuers of the point program token",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subTokens": {
+            "title": "Sub Tokens",
+            "description": "Array of sub tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuote"
+            }
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "ids": {
+            "title": "Token IDs",
+            "description": "Array of token IDs",
+            "example": [
+              "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "contractAddress",
+          "name",
+          "symbol",
+          "image",
+          "decimals",
+          "source",
+          "searchId",
+          "type",
+          "price",
+          "fdv",
+          "totalSupply",
+          "lastUpdated",
+          "ids"
+        ]
+      },
       "ExploreSettingsMarketResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "staticInputTokenFilters": {
+            "title": "Token Quote with IDs",
+            "description": "Token quote with the IDs across chains",
+            "example": [
+              {
+                "id": "1-0xdac17f958d2ee523a2206206994597c13d831ec7",
+                "chainId": 1,
+                "contractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                "name": "Tether USDt",
+                "symbol": "USDT",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
+                "decimals": 6,
+                "source": "coinmarketcap",
+                "searchId": "825",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 1.0003895101587008,
+                "fdv": 148587729192.58,
+                "totalSupply": 148529875297.27908,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xdac17f958d2ee523a2206206994597c13d831ec7",
+                  "42161-0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+                  "98865-0x2086f755a6d9254045c257ea3d382ef854849b0f",
+                  "11155111-0xb4d9f4171e501369fbd53774760bfd32fcdaafde",
+                  "11155111-0xdacf10f85027e8d9c870ba60161ddefaf1a069b0"
+                ]
+              },
+              {
+                "id": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "chainId": 1,
+                "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "name": "USDC",
+                "symbol": "USDC",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png",
+                "decimals": 6,
+                "source": "coinmarketcap",
+                "searchId": "3408",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 0.9999050759315699,
+                "fdv": 61893388269.7,
+                "totalSupply": 61899263999.675934,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                  "8453-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                  "42161-0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+                  "98865-0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48",
+                  "98866-0x54fd4da2fa19cf0f63d8f93a6ea5bed3f9c042c6",
+                  "11155111-0x3f85506f500cb02d141bafe467cc52ad5a9d7d5a",
+                  "11155111-0x5839b25b55380bc3c701b2c808331e34e92161fe"
+                ]
+              },
+              {
+                "id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+                "chainId": 1,
+                "contractAddress": "0x004375dff511095cc5a197a54140a24efef3a416",
+                "name": "Wrapped Bitcoin-USDC LP Token",
+                "symbol": "WBTC-USDC",
+                "image": "https://chainlist.org/unknown-logo.png",
+                "decimals": 18,
+                "source": "lp",
+                "searchId": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+                "owner": null,
+                "issuers": null,
+                "type": "lp",
+                "price": 111990158886727.7,
+                "fdv": 134201.52692311292,
+                "totalSupply": 1.198333213e-9,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x004375dff511095cc5a197a54140a24efef3a416"
+                ]
+              },
+              {
+                "id": "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                "chainId": 1,
+                "contractAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                "name": "Wrapped Bitcoin",
+                "symbol": "WBTC",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/3717.png",
+                "decimals": 8,
+                "source": "coinmarketcap",
+                "searchId": "3717",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 93689.98760408539,
+                "fdv": 12083882133.07,
+                "totalSupply": 128977.30528189,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                  "42161-0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+                  "80094-0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+                  "11155111-0x29f2d40b0605204364af54ec677bd022da425d03"
+                ]
+              },
+              {
+                "id": "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                "chainId": 1,
+                "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                "name": "WETH",
+                "symbol": "WETH",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
+                "decimals": 18,
+                "source": "coinmarketcap",
+                "searchId": "2396",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 1800.4005266139786,
+                "fdv": 6076923571.29,
+                "totalSupply": 3375317.5926469,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                  "146-0x50c42deacd8fc9773493ed674b675be577f2634b",
+                  "8453-0x4200000000000000000000000000000000000006",
+                  "42161-0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+                  "80094-0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+                  "98865-0x626613b473f7ef65747967017c11225436efaed7",
+                  "11155111-0xfff9976782d46cc05630d1f6ebab18b2324d6b14",
+                  "11155111-0x7b79995e5f793a07bc00c21412e50ecae098e7f9"
+                ]
+              },
+              {
+                "id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "chainId": 1,
+                "contractAddress": "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "name": "USDC-WETH LP Token",
+                "symbol": "USDC-WETH",
+                "image": "https://chainlist.org/unknown-logo.png",
+                "decimals": 18,
+                "source": "lp",
+                "searchId": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "owner": null,
+                "issuers": null,
+                "type": "lp",
+                "price": 220559770.71418175,
+                "fdv": 19438593.97350934,
+                "totalSupply": 0.08813299864506734,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc"
+                ]
+              },
+              {
+                "id": "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                "chainId": 1,
+                "contractAddress": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                "name": "Ethena USDe",
+                "symbol": "USDe",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/29470.png",
+                "decimals": 18,
+                "source": "coinmarketcap",
+                "searchId": "29470",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 0.9994835892465651,
+                "fdv": 4768280522.72,
+                "totalSupply": 4770744186.32031,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                  "80094-0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34"
+                ]
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuoteWithIds"
+            }
+          },
+          "dynamicInputTokenFilters": {
+            "title": "Token Quote with IDs",
+            "description": "Token quote with the IDs across chains",
+            "example": [
+              {
+                "id": "1-0xdac17f958d2ee523a2206206994597c13d831ec7",
+                "chainId": 1,
+                "contractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                "name": "Tether USDt",
+                "symbol": "USDT",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/825.png",
+                "decimals": 6,
+                "source": "coinmarketcap",
+                "searchId": "825",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 1.0003895101587008,
+                "fdv": 148587729192.58,
+                "totalSupply": 148529875297.27908,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xdac17f958d2ee523a2206206994597c13d831ec7",
+                  "42161-0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+                  "98865-0x2086f755a6d9254045c257ea3d382ef854849b0f",
+                  "11155111-0xb4d9f4171e501369fbd53774760bfd32fcdaafde",
+                  "11155111-0xdacf10f85027e8d9c870ba60161ddefaf1a069b0"
+                ]
+              },
+              {
+                "id": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "chainId": 1,
+                "contractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "name": "USDC",
+                "symbol": "USDC",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png",
+                "decimals": 6,
+                "source": "coinmarketcap",
+                "searchId": "3408",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 0.9999050759315699,
+                "fdv": 61893388269.7,
+                "totalSupply": 61899263999.675934,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                  "8453-0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                  "42161-0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+                  "98865-0x28e0f0eed8d6a6a96033feee8b2d7f32eb5ccc48",
+                  "98866-0x54fd4da2fa19cf0f63d8f93a6ea5bed3f9c042c6",
+                  "11155111-0x3f85506f500cb02d141bafe467cc52ad5a9d7d5a",
+                  "11155111-0x5839b25b55380bc3c701b2c808331e34e92161fe"
+                ]
+              },
+              {
+                "id": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+                "chainId": 1,
+                "contractAddress": "0x004375dff511095cc5a197a54140a24efef3a416",
+                "name": "Wrapped Bitcoin-USDC LP Token",
+                "symbol": "WBTC-USDC",
+                "image": "https://chainlist.org/unknown-logo.png",
+                "decimals": 18,
+                "source": "lp",
+                "searchId": "1-0x004375dff511095cc5a197a54140a24efef3a416",
+                "owner": null,
+                "issuers": null,
+                "type": "lp",
+                "price": 111990158886727.7,
+                "fdv": 134201.52692311292,
+                "totalSupply": 1.198333213e-9,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x004375dff511095cc5a197a54140a24efef3a416"
+                ]
+              },
+              {
+                "id": "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                "chainId": 1,
+                "contractAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                "name": "Wrapped Bitcoin",
+                "symbol": "WBTC",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/3717.png",
+                "decimals": 8,
+                "source": "coinmarketcap",
+                "searchId": "3717",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 93689.98760408539,
+                "fdv": 12083882133.07,
+                "totalSupply": 128977.30528189,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+                  "42161-0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+                  "80094-0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+                  "11155111-0x29f2d40b0605204364af54ec677bd022da425d03"
+                ]
+              },
+              {
+                "id": "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                "chainId": 1,
+                "contractAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                "name": "WETH",
+                "symbol": "WETH",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/2396.png",
+                "decimals": 18,
+                "source": "coinmarketcap",
+                "searchId": "2396",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 1800.4005266139786,
+                "fdv": 6076923571.29,
+                "totalSupply": 3375317.5926469,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+                  "146-0x50c42deacd8fc9773493ed674b675be577f2634b",
+                  "8453-0x4200000000000000000000000000000000000006",
+                  "42161-0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+                  "80094-0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+                  "98865-0x626613b473f7ef65747967017c11225436efaed7",
+                  "11155111-0xfff9976782d46cc05630d1f6ebab18b2324d6b14",
+                  "11155111-0x7b79995e5f793a07bc00c21412e50ecae098e7f9"
+                ]
+              },
+              {
+                "id": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "chainId": 1,
+                "contractAddress": "0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "name": "USDC-WETH LP Token",
+                "symbol": "USDC-WETH",
+                "image": "https://chainlist.org/unknown-logo.png",
+                "decimals": 18,
+                "source": "lp",
+                "searchId": "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc",
+                "owner": null,
+                "issuers": null,
+                "type": "lp",
+                "price": 220559770.71418175,
+                "fdv": 19438593.97350934,
+                "totalSupply": 0.08813299864506734,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc"
+                ]
+              },
+              {
+                "id": "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                "chainId": 1,
+                "contractAddress": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                "name": "Ethena USDe",
+                "symbol": "USDe",
+                "image": "https://s2.coinmarketcap.com/static/img/coins/64x64/29470.png",
+                "decimals": 18,
+                "source": "coinmarketcap",
+                "searchId": "29470",
+                "owner": null,
+                "issuers": null,
+                "type": "token",
+                "price": 0.9994835892465651,
+                "fdv": 4768280522.72,
+                "totalSupply": 4770744186.32031,
+                "lastUpdated": "2025-04-23 23:37:00",
+                "ids": [
+                  "1-0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+                  "80094-0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34"
+                ]
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuoteWithIds"
+            }
+          }
+        },
+        "required": [
+          "staticInputTokenFilters",
+          "dynamicInputTokenFilters"
+        ]
       },
       "CreateMarketBody": {
         "type": "object",
@@ -8251,6 +8823,94 @@
           "transactionHash"
         ]
       },
+      "EnrichedMarketUserData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The global unique identifier of the market: chainId_marketType_marketId",
+            "example": "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "marketType": {
+            "type": "number",
+            "title": "Market Type",
+            "description": "The type of market: 0 = Recipe, 1 = Vault",
+            "example": 0,
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "marketId": {
+            "type": "string",
+            "title": "Market ID",
+            "description": "The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address",
+            "example": "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the market",
+            "example": "Swap USDC to stkGHO for 1 mo"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.",
+            "example": "Swap USDC to stkGHO for 1 mo"
+          },
+          "isVerified": {
+            "type": "boolean",
+            "title": "Is Verified",
+            "description": "Whether the market is verified"
+          },
+          "isActive": {
+            "type": "boolean",
+            "title": "Is Active",
+            "description": "Whether the market is active"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "description": "The category of the market",
+            "example": "default"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "incentiveTokenIds": {
+            "title": "Incentive Token IDs",
+            "description": "The IDs of the incentive tokens for the market",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "marketType",
+          "marketId",
+          "name",
+          "description",
+          "isVerified",
+          "isActive",
+          "category",
+          "lastUpdated",
+          "incentiveTokenIds"
+        ]
+      },
       "CreateMarketResponse": {
         "type": "object",
         "properties": {
@@ -8259,6 +8919,28 @@
             "title": "Status",
             "description": "The status of the created market",
             "example": true
+          },
+          "data": {
+            "title": "Data",
+            "description": "The data for the market",
+            "example": {
+              "id": "11155111_0_0xb7be8b6efee4c2d1fead07d98c3a4b3d3c85dff0d1800294c27782b550099fc4",
+              "chainId": 11155111,
+              "marketType": 0,
+              "marketId": "0xb7be8b6efee4c2d1fead07d98c3a4b3d3c85dff0d1800294c27782b550099fc4",
+              "name": "my amazing market",
+              "description": "some description",
+              "isVerified": false,
+              "isActive": false,
+              "category": "default",
+              "lastUpdated": "2025-04-23 18:25:20.816117",
+              "incentiveIds": []
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EnrichedMarketUserData"
+              }
+            ]
           },
           "message": {
             "type": "string",
@@ -8269,6 +8951,7 @@
         },
         "required": [
           "status",
+          "data",
           "message"
         ]
       },
@@ -8637,6 +9320,11 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "incentiveId": {
+            "type": "string",
+            "title": "Incentive ID",
+            "description": "The ID of the incentive"
+          },
           "category": {
             "type": "string",
             "title": "Category",
@@ -8644,6 +9332,7 @@
             "example": "active",
             "enum": [
               "active",
+              "underlying",
               "native",
               "external"
             ]
@@ -8671,6 +9360,12 @@
             "title": "Token Amount USD",
             "description": "Normalized raw amount in USD",
             "example": 999.99
+          },
+          "perDepositToken": {
+            "type": "number",
+            "title": "Per Deposit Token",
+            "description": "The amount of incentive token per deposit token",
+            "example": 0.01
           },
           "yieldRate": {
             "type": "number",
@@ -8714,9 +9409,9 @@
           "fdv",
           "totalSupply",
           "lastUpdated",
+          "incentiveId",
           "category",
-          "scaleRatio",
-          "unlockTimestamp"
+          "scaleRatio"
         ]
       },
       "VaultAllocationDepositToken": {
@@ -8922,9 +9617,9 @@
             "description": "The link of the allocated market",
             "example": "/market/1/0/0x9a117f13c7d5d2b4b18e444f72e6e77c010a1fd90cf21135be75669d66ad9428"
           },
-          "inputToken": {
-            "title": "Input Token",
-            "description": "The input token of the allocation",
+          "depositToken": {
+            "title": "Deposit Token",
+            "description": "The deposit token of the allocation",
             "example": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
             "allOf": [
               {
@@ -8946,13 +9641,20 @@
             "title": "Unlock Timestamp",
             "description": "The timestamp when the allocation is unlocked",
             "example": "1714531200"
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "The yield rate of the allocation",
+            "example": 0.01
           }
         },
         "required": [
           "id",
           "name",
-          "inputToken",
-          "incentiveTokens"
+          "depositToken",
+          "incentiveTokens",
+          "yieldRate"
         ]
       },
       "VaultInfoResponse": {
@@ -9149,13 +9851,21 @@
               "$ref": "#/components/schemas/Filter"
             }
           },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
           "sorting": {
             "title": "Sorting Object",
             "description": "Object type to sort results with",
-            "example": {
-              "id": "tvlUsd",
-              "desc": true
-            },
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Sorting"
@@ -9677,6 +10387,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MarketActiveIncentiveWithClaimStatus"
+            }
+          },
+          "underlyingIncentives": {
+            "title": "Underlying Incentives",
+            "description": "Underlying incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketUnderlyingIncentive"
             }
           },
           "nativeIncentives": {
@@ -12412,7 +13130,96 @@
       },
       "ContractResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Unique identifier for the entity",
+            "example": "98866_0_0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "contractName": {
+            "type": "string",
+            "title": "Contract Name",
+            "description": "Name of the contract",
+            "nullable": true
+          },
+          "abi": {
+            "title": "ABI",
+            "description": "ABI of the contract",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/"
+              }
+            ]
+          },
+          "implementationId": {
+            "type": "string",
+            "title": "Implementation ID",
+            "description": "ID of the implementation contract"
+          },
+          "proxyType": {
+            "type": "string",
+            "title": "Proxy Type",
+            "description": "Type of the proxy",
+            "enum": [
+              "EIP 1167",
+              "EIP 1967 (Direct)",
+              "EIP 1967 (Beacon)",
+              "EIP 1822",
+              "EIP 897",
+              "OpenZeppelin",
+              "Safe",
+              "Comptroller"
+            ],
+            "nullable": true
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "Source of the contract",
+            "enum": [
+              "sourcify",
+              "etherscan"
+            ],
+            "nullable": true
+          },
+          "implementation": {
+            "type": "object",
+            "title": "Implementation",
+            "description": "This is a recursive type, so it will return the same type as the contract data response",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "contractAddress",
+          "contractName",
+          "abi",
+          "implementationId",
+          "proxyType",
+          "lastUpdated",
+          "source",
+          "implementation"
+        ]
       },
       "ChartRequestBody": {
         "type": "object",
@@ -12427,11 +13234,611 @@
           }
         }
       },
+      "EnrichedOfferInputTokenData": {
+        "type": "object",
+        "properties": {
+          "rawMetadata": {
+            "type": "object",
+            "title": "Raw Metadata",
+            "description": "Raw metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Token ID",
+            "description": "Unique identifier for the token: chainId-contractAddress",
+            "example": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the token",
+            "example": "USDC"
+          },
+          "symbol": {
+            "type": "string",
+            "title": "Symbol",
+            "description": "The symbol of the token",
+            "example": "USDC"
+          },
+          "image": {
+            "type": "string",
+            "title": "Image",
+            "description": "The logo of the token",
+            "example": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+          },
+          "decimals": {
+            "type": "number",
+            "title": "Decimals",
+            "description": "The number of decimals of the token",
+            "example": 6
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "The source for the price feed of the token",
+            "example": "coinmarketcap",
+            "enum": [
+              "coinmarketcap",
+              "coingecko",
+              "lp",
+              "enso",
+              "pendle",
+              "plume",
+              "external"
+            ]
+          },
+          "searchId": {
+            "type": "string",
+            "title": "Search ID",
+            "description": "The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema",
+            "example": "3408"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "The type of the token",
+            "example": "token",
+            "enum": [
+              "token",
+              "point",
+              "lp"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "title": "Price",
+            "description": "The price of the token",
+            "example": 0.99999999
+          },
+          "fdv": {
+            "type": "number",
+            "title": "FDV",
+            "description": "The fully diluted valuation of the token",
+            "example": 59689964490.12
+          },
+          "totalSupply": {
+            "type": "number",
+            "title": "Total Supply",
+            "description": "The total supply of the token",
+            "example": 59689963893.2
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner",
+            "description": "The owner of the point program token",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "issuers": {
+            "title": "Issuers",
+            "description": "Authorized issuers of the point program token",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subTokens": {
+            "title": "Sub Tokens",
+            "description": "Array of sub tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuote"
+            }
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "rawAmount": {
+            "type": "string",
+            "title": "Raw Amount",
+            "description": "Amount in wei",
+            "example": "10000000000"
+          },
+          "tokenAmount": {
+            "type": "number",
+            "title": "Token Amount",
+            "description": "Normalized raw amount in token decimals",
+            "example": 1000
+          },
+          "tokenAmountUsd": {
+            "type": "number",
+            "title": "Token Amount USD",
+            "description": "Normalized raw amount in USD",
+            "example": 999.99
+          },
+          "remainingRawAmount": {
+            "type": "string",
+            "title": "Remaining Raw Amount",
+            "description": "Remaining raw amount of the offer",
+            "example": "100"
+          },
+          "remainingTokenAmount": {
+            "type": "number",
+            "title": "Remaining Token Amount",
+            "description": "Remaining token amount of the offer",
+            "example": 100
+          },
+          "remainingTokenAmountUsd": {
+            "type": "number",
+            "title": "Remaining Token Amount USD",
+            "description": "Remaining token amount in USD of the offer",
+            "example": 100
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "contractAddress",
+          "name",
+          "symbol",
+          "image",
+          "decimals",
+          "source",
+          "searchId",
+          "type",
+          "price",
+          "fdv",
+          "totalSupply",
+          "lastUpdated",
+          "rawAmount",
+          "tokenAmount",
+          "tokenAmountUsd",
+          "remainingRawAmount",
+          "remainingTokenAmount",
+          "remainingTokenAmountUsd"
+        ]
+      },
+      "EnrichedOfferRawMetadata": {
+        "type": "object",
+        "properties": {
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          },
+          "balanceUsd": {
+            "type": "number",
+            "title": "Balance USD",
+            "description": "The balance of the entity in USD"
+          },
+          "rawAmount": {
+            "type": "string",
+            "title": "Raw Amount",
+            "description": "Amount in wei",
+            "example": "10000000000"
+          },
+          "lockupTime": {
+            "type": "string",
+            "title": "Lockup Time",
+            "description": "The lockup time for the market in seconds. Note: vault markets always have a lockup time of \"0\"",
+            "example": "31536000"
+          }
+        },
+        "required": [
+          "yieldRate",
+          "balanceUsd",
+          "rawAmount",
+          "lockupTime"
+        ]
+      },
+      "EnrichedOfferIncentiveTokenData": {
+        "type": "object",
+        "properties": {
+          "rawMetadata": {
+            "title": "Raw Metadata",
+            "description": "Raw metadata",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EnrichedOfferRawMetadata"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "title": "Token ID",
+            "description": "Unique identifier for the token: chainId-contractAddress",
+            "example": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the token",
+            "example": "USDC"
+          },
+          "symbol": {
+            "type": "string",
+            "title": "Symbol",
+            "description": "The symbol of the token",
+            "example": "USDC"
+          },
+          "image": {
+            "type": "string",
+            "title": "Image",
+            "description": "The logo of the token",
+            "example": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+          },
+          "decimals": {
+            "type": "number",
+            "title": "Decimals",
+            "description": "The number of decimals of the token",
+            "example": 6
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "The source for the price feed of the token",
+            "example": "coinmarketcap",
+            "enum": [
+              "coinmarketcap",
+              "coingecko",
+              "lp",
+              "enso",
+              "pendle",
+              "plume",
+              "external"
+            ]
+          },
+          "searchId": {
+            "type": "string",
+            "title": "Search ID",
+            "description": "The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema",
+            "example": "3408"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "The type of the token",
+            "example": "token",
+            "enum": [
+              "token",
+              "point",
+              "lp"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "title": "Price",
+            "description": "The price of the token",
+            "example": 0.99999999
+          },
+          "fdv": {
+            "type": "number",
+            "title": "FDV",
+            "description": "The fully diluted valuation of the token",
+            "example": 59689964490.12
+          },
+          "totalSupply": {
+            "type": "number",
+            "title": "Total Supply",
+            "description": "The total supply of the token",
+            "example": 59689963893.2
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner",
+            "description": "The owner of the point program token",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "issuers": {
+            "title": "Issuers",
+            "description": "Authorized issuers of the point program token",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subTokens": {
+            "title": "Sub Tokens",
+            "description": "Array of sub tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuote"
+            }
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "rawAmount": {
+            "type": "string",
+            "title": "Raw Amount",
+            "description": "Amount in wei",
+            "example": "10000000000"
+          },
+          "tokenAmount": {
+            "type": "number",
+            "title": "Token Amount",
+            "description": "Normalized raw amount in token decimals",
+            "example": 1000
+          },
+          "tokenAmountUsd": {
+            "type": "number",
+            "title": "Token Amount USD",
+            "description": "Normalized raw amount in USD",
+            "example": 999.99
+          },
+          "remainingRawAmount": {
+            "type": "string",
+            "title": "Remaining Raw Amount",
+            "description": "Remaining raw amount of the offer",
+            "example": "100"
+          },
+          "remainingTokenAmount": {
+            "type": "number",
+            "title": "Remaining Token Amount",
+            "description": "Remaining token amount of the offer",
+            "example": 100
+          },
+          "remainingTokenAmountUsd": {
+            "type": "number",
+            "title": "Remaining Token Amount USD",
+            "description": "Remaining token amount in USD of the offer",
+            "example": 100
+          },
+          "perInputToken": {
+            "type": "number",
+            "title": "Per Input Token",
+            "description": "Per input token of the offer"
+          },
+          "annualTokenRate": {
+            "type": "number",
+            "title": "Annual Token Rate",
+            "description": "Annual token rate of the offer"
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "contractAddress",
+          "name",
+          "symbol",
+          "image",
+          "decimals",
+          "source",
+          "searchId",
+          "type",
+          "price",
+          "fdv",
+          "totalSupply",
+          "lastUpdated",
+          "rawAmount",
+          "tokenAmount",
+          "tokenAmountUsd",
+          "remainingRawAmount",
+          "remainingTokenAmount",
+          "remainingTokenAmountUsd",
+          "perInputToken",
+          "annualTokenRate",
+          "yieldRate"
+        ]
+      },
+      "EnrichedOffer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Unique identifier for the entity",
+            "example": "98866_0_0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "marketType": {
+            "type": "number",
+            "title": "Market Type",
+            "description": "The type of market: 0 = Recipe, 1 = Vault",
+            "example": 0,
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "offerSide": {
+            "type": "number",
+            "title": "Offer Side",
+            "description": "Side of the offer (0: AP, 1: IP)",
+            "example": 0
+          },
+          "offerId": {
+            "type": "string",
+            "title": "Offer ID",
+            "description": "ID of the offer",
+            "example": "0x123..."
+          },
+          "marketId": {
+            "type": "string",
+            "title": "Market ID",
+            "description": "The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address",
+            "example": "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "accountAddress": {
+            "type": "string",
+            "title": "Account Address",
+            "description": "Wallet address of the account",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "fundingVault": {
+            "type": "string",
+            "title": "Funding Vault",
+            "description": "Address of the funding vault",
+            "example": "0x123..."
+          },
+          "expiry": {
+            "type": "string",
+            "title": "Expiry",
+            "description": "Expiry timestamp of the offer",
+            "example": "0"
+          },
+          "isCancelled": {
+            "type": "boolean",
+            "title": "Is Cancelled",
+            "description": "Whether the offer is cancelled",
+            "example": false
+          },
+          "isValid": {
+            "type": "boolean",
+            "title": "Is Valid",
+            "description": "Whether the offer is valid",
+            "example": true
+          },
+          "blockNumber": {
+            "type": "string",
+            "title": "Block Number",
+            "description": "Block number associated with the entity",
+            "example": "21910786"
+          },
+          "blockTimestamp": {
+            "type": "string",
+            "title": "Block Timestamp",
+            "description": "Block timestamp associated with the entity",
+            "example": "1743357424"
+          },
+          "transactionHash": {
+            "type": "string",
+            "title": "Transaction Hash",
+            "description": "Transaction hash associated with the entity",
+            "example": "0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461"
+          },
+          "logIndex": {
+            "type": "string",
+            "title": "Log Index",
+            "description": "Log index associated with the entity",
+            "example": "12"
+          },
+          "inputTokenData": {
+            "$ref": "#/components/schemas/EnrichedOfferInputTokenData"
+          },
+          "incentiveTokensData": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedOfferIncentiveTokenData"
+            }
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          },
+          "canBeFilled": {
+            "type": "boolean",
+            "title": "Can Be Filled",
+            "description": "Whether the offer can be filled",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "marketType",
+          "offerSide",
+          "offerId",
+          "marketId",
+          "accountAddress",
+          "fundingVault",
+          "expiry",
+          "isCancelled",
+          "isValid",
+          "blockNumber",
+          "blockTimestamp",
+          "transactionHash",
+          "logIndex",
+          "inputTokenData",
+          "incentiveTokensData",
+          "yieldRate",
+          "canBeFilled"
+        ]
+      },
       "ChartResponse": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "offers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedOffer"
+            }
+          }
+        },
+        "required": [
+          "offers"
+        ]
       },
-      "StatsRequestBody": {
+      "StatsAssetsRequestBody": {
         "type": "object",
         "properties": {
           "customTokenData": {
@@ -12444,25 +13851,24 @@
           }
         }
       },
-      "ValidAssetPosition": {
-        "type": "object",
-        "properties": {}
-      },
-      "StatsFinalResponse": {
+      "StatsAssetsResponse": {
         "type": "object",
         "properties": {
-          "inputTokens": {
-            "title": "Input Tokens",
-            "description": "Array of input tokens",
+          "inputTokenBreakdown": {
+            "title": "Input Token Breakdown",
+            "description": "Breakdown of the input token",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ValidAssetPosition"
+              "$ref": "#/components/schemas/BaseEnrichedTokenData"
             }
           },
-          "incentiveTokens": {
-            "type": "number",
-            "title": "Incentive Tokens",
-            "description": "Array of incentive tokens"
+          "incentiveTokensBreakdown": {
+            "title": "Incentive Tokens Breakdown",
+            "description": "Breakdown of the incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseEnrichedTokenData"
+            }
           },
           "balanceUsd": {
             "type": "number",
@@ -12472,8 +13878,8 @@
           }
         },
         "required": [
-          "inputTokens",
-          "incentiveTokens",
+          "inputTokenBreakdown",
+          "incentiveTokensBreakdown",
           "balanceUsd"
         ]
       },
@@ -13041,13 +14447,21 @@
               "$ref": "#/components/schemas/Filter"
             }
           },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
           "sorting": {
             "title": "Sorting Object",
             "description": "Object type to sort results with",
-            "example": {
-              "id": "tvlUsd",
-              "desc": true
-            },
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Sorting"
