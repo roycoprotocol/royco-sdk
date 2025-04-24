@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0x78adD880A697070c1e765Ac44D65323a0DcCE913",
+  id: "98866-0x78add880a697070c1e765ac44d65323a0dcce913",
   chain_id: 98866,
-  contract_address: "0x78adD880A697070c1e765Ac44D65323a0DcCE913",
+  contract_address: "0x78add880a697070c1e765ac44d65323a0dcce913",
   name: "USDC",
   symbol: "USDC",
   image: "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png",
