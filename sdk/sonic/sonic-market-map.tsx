@@ -29,6 +29,7 @@ export enum SONIC_APP {
   STABILITY = "Stability",
   STREAM = "Stream",
   DAHLIA = "Dahlia",
+  RFX = "RFX",
 }
 
 export const SONIC_GEM_DISTRIBUTION_MAP = {
@@ -137,6 +138,14 @@ export const sonicMarketMap: {
   {
     id: "146_0_0xf8b51673d19ac7c2b804113d68f3c07310e2aaee5d6873bc55d9dc4e0b71484a",
     app: SONIC_APP.DAHLIA,
+  },
+  {
+    id: "146_0_0x5ba168d51627169be3942d735346d35101e4cdc02092bceee8882722bc407b04",
+    app: SONIC_APP.RFX,
+  },
+  {
+    id: "146_0_0xec783a68452e3fc44de0f5c9769c312be9ed17fbb4594f635eea88230ec68c28",
+    app: SONIC_APP.RFX,
   },
 ];
 
