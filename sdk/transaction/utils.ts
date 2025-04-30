@@ -18,3 +18,17 @@ export const enrichTxOptions = ({
     };
   });
 };
+
+export const enrichTxOption = ({
+  txOption,
+}: {
+  txOption: RawTxOption;
+}): EnrichedTxOption => {
+  const abi = AbiMap.get(txOption.contractId);
+
+  return {
+    ...txOption,
+    abi: abi as Abi,
+    address: txOption.address as Address,
+  };
+};
