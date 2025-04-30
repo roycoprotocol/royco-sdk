@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "pUSD",
   image: " https://app.nest.credit/images/pusd.svg",
   decimals: 6,
-  source: "coinmarketcap",
-  search_id: "3408",
+  source: "coingecko",
+  search_id: "usd-coin",
   type: "token",
 });
