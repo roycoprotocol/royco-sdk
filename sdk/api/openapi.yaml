@@ -4844,6 +4844,78 @@ paths:
         - api-key-query: []
       summary: Vault AP Limit Action
       tags: *ref_7
+  /api/v1/action/vault/ip/add:
+    post:
+      description: Vault IP Add Incentives Action
+      operationId: ActionController_vaultIPAddIncentivesAction
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VaultIPAddIncentivesActionBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultIPAddIncentivesActionResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Vault IP Add Incentives Action
+      tags: *ref_7
+  /api/v1/action/vault/ip/extend:
+    post:
+      description: Vault IP Extend Incentives Action
+      operationId: ActionController_vaultIPExtendIncentivesAction
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VaultIPExtendIncentivesActionBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultIPExtendIncentivesActionResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Vault IP Extend Incentives Action
+      tags: *ref_7
+  /api/v1/action/vault/ip/refund:
+    post:
+      description: Vault IP Refund Incentives Action
+      operationId: ActionController_vaultIPRefundIncentivesAction
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VaultIPRefundIncentivesActionBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VaultIPRefundIncentivesActionResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Vault IP Refund Incentives Action
+      tags: *ref_7
   /api/v1/point/directory:
     post:
       description: Get point directory based on the filters and page
@@ -5566,7 +5638,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomTokenDataElement'
-    BaseEnrichedTokenData:
+    MarketInputTokenDetailed:
       type: object
       properties:
         rawMetadata:
@@ -5690,6 +5762,16 @@ components:
           title: Token Amount USD
           description: Normalized raw amount in USD
           example: 999.99
+        totalFillableForAP:
+          type: number
+          title: Total Fillable Amount for AP
+          description: Total fillable token amount for AP
+          example: 1000
+        totalFillableForIP:
+          type: number
+          title: Total Fillable Amount for IP
+          description: Total fillable token amount for IP
+          example: 1000
       required:
         - id
         - chainId
@@ -6512,7 +6594,7 @@ components:
           title: Input Token Data
           description: Token data for the market input token
           allOf:
-            - $ref: '#/components/schemas/BaseEnrichedTokenData'
+            - $ref: '#/components/schemas/MarketInputTokenDetailed'
         incentiveTokens:
           title: Incentive Tokens
           description: Incentive tokens
@@ -6782,7 +6864,7 @@ components:
           title: Input Token Data
           description: Token data for the market input token
           allOf:
-            - $ref: '#/components/schemas/BaseEnrichedTokenData'
+            - $ref: '#/components/schemas/MarketInputTokenDetailed'
         incentiveTokens:
           title: Incentive Tokens
           description: Incentive tokens
@@ -8597,6 +8679,148 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomTokenDataElement'
+    BaseEnrichedTokenData:
+      type: object
+      properties:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
+          type: string
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_8
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_9
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
+          type: array
+          items:
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        rawAmount:
+          type: string
+          title: Raw Amount
+          description: Amount in wei
+          example: '10000000000'
+        tokenAmount:
+          type: number
+          title: Token Amount
+          description: Normalized raw amount in token decimals
+          example: 1000
+        tokenAmountUsd:
+          type: number
+          title: Token Amount USD
+          description: Normalized raw amount in USD
+          example: 999.99
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+        - rawAmount
+        - tokenAmount
+        - tokenAmountUsd
     LockedInputTokenSpecificRecipePosition:
       type: object
       properties:
@@ -11721,6 +11945,587 @@ components:
     VaultAPLimitActionResponse:
       type: object
       properties: {}
+    VaultIPAddIncentivesActionBody:
+      type: object
+      properties:
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        id:
+          type: string
+        accountAddress:
+          type: string
+        tokenIds:
+          type: array
+          items:
+            type: string
+        tokenAmounts:
+          type: array
+          items:
+            type: string
+        startTimestamps:
+          type: array
+          items:
+            type: string
+        endTimestamps:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - tokenIds
+        - tokenAmounts
+        - startTimestamps
+        - endTimestamps
+    IncentiveTokenVaultIPAddIncentives:
+      type: object
+      properties:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
+          type: string
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_8
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_9
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
+          type: array
+          items:
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        rawAmount:
+          type: string
+          title: Raw Amount
+          description: Amount in wei
+          example: '10000000000'
+        tokenAmount:
+          type: number
+          title: Token Amount
+          description: Normalized raw amount in token decimals
+          example: 1000
+        tokenAmountUsd:
+          type: number
+          title: Token Amount USD
+          description: Normalized raw amount in USD
+          example: 999.99
+        rawAmountWithFees:
+          type: string
+        tokenAmountWithFees:
+          type: number
+        tokenAmountUsdWithFees:
+          type: number
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+        - rawAmount
+        - tokenAmount
+        - tokenAmountUsd
+        - rawAmountWithFees
+        - tokenAmountWithFees
+        - tokenAmountUsdWithFees
+    VaultIPAddIncentivesActionResponse:
+      type: object
+      properties:
+        totalFeeRatio:
+          type: number
+        incentiveTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncentiveTokenVaultIPAddIncentives'
+        rawTxOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawTxOption'
+      required:
+        - totalFeeRatio
+        - incentiveTokens
+        - rawTxOptions
+    VaultIPExtendIncentivesActionBody:
+      type: object
+      properties:
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        id:
+          type: string
+        accountAddress:
+          type: string
+        tokenIds:
+          type: array
+          items:
+            type: string
+        tokenAmounts:
+          type: array
+          items:
+            type: string
+        endTimestamps:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - tokenIds
+        - tokenAmounts
+        - endTimestamps
+    IncentiveTokenVaultIPExtendIncentives:
+      type: object
+      properties:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
+          type: string
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_8
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_9
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
+          type: array
+          items:
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        rawAmount:
+          type: string
+          title: Raw Amount
+          description: Amount in wei
+          example: '10000000000'
+        tokenAmount:
+          type: number
+          title: Token Amount
+          description: Normalized raw amount in token decimals
+          example: 1000
+        tokenAmountUsd:
+          type: number
+          title: Token Amount USD
+          description: Normalized raw amount in USD
+          example: 999.99
+        rawAmountWithFees:
+          type: string
+        tokenAmountWithFees:
+          type: number
+        tokenAmountUsdWithFees:
+          type: number
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+        - rawAmount
+        - tokenAmount
+        - tokenAmountUsd
+        - rawAmountWithFees
+        - tokenAmountWithFees
+        - tokenAmountUsdWithFees
+    VaultIPExtendIncentivesActionResponse:
+      type: object
+      properties:
+        totalFeeRatio:
+          type: number
+        incentiveTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncentiveTokenVaultIPExtendIncentives'
+        rawTxOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawTxOption'
+      required:
+        - totalFeeRatio
+        - incentiveTokens
+        - rawTxOptions
+    VaultIPRefundIncentivesActionBody:
+      type: object
+      properties:
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        id:
+          type: string
+        tokenIds:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - tokenIds
+    IncentiveTokenVaultIPRefundIncentives:
+      type: object
+      properties:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
+          type: string
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_8
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_9
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
+          type: array
+          items:
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        rawAmount:
+          type: string
+          title: Raw Amount
+          description: Amount in wei
+          example: '10000000000'
+        tokenAmount:
+          type: number
+          title: Token Amount
+          description: Normalized raw amount in token decimals
+          example: 1000
+        tokenAmountUsd:
+          type: number
+          title: Token Amount USD
+          description: Normalized raw amount in USD
+          example: 999.99
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+        - rawAmount
+        - tokenAmount
+        - tokenAmountUsd
+    VaultIPRefundIncentivesActionResponse:
+      type: object
+      properties:
+        incentiveTokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncentiveTokenVaultIPRefundIncentives'
+        rawTxOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RawTxOption'
+      required:
+        - incentiveTokens
+        - rawTxOptions
     PointDirectoryRequestBody:
       type: object
       properties:
