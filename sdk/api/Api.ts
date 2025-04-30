@@ -17,6 +17,9 @@ import {
   ActionControllerRecipeIpMarketActionData,
   ActionControllerVaultApLimitActionData,
   ActionControllerVaultApMarketActionData,
+  ActionControllerVaultIpAddIncentivesActionData,
+  ActionControllerVaultIpExtendIncentivesActionData,
+  ActionControllerVaultIpRefundIncentivesActionData,
   AddonsControllerGetIncentivesData,
   AddonsControllerRefreshIncentivesData,
   BaseRequestBody,
@@ -61,6 +64,9 @@ import {
   VaultAPMarketActionBody,
   VaultControllerGetVaultInfoData,
   VaultInfoRequestBody,
+  VaultIPAddIncentivesActionBody,
+  VaultIPExtendIncentivesActionBody,
+  VaultIPRefundIncentivesActionBody,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -645,6 +651,72 @@ export class Api<
   ) =>
     this.request<ActionControllerVaultApLimitActionData, any>({
       path: `/api/v1/action/vault/ap/limit`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Vault IP Add Incentives Action
+   *
+   * @tags Action
+   * @name ActionControllerVaultIpAddIncentivesAction
+   * @summary Vault IP Add Incentives Action
+   * @request POST:/api/v1/action/vault/ip/add
+   * @secure
+   */
+  actionControllerVaultIpAddIncentivesAction = (
+    data: VaultIPAddIncentivesActionBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<ActionControllerVaultIpAddIncentivesActionData, any>({
+      path: `/api/v1/action/vault/ip/add`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Vault IP Extend Incentives Action
+   *
+   * @tags Action
+   * @name ActionControllerVaultIpExtendIncentivesAction
+   * @summary Vault IP Extend Incentives Action
+   * @request POST:/api/v1/action/vault/ip/extend
+   * @secure
+   */
+  actionControllerVaultIpExtendIncentivesAction = (
+    data: VaultIPExtendIncentivesActionBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<ActionControllerVaultIpExtendIncentivesActionData, any>({
+      path: `/api/v1/action/vault/ip/extend`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Vault IP Refund Incentives Action
+   *
+   * @tags Action
+   * @name ActionControllerVaultIpRefundIncentivesAction
+   * @summary Vault IP Refund Incentives Action
+   * @request POST:/api/v1/action/vault/ip/refund
+   * @secure
+   */
+  actionControllerVaultIpRefundIncentivesAction = (
+    data: VaultIPRefundIncentivesActionBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<ActionControllerVaultIpRefundIncentivesActionData, any>({
+      path: `/api/v1/action/vault/ip/refund`,
       method: "POST",
       body: data,
       secure: true,
