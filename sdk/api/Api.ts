@@ -36,6 +36,8 @@ import {
   MarketControllerGetMarketData,
   MarketControllerGetMarketsData,
   MarketControllerGetMarketSettingsData,
+  OfferControllerGetRecipeOffersData,
+  OfferControllerGetVaultOffersData,
   PointControllerGetPointDirectoryData,
   PointDirectoryRequestBody,
   PositionControllerGetBoringPositionsData,
@@ -128,6 +130,50 @@ export class Api<
   ) =>
     this.request<TokenControllerGetTokenDirectoryData, any>({
       path: `/api/v1/token/directory`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get offers for all recipe markets.
+   *
+   * @tags Offer
+   * @name OfferControllerGetRecipeOffers
+   * @summary Get recipe offers
+   * @request POST:/api/v1/offer/recipe
+   * @secure
+   */
+  offerControllerGetRecipeOffers = (
+    data?: BaseRequestBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<OfferControllerGetRecipeOffersData, any>({
+      path: `/api/v1/offer/recipe`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get offers for all vault markets.
+   *
+   * @tags Offer
+   * @name OfferControllerGetVaultOffers
+   * @summary Get vault offers
+   * @request POST:/api/v1/offer/vault
+   * @secure
+   */
+  offerControllerGetVaultOffers = (
+    data?: BaseRequestBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<OfferControllerGetVaultOffersData, any>({
+      path: `/api/v1/offer/vault`,
       method: "POST",
       body: data,
       secure: true,

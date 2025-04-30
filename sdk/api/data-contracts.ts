@@ -419,6 +419,398 @@ export interface TokenDirectoryResponse {
   data: TokenQuote;
 }
 
+export interface BaseRequestBody {
+  /**
+   * Filters Array
+   * Array of filter objects to apply to the results
+   * @example [{"id":"chainId","value":1},{"id":"tvlUsd","value":1000000,"condition":"gte"}]
+   */
+  filters?: Filter[];
+  /**
+   * Search Key
+   * Key to search by
+   * @example "marketId"
+   */
+  searchKey?: string;
+  /**
+   * Sorting Object
+   * Object type to sort results with
+   * @example [{"id":"tvlUsd","desc":true}]
+   */
+  sorting?: Sorting[];
+  /**
+   * Request Page Object
+   * Object type to request a page of results
+   * @default {"index":1,"size":10}
+   * @example {"index":1,"size":3}
+   */
+  page?: RequestPage;
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+}
+
+export interface BaseEnrichedTokenDataWithRemainingAmounts {
+  /**
+   * Raw Metadata
+   * Raw metadata
+   */
+  rawMetadata?: object;
+  /**
+   * Token ID
+   * Unique identifier for the token: chainId-contractAddress
+   * @example "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Name
+   * The name of the token
+   * @example "USDC"
+   */
+  name: string;
+  /**
+   * Symbol
+   * The symbol of the token
+   * @example "USDC"
+   */
+  symbol: string;
+  /**
+   * Image
+   * The logo of the token
+   * @example "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+   */
+  image: string;
+  /**
+   * Decimals
+   * The number of decimals of the token
+   * @example 6
+   */
+  decimals: number;
+  /**
+   * Source
+   * The source for the price feed of the token
+   * @example "coinmarketcap"
+   */
+  source:
+    | "coinmarketcap"
+    | "coingecko"
+    | "lp"
+    | "enso"
+    | "pendle"
+    | "plume"
+    | "external";
+  /**
+   * Search ID
+   * The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema
+   * @example "3408"
+   */
+  searchId: string;
+  /**
+   * Type
+   * The type of the token
+   * @example "token"
+   */
+  type: "token" | "point" | "lp";
+  /**
+   * Price
+   * The price of the token
+   * @example 0.99999999
+   */
+  price: number;
+  /**
+   * FDV
+   * The fully diluted valuation of the token
+   * @example 59689964490.12
+   */
+  fdv: number;
+  /**
+   * Total Supply
+   * The total supply of the token
+   * @example 59689963893.2
+   */
+  totalSupply: number;
+  /**
+   * Owner
+   * The owner of the point program token
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  owner?: string;
+  /**
+   * Issuers
+   * Authorized issuers of the point program token
+   */
+  issuers?: string[];
+  /**
+   * Sub Tokens
+   * Array of sub tokens
+   */
+  subTokens?: TokenQuote[];
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  /**
+   * Raw Amount
+   * Amount in wei
+   * @example "10000000000"
+   */
+  rawAmount: string;
+  /**
+   * Token Amount
+   * Normalized raw amount in token decimals
+   * @example 1000
+   */
+  tokenAmount: number;
+  /**
+   * Token Amount USD
+   * Normalized raw amount in USD
+   * @example 999.99
+   */
+  tokenAmountUsd: number;
+  /**
+   * Remaining Raw Amount
+   * Amount in wei
+   * @example "10000000000"
+   */
+  remainingRawAmount: string;
+  /**
+   * Remaining Token Amount
+   * Normalized raw amount in token decimals
+   * @example 1000
+   */
+  remainingTokenAmount: number;
+  /**
+   * Remaining Token Amount USD
+   * Normalized raw amount in USD
+   * @example 999.99
+   */
+  remainingTokenAmountUsd: number;
+}
+
+export interface RecipeOffer {
+  id: string;
+  rawMarketRefId: string;
+  chainId: number;
+  marketType: number;
+  marketId: string;
+  offerSide: number;
+  offerId: string;
+  accountAddress: string;
+  fundingVault: string;
+  inputToken: BaseEnrichedTokenDataWithRemainingAmounts;
+  incentiveTokens: BaseEnrichedTokenDataWithRemainingAmounts[];
+  expiry: number;
+  status: "invalid" | "active" | "cancelled" | "expired" | "filled";
+}
+
+export interface RecipeOfferResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  data: RecipeOffer[];
+}
+
+export interface VaultOfferIncentiveToken {
+  /**
+   * Raw Metadata
+   * Raw metadata
+   */
+  rawMetadata?: object;
+  /**
+   * Token ID
+   * Unique identifier for the token: chainId-contractAddress
+   * @example "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Name
+   * The name of the token
+   * @example "USDC"
+   */
+  name: string;
+  /**
+   * Symbol
+   * The symbol of the token
+   * @example "USDC"
+   */
+  symbol: string;
+  /**
+   * Image
+   * The logo of the token
+   * @example "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+   */
+  image: string;
+  /**
+   * Decimals
+   * The number of decimals of the token
+   * @example 6
+   */
+  decimals: number;
+  /**
+   * Source
+   * The source for the price feed of the token
+   * @example "coinmarketcap"
+   */
+  source:
+    | "coinmarketcap"
+    | "coingecko"
+    | "lp"
+    | "enso"
+    | "pendle"
+    | "plume"
+    | "external";
+  /**
+   * Search ID
+   * The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema
+   * @example "3408"
+   */
+  searchId: string;
+  /**
+   * Type
+   * The type of the token
+   * @example "token"
+   */
+  type: "token" | "point" | "lp";
+  /**
+   * Price
+   * The price of the token
+   * @example 0.99999999
+   */
+  price: number;
+  /**
+   * FDV
+   * The fully diluted valuation of the token
+   * @example 59689964490.12
+   */
+  fdv: number;
+  /**
+   * Total Supply
+   * The total supply of the token
+   * @example 59689963893.2
+   */
+  totalSupply: number;
+  /**
+   * Owner
+   * The owner of the point program token
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  owner?: string;
+  /**
+   * Issuers
+   * Authorized issuers of the point program token
+   */
+  issuers?: string[];
+  /**
+   * Sub Tokens
+   * Array of sub tokens
+   */
+  subTokens?: TokenQuote[];
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  /**
+   * Raw Amount
+   * Amount in wei
+   * @example "10000000000"
+   */
+  rawAmount: string;
+  /**
+   * Token Amount
+   * Normalized raw amount in token decimals
+   * @example 1000
+   */
+  tokenAmount: number;
+  /**
+   * Token Amount USD
+   * Normalized raw amount in USD
+   * @example 999.99
+   */
+  tokenAmountUsd: number;
+  tokenAmountPerYear: number;
+}
+
+export interface VaultOffer {
+  id: string;
+  rawMarketRefId: string;
+  chainId: number;
+  marketType: number;
+  marketId: string;
+  offerSide: number;
+  offerId: string;
+  accountAddress: string;
+  fundingVault: string;
+  inputToken: BaseEnrichedTokenDataWithRemainingAmounts;
+  incentiveTokens: VaultOfferIncentiveToken[];
+  expiry: number;
+  status: "invalid" | "active" | "cancelled" | "expired" | "filled";
+}
+
+export interface VaultOfferResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  data: VaultOffer[];
+}
+
 export interface InfoMarketBody {
   /**
    * Custom Token Data
@@ -2588,39 +2980,6 @@ export interface VaultInfoResponse {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-}
-
-export interface BaseRequestBody {
-  /**
-   * Filters Array
-   * Array of filter objects to apply to the results
-   * @example [{"id":"chainId","value":1},{"id":"tvlUsd","value":1000000,"condition":"gte"}]
-   */
-  filters?: Filter[];
-  /**
-   * Search Key
-   * Key to search by
-   * @example "marketId"
-   */
-  searchKey?: string;
-  /**
-   * Sorting Object
-   * Object type to sort results with
-   * @example [{"id":"tvlUsd","desc":true}]
-   */
-  sorting?: Sorting[];
-  /**
-   * Request Page Object
-   * Object type to request a page of results
-   * @default {"index":1,"size":10}
-   * @example {"index":1,"size":3}
-   */
-  page?: RequestPage;
-  /**
-   * Custom Token Data
-   * Array of custom token assumptions --  if not provided, the default quote data will be used.
-   */
-  customTokenData?: CustomTokenDataElement[];
 }
 
 export interface BaseEnrichedTokenDataWithWithdrawStatus {
@@ -6457,6 +6816,10 @@ export type HealthControllerCheckError = {
 export type TokenControllerGetTokenQuoteData = TokenQuoteResponse;
 
 export type TokenControllerGetTokenDirectoryData = TokenDirectoryResponse;
+
+export type OfferControllerGetRecipeOffersData = RecipeOfferResponse;
+
+export type OfferControllerGetVaultOffersData = VaultOfferResponse;
 
 export type AddonsControllerGetIncentivesData = any;
 
