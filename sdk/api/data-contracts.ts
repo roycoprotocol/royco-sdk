@@ -6091,6 +6091,146 @@ export interface RecipeAPMarketActionBody {
   fundingVault?: string;
 }
 
+export interface V1ActionIncentiveToken {
+  /**
+   * Raw Metadata
+   * Raw metadata
+   */
+  rawMetadata?: object;
+  /**
+   * Token ID
+   * Unique identifier for the token: chainId-contractAddress
+   * @example "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Name
+   * The name of the token
+   * @example "USDC"
+   */
+  name: string;
+  /**
+   * Symbol
+   * The symbol of the token
+   * @example "USDC"
+   */
+  symbol: string;
+  /**
+   * Image
+   * The logo of the token
+   * @example "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+   */
+  image: string;
+  /**
+   * Decimals
+   * The number of decimals of the token
+   * @example 6
+   */
+  decimals: number;
+  /**
+   * Source
+   * The source for the price feed of the token
+   * @example "coinmarketcap"
+   */
+  source:
+    | "coinmarketcap"
+    | "coingecko"
+    | "lp"
+    | "enso"
+    | "pendle"
+    | "plume"
+    | "external";
+  /**
+   * Search ID
+   * The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema
+   * @example "3408"
+   */
+  searchId: string;
+  /**
+   * Type
+   * The type of the token
+   * @example "token"
+   */
+  type: "token" | "point" | "lp";
+  /**
+   * Price
+   * The price of the token
+   * @example 0.99999999
+   */
+  price: number;
+  /**
+   * FDV
+   * The fully diluted valuation of the token
+   * @example 59689964490.12
+   */
+  fdv: number;
+  /**
+   * Total Supply
+   * The total supply of the token
+   * @example 59689963893.2
+   */
+  totalSupply: number;
+  /**
+   * Owner
+   * The owner of the point program token
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  owner?: string;
+  /**
+   * Issuers
+   * Authorized issuers of the point program token
+   */
+  issuers?: string[];
+  /**
+   * Sub Tokens
+   * Array of sub tokens
+   */
+  subTokens?: TokenQuote[];
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  /**
+   * Raw Amount
+   * Amount in wei
+   * @example "10000000000"
+   */
+  rawAmount: string;
+  /**
+   * Token Amount
+   * Normalized raw amount in token decimals
+   * @example 1000
+   */
+  tokenAmount: number;
+  /**
+   * Token Amount USD
+   * Normalized raw amount in USD
+   * @example 999.99
+   */
+  tokenAmountUsd: number;
+  perInputToken: number;
+  yieldRate: number;
+}
+
 export interface RawTxOption {
   id: string;
   chainId: number;
@@ -6104,15 +6244,16 @@ export interface RawTxOption {
 }
 
 export interface RecipeAPMarketActionResponse {
-  fillStatus: string;
+  fillStatus: "invalid" | "empty" | "partial" | "full";
   inputToken: BaseEnrichedTokenData;
   rewardStyle: number;
   yieldRate: number;
-  incentiveTokens: BaseEnrichedTokenData[];
+  incentiveTokens: V1ActionIncentiveToken[];
   underlyingIncentives: MarketUnderlyingIncentive[];
   nativeIncentives: MarketNativeIncentive[];
   externalIncentives: MarketExternalIncentive[];
   rawTxOptions: RawTxOption[];
+  totalFeeRatio: number;
 }
 
 export interface RecipeIPMarketActionBody {
@@ -6127,11 +6268,11 @@ export interface RecipeIPMarketActionBody {
 }
 
 export interface RecipeIPMarketActionResponse {
-  fillStatus: string;
+  fillStatus: "invalid" | "empty" | "partial" | "full";
   inputToken: BaseEnrichedTokenData;
   rewardStyle: number;
   yieldRate: number;
-  incentiveTokens: BaseEnrichedTokenData[];
+  incentiveTokens: V1ActionIncentiveToken[];
   underlyingIncentives: MarketUnderlyingIncentive[];
   nativeIncentives: MarketNativeIncentive[];
   externalIncentives: MarketExternalIncentive[];
@@ -6154,10 +6295,11 @@ export interface RecipeIPLimitActionBody {
 }
 
 export interface RecipeIPLimitActionResponse {
+  fillStatus: "invalid" | "empty" | "partial" | "full";
   inputToken: BaseEnrichedTokenData;
   rewardStyle: number;
   yieldRate: number;
-  incentiveTokens: BaseEnrichedTokenData[];
+  incentiveTokens: V1ActionIncentiveToken[];
   underlyingIncentives: MarketUnderlyingIncentive[];
   nativeIncentives: MarketNativeIncentive[];
   externalIncentives: MarketExternalIncentive[];
@@ -6181,14 +6323,16 @@ export interface RecipeAPLimitActionBody {
 }
 
 export interface RecipeAPLimitActionResponse {
+  fillStatus: "invalid" | "empty" | "partial" | "full";
   inputToken: BaseEnrichedTokenData;
   rewardStyle: number;
   yieldRate: number;
-  incentiveTokens: BaseEnrichedTokenData[];
+  incentiveTokens: V1ActionIncentiveToken[];
   underlyingIncentives: MarketUnderlyingIncentive[];
   nativeIncentives: MarketNativeIncentive[];
   externalIncentives: MarketExternalIncentive[];
   rawTxOptions: RawTxOption[];
+  totalFeeRatio: number;
 }
 
 export interface VaultAPMarketActionBody {
