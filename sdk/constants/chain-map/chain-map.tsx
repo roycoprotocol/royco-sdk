@@ -53,7 +53,7 @@ export const Plume = {
   ...plumeMainnet,
   name: "Plume",
   image:
-    "https://cdn.prod.website-files.com/670fc97cba6a0b3f2e579538/67caae7d641e95b46d3f6d2c_plume-token.svg",
+    "https://portal.plume.org/assets/tokens/plume.svg",
   symbol: "PLUME",
   contracts: {
     multicall3: {
