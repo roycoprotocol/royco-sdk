@@ -1,5 +1,6 @@
 import { AbiMap, AddressMap } from "@/sdk/constants";
 import { type Abi, type Address } from "viem";
+import { type EnrichedTxOption } from "@/sdk/transaction/types";
 
 export const cancelRecipeAPOfferTxOptions = ({
   chainId,
@@ -21,7 +22,7 @@ export const cancelRecipeAPOfferTxOptions = ({
   expiry: string;
   incentiveTokenIds: string[];
   incentiveTokenAmounts: string[];
-}) => {
+}): EnrichedTxOption[] => {
   const address = AddressMap.get(`${chainId}_RecipeMarketHub`);
   const abi = AbiMap.get("RecipeMarketHub");
 
@@ -30,7 +31,7 @@ export const cancelRecipeAPOfferTxOptions = ({
       id: `${chainId}_${offerId}_cancel_ap_offer`,
       chainId,
       contractId: "RecipeMarketHub",
-      label: "Cancel AP Offer",
+      label: "Cancel Offer",
       category: "cancel",
       address: address as Address,
       abi: abi as Abi,
@@ -60,7 +61,7 @@ export const cancelRecipeIPOfferTxOptions = ({
 }: {
   chainId: number;
   offerId: string;
-}) => {
+}): EnrichedTxOption[] => {
   const address = AddressMap.get(`${chainId}_RecipeMarketHub`);
   const abi = AbiMap.get("RecipeMarketHub");
 
@@ -69,7 +70,7 @@ export const cancelRecipeIPOfferTxOptions = ({
       id: `${chainId}_${offerId}_cancel_ip_offer`,
       chainId,
       contractId: "RecipeMarketHub",
-      label: "Cancel IP Offer",
+      label: "Cancel Offer",
       category: "cancel",
       address: address as Address,
       abi: abi as Abi,
