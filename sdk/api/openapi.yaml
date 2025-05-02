@@ -9097,6 +9097,8 @@ components:
             - cancelled
             - expired
             - filled
+        transactionHash:
+          type: string
       required:
         - id
         - rawMarketRefId
@@ -9111,6 +9113,7 @@ components:
         - incentiveTokens
         - expiry
         - status
+        - transactionHash
     RecipeOfferResponse:
       type: object
       properties:
@@ -9315,6 +9318,8 @@ components:
             - cancelled
             - expired
             - filled
+        transactionHash:
+          type: string
       required:
         - id
         - rawMarketRefId
@@ -9329,6 +9334,7 @@ components:
         - incentiveTokens
         - expiry
         - status
+        - transactionHash
     VaultOfferResponse:
       type: object
       properties:
