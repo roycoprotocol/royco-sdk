@@ -622,6 +622,7 @@ export interface RecipeOffer {
   incentiveTokens: BaseEnrichedTokenDataWithRemainingAmounts[];
   expiry: string;
   status: "invalid" | "active" | "cancelled" | "expired" | "filled";
+  transactionHash: string;
 }
 
 export interface RecipeOfferResponse {
@@ -793,6 +794,7 @@ export interface VaultOffer {
   incentiveTokens: VaultOfferIncentiveToken[];
   expiry: string;
   status: "invalid" | "active" | "cancelled" | "expired" | "filled";
+  transactionHash: string;
 }
 
 export interface VaultOfferResponse {

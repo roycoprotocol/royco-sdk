@@ -10601,6 +10601,9 @@
               "expired",
               "filled"
             ]
+          },
+          "transactionHash": {
+            "type": "string"
           }
         },
         "required": [
@@ -10616,7 +10619,8 @@
           "inputToken",
           "incentiveTokens",
           "expiry",
-          "status"
+          "status",
+          "transactionHash"
         ]
       },
       "RecipeOfferResponse": {
@@ -10885,6 +10889,9 @@
               "expired",
               "filled"
             ]
+          },
+          "transactionHash": {
+            "type": "string"
           }
         },
         "required": [
@@ -10900,7 +10907,8 @@
           "inputToken",
           "incentiveTokens",
           "expiry",
-          "status"
+          "status",
+          "transactionHash"
         ]
       },
       "VaultOfferResponse": {
