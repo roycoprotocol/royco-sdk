@@ -620,7 +620,7 @@ export interface RecipeOffer {
   fundingVault: string;
   inputToken: BaseEnrichedTokenDataWithRemainingAmounts;
   incentiveTokens: BaseEnrichedTokenDataWithRemainingAmounts[];
-  expiry: number;
+  expiry: string;
   status: "invalid" | "active" | "cancelled" | "expired" | "filled";
 }
 
@@ -791,7 +791,7 @@ export interface VaultOffer {
   fundingVault: string;
   inputToken: BaseEnrichedTokenDataWithRemainingAmounts;
   incentiveTokens: VaultOfferIncentiveToken[];
-  expiry: number;
+  expiry: string;
   status: "invalid" | "active" | "cancelled" | "expired" | "filled";
 }
 

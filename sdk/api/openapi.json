@@ -10590,7 +10590,7 @@
             }
           },
           "expiry": {
-            "type": "number"
+            "type": "string"
           },
           "status": {
             "type": "string",
@@ -10874,7 +10874,7 @@
             }
           },
           "expiry": {
-            "type": "number"
+            "type": "string"
           },
           "status": {
             "type": "string",

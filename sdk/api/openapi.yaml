@@ -9088,7 +9088,7 @@ components:
           items:
             $ref: '#/components/schemas/BaseEnrichedTokenDataWithRemainingAmounts'
         expiry:
-          type: number
+          type: string
         status:
           type: string
           enum:
@@ -9306,7 +9306,7 @@ components:
           items:
             $ref: '#/components/schemas/VaultOfferIncentiveToken'
         expiry:
-          type: number
+          type: string
         status:
           type: string
           enum:
