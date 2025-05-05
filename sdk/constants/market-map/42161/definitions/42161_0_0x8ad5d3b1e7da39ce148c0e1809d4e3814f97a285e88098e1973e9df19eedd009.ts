@@ -23,7 +23,7 @@ export default defineMarket({
   description: `Earn 15% - 25% APY + rewards on stable coins. 
 
 More details at (https:&#x2F;&#x2F;yield.fi)`,
-  is_verified: true,
+  is_verified: false,
   incentive_ids: ["42161-0x895e15020c3f52ddd4d8e9514eb83c39f53b1579"],
   native_yield: [
     {
