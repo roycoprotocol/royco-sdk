@@ -7923,7 +7923,7 @@ paths:
               $ref: '#/components/schemas/ChartRequestBody'
       responses:
         '200':
-          description: Success
+          description: ''
           content:
             application/json:
               schema:
@@ -8372,6 +8372,31 @@ paths:
       summary: Get point directory
       tags:
         - Point
+  /api/v1/subscribe/boyco:
+    post:
+      description: Subscribe to Royco Updates
+      operationId: SubscribeController_subscribeBoyco
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeBoycoBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribeBoycoResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Subscribe to Royco Updates
+      tags:
+        - Subscribe
 info:
   title: Royco API
   description: >-
@@ -16715,3 +16740,17 @@ components:
         - page
         - count
         - data
+    SubscribeBoycoBody:
+      type: object
+      properties:
+        email:
+          type: string
+      required:
+        - email
+    SubscribeBoycoResponse:
+      type: object
+      properties:
+        status:
+          type: boolean
+      required:
+        - status
