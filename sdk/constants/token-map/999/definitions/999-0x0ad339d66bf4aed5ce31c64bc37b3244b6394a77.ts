@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0x0aD339d66BF4AeD5ce31c64Bc37B3244b6394A77",
+  id: "999-0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
   chain_id: 999,
-  contract_address: "0x0aD339d66BF4AeD5ce31c64Bc37B3244b6394A77",
+  contract_address: "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
   name: "USR",
   symbol: "USR",
   image:
