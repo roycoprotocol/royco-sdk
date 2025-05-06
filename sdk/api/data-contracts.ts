@@ -5559,6 +5559,8 @@ export interface SpecificBoycoPositionResponse {
    * The balance of the entity in USD
    */
   balanceUsd: number;
+  dappLink?: string;
+  merkleLink?: string;
 }
 
 export interface VaultPositionUnclaimedRewardToken {
