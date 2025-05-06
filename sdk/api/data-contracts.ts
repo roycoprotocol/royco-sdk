@@ -5537,7 +5537,7 @@ export interface SpecificBoycoPositionResponse {
    * Specific Locked Input Token
    * Specific locked input token
    */
-  specificLockedInputToken: BoycoReceiptTokenData[];
+  lockedInputToken: BoycoReceiptTokenData[];
   /**
    * Incentive Tokens
    * Incentive tokens
