@@ -90,7 +90,6 @@ export const withdrawBoycoReceiptTokenTxOptions = ({
   amountDeposited,
   merkleProof,
 }: {
-  chainId: number;
   weirollWallet: string;
   merkleDepositNonce: string;
   amountDeposited: string;
