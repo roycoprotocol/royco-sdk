@@ -5020,6 +5020,7 @@ export interface SpecificVaultPositionResponse {
 }
 
 export interface BoycoReceiptTokenData {
+  weirollWallet: string;
   /**
    * Breakdown
    * Breakdown of receipt tokens
