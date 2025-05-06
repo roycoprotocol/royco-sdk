@@ -14106,6 +14106,8 @@ components:
     BoycoReceiptTokenData:
       type: object
       properties:
+        weirollWallet:
+          type: string
         breakdown:
           title: Breakdown
           description: Breakdown of receipt tokens
@@ -14135,6 +14137,7 @@ components:
           title: Is Unlocked
           description: Is unlocked
       required:
+        - weirollWallet
         - breakdown
         - isWithdrawn
         - merkleDepositNonce

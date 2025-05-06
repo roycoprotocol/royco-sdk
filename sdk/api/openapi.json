@@ -17383,6 +17383,9 @@
       "BoycoReceiptTokenData": {
         "type": "object",
         "properties": {
+          "weirollWallet": {
+            "type": "string"
+          },
           "breakdown": {
             "title": "Breakdown",
             "description": "Breakdown of receipt tokens",
@@ -17421,6 +17424,7 @@
           }
         },
         "required": [
+          "weirollWallet",
           "breakdown",
           "isWithdrawn",
           "merkleDepositNonce",
