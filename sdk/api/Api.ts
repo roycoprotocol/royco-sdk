@@ -58,6 +58,8 @@ import {
   SpecificBoycoPositionRequest,
   SpecificRecipePositionRequest,
   SpecificVaultPositionRequest,
+  SubscribeBoycoBody,
+  SubscribeControllerSubscribeBoycoData,
   TokenControllerGetTokenDirectoryData,
   TokenControllerGetTokenQuoteData,
   TokenDirectoryRequestBody,
@@ -785,6 +787,28 @@ export class Api<
   ) =>
     this.request<PointControllerGetPointDirectoryData, any>({
       path: `/api/v1/point/directory`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Subscribe to Royco Updates
+   *
+   * @tags Subscribe
+   * @name SubscribeControllerSubscribeBoyco
+   * @summary Subscribe to Royco Updates
+   * @request POST:/api/v1/subscribe/boyco
+   * @secure
+   */
+  subscribeControllerSubscribeBoyco = (
+    data: SubscribeBoycoBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<SubscribeControllerSubscribeBoycoData, any>({
+      path: `/api/v1/subscribe/boyco`,
       method: "POST",
       body: data,
       secure: true,
