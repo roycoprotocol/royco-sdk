@@ -32,7 +32,7 @@ export const withdrawVaultInputTokenBySharesTxOptions = ({
   ];
 };
 
-export const withdrawVaultInputTokenByAssetTxOptions = ({
+export const withdrawVaultInputTokenByAssetsTxOptions = ({
   chainId,
   vaultAddress,
   rawAmount,
