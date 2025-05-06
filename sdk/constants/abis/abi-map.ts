@@ -7,6 +7,7 @@ import { WrappedVaultAbi } from "./WrappedVault";
 import { WrappedVaultFactoryAbi } from "./WrappedVaultFactory";
 import { erc20Abi } from "viem";
 import { erc4626Abi } from "viem";
+import { DepositExecutorAbi } from "./DepositExecutor";
 
 export const AbiMap = new Map<string, Abi>([
   ["RecipeMarketHub", RecipeMarketHubAbi],
@@ -17,4 +18,5 @@ export const AbiMap = new Map<string, Abi>([
   ["WrappedVaultFactory", WrappedVaultFactoryAbi],
   ["Erc20", erc20Abi],
   ["Erc4626", erc4626Abi],
+  ["DepositExecutor", DepositExecutorAbi],
 ]);
