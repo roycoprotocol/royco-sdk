@@ -14654,7 +14654,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BaseEnrichedTokenData'
-        specificLockedInputToken:
+        lockedInputToken:
           title: Specific Locked Input Token
           description: Specific locked input token
           type: array
@@ -14692,7 +14692,7 @@ components:
         - accountAddress
         - inputToken
         - receiptTokensBreakdown
-        - specificLockedInputToken
+        - lockedInputToken
         - incentiveTokens
         - underlyingIncentives
         - nativeIncentives
