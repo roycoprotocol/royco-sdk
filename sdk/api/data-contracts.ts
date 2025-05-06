@@ -7154,6 +7154,14 @@ export interface PointDirectoryResponse {
   data: TokenQuote;
 }
 
+export interface SubscribeBoycoBody {
+  email: string;
+}
+
+export interface SubscribeBoycoResponse {
+  status: boolean;
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -7288,3 +7296,5 @@ export type ActionControllerVaultIpRefundIncentivesActionData =
   VaultIPRefundIncentivesActionResponse;
 
 export type PointControllerGetPointDirectoryData = PointDirectoryResponse;
+
+export type SubscribeControllerSubscribeBoycoData = SubscribeBoycoResponse;
