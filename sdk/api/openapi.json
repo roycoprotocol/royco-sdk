@@ -18104,6 +18104,12 @@
             "type": "number",
             "title": "Balance USD",
             "description": "The balance of the entity in USD"
+          },
+          "dappLink": {
+            "type": "string"
+          },
+          "merkleLink": {
+            "type": "string"
           }
         },
         "required": [
