@@ -140,11 +140,11 @@ export const sonicMarketMap: {
     app: SONIC_APP.DAHLIA,
   },
   {
-    id: "146_0_0x5ba168d51627169be3942d735346d35101e4cdc02092bceee8882722bc407b04",
+    id: "146_0_0xd521138f8028d18faa22b48577216c1bfd46b2a1ac7bd0d253dea84b24cd1938",
     app: SONIC_APP.RFX,
   },
   {
-    id: "146_0_0xec783a68452e3fc44de0f5c9769c312be9ed17fbb4594f635eea88230ec68c28",
+    id: "146_0_0x6cbe082176bca0ccd12323e537af91cd3a1bba77920cbfad6b20aa6287c299f1",
     app: SONIC_APP.RFX,
   },
 ];
