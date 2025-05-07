@@ -3002,6 +3002,11 @@ export interface VaultAllocation {
    */
   id: string;
   /**
+   * The type of the allocation
+   * @example "active"
+   */
+  type: "active" | "passive" | "whitelisted";
+  /**
    * Allocation Market Name
    * The name of the allocated market
    * @example "VEDA"
@@ -3034,7 +3039,7 @@ export interface VaultAllocation {
   /**
    * Yield Rate
    * The yield rate of the allocation
-   * @example 0.01
+   * @example 0.1
    */
   yieldRate: number;
 }

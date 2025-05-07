@@ -14637,6 +14637,16 @@
             "description": "The ID of the allocation",
             "example": "1_0_0x9a117f13c7d5d2b4b18e444f72e6e77c010a1fd90cf21135be75669d66ad9428"
           },
+          "type": {
+            "type": "string",
+            "description": "The type of the allocation",
+            "example": "active",
+            "enum": [
+              "active",
+              "passive",
+              "whitelisted"
+            ]
+          },
           "name": {
             "type": "string",
             "title": "Allocation Market Name",
@@ -14678,11 +14688,12 @@
             "type": "number",
             "title": "Yield Rate",
             "description": "The yield rate of the allocation",
-            "example": 0.01
+            "example": 0.1
           }
         },
         "required": [
           "id",
+          "type",
           "name",
           "depositToken",
           "incentiveTokens",
