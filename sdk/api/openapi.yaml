@@ -8880,10 +8880,9 @@ components:
           description: Total number of rows in the results
           example: 234
         data:
-          title: Token directory
-          description: Token directory
-          allOf:
-            - $ref: '#/components/schemas/TokenQuote'
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
       required:
         - page
         - count
