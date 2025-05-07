@@ -412,11 +412,7 @@ export interface TokenDirectoryResponse {
    * @example 234
    */
   count: number;
-  /**
-   * Token directory
-   * Token directory
-   */
-  data: TokenQuote;
+  data: TokenQuote[];
 }
 
 export interface BaseRequestBody {
