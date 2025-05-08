@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0x46be746583b210D3809E248571B764C6b3D1e9aD",
+  id: "98866-0x46be746583b210d3809e248571b764c6b3d1e9ad",
   chain_id: 98866,
-  contract_address: "0x46be746583b210D3809E248571B764C6b3D1e9aD",
+  contract_address: "0x46be746583b210d3809e248571b764c6b3d1e9ad",
   name: "Nucleus op-nPAYFI",
   symbol: "op-nPAYFI",
   image:
