@@ -53,7 +53,7 @@ export const Plume = {
   ...plumeMainnet,
   name: "Plume",
   image:
-    "https://portal.plume.org/assets/tokens/plume.svg",
+    "hhttps://coin-images.coingecko.com/coins/images/53623/large/plume-token.png?1736896935",
   symbol: "PLUME",
   contracts: {
     multicall3: {
