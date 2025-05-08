@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0xA6b3F3e7E7a221080764db126F0D470d9356A842",
+  id: "98866-0xa6b3f3e7e7a221080764db126f0d470d9356a842",
   chain_id: 98866,
-  contract_address: "0xA6b3F3e7E7a221080764db126F0D470d9356A842",
+  contract_address: "0xa6b3f3e7e7a221080764db126f0d470d9356a842",
   name: "Nucleus op-nETF",
   symbol: "op-nETF",
   image:
