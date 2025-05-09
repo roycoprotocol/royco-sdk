@@ -8397,6 +8397,39 @@ paths:
       summary: Subscribe to Royco Updates
       tags:
         - Subscribe
+  /api/v1/simulate/{accountAddress}:
+    post:
+      description: Simulate a series of transactions to determine their effects
+      operationId: SimulateController_simulateTransactions
+      parameters:
+        - name: accountAddress
+          required: true
+          in: path
+          description: Wallet address of the account
+          schema:
+            title: Account Address
+            example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimulateTransactionBody'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulateTransactionResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Simulate transactions
+      tags:
+        - Simulate
 info:
   title: Royco API
   description: >-
@@ -16932,3 +16965,46 @@ components:
           type: boolean
       required:
         - status
+    SimulateTransactionBody:
+      type: object
+      properties:
+        rawTxns:
+          description: Raw transactions to simulate
+          type: array
+          items:
+            $ref: '#/components/schemas/RawTxOption'
+      required:
+        - rawTxns
+    SimulatedTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the transaction
+        tokensIn:
+          description: Tokens going in as part of this transaction
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseEnrichedTokenData'
+        tokensOut:
+          description: Tokens coming out as part of this transaction
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseEnrichedTokenData'
+        warning:
+          type: string
+          description: Warning message if there are any issues with the simulation
+      required:
+        - id
+        - tokensIn
+        - tokensOut
+    SimulateTransactionResponse:
+      type: object
+      properties:
+        simulatedTxns:
+          description: Simulated transactions
+          type: array
+          items:
+            $ref: '#/components/schemas/SimulatedTransaction'
+      required:
+        - simulatedTxns
