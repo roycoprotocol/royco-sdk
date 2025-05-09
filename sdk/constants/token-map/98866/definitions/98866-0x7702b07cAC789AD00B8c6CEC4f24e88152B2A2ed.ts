@@ -1,0 +1,15 @@
+import { defineToken } from "@/sdk/constants";
+
+export default defineToken({
+  id: "98866-0x7702b07cAC789AD00B8c6CEC4f24e88152B2A2ed",
+  chain_id: 98866,
+  contract_address: "0x7702b07cAC789AD00B8c6CEC4f24e88152B2A2ed",
+  name: "Rooster YAP-pUSD-nETF-5 ",
+  symbol: "YAP-pUSD-nETF-5",
+  image:
+    "https://pbs.twimg.com/profile_images/1870064500474347520/a8gJtOSE_400x400.jpg",
+  decimals: 18,
+  source: "external",
+  search_id: "",
+  type: "token",
+});
