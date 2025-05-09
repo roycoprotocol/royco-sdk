@@ -54,6 +54,8 @@ import {
   RecipeAPMarketActionBody,
   RecipeIPLimitActionBody,
   RecipeIPMarketActionBody,
+  SimulateControllerSimulateTransactionsData,
+  SimulateTransactionBody,
   SpecificBoringPositionRequest,
   SpecificBoycoPositionRequest,
   SpecificRecipePositionRequest,
@@ -809,6 +811,29 @@ export class Api<
   ) =>
     this.request<SubscribeControllerSubscribeBoycoData, any>({
       path: `/api/v1/subscribe/boyco`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Simulate a series of transactions to determine their effects
+   *
+   * @tags Simulate
+   * @name SimulateControllerSimulateTransactions
+   * @summary Simulate transactions
+   * @request POST:/api/v1/simulate/{accountAddress}
+   * @secure
+   */
+  simulateControllerSimulateTransactions = (
+    accountAddress: string,
+    data: SimulateTransactionBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<SimulateControllerSimulateTransactionsData, any>({
+      path: `/api/v1/simulate/${accountAddress}`,
       method: "POST",
       body: data,
       secure: true,

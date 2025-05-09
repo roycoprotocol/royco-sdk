@@ -7319,6 +7319,27 @@ export interface SubscribeBoycoResponse {
   status: boolean;
 }
 
+export interface SimulateTransactionBody {
+  /** Raw transactions to simulate */
+  rawTxns: RawTxOption[];
+}
+
+export interface SimulatedTransaction {
+  /** ID of the transaction */
+  id: string;
+  /** Tokens going in as part of this transaction */
+  tokensIn: BaseEnrichedTokenData[];
+  /** Tokens coming out as part of this transaction */
+  tokensOut: BaseEnrichedTokenData[];
+  /** Warning message if there are any issues with the simulation */
+  warning?: string;
+}
+
+export interface SimulateTransactionResponse {
+  /** Simulated transactions */
+  simulatedTxns: SimulatedTransaction[];
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -7455,3 +7476,6 @@ export type ActionControllerVaultIpRefundIncentivesActionData =
 export type PointControllerGetPointDirectoryData = PointDirectoryResponse;
 
 export type SubscribeControllerSubscribeBoycoData = SubscribeBoycoResponse;
+
+export type SimulateControllerSimulateTransactionsData =
+  SimulateTransactionResponse;
