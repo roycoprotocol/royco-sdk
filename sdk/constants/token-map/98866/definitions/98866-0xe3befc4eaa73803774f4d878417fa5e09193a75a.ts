@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0xe3BEFC4eAA73803774F4d878417fa5e09193a75A",
+  id: "98866-0xe3befc4eaa73803774f4d878417fa5e09193a75a",
   chain_id: 98866,
-  contract_address: "0xe3BEFC4eAA73803774F4d878417fa5e09193a75A",
+  contract_address: "0xe3befc4eaa73803774f4d878417fa5e09193a75a",
   name: "Nucleus op-ALPHA",
   symbol: "op-nALPHA",
   image:

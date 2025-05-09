@@ -1,11 +1,11 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0x5649009D65EbC80eFEe715c95768607B8fbAcd55",
+  id: "98866-0x66786085f7ff00397488a577aefc28aafd57ac74",
   chain_id: 98866,
-  contract_address: "0x5649009D65EbC80eFEe715c95768607B8fbAcd55",
-  name: "Rooster YAP-USDC.e-pUSD-1 ",
-  symbol: "YAP-USDC.e-pUSD-1",
+  contract_address: "0x66786085f7ff00397488a577aefc28aafd57ac74",
+  name: "Rooster YAP-pETH-WETH-3",
+  symbol: "YAP-pETH-WETH-3",
   image:
     "https://pbs.twimg.com/profile_images/1870064500474347520/a8gJtOSE_400x400.jpg",
   decimals: 18,
