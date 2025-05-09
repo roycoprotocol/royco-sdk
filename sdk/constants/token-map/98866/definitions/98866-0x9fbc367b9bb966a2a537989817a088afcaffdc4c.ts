@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0x9fbC367B9Bb966a2A537989817A088AFCaFFDC4c",
+  id: "98866-0x9fbc367b9bb966a2a537989817a088afcaffdc4c",
   chain_id: 98866,
-  contract_address: "0x9fbC367B9Bb966a2A537989817A088AFCaFFDC4c",
+  contract_address: "0x9fbc367b9bb966a2a537989817a088afcaffdc4c",
   name: "Nest Elixir Vault",
   symbol: "nELIXIR",
   image: "https://app.nest.credit/images/nest-elixir-vault.svg",
