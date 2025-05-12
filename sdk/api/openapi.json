@@ -9758,6 +9758,115 @@
           "Simulate"
         ]
       }
+    },
+    "/api/v1/activity/{accountAddress}": {
+      "post": {
+        "description": "Get activities for a given account address",
+        "operationId": "ActivityController_getActivities",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "required": true,
+            "in": "path",
+            "description": "Wallet address of the account",
+            "schema": {
+              "title": "Account Address",
+              "example": "0x77777cc68b333a2256b436d675e8d257699aa667",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "blockRange": "[23693572,)",
+                      "id": "146_0x5053a3154c89c8522271193ea1356f0302bd64791e08b9fb2b5b90daafa07514_113_recipe_deposit_0",
+                      "chainId": 146,
+                      "category": "recipe",
+                      "subCategory": "deposit",
+                      "sourceRefId": "146_0_0x4c3c6946186992f776e9ddff186e0cedcbadbfb95fbe3d31f6f2b0f2d287253a",
+                      "contractAddress": "0xfcc593ad3705ebcd72ec961c63eb484be795bdbd",
+                      "accountAddress": "0x69689f02c4154b049fb42761ef8fa00808f1b7ea",
+                      "tokenIndex": 0,
+                      "tokenId": "146-0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38",
+                      "tokenAddress": "0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38",
+                      "tokenAmount": 135000000000000000000,
+                      "blockNumber": 23693572,
+                      "blockTimestamp": 1746161103,
+                      "transactionHash": "0x5053a3154c89c8522271193ea1356f0302bd64791e08b9fb2b5b90daafa07514",
+                      "logIndex": 113,
+                      "activityToken": {
+                        "id": "146-0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38",
+                        "chainId": 146,
+                        "contractAddress": "0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38",
+                        "name": "Wrapped Sonic",
+                        "symbol": "WS",
+                        "image": "https://i.ibb.co/MDq6zYhQ/w-S-token-400.png",
+                        "decimals": 18,
+                        "source": "coingecko",
+                        "searchId": "wrapped-sonic",
+                        "owner": null,
+                        "issuers": null,
+                        "type": "token",
+                        "price": 0.595791,
+                        "fdv": 500302,
+                        "totalSupply": 842319.9002803117,
+                        "lastUpdated": "2025-05-12 17:36:00",
+                        "searchIndex": "146-0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38 wrapped sonic ws 146 0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38 token sonic",
+                        "tokenAmount": 135,
+                        "tokenAmountUsd": 80.43178499999999,
+                        "rawAmount": "135000000000000000000"
+                      },
+                      "sourceInfo": {
+                        "name": "Deposit wS to buy YT-wOS"
+                      }
+                    }
+                  ],
+                  "count": 1,
+                  "page": {
+                    "index": 1,
+                    "size": 20,
+                    "total": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get activities for a given account address",
+        "tags": [
+          "Activity"
+        ]
+      }
     }
   },
   "info": {
@@ -9976,6 +10085,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -10129,6 +10244,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -10581,6 +10702,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -10886,6 +11013,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -11187,6 +11320,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -11373,6 +11512,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -11599,6 +11744,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -11765,6 +11916,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -11930,6 +12087,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -12152,6 +12315,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -13104,6 +13273,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -14248,6 +14423,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -14401,6 +14582,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -14631,6 +14818,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -15127,6 +15320,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -15301,6 +15500,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -15591,6 +15796,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -15771,6 +15982,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -16192,6 +16409,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -16397,6 +16620,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -16601,6 +16830,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -17099,6 +17334,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -17280,6 +17521,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -17627,6 +17874,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -17791,6 +18044,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -18323,6 +18582,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -18511,6 +18776,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -18962,6 +19233,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -19195,6 +19472,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -19594,6 +19877,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -20381,6 +20670,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -20636,6 +20931,12 @@
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
           },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
           "lastUpdated": {
             "type": "string",
             "title": "Last Updated",
@@ -20873,6 +21174,12 @@
             "items": {
               "$ref": "#/components/schemas/CustomTokenDataElement"
             }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
           },
           "lastUpdated": {
             "type": "string",
@@ -21130,6 +21437,234 @@
         },
         "required": [
           "simulatedTxns"
+        ]
+      },
+      "ActivityBody": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "title": "Filters Array",
+            "description": "Array of filter objects to apply to the results",
+            "example": [
+              {
+                "id": "chainId",
+                "value": 1
+              },
+              {
+                "id": "tvlUsd",
+                "value": 1000000,
+                "condition": "gte"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Filter"
+            }
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
+          "sorting": {
+            "title": "Sorting Object",
+            "description": "Object type to sort results with",
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sorting"
+            }
+          },
+          "page": {
+            "title": "Request Page Object",
+            "description": "Object type to request a page of results",
+            "default": {
+              "index": 1,
+              "size": 10
+            },
+            "example": {
+              "index": 1,
+              "size": 3
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestPage"
+              }
+            ]
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          }
+        }
+      },
+      "ActivityCategory": {
+        "type": "string",
+        "enum": [
+          "recipe",
+          "boring"
+        ]
+      },
+      "ActivitySubCategory": {
+        "type": "string",
+        "enum": [
+          "deposit",
+          "withdraw",
+          "claim"
+        ]
+      },
+      "SourceInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the source",
+            "title": "Source Name"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "EnrichedActivity": {
+        "type": "object",
+        "properties": {
+          "blockRange": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Unique identifier for the entity",
+            "example": "98866_0_0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivityCategory"
+              }
+            ]
+          },
+          "subCategory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ActivitySubCategory"
+              }
+            ]
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "accountAddress": {
+            "type": "string",
+            "title": "Account Address",
+            "description": "Wallet address of the account",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "tokenIndex": {
+            "type": "number"
+          },
+          "tokenAmount": {
+            "type": "number"
+          },
+          "blockTimestamp": {
+            "type": "number"
+          },
+          "transactionHash": {
+            "type": "string"
+          },
+          "logIndex": {
+            "type": "number"
+          },
+          "activityToken": {
+            "description": "Token data for the activity",
+            "title": "Activity Token",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEnrichedTokenData"
+              }
+            ]
+          },
+          "sourceInfo": {
+            "description": "Source info for the activity",
+            "title": "Activity Source",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SourceInfo"
+              }
+            ]
+          }
+        },
+        "required": [
+          "blockRange",
+          "id",
+          "chainId",
+          "category",
+          "subCategory",
+          "contractAddress",
+          "accountAddress",
+          "tokenIndex",
+          "tokenAmount",
+          "blockTimestamp",
+          "transactionHash",
+          "logIndex",
+          "activityToken",
+          "sourceInfo"
+        ]
+      },
+      "ActivityResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "title": "Response Page Object",
+            "description": "Object type to respond with a page of results",
+            "example": {
+              "index": 1,
+              "size": 3,
+              "total": 10
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponsePage"
+              }
+            ]
+          },
+          "count": {
+            "type": "number",
+            "title": "Row Count",
+            "description": "Total number of rows in the results",
+            "example": 234
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedActivity"
+            }
+          }
+        },
+        "required": [
+          "page",
+          "count",
+          "data"
         ]
       }
     }

@@ -10,6 +10,17 @@
  * ---------------------------------------------------------------
  */
 
+export enum ActivitySubCategory {
+  Deposit = "deposit",
+  Withdraw = "withdraw",
+  Claim = "claim",
+}
+
+export enum ActivityCategory {
+  Recipe = "recipe",
+  Boring = "boring",
+}
+
 export interface CustomTokenDataElement {
   /**
    * Token ID
@@ -158,6 +169,12 @@ export interface TokenQuote {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -277,6 +294,12 @@ export interface TokenQuoteResponse {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -561,6 +584,12 @@ export interface BaseEnrichedTokenDataWithRemainingAmounts {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -750,6 +779,12 @@ export interface VaultOfferIncentiveToken {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -930,6 +965,12 @@ export interface MarketInputTokenDetailed {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -1079,6 +1120,12 @@ export interface MarketActiveIncentiveDetailed {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -1262,6 +1309,12 @@ export interface MarketUnderlyingIncentive {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -1393,6 +1446,12 @@ export interface MarketNativeIncentive {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -1523,6 +1582,12 @@ export interface MarketExternalIncentive {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -1679,6 +1744,12 @@ export interface MarketVaultBaseIncentiveTokenData {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -2332,6 +2403,12 @@ export interface TokenQuoteWithIds {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -2661,6 +2738,12 @@ export interface VaultDepositToken {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -2780,6 +2863,12 @@ export interface VaultIncentiveToken {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -2962,6 +3051,12 @@ export interface VaultAllocationDepositToken {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -3296,6 +3391,12 @@ export interface TokensWithClaimData {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -3433,6 +3534,12 @@ export interface BaseEnrichedTokenData {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -3648,6 +3755,12 @@ export interface BaseEnrichedTokenDataWithWithdrawStatus {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -3790,6 +3903,12 @@ export interface MarketActiveIncentiveWithClaimStatus {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -4100,6 +4219,12 @@ export interface LockedInputTokenSpecificRecipePosition {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -4259,6 +4384,12 @@ export interface UnclaimedIncentiveTokenSpecificRecipePosition {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -4417,6 +4548,12 @@ export interface ClaimedIncentiveTokenSpecificRecipePosition {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -4772,6 +4909,12 @@ export interface LockedInputTokenSpecificVaultPosition {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -4915,6 +5058,12 @@ export interface UnclaimedIncentiveTokenSpecificVaultPosition {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -5167,6 +5316,12 @@ export interface BoycoUnderlyingIncentive {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -5296,6 +5451,12 @@ export interface BoycoNativeIncentive {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -5677,6 +5838,12 @@ export interface VaultPositionUnclaimedRewardToken {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -5820,6 +5987,12 @@ export interface VaultPositionClaimedRewardToken {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -6139,6 +6312,12 @@ export interface EnrichedOfferInputTokenData {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -6320,6 +6499,12 @@ export interface EnrichedOfferIncentiveTokenData {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
   /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
@@ -6616,6 +6801,12 @@ export interface V1ActionIncentiveToken {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -6911,6 +7102,12 @@ export interface IncentiveTokenVaultIPAddIncentives {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -7071,6 +7268,12 @@ export interface IncentiveTokenVaultIPExtendIncentives {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -7228,6 +7431,12 @@ export interface IncentiveTokenVaultIPRefundIncentives {
    */
   customTokenData?: CustomTokenDataElement[];
   /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
    * Last Updated
    * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
    * @example "2025-03-17 17:52:10"
@@ -7338,6 +7547,108 @@ export interface SimulatedTransaction {
 export interface SimulateTransactionResponse {
   /** Simulated transactions */
   simulatedTxns: SimulatedTransaction[];
+}
+
+export interface ActivityBody {
+  /**
+   * Filters Array
+   * Array of filter objects to apply to the results
+   * @example [{"id":"chainId","value":1},{"id":"tvlUsd","value":1000000,"condition":"gte"}]
+   */
+  filters?: Filter[];
+  /**
+   * Search Key
+   * Key to search by
+   * @example "marketId"
+   */
+  searchKey?: string;
+  /**
+   * Sorting Object
+   * Object type to sort results with
+   * @example [{"id":"tvlUsd","desc":true}]
+   */
+  sorting?: Sorting[];
+  /**
+   * Request Page Object
+   * Object type to request a page of results
+   * @default {"index":1,"size":10}
+   * @example {"index":1,"size":3}
+   */
+  page?: RequestPage;
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+}
+
+export interface SourceInfo {
+  /**
+   * Source Name
+   * Name of the source
+   */
+  name: string;
+}
+
+export interface EnrichedActivity {
+  blockRange: string;
+  /**
+   * ID
+   * Unique identifier for the entity
+   * @example "98866_0_0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  category: ActivityCategory;
+  subCategory: ActivitySubCategory;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Account Address
+   * Wallet address of the account
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  accountAddress: string;
+  tokenIndex: number;
+  tokenAmount: number;
+  blockTimestamp: number;
+  transactionHash: string;
+  logIndex: number;
+  /**
+   * Activity Token
+   * Token data for the activity
+   */
+  activityToken: BaseEnrichedTokenData;
+  /**
+   * Activity Source
+   * Source info for the activity
+   */
+  sourceInfo: SourceInfo;
+}
+
+export interface ActivityResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  data: EnrichedActivity[];
 }
 
 export interface HealthControllerCheckData {
@@ -7479,3 +7790,5 @@ export type SubscribeControllerSubscribeBoycoData = SubscribeBoycoResponse;
 
 export type SimulateControllerSimulateTransactionsData =
   SimulateTransactionResponse;
+
+export type ActivityControllerGetActivitiesData = ActivityResponse;
