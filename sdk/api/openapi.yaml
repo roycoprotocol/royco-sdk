@@ -4691,7 +4691,7 @@ paths:
               $ref: '#/components/schemas/GlobalPositionRequestBody'
       responses:
         '200':
-          description: Success
+          description: ''
           content:
             application/json:
               schema:
@@ -12329,7 +12329,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomTokenDataElement'
-    TokensWithClaimData:
+    GlobalPositionIncentiveTokenClaimInfoRecipe:
+      type: object
+      properties:
+        rawMarketRefId:
+          type: string
+        weirollWallet:
+          type: string
+      required:
+        - rawMarketRefId
+        - weirollWallet
+    GlobalPositionIncentiveTokenClaimInfoVault:
+      type: object
+      properties:
+        rawMarketRefId:
+          type: string
+      required:
+        - rawMarketRefId
+    GlobalPositionIncentiveTokenClaimInfoBoyco:
+      type: object
+      properties:
+        rawVaultRefId:
+          type: string
+        rewardIds:
+          type: array
+          items:
+            type: string
+      required:
+        - rawVaultRefId
+        - rewardIds
+    GlobalPositionIncentiveTokenClaimInfo:
+      type: object
+      properties:
+        recipe:
+          $ref: '#/components/schemas/GlobalPositionIncentiveTokenClaimInfoRecipe'
+        vault:
+          $ref: '#/components/schemas/GlobalPositionIncentiveTokenClaimInfoVault'
+        boyco:
+          $ref: '#/components/schemas/GlobalPositionIncentiveTokenClaimInfoBoyco'
+    BaseEnrichedTokenDataWithClaimInfo:
       type: object
       properties:
         rawMetadata:
@@ -12458,6 +12496,19 @@ components:
           title: Token Amount USD
           description: Normalized raw amount in USD
           example: 999.99
+        isUnlocked:
+          type: boolean
+          title: Is unlocked
+          description: Whether the incentive token is claimable right now
+        unlockTimestamp:
+          type: string
+          title: Unlock timestamp
+          description: Timestamp when the incentive token will be claimable
+        claimInfo:
+          title: Claim info
+          description: Claim info of the incentive token
+          allOf:
+            - $ref: '#/components/schemas/GlobalPositionIncentiveTokenClaimInfo'
       required:
         - id
         - chainId
@@ -12476,6 +12527,8 @@ components:
         - rawAmount
         - tokenAmount
         - tokenAmountUsd
+        - isUnlocked
+        - claimInfo
     BaseEnrichedTokenData:
       type: object
       properties:
@@ -12659,7 +12712,6 @@ components:
         - id
         - name
         - depositToken
-        - unlockTimestamp
         - yieldRate
         - isUnlocked
         - marketLink
@@ -12683,7 +12735,7 @@ components:
           description: Incentive tokens that are claimable
           type: array
           items:
-            $ref: '#/components/schemas/TokensWithClaimData'
+            $ref: '#/components/schemas/BaseEnrichedTokenDataWithClaimInfo'
         positions:
           title: Positions
           description: Positions that are claimable
@@ -12695,7 +12747,7 @@ components:
           description: Unclaimed point tokens that are claimable
           type: array
           items:
-            $ref: '#/components/schemas/TokensWithClaimData'
+            $ref: '#/components/schemas/BaseEnrichedTokenDataWithClaimInfo'
         claimedPointTokens:
           title: Claimed point tokens
           description: Point tokens that have been claimed
