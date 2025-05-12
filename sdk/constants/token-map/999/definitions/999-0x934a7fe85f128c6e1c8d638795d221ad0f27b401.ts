@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0x934a7fE85f128c6E1C8D638795D221ad0F27B401",
+  id: "999-0x934a7fe85f128c6e1c8d638795d221ad0f27b401",
   chain_id: 999,
-  contract_address: "0x934a7fE85f128c6E1C8D638795D221ad0F27B401",
+  contract_address: "0x934a7fe85f128c6e1c8d638795d221ad0f27b401",
   name: "HypurrFi Royco Points",
   symbol: "PRRRP",
   image:

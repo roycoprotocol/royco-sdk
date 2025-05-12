@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0x80518E238762B9725F0f5C0a0a8525ceE98d71d2",
+  id: "999-0x80518e238762b9725f0f5c0a0a8525cee98d71d2",
   chain_id: 999,
-  contract_address: "0x80518E238762B9725F0f5C0a0a8525ceE98d71d2",
+  contract_address: "0x80518e238762b9725f0f5c0a0a8525cee98d71d2",
   name: "Sentiment Royco Points",
   symbol: "SRP",
   image:
