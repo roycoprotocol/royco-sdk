@@ -3278,7 +3278,27 @@ export interface GlobalPositionRequestBody {
   customTokenData?: CustomTokenDataElement[];
 }
 
-export interface TokensWithClaimData {
+export interface GlobalPositionIncentiveTokenClaimInfoRecipe {
+  rawMarketRefId: string;
+  weirollWallet: string;
+}
+
+export interface GlobalPositionIncentiveTokenClaimInfoVault {
+  rawMarketRefId: string;
+}
+
+export interface GlobalPositionIncentiveTokenClaimInfoBoyco {
+  rawVaultRefId: string;
+  rewardIds: string[];
+}
+
+export interface GlobalPositionIncentiveTokenClaimInfo {
+  recipe?: GlobalPositionIncentiveTokenClaimInfoRecipe;
+  vault?: GlobalPositionIncentiveTokenClaimInfoVault;
+  boyco?: GlobalPositionIncentiveTokenClaimInfoBoyco;
+}
+
+export interface BaseEnrichedTokenDataWithClaimInfo {
   /**
    * Raw Metadata
    * Raw metadata
@@ -3420,6 +3440,21 @@ export interface TokensWithClaimData {
    * @example 999.99
    */
   tokenAmountUsd: number;
+  /**
+   * Is unlocked
+   * Whether the incentive token is claimable right now
+   */
+  isUnlocked: boolean;
+  /**
+   * Unlock timestamp
+   * Timestamp when the incentive token will be claimable
+   */
+  unlockTimestamp?: string;
+  /**
+   * Claim info
+   * Claim info of the incentive token
+   */
+  claimInfo: GlobalPositionIncentiveTokenClaimInfo;
 }
 
 export interface BaseEnrichedTokenData {
@@ -3586,7 +3621,7 @@ export interface Position {
    * Unlock timestamp
    * Timestamp when the input token will be withdrawable
    */
-  unlockTimestamp: string;
+  unlockTimestamp?: string;
   /**
    * Yield rate
    * Yield rate of this position
@@ -3624,7 +3659,7 @@ export interface GlobalPositionResponse {
    * Incentive tokens
    * Incentive tokens that are claimable
    */
-  incentiveTokens: TokensWithClaimData[];
+  incentiveTokens: BaseEnrichedTokenDataWithClaimInfo[];
   /**
    * Positions
    * Positions that are claimable
@@ -3634,7 +3669,7 @@ export interface GlobalPositionResponse {
    * Unclaimed point tokens
    * Unclaimed point tokens that are claimable
    */
-  unclaimedPointTokens: TokensWithClaimData[];
+  unclaimedPointTokens: BaseEnrichedTokenDataWithClaimInfo[];
   /**
    * Claimed point tokens
    * Point tokens that have been claimed
