@@ -20,6 +20,8 @@ import {
   ActionControllerVaultIpAddIncentivesActionData,
   ActionControllerVaultIpExtendIncentivesActionData,
   ActionControllerVaultIpRefundIncentivesActionData,
+  ActivityBody,
+  ActivityControllerGetActivitiesData,
   AddonsControllerGetIncentivesData,
   AddonsControllerRefreshIncentivesData,
   BaseRequestBody,
@@ -834,6 +836,29 @@ export class Api<
   ) =>
     this.request<SimulateControllerSimulateTransactionsData, any>({
       path: `/api/v1/simulate/${accountAddress}`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get activities for a given account address
+   *
+   * @tags Activity
+   * @name ActivityControllerGetActivities
+   * @summary Get activities for a given account address
+   * @request POST:/api/v1/activity/{accountAddress}
+   * @secure
+   */
+  activityControllerGetActivities = (
+    accountAddress: string,
+    data?: ActivityBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<ActivityControllerGetActivitiesData, any>({
+      path: `/api/v1/activity/${accountAddress}`,
       method: "POST",
       body: data,
       secure: true,
