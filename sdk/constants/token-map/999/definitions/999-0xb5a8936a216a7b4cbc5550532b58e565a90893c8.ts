@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0xB5A8936A216a7B4cBc5550532B58E565A90893c8",
+  id: "999-0xb5a8936a216a7b4cbc5550532b58e565a90893c8",
   chain_id: 999,
-  contract_address: "0xB5A8936A216a7B4cBc5550532B58E565A90893c8",
+  contract_address: "0xb5a8936a216a7b4cbc5550532b58e565a90893c8",
   name: "Harmonix Royco Points",
   symbol: "HXRP",
   image:
