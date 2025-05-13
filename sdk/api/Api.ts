@@ -849,16 +849,15 @@ export class Api<
    * @tags Activity
    * @name ActivityControllerGetActivities
    * @summary Get activities for a given account address
-   * @request POST:/api/v1/activity/{accountAddress}
+   * @request POST:/api/v1/activity
    * @secure
    */
   activityControllerGetActivities = (
-    accountAddress: string,
     data?: ActivityBody,
     params: RequestParams = {},
   ) =>
     this.request<ActivityControllerGetActivitiesData, any>({
-      path: `/api/v1/activity/${accountAddress}`,
+      path: `/api/v1/activity`,
       method: "POST",
       body: data,
       secure: true,
