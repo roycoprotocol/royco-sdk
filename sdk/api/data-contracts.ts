@@ -3280,15 +3280,18 @@ export interface GlobalPositionRequestBody {
 
 export interface GlobalPositionIncentiveTokenClaimInfoRecipe {
   rawMarketRefId: string;
+  name: string;
   weirollWallet: string;
 }
 
 export interface GlobalPositionIncentiveTokenClaimInfoVault {
   rawMarketRefId: string;
+  name: string;
 }
 
 export interface GlobalPositionIncentiveTokenClaimInfoBoyco {
   rawVaultRefId: string;
+  name: string;
   rewardIds: string[];
 }
 

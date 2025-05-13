@@ -15184,12 +15184,16 @@
           "rawMarketRefId": {
             "type": "string"
           },
+          "name": {
+            "type": "string"
+          },
           "weirollWallet": {
             "type": "string"
           }
         },
         "required": [
           "rawMarketRefId",
+          "name",
           "weirollWallet"
         ]
       },
@@ -15198,16 +15202,23 @@
         "properties": {
           "rawMarketRefId": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
           }
         },
         "required": [
-          "rawMarketRefId"
+          "rawMarketRefId",
+          "name"
         ]
       },
       "GlobalPositionIncentiveTokenClaimInfoBoyco": {
         "type": "object",
         "properties": {
           "rawVaultRefId": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           },
           "rewardIds": {
@@ -15219,6 +15230,7 @@
         },
         "required": [
           "rawVaultRefId",
+          "name",
           "rewardIds"
         ]
       },
