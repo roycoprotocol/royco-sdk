@@ -8430,19 +8430,11 @@ paths:
       summary: Simulate transactions
       tags:
         - Simulate
-  /api/v1/activity/{accountAddress}:
+  /api/v1/activity:
     post:
       description: Get activities for a given account address
       operationId: ActivityController_getActivities
-      parameters:
-        - name: accountAddress
-          required: true
-          in: path
-          description: Wallet address of the account
-          schema:
-            title: Account Address
-            example: '0x77777cc68b333a2256b436d675e8d257699aa667'
-            type: string
+      parameters: []
       requestBody:
         required: false
         content:
