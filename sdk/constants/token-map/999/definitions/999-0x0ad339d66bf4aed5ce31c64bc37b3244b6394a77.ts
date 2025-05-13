@@ -4,12 +4,11 @@ export default defineToken({
   id: "999-0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
   chain_id: 999,
   contract_address: "0x0ad339d66bf4aed5ce31c64bc37b3244b6394a77",
-  name: "USR",
+  name: "Resolv USR",
   symbol: "USR",
-  image:
-    "https://pbs.twimg.com/profile_images/1726501525843841024/1gDrgTdA_400x400.jpg",
+  image: "https://s2.coinmarketcap.com/static/img/coins/64x64/32873.png",
   decimals: 18,
-  source: "coingecko",
-  search_id: "resolv-usr",
+  source: "coinmarketcap",
+  search_id: "32873",
   type: "token",
 });
