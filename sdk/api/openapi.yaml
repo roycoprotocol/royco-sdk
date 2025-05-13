@@ -4668,8 +4668,36 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get vault info
-      tags:
+      tags: &ref_7
         - Vault
+  /api/v1/vault/explore:
+    post:
+      description: >-
+        Get all vaults. Use filters property in body to filter out by vault id,
+        chain id, etc. Since response is paginated, use pagination properties in
+        body to get next page based on size property of page. Do note: max page
+        size for response is 500.
+      operationId: VaultController_getVaults
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExploreVaultBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExploreVaultResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Get all vaults
+      tags: *ref_7
   /api/v1/position/global/{accountAddress}:
     post:
       description: Get total assets for an account
@@ -5834,7 +5862,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get total assets for an account
-      tags: &ref_7
+      tags: &ref_8
         - Position
   /api/v1/position/recipe:
     post:
@@ -6960,7 +6988,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get recipe positions
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/recipe/{id}/{accountAddress}:
     post:
       description: Get position of an account address inside a recipe market.
@@ -7098,7 +7126,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get recipe position of an account address inside a recipe market
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/vault:
     post:
       description: >-
@@ -7587,7 +7615,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get vault positions
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/vault/{id}/{accountAddress}:
     post:
       description: Get position of an account address inside a vault.
@@ -7726,7 +7754,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get vault position of an account address inside a vault
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/boyco:
     post:
       description: >-
@@ -7754,7 +7782,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get boyco positions
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/boyco/{id}/{accountAddress}:
     post:
       description: Get position of an account address inside a boyco market.
@@ -7797,7 +7825,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get boyco position of an account address inside a boyco market
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/boring:
     post:
       description: >-
@@ -7825,7 +7853,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get boring positions
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/position/boring/{id}/{accountAddress}:
     post:
       description: Get position of an account address inside a vault.
@@ -7865,7 +7893,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Get boring position of an account address inside a vault
-      tags: *ref_7
+      tags: *ref_8
   /api/v1/contract/{chainId}/{contractAddress}:
     get:
       description: Get basic contract data for a given contract address on a specific chain
@@ -7958,7 +7986,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Recipe AP Market Action
-      tags: &ref_8
+      tags: &ref_9
         - Action
   /api/v1/action/recipe/ip/market:
     post:
@@ -7983,7 +8011,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Recipe IP Market Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/recipe/ip/limit:
     post:
       description: Recipe IP Limit Action
@@ -8007,7 +8035,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Recipe IP Limit Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/recipe/ap/limit:
     post:
       description: Recipe AP Limit Action
@@ -8031,7 +8059,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Recipe AP Limit Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/vault/ap/market:
     post:
       description: Vault AP Market Action
@@ -8055,7 +8083,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Vault AP Market Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/vault/ap/limit:
     post:
       description: Vault AP Limit Action
@@ -8079,7 +8107,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Vault AP Limit Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/vault/ip/add:
     post:
       description: Vault IP Add Incentives Action
@@ -8103,7 +8131,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Vault IP Add Incentives Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/vault/ip/extend:
     post:
       description: Vault IP Extend Incentives Action
@@ -8127,7 +8155,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Vault IP Extend Incentives Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/action/vault/ip/refund:
     post:
       description: Vault IP Refund Incentives Action
@@ -8151,7 +8179,7 @@ paths:
         - x-api-key: []
         - api-key-query: []
       summary: Vault IP Refund Incentives Action
-      tags: *ref_8
+      tags: *ref_9
   /api/v1/point/directory:
     post:
       description: Get point directory based on the filters and page
@@ -8430,19 +8458,11 @@ paths:
       summary: Simulate transactions
       tags:
         - Simulate
-  /api/v1/activity/{accountAddress}:
+  /api/v1/activity:
     post:
-      description: Get activities for a given account address
+      description: Get activities given filters and sorting
       operationId: ActivityController_getActivities
-      parameters:
-        - name: accountAddress
-          required: true
-          in: path
-          description: Wallet address of the account
-          schema:
-            title: Account Address
-            example: '0x77777cc68b333a2256b436d675e8d257699aa667'
-            type: string
+      parameters: []
       requestBody:
         required: false
         content:
@@ -8512,7 +8532,7 @@ paths:
         - bearer: []
         - x-api-key: []
         - api-key-query: []
-      summary: Get activities for a given account address
+      summary: Get activities
       tags:
         - Activity
 info:
@@ -8631,7 +8651,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: &ref_9
+          enum: &ref_10
             - coinmarketcap
             - coingecko
             - lp
@@ -8654,7 +8674,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: &ref_10
+          enum: &ref_11
             - token
             - point
             - lp
@@ -8770,7 +8790,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -8786,7 +8806,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -8926,7 +8946,7 @@ components:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: &ref_11
+          example: &ref_12
             - id: chainId
               value: 1
             - id: tvlUsd
@@ -8943,7 +8963,7 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: &ref_12
+          example: &ref_13
             - id: tvlUsd
               desc: true
           type: array
@@ -8952,10 +8972,10 @@ components:
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: &ref_13
+          default: &ref_14
             index: 1
             size: 10
-          example: &ref_14
+          example: &ref_15
             index: 1
             size: 3
           allOf:
@@ -8996,7 +9016,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: &ref_15
+          example: &ref_16
             index: 1
             size: 3
             total: 10
@@ -9021,7 +9041,7 @@ components:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: *ref_11
+          example: *ref_12
           type: array
           items:
             $ref: '#/components/schemas/Filter'
@@ -9033,15 +9053,15 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: *ref_12
+          example: *ref_13
           type: array
           items:
             $ref: '#/components/schemas/Sorting'
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: *ref_13
-          example: *ref_14
+          default: *ref_14
+          example: *ref_15
           allOf:
             - $ref: '#/components/schemas/RequestPage'
         customTokenData:
@@ -9099,7 +9119,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -9115,7 +9135,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -9277,7 +9297,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -9340,7 +9360,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -9356,7 +9376,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -9503,7 +9523,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -9577,7 +9597,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -9593,7 +9613,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -9734,7 +9754,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -9750,7 +9770,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -9927,7 +9947,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -9943,7 +9963,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -10066,7 +10086,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -10082,7 +10102,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -10205,7 +10225,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -10221,7 +10241,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -10280,7 +10300,7 @@ components:
           type: string
           title: Yield Text
           description: Yield rate in string format to represent any arbitrary yields
-          examples: &ref_19
+          examples: &ref_20
             - 10x AAVE
             - 25 BTC pro-rata
             - 3x DAI per share
@@ -10381,7 +10401,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -10397,7 +10417,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -10576,7 +10596,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: &ref_16
+          enum: &ref_17
             - 0
             - 1
         marketId:
@@ -10629,7 +10649,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: &ref_17
+          enum: &ref_18
             - 0
             - 1
             - 2
@@ -10799,7 +10819,7 @@ components:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: *ref_11
+          example: *ref_12
           type: array
           items:
             $ref: '#/components/schemas/Filter'
@@ -10811,15 +10831,15 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: *ref_12
+          example: *ref_13
           type: array
           items:
             $ref: '#/components/schemas/Sorting'
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: *ref_13
-          example: *ref_14
+          default: *ref_14
+          example: *ref_15
           allOf:
             - $ref: '#/components/schemas/RequestPage'
         customTokenData:
@@ -10851,7 +10871,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -10902,7 +10922,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_17
+          enum: *ref_18
         tvlUsd:
           type: number
           title: TVL USD
@@ -11069,7 +11089,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -11143,7 +11163,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -11159,7 +11179,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -11241,7 +11261,7 @@ components:
         staticInputTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: &ref_18
+          example: &ref_19
             - id: 1-0xdac17f958d2ee523a2206206994597c13d831ec7
               chainId: 1
               contractAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
@@ -11395,21 +11415,21 @@ components:
         dynamicInputTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_18
+          example: *ref_19
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
         staticIncentiveTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_18
+          example: *ref_19
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
         dynamicIncentiveTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_18
+          example: *ref_19
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
@@ -11431,7 +11451,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         name:
           type: string
           title: Name
@@ -11476,7 +11496,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -11675,7 +11695,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -11691,7 +11711,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -11804,7 +11824,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -11820,7 +11840,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -11919,7 +11939,7 @@ components:
           type: string
           title: Yield Text
           description: Yield rate in string format to represent any arbitrary yields
-          examples: *ref_19
+          examples: *ref_20
         scaleRatio:
           type: number
           title: Scale Ratio
@@ -11993,7 +12013,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -12009,7 +12029,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -12188,7 +12208,7 @@ components:
         chainIds:
           title: Chain IDs
           description: The chain IDs of the vault
-          example:
+          example: &ref_21
             - 1
             - 146
           type: array
@@ -12197,7 +12217,7 @@ components:
         capacity:
           title: Capacity
           description: The capacity of the vault
-          example:
+          example: &ref_22
             currentUsd: 1000000
             maxUsd: 20000000
             ratio: 0.5
@@ -12211,7 +12231,7 @@ components:
         managers:
           title: Managers
           description: The managers of the vault
-          example:
+          example: &ref_23
             - id: veda
               name: VEDA
               symbol: VEDA
@@ -12224,7 +12244,7 @@ components:
         depositTokenIds:
           title: Deposit Token IDs
           description: The deposit token IDs of the vault
-          example:
+          example: &ref_24
             - 146-0x29219dd400f2bf60e5a23d13be72b486d4038894
           type: array
           items:
@@ -12232,7 +12252,7 @@ components:
         incentiveTokenIds:
           title: Incentive Token IDs
           description: The incentive token IDs of the vault
-          example:
+          example: &ref_25
             - 146-0x29219dd400f2bf60e5a23d13be72b486d4038894
           type: array
           items:
@@ -12273,6 +12293,8 @@ components:
           title: Last Updated
           description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
           example: '2025-03-17 17:52:10'
+        searchIndex:
+          type: string
       required:
         - id
         - chainId
@@ -12292,13 +12314,14 @@ components:
         - tvlUsd
         - yieldRate
         - lastUpdated
-    GlobalPositionRequestBody:
+        - searchIndex
+    ExploreVaultBody:
       type: object
       properties:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: *ref_11
+          example: *ref_12
           type: array
           items:
             $ref: '#/components/schemas/Filter'
@@ -12310,15 +12333,199 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: *ref_12
+          example: *ref_13
           type: array
           items:
             $ref: '#/components/schemas/Sorting'
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: *ref_13
-          example: *ref_14
+          default: *ref_14
+          example: *ref_15
+          allOf:
+            - $ref: '#/components/schemas/RequestPage'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+    EnrichedVault:
+      type: object
+      properties:
+        id:
+          type: string
+          title: ID
+          description: 'The global unique identifier of the vault: chainId_vaultAddress'
+          example: 146_0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        vaultAddress:
+          type: string
+          title: Vault Address
+          description: The address of the vault
+          example: '0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e'
+        name:
+          type: string
+          title: Vault Name
+          description: Roy Sonic USDC
+          example: Roy Sonic USDC
+        description:
+          type: string
+          title: Vault Description
+          description: The description of the vault
+          example: Deposit assets to earn highest yields.
+        chainIds:
+          title: Chain IDs
+          description: The chain IDs of the vault
+          example: *ref_21
+          type: array
+          items:
+            type: number
+        capacity:
+          title: Capacity
+          description: The capacity of the vault
+          example: *ref_22
+          allOf:
+            - $ref: '#/components/schemas/VaultCapacity'
+        maxLockup:
+          type: string
+          title: Max Lockup
+          description: The max lockup of the vault
+          example: '2592000'
+        managers:
+          title: Managers
+          description: The managers of the vault
+          example: *ref_23
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultManager'
+        depositTokenIds:
+          title: Deposit Token IDs
+          description: The deposit token IDs of the vault
+          example: *ref_24
+          type: array
+          items:
+            type: string
+        incentiveTokenIds:
+          title: Incentive Token IDs
+          description: The incentive token IDs of the vault
+          example: *ref_25
+          type: array
+          items:
+            type: string
+        depositTokens:
+          title: Deposit Tokens
+          description: The deposit tokens of the vault
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultDepositToken'
+        incentiveTokens:
+          title: Incentive Tokens
+          description: The incentive tokens of the vault
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultIncentiveToken'
+        allocations:
+          title: Allocations
+          description: The allocations of the vault
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultAllocation'
+        isVerified:
+          type: boolean
+          title: Is Verified
+          description: Whether the vault is verified
+        tvlUsd:
+          type: number
+          title: TVL USD
+          description: The TVL of the vault in USD
+        yieldRate:
+          type: number
+          title: Yield Rate
+          description: 'Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.'
+          example: '0.1'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        searchIndex:
+          type: string
+      required:
+        - id
+        - chainId
+        - vaultAddress
+        - name
+        - description
+        - chainIds
+        - capacity
+        - maxLockup
+        - managers
+        - depositTokenIds
+        - incentiveTokenIds
+        - depositTokens
+        - incentiveTokens
+        - allocations
+        - isVerified
+        - tvlUsd
+        - yieldRate
+        - lastUpdated
+        - searchIndex
+    ExploreVaultResponse:
+      type: object
+      properties:
+        page:
+          title: Response Page Object
+          description: Object type to respond with a page of results
+          example: *ref_16
+          allOf:
+            - $ref: '#/components/schemas/ResponsePage'
+        count:
+          type: number
+          title: Row Count
+          description: Total number of rows in the results
+          example: 234
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrichedVault'
+      required:
+        - page
+        - count
+        - data
+    GlobalPositionRequestBody:
+      type: object
+      properties:
+        filters:
+          title: Filters Array
+          description: Array of filter objects to apply to the results
+          example: *ref_12
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        searchKey:
+          type: string
+          title: Search Key
+          description: Key to search by
+          example: marketId
+        sorting:
+          title: Sorting Object
+          description: Object type to sort results with
+          example: *ref_13
+          type: array
+          items:
+            $ref: '#/components/schemas/Sorting'
+        page:
+          title: Request Page Object
+          description: Object type to request a page of results
+          default: *ref_14
+          example: *ref_15
           allOf:
             - $ref: '#/components/schemas/RequestPage'
         customTokenData:
@@ -12423,7 +12630,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -12439,7 +12646,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -12585,7 +12792,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -12601,7 +12808,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -12818,7 +13025,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -12834,7 +13041,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -12970,7 +13177,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -12986,7 +13193,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -13106,7 +13313,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -13130,7 +13337,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_17
+          enum: *ref_18
         isForfeited:
           type: boolean
           title: Is Forfeited
@@ -13237,7 +13444,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -13313,7 +13520,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -13329,7 +13536,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -13414,7 +13621,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_17
+          enum: *ref_18
       required:
         - id
         - chainId
@@ -13484,7 +13691,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -13500,7 +13707,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -13585,7 +13792,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_17
+          enum: *ref_18
       required:
         - id
         - chainId
@@ -13655,7 +13862,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -13671,7 +13878,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -13780,7 +13987,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -13876,7 +14083,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -13981,7 +14188,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -14057,7 +14264,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -14073,7 +14280,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -14210,7 +14417,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -14226,7 +14433,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -14335,7 +14542,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -14493,7 +14700,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -14509,7 +14716,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -14631,7 +14838,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -14647,7 +14854,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -14752,7 +14959,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -14886,7 +15093,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -14945,7 +15152,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         marketId:
           type: string
           title: Market ID
@@ -15063,7 +15270,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -15079,7 +15286,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -15148,7 +15355,7 @@ components:
         rewardIds:
           title: Reward IDs
           description: The IDs of the reward tokens
-          example: &ref_20
+          example: &ref_26
             - '1'
             - '2'
             - '3'
@@ -15221,7 +15428,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -15237,7 +15444,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -15306,7 +15513,7 @@ components:
         rewardIds:
           title: Reward IDs
           description: The IDs of the reward tokens
-          example: *ref_20
+          example: *ref_26
           type: array
           items:
             type: string
@@ -15378,7 +15585,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -15586,7 +15793,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -15602,7 +15809,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -15781,7 +15988,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -15797,7 +16004,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -15934,7 +16141,7 @@ components:
           title: Market Type
           description: 'The type of market: 0 = Recipe, 1 = Vault'
           example: 0
-          enum: *ref_16
+          enum: *ref_17
         offerSide:
           type: number
           title: Offer Side
@@ -16111,7 +16318,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -16127,7 +16334,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -16254,7 +16461,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: &ref_21
+          enum: &ref_27
             - invalid
             - empty
             - partial
@@ -16323,7 +16530,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_21
+          enum: *ref_27
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
@@ -16400,7 +16607,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_21
+          enum: *ref_27
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
@@ -16479,7 +16686,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_21
+          enum: *ref_27
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
@@ -16690,7 +16897,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -16706,7 +16913,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -16895,7 +17102,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -16911,7 +17118,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -17088,7 +17295,7 @@ components:
           title: Source
           description: The source for the price feed of the token
           example: coinmarketcap
-          enum: *ref_9
+          enum: *ref_10
         searchId:
           type: string
           title: Search ID
@@ -17104,7 +17311,7 @@ components:
           title: Type
           description: The type of the token
           example: token
-          enum: *ref_10
+          enum: *ref_11
         price:
           type: number
           title: Price
@@ -17208,7 +17415,7 @@ components:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: *ref_11
+          example: *ref_12
           type: array
           items:
             $ref: '#/components/schemas/Filter'
@@ -17220,15 +17427,15 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: *ref_12
+          example: *ref_13
           type: array
           items:
             $ref: '#/components/schemas/Sorting'
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: *ref_13
-          example: *ref_14
+          default: *ref_14
+          example: *ref_15
           allOf:
             - $ref: '#/components/schemas/RequestPage'
         customTokenData:
@@ -17245,7 +17452,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:
@@ -17325,7 +17532,7 @@ components:
         filters:
           title: Filters Array
           description: Array of filter objects to apply to the results
-          example: *ref_11
+          example: *ref_12
           type: array
           items:
             $ref: '#/components/schemas/Filter'
@@ -17337,15 +17544,15 @@ components:
         sorting:
           title: Sorting Object
           description: Object type to sort results with
-          example: *ref_12
+          example: *ref_13
           type: array
           items:
             $ref: '#/components/schemas/Sorting'
         page:
           title: Request Page Object
           description: Object type to request a page of results
-          default: *ref_13
-          example: *ref_14
+          default: *ref_14
+          example: *ref_15
           allOf:
             - $ref: '#/components/schemas/RequestPage'
         customTokenData:
@@ -17449,7 +17656,7 @@ components:
         page:
           title: Response Page Object
           description: Object type to respond with a page of results
-          example: *ref_15
+          example: *ref_16
           allOf:
             - $ref: '#/components/schemas/ResponsePage'
         count:

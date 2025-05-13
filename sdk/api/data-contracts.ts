@@ -3243,6 +3243,163 @@ export interface VaultInfoResponse {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  searchIndex: string;
+}
+
+export interface ExploreVaultBody {
+  /**
+   * Filters Array
+   * Array of filter objects to apply to the results
+   * @example [{"id":"chainId","value":1},{"id":"tvlUsd","value":1000000,"condition":"gte"}]
+   */
+  filters?: Filter[];
+  /**
+   * Search Key
+   * Key to search by
+   * @example "marketId"
+   */
+  searchKey?: string;
+  /**
+   * Sorting Object
+   * Object type to sort results with
+   * @example [{"id":"tvlUsd","desc":true}]
+   */
+  sorting?: Sorting[];
+  /**
+   * Request Page Object
+   * Object type to request a page of results
+   * @default {"index":1,"size":10}
+   * @example {"index":1,"size":3}
+   */
+  page?: RequestPage;
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+}
+
+export interface EnrichedVault {
+  /**
+   * ID
+   * The global unique identifier of the vault: chainId_vaultAddress
+   * @example "146_0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Vault Address
+   * The address of the vault
+   * @example "0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
+   */
+  vaultAddress: string;
+  /**
+   * Vault Name
+   * Roy Sonic USDC
+   * @example "Roy Sonic USDC"
+   */
+  name: string;
+  /**
+   * Vault Description
+   * The description of the vault
+   * @example "Deposit assets to earn highest yields."
+   */
+  description: string;
+  /**
+   * Chain IDs
+   * The chain IDs of the vault
+   * @example [1,146]
+   */
+  chainIds: number[];
+  /**
+   * Capacity
+   * The capacity of the vault
+   * @example {"currentUsd":1000000,"maxUsd":20000000,"ratio":0.5}
+   */
+  capacity: VaultCapacity;
+  /**
+   * Max Lockup
+   * The max lockup of the vault
+   * @example "2592000"
+   */
+  maxLockup: string;
+  /**
+   * Managers
+   * The managers of the vault
+   * @example [{"id":"veda","name":"VEDA","symbol":"VEDA","image":"https://pbs.twimg.com/profile_images/1790405638847135744/mx3dr412_400x400.png","link":"https://veda.tech/"}]
+   */
+  managers: VaultManager[];
+  /**
+   * Deposit Token IDs
+   * The deposit token IDs of the vault
+   * @example ["146-0x29219dd400f2bf60e5a23d13be72b486d4038894"]
+   */
+  depositTokenIds: string[];
+  /**
+   * Incentive Token IDs
+   * The incentive token IDs of the vault
+   * @example ["146-0x29219dd400f2bf60e5a23d13be72b486d4038894"]
+   */
+  incentiveTokenIds: string[];
+  /**
+   * Deposit Tokens
+   * The deposit tokens of the vault
+   */
+  depositTokens: VaultDepositToken[];
+  /**
+   * Incentive Tokens
+   * The incentive tokens of the vault
+   */
+  incentiveTokens: VaultIncentiveToken[];
+  /**
+   * Allocations
+   * The allocations of the vault
+   */
+  allocations: VaultAllocation[];
+  /**
+   * Is Verified
+   * Whether the vault is verified
+   */
+  isVerified: boolean;
+  /**
+   * TVL USD
+   * The TVL of the vault in USD
+   */
+  tvlUsd: number;
+  /**
+   * Yield Rate
+   * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
+   * @example "0.1"
+   */
+  yieldRate: number;
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  searchIndex: string;
+}
+
+export interface ExploreVaultResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  data: EnrichedVault[];
 }
 
 export interface GlobalPositionRequestBody {
@@ -7769,6 +7926,8 @@ export type MarketControllerGetMarketSettingsData =
 export type MarketControllerCreateMarketData = CreateMarketResponse;
 
 export type VaultControllerGetVaultInfoData = VaultInfoResponse;
+
+export type VaultControllerGetVaultsData = ExploreVaultResponse;
 
 export type PositionControllerGetGlobalPositionsData = GlobalPositionResponse;
 

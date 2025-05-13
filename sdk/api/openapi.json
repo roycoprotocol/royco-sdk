@@ -5352,6 +5352,50 @@
         ]
       }
     },
+    "/api/v1/vault/explore": {
+      "post": {
+        "description": "Get all vaults. Use filters property in body to filter out by vault id, chain id, etc. Since response is paginated, use pagination properties in body to get next page based on size property of page. Do note: max page size for response is 500.",
+        "operationId": "VaultController_getVaults",
+        "parameters": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExploreVaultBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExploreVaultResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get all vaults",
+        "tags": [
+          "Vault"
+        ]
+      }
+    },
     "/api/v1/position/global/{accountAddress}": {
       "post": {
         "description": "Get total assets for an account",
@@ -9759,23 +9803,11 @@
         ]
       }
     },
-    "/api/v1/activity/{accountAddress}": {
+    "/api/v1/activity": {
       "post": {
-        "description": "Get activities for a given account address",
+        "description": "Get activities given filters and sorting",
         "operationId": "ActivityController_getActivities",
-        "parameters": [
-          {
-            "name": "accountAddress",
-            "required": true,
-            "in": "path",
-            "description": "Wallet address of the account",
-            "schema": {
-              "title": "Account Address",
-              "example": "0x77777cc68b333a2256b436d675e8d257699aa667",
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": false,
           "content": {
@@ -9862,7 +9894,7 @@
             "api-key-query": []
           }
         ],
-        "summary": "Get activities for a given account address",
+        "summary": "Get activities",
         "tags": [
           "Activity"
         ]
@@ -15098,6 +15130,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "searchIndex": {
+            "type": "string"
           }
         },
         "required": [
@@ -15118,7 +15153,289 @@
           "isVerified",
           "tvlUsd",
           "yieldRate",
-          "lastUpdated"
+          "lastUpdated",
+          "searchIndex"
+        ]
+      },
+      "ExploreVaultBody": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "title": "Filters Array",
+            "description": "Array of filter objects to apply to the results",
+            "example": [
+              {
+                "id": "chainId",
+                "value": 1
+              },
+              {
+                "id": "tvlUsd",
+                "value": 1000000,
+                "condition": "gte"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Filter"
+            }
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
+          "sorting": {
+            "title": "Sorting Object",
+            "description": "Object type to sort results with",
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sorting"
+            }
+          },
+          "page": {
+            "title": "Request Page Object",
+            "description": "Object type to request a page of results",
+            "default": {
+              "index": 1,
+              "size": 10
+            },
+            "example": {
+              "index": 1,
+              "size": 3
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestPage"
+              }
+            ]
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          }
+        }
+      },
+      "EnrichedVault": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The global unique identifier of the vault: chainId_vaultAddress",
+            "example": "146_0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "vaultAddress": {
+            "type": "string",
+            "title": "Vault Address",
+            "description": "The address of the vault",
+            "example": "0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
+          },
+          "name": {
+            "type": "string",
+            "title": "Vault Name",
+            "description": "Roy Sonic USDC",
+            "example": "Roy Sonic USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Vault Description",
+            "description": "The description of the vault",
+            "example": "Deposit assets to earn highest yields."
+          },
+          "chainIds": {
+            "title": "Chain IDs",
+            "description": "The chain IDs of the vault",
+            "example": [
+              1,
+              146
+            ],
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "capacity": {
+            "title": "Capacity",
+            "description": "The capacity of the vault",
+            "example": {
+              "currentUsd": 1000000,
+              "maxUsd": 20000000,
+              "ratio": 0.5
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VaultCapacity"
+              }
+            ]
+          },
+          "maxLockup": {
+            "type": "string",
+            "title": "Max Lockup",
+            "description": "The max lockup of the vault",
+            "example": "2592000"
+          },
+          "managers": {
+            "title": "Managers",
+            "description": "The managers of the vault",
+            "example": [
+              {
+                "id": "veda",
+                "name": "VEDA",
+                "symbol": "VEDA",
+                "image": "https://pbs.twimg.com/profile_images/1790405638847135744/mx3dr412_400x400.png",
+                "link": "https://veda.tech/"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VaultManager"
+            }
+          },
+          "depositTokenIds": {
+            "title": "Deposit Token IDs",
+            "description": "The deposit token IDs of the vault",
+            "example": [
+              "146-0x29219dd400f2bf60e5a23d13be72b486d4038894"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "incentiveTokenIds": {
+            "title": "Incentive Token IDs",
+            "description": "The incentive token IDs of the vault",
+            "example": [
+              "146-0x29219dd400f2bf60e5a23d13be72b486d4038894"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "depositTokens": {
+            "title": "Deposit Tokens",
+            "description": "The deposit tokens of the vault",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VaultDepositToken"
+            }
+          },
+          "incentiveTokens": {
+            "title": "Incentive Tokens",
+            "description": "The incentive tokens of the vault",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VaultIncentiveToken"
+            }
+          },
+          "allocations": {
+            "title": "Allocations",
+            "description": "The allocations of the vault",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VaultAllocation"
+            }
+          },
+          "isVerified": {
+            "type": "boolean",
+            "title": "Is Verified",
+            "description": "Whether the vault is verified"
+          },
+          "tvlUsd": {
+            "type": "number",
+            "title": "TVL USD",
+            "description": "The TVL of the vault in USD"
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "searchIndex": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "vaultAddress",
+          "name",
+          "description",
+          "chainIds",
+          "capacity",
+          "maxLockup",
+          "managers",
+          "depositTokenIds",
+          "incentiveTokenIds",
+          "depositTokens",
+          "incentiveTokens",
+          "allocations",
+          "isVerified",
+          "tvlUsd",
+          "yieldRate",
+          "lastUpdated",
+          "searchIndex"
+        ]
+      },
+      "ExploreVaultResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "title": "Response Page Object",
+            "description": "Object type to respond with a page of results",
+            "example": {
+              "index": 1,
+              "size": 3,
+              "total": 10
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponsePage"
+              }
+            ]
+          },
+          "count": {
+            "type": "number",
+            "title": "Row Count",
+            "description": "Total number of rows in the results",
+            "example": 234
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedVault"
+            }
+          }
+        },
+        "required": [
+          "page",
+          "count",
+          "data"
         ]
       },
       "GlobalPositionRequestBody": {

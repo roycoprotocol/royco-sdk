@@ -31,6 +31,7 @@ import {
   CreateMarketBody,
   ExploreMarketBody,
   ExploreSettingsMarketBody,
+  ExploreVaultBody,
   GlobalPositionRequestBody,
   HealthControllerCheckData,
   HealthControllerCheckError,
@@ -71,6 +72,7 @@ import {
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
   VaultControllerGetVaultInfoData,
+  VaultControllerGetVaultsData,
   VaultInfoRequestBody,
   VaultIPAddIncentivesActionBody,
   VaultIPExtendIncentivesActionBody,
@@ -320,6 +322,28 @@ export class Api<
   ) =>
     this.request<VaultControllerGetVaultInfoData, any>({
       path: `/api/v1/vault/info/${id}`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get all vaults. Use filters property in body to filter out by vault id, chain id, etc. Since response is paginated, use pagination properties in body to get next page based on size property of page. Do note: max page size for response is 500.
+   *
+   * @tags Vault
+   * @name VaultControllerGetVaults
+   * @summary Get all vaults
+   * @request POST:/api/v1/vault/explore
+   * @secure
+   */
+  vaultControllerGetVaults = (
+    data?: ExploreVaultBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<VaultControllerGetVaultsData, any>({
+      path: `/api/v1/vault/explore`,
       method: "POST",
       body: data,
       secure: true,
@@ -844,21 +868,20 @@ export class Api<
       ...params,
     });
   /**
-   * @description Get activities for a given account address
+   * @description Get activities given filters and sorting
    *
    * @tags Activity
    * @name ActivityControllerGetActivities
-   * @summary Get activities for a given account address
-   * @request POST:/api/v1/activity/{accountAddress}
+   * @summary Get activities
+   * @request POST:/api/v1/activity
    * @secure
    */
   activityControllerGetActivities = (
-    accountAddress: string,
     data?: ActivityBody,
     params: RequestParams = {},
   ) =>
     this.request<ActivityControllerGetActivitiesData, any>({
-      path: `/api/v1/activity/${accountAddress}`,
+      path: `/api/v1/activity`,
       method: "POST",
       body: data,
       secure: true,
