@@ -7,7 +7,7 @@ export default defineToken({
   name: "Sentiment Royco Points",
   symbol: "SRP",
   image:
-    "https://pbs.twimg.com/profile_images/1777846348735537152/7-y3mdE0_400x400.jpg01",
+    "https://pbs.twimg.com/profile_images/1777846348735537152/7-y3mdE0_400x400.jpg",
   decimals: 18,
   source: "external",
   search_id: "",
