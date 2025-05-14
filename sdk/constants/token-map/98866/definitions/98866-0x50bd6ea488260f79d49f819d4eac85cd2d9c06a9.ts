@@ -6,7 +6,8 @@ export default defineToken({
   contract_address: "0x50bd6ea488260f79d49f819d4eac85cd2d9c06a9",
   name: "RST0002-UAE-DUBAI-DAMAC Towers By Paramounts",
   symbol: "RST0002DB",
-  image: "https://pbs.twimg.com/profile_images/1714842234062094336/ltqq6Fwa_400x400.jpg",
+  image:
+    "https://pbs.twimg.com/profile_images/1714842234062094336/ltqq6Fwa_400x400.jpg",
   decimals: 18,
   source: "",
   search_id: "external",
