@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x9fbc367b9bb966a2a537989817a088afcaffdc4c",
   name: "Nest Elixir Vault",
   symbol: "nELIXIR",
-  image: "https://app.nest.credit/images/nest-elixir-vault.svg",
+  image: "https://assets.plume.org/images/logos/nest/nELIXIR/nELIXIR-token.svg",
   decimals: 6,
   source: "plume",
   search_id: "nest-basis-vault",
