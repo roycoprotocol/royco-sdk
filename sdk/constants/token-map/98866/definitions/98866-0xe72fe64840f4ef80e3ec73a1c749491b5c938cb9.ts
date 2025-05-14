@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nTBILL",
   image: "https://assets.plume.org/images/logos/nest/nTBILL/nTBILL-token.svg",
   decimals: 6,
-  source: "plume",
+  source: "coingecko",
   search_id: "nest-treasury-vault",
   type: "token",
 });

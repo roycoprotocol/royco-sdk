@@ -10,6 +10,6 @@ export default defineToken({
     "https://pbs.twimg.com/profile_images/1821310155075514368/0Kjodwv3_400x400.jpg",
   decimals: 6,
   source: "nucleus",
-  search_id: "0xa6CBB3544621152c7002795067Ae8F2F5A18afcf",
+  search_id: "0xa6cbb3544621152c7002795067ae8f2f5a18afcf",
   type: "token",
 });

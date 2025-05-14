@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nALPHA",
   image: "https://assets.plume.org/images/logos/nest/nALPHA/nALPHA-token.svg",
   decimals: 6,
-  source: "plume",
+  source: "coingecko",
   search_id: "nest-alpha-vault",
   type: "token",
 });

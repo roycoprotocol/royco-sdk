@@ -9,7 +9,7 @@ export default defineToken({
   image:
     "https://pbs.twimg.com/profile_images/1813234204563374080/JC18xLd2_400x400.jpg",
   decimals: 18,
-  source: "",
-  search_id: "",
+  source: "external",
+  search_id: "none",
   type: "point",
 });
