@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0x593ccca4c4bf58b7526a4c164ceef4003c6388db",
   name: "Nest Alpha Vault",
   symbol: "nALPHA",
-  image: "https://app.nest.credit/images/nest-egg-vault.svg",
+  image: "https://assets.plume.org/images/logos/nest/nALPHA/nALPHA-token.svg",
   decimals: 6,
   source: "plume",
   search_id: "nest-alpha-vault",
