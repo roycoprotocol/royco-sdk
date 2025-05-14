@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nETF",
   image: "https://app.nest.credit/images/nest-egg-vault.svg",
   decimals: 6,
-  source: "plume",
+  source: "coingecko",
   search_id: "nest-etf-vault",
   type: "token",
 });

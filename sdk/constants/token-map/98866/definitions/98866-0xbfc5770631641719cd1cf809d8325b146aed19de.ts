@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nINSTO",
   image: "https://app.nest.credit/images/nest-institutional-vault.svg",
   decimals: 6,
-  source: "plume",
-  search_id: "nest-rwa-vault",
+  source: "coingecko",
+  search_id: "nest-institutional-vault",
   type: "token",
 });

@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nCREDIT",
   image: "https://assets.plume.org/images/logos/nest/nCREDIT/nCREDIT-token.svg",
   decimals: 6,
-  source: "plume",
-  search_id: "nest-rwa-vault",
+  source: "coingecko",
+  search_id: "nest-credit-vault",
   type: "token",
 });

@@ -9,6 +9,6 @@ export default defineToken({
   image: " https://app.nest.credit/images/pusd.svg",
   decimals: 6,
   source: "coingecko",
-  search_id: "usd-coin",
+  search_id: "plume-usd",
   type: "token",
 });

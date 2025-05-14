@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nBASIS",
   image: "https://assets.plume.org/images/logos/nest/nBASIS/nBASIS-token.svg",
   decimals: 6,
-  source: "plume",
+  source: "coingecko",
   search_id: "nest-basis-vault",
   type: "token",
 });

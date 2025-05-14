@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nPAYFI",
   image: "https://assets.plume.org/images/logos/nest/nPAYFI/nPAYFI-token.svg",
   decimals: 6,
-  source: "plume",
-  search_id: "nest-PAYFI-vault",
+  source: "coingecko",
+  search_id: "nest-payfi-vault",
   type: "token",
 });

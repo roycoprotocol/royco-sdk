@@ -8,7 +8,7 @@ export default defineToken({
   symbol: "nELIXIR",
   image: "https://assets.plume.org/images/logos/nest/nELIXIR/nELIXIR-token.svg",
   decimals: 6,
-  source: "plume",
-  search_id: "nest-basis-vault",
+  source: "coingecko",
+  search_id: "nest-institutional-core",
   type: "token",
 });
