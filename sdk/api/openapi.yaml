@@ -10568,6 +10568,153 @@ components:
         - id
         - multiplier
         - assetType
+    BaseEnrichedTokenData:
+      type: object
+      properties:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
+          type: string
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_10
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_11
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
+          type: array
+          items:
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+        searchIndex:
+          type: string
+          title: Search Index
+          description: Search index for the entity
+          example: '0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        rawAmount:
+          type: string
+          title: Raw Amount
+          description: Amount in wei
+          example: '10000000000'
+        tokenAmount:
+          type: number
+          title: Token Amount
+          description: Normalized raw amount in token decimals
+          example: 1000
+        tokenAmountUsd:
+          type: number
+          title: Token Amount USD
+          description: Normalized raw amount in USD
+          example: 999.99
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+        - rawAmount
+        - tokenAmount
+        - tokenAmountUsd
     MarketMetadata:
       type: object
       properties:
@@ -10575,6 +10722,8 @@ components:
           $ref: '#/components/schemas/MarketMetadataSonic'
         boyco:
           $ref: '#/components/schemas/MarketMetadataBoyco'
+        minDepositToken:
+          $ref: '#/components/schemas/BaseEnrichedTokenData'
     InfoMarketResponse:
       type: object
       properties:
@@ -12745,153 +12894,6 @@ components:
         - tokenAmountUsd
         - isUnlocked
         - claimInfo
-    BaseEnrichedTokenData:
-      type: object
-      properties:
-        rawMetadata:
-          type: object
-          title: Raw Metadata
-          description: Raw metadata
-        id:
-          type: string
-          title: Token ID
-          description: 'Unique identifier for the token: chainId-contractAddress'
-          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
-        chainId:
-          type: number
-          title: Chain ID
-          description: Network ID of the blockchain
-          example: 1
-        contractAddress:
-          type: string
-          title: Contract Address
-          description: Deployment address of the contract
-          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
-        name:
-          type: string
-          title: Name
-          description: The name of the token
-          example: USDC
-        symbol:
-          type: string
-          title: Symbol
-          description: The symbol of the token
-          example: USDC
-        image:
-          type: string
-          title: Image
-          description: The logo of the token
-          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
-        decimals:
-          type: number
-          title: Decimals
-          description: The number of decimals of the token
-          example: 6
-        source:
-          type: string
-          title: Source
-          description: The source for the price feed of the token
-          example: coinmarketcap
-          enum: *ref_10
-        searchId:
-          type: string
-          title: Search ID
-          description: >-
-            The search id for the token on the source price feed: for
-            CoinmarketCap, it's UCID (found under metadata section of the token
-            page) -- for Coingecko, it's token slug (found in the URL of the
-            token page) -- for all other sources, we have a custom search id
-            according to their price feed API schema
-          example: '3408'
-        type:
-          type: string
-          title: Type
-          description: The type of the token
-          example: token
-          enum: *ref_11
-        price:
-          type: number
-          title: Price
-          description: The price of the token
-          example: 0.99999999
-        fdv:
-          type: number
-          title: FDV
-          description: The fully diluted valuation of the token
-          example: 59689964490.12
-        totalSupply:
-          type: number
-          title: Total Supply
-          description: The total supply of the token
-          example: 59689963893.2
-        owner:
-          type: string
-          title: Owner
-          description: The owner of the point program token
-          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
-        issuers:
-          title: Issuers
-          description: Authorized issuers of the point program token
-          type: array
-          items:
-            type: string
-        subTokens:
-          title: Sub Tokens
-          description: Array of sub tokens
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenQuote'
-        customTokenData:
-          title: Custom Token Data
-          description: >-
-            Array of custom token assumptions --  if not provided, the default
-            quote data will be used.
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomTokenDataElement'
-        searchIndex:
-          type: string
-          title: Search Index
-          description: Search index for the entity
-          example: '0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d'
-        lastUpdated:
-          type: string
-          title: Last Updated
-          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
-          example: '2025-03-17 17:52:10'
-        rawAmount:
-          type: string
-          title: Raw Amount
-          description: Amount in wei
-          example: '10000000000'
-        tokenAmount:
-          type: number
-          title: Token Amount
-          description: Normalized raw amount in token decimals
-          example: 1000
-        tokenAmountUsd:
-          type: number
-          title: Token Amount USD
-          description: Normalized raw amount in USD
-          example: 999.99
-      required:
-        - id
-        - chainId
-        - contractAddress
-        - name
-        - symbol
-        - image
-        - decimals
-        - source
-        - searchId
-        - type
-        - price
-        - fdv
-        - totalSupply
-        - lastUpdated
-        - rawAmount
-        - tokenAmount
-        - tokenAmountUsd
     Position:
       type: object
       properties:
@@ -15657,6 +15659,81 @@ components:
         - accountAddress
         - unclaimedRewardTokens
         - claimedRewardTokens
+    ContractDataResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          title: ID
+          description: Unique identifier for the entity
+          example: >-
+            98866_0_0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        contractName:
+          type: string
+          title: Contract Name
+          description: Name of the contract
+          nullable: true
+        abi:
+          title: ABI
+          description: ABI of the contract
+          allOf:
+            - $ref: '#/components/schemas/'
+        implementationId:
+          type: string
+          title: Implementation ID
+          description: ID of the implementation contract
+          nullable: true
+        proxyType:
+          type: string
+          title: Proxy Type
+          description: Type of the proxy
+          enum: &ref_27
+            - EIP 1167
+            - EIP 1967 (Direct)
+            - EIP 1967 (Beacon)
+            - EIP 1822
+            - EIP 897
+            - OpenZeppelin
+            - Safe
+            - Comptroller
+          nullable: true
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        source:
+          type: string
+          title: Source
+          description: Source of the contract
+          enum: &ref_28
+            - sourcify
+            - etherscan
+          nullable: true
+        implementation:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ContractDataResponse'
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - contractName
+        - abi
+        - implementationId
+        - proxyType
+        - lastUpdated
+        - source
     ContractResponse:
       type: object
       properties:
@@ -15690,19 +15767,12 @@ components:
           type: string
           title: Implementation ID
           description: ID of the implementation contract
+          nullable: true
         proxyType:
           type: string
           title: Proxy Type
           description: Type of the proxy
-          enum:
-            - EIP 1167
-            - EIP 1967 (Direct)
-            - EIP 1967 (Beacon)
-            - EIP 1822
-            - EIP 897
-            - OpenZeppelin
-            - Safe
-            - Comptroller
+          enum: *ref_27
           nullable: true
         lastUpdated:
           type: string
@@ -15713,17 +15783,12 @@ components:
           type: string
           title: Source
           description: Source of the contract
-          enum:
-            - sourcify
-            - etherscan
+          enum: *ref_28
           nullable: true
         implementation:
-          type: object
-          title: Implementation
-          description: >-
-            This is a recursive type, so it will return the same type as the
-            contract data response
           nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ContractDataResponse'
       required:
         - id
         - chainId
@@ -15734,7 +15799,6 @@ components:
         - proxyType
         - lastUpdated
         - source
-        - implementation
     ChartRequestBody:
       type: object
       properties:
@@ -16461,7 +16525,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: &ref_27
+          enum: &ref_29
             - invalid
             - empty
             - partial
@@ -16530,7 +16594,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_27
+          enum: *ref_29
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
@@ -16607,7 +16671,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_27
+          enum: *ref_29
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
@@ -16686,7 +16750,7 @@ components:
       properties:
         fillStatus:
           type: string
-          enum: *ref_27
+          enum: *ref_29
         inputToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
         rewardStyle:
