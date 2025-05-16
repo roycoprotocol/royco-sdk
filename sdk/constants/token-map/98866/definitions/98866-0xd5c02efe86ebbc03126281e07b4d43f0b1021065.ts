@@ -10,6 +10,6 @@ export default defineToken({
     "https://pbs.twimg.com/profile_images/1870064500474347520/a8gJtOSE_400x400.jpg",
   decimals: 18,
   source: "rooster",
-  search_id: "none",
+  search_id: "0xd5c02efe86ebbc03126281e07b4d43f0b1021065",
   type: "token",
 });
