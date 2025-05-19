@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0x8DAfBe89302656a7Df43c470e9EbCB4c540835c0",
+  id: "999-0x8dafbe89302656a7df43c470e9ebcb4c540835c0",
   chain_id: 999,
-  contract_address: "0x8DAfBe89302656a7Df43c470e9EbCB4c540835c0",
+  contract_address: "0x8dafbe89302656a7df43c470e9ebcb4c540835c0",
   name: "uETH",
   symbol: "uETH",
   image:

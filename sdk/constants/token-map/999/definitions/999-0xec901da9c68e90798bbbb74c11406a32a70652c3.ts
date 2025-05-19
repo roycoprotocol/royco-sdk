@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "999-0xEc901DA9c68E90798BbBb74c11406A32A70652C3",
+  id: "999-0xec901da9c68e90798bbbb74c11406a32a70652c3",
   chain_id: 999,
-  contract_address: "0xEc901DA9c68E90798BbBb74c11406A32A70652C3",
+  contract_address: "0xec901da9c68e90798bbbb74c11406a32a70652c3",
   name: "Stakestone ETH",
   symbol: "STONE",
   image:
