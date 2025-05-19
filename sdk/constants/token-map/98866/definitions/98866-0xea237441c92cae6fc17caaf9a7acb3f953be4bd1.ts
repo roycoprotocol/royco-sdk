@@ -6,8 +6,7 @@ export default defineToken({
   contract_address: "0xea237441c92cae6fc17caaf9a7acb3f953be4bd1",
   name: "Wrapped Plume",
   symbol: "WPLUME",
-  image:
-    "https://assets.plume.org/images/logos/WPLUME/WPLUME-token.svg",
+  image: "https://assets.plume.org/images/logos/WPLUME/WPLUME-token.svg",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "35364",
