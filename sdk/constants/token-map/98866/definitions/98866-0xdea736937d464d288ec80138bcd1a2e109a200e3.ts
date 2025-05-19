@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xdea736937d464d288ec80138bcd1a2e109a200e3",
   name: "Nest ETF Vault",
   symbol: "nETF",
-  image: "https://app.nest.credit/images/nest-egg-vault.svg",
+  image: "https://assets.plume.org/images/logos/nest/nETF/nETF-token.svg",
   decimals: 6,
   source: "coingecko",
   search_id: "nest-etf-vault",
