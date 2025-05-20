@@ -7,7 +7,7 @@ export default defineToken({
   name: "Rooster YAP-nALPHA-pUSD-4 ",
   symbol: "YAP-nALPHA-pUSD-4",
   image:
-    "https://pbs.twimg.com/profile_images/1870064500474347520/a8gJtOSE_400x400.png",
+    "https://i.ibb.co/gLH8H50M/Frame-1000004596.png",
   decimals: 18,
   source: "rooster",
   search_id: "0xfc3bd0e01b4e755aedd2a4087ccdb90c4d28f038",
