@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xdddd73f5df1f0dc31373357beac77545dc5a6f3f",
   name: "Plume USD",
   symbol: "pUSD",
-  image: " https://app.nest.credit/images/pusd.svg",
+  image: " https://app.nest.credit/images/pusd.png",
   decimals: 6,
   source: "coingecko",
   search_id: "plume-usd",
