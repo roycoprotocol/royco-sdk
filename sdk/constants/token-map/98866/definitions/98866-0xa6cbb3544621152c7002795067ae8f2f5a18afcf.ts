@@ -7,7 +7,7 @@ export default defineToken({
   name: "Nucleus op-TBILL",
   symbol: "op-TBILL",
   image:
-    "https://pbs.twimg.com/profile_images/1821310155075514368/0Kjodwv3_400x400.jpg",
+    "https://pbs.twimg.com/profile_images/1821310155075514368/0Kjodwv3_400x400.png",
   decimals: 6,
   source: "nucleus",
   search_id: "0xa6cbb3544621152c7002795067ae8f2f5a18afcf",
