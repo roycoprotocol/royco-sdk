@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xbfc5770631641719cd1cf809d8325b146aed19de",
   name: "Nest Institutional Vault",
   symbol: "nINSTO",
-  image: "https://app.nest.credit/images/nest-institutional-vault.svg",
+  image: "https://app.nest.credit/images/nest-institutional-vault.png",
   decimals: 6,
   source: "coingecko",
   search_id: "nest-institutional-vault",
