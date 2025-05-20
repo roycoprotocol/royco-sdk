@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xca59ca09e5602fae8b629dee83ffa819741f14be",
   name: "Wrapped ETH",
   symbol: "wETH",
-  image: "https://zengo.com/wp-content/uploads/wETH_desktop.svg",
+  image: "https://zengo.com/wp-content/uploads/wETH_desktop.png",
   decimals: 18,
   source: "coinmarketcap",
   search_id: "1027",
