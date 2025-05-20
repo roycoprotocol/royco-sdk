@@ -6,7 +6,7 @@ export default defineToken({
   contract_address: "0xda6087e69c51e7d31b6dbad276a3c44703dfdcad",
   name: "Tether",
   symbol: "USDT",
-  image: "https://cdn.worldvectorlogo.com/logos/tether-1.svg",
+  image: "https://cdn.worldvectorlogo.com/logos/tether-1.png",
   decimals: 6,
   source: "coingecko",
   search_id: "tether",
