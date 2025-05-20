@@ -7,7 +7,7 @@ export default defineToken({
   name: "Mystic Points",
   symbol: "MP",
   image:
-    "https://pbs.twimg.com/profile_images/1813234204563374080/JC18xLd2_400x400.jpg",
+    "https://pbs.twimg.com/profile_images/1813234204563374080/JC18xLd2_400x400.png",
   decimals: 18,
   source: "external",
   search_id: "none",
