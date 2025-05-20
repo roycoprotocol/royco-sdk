@@ -7,7 +7,7 @@ export default defineToken({
   name: "IziSwap pETH/pUSD",
   symbol: "IziSwap pETH/pUSD",
   image:
-    "https://pbs.twimg.com/profile_images/1509704804032937991/5qVVZwJj_400x400.jpg",
+    "https://pbs.twimg.com/profile_images/1509704804032937991/5qVVZwJj_400x400.png",
   decimals: 18,
   source: "external",
   search_id: "",
