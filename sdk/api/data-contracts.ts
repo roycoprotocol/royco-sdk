@@ -5921,6 +5921,14 @@ export interface SpecificBoycoPositionResponse {
   merkleLink?: string;
 }
 
+export interface SpecificBoringPositionRequest {
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+}
+
 export interface VaultPositionUnclaimedRewardToken {
   /**
    * Raw Metadata
@@ -6221,76 +6229,14 @@ export interface VaultPositionClaimedRewardToken {
   rewardIds: string[];
 }
 
-export interface BoringPosition {
-  /**
-   * ID
-   * The global unique identifier of the position: chainId_vaultAddress_accountAddress
-   */
-  id: string;
-  /**
-   * Chain ID
-   * Network ID of the blockchain
-   * @example 1
-   */
-  chainId: number;
-  /**
-   * Vault Address
-   * The address of the vault
-   * @example "0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
-   */
-  vaultAddress: string;
-  /**
-   * Account Address
-   * Wallet address of the account
-   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
-   */
-  accountAddress: string;
-  /**
-   * Unclaimed Reward Tokens
-   * The unclaimed reward tokens for the position
-   */
-  unclaimedRewardTokens: VaultPositionUnclaimedRewardToken[];
-  /**
-   * Claimed Reward Tokens
-   * The claimed reward tokens for the position
-   */
-  claimedRewardTokens: VaultPositionClaimedRewardToken[];
-}
-
-export interface BoringPositionResponse {
-  /**
-   * Response Page Object
-   * Object type to respond with a page of results
-   * @example {"index":1,"size":3,"total":10}
-   */
-  page: ResponsePage;
-  /**
-   * Row Count
-   * Total number of rows in the results
-   * @example 234
-   */
-  count: number;
-  /**
-   * Boring positions
-   * Boring positions
-   */
-  data: BoringPosition[];
-}
-
-export interface SpecificBoringPositionRequest {
-  /**
-   * Custom Token Data
-   * Array of custom token assumptions --  if not provided, the default quote data will be used.
-   */
-  customTokenData?: CustomTokenDataElement[];
-}
-
 export interface SpecificBoringPositionResponse {
   /**
    * ID
    * The global unique identifier of the position: chainId_vaultAddress_accountAddress
    */
   id: string;
+  rawVaultRefId: string;
+  name: string;
   /**
    * Chain ID
    * Network ID of the blockchain
@@ -6303,12 +6249,17 @@ export interface SpecificBoringPositionResponse {
    * @example "0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e"
    */
   vaultAddress: string;
+  shares: string;
+  sharePrice: string;
   /**
    * Account Address
    * Wallet address of the account
    * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
    */
   accountAddress: string;
+  depositToken: BaseEnrichedTokenData;
+  unclaimedIncentiveTokens: BaseEnrichedTokenData;
+  claimedIncentiveTokens: BaseEnrichedTokenData;
   /**
    * Unclaimed Reward Tokens
    * The unclaimed reward tokens for the position
@@ -6319,6 +6270,7 @@ export interface SpecificBoringPositionResponse {
    * The claimed reward tokens for the position
    */
   claimedRewardTokens: VaultPositionClaimedRewardToken[];
+  yieldRate: number;
 }
 
 export interface ContractDataResponse {
@@ -8004,8 +7956,6 @@ export type PositionControllerGetBoycoPositionsData = BoycoPositionResponse;
 
 export type PositionControllerGetSpecificBoycoPositionData =
   SpecificBoycoPositionResponse;
-
-export type PositionControllerGetBoringPositionsData = BoringPositionResponse;
 
 export type PositionControllerGetSpecificBoringPositionData =
   SpecificBoringPositionResponse;
