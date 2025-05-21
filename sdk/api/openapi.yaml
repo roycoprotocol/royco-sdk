@@ -7826,6 +7826,34 @@ paths:
         - api-key-query: []
       summary: Get boyco position of an account address inside a boyco market
       tags: *ref_8
+  /api/v1/position/boring:
+    post:
+      description: >-
+        Get positions for all boring markets. Use filters property in body to
+        filter out by vault id, chain id, etc. Since response is paginated, use
+        pagination properties in body to get next page based on size property of
+        page. Do note: max page size for response is 500.
+      operationId: PositionController_getBoringPositions
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseRequestBody'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoringPositionResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Get boring positions
+      tags: *ref_8
   /api/v1/position/boring/{id}/{accountAddress}:
     post:
       description: Get position of an account address inside a vault.
@@ -12362,6 +12390,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VaultManager'
+        sharePrice:
+          type: string
         depositTokenIds:
           title: Deposit Token IDs
           description: The deposit token IDs of the vault
@@ -12426,6 +12456,7 @@ components:
         - capacity
         - maxLockup
         - managers
+        - sharePrice
         - depositTokenIds
         - incentiveTokenIds
         - depositTokens
@@ -12526,6 +12557,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VaultManager'
+        sharePrice:
+          type: string
         depositTokenIds:
           title: Deposit Token IDs
           description: The deposit token IDs of the vault
@@ -12588,6 +12621,7 @@ components:
         - capacity
         - maxLockup
         - managers
+        - sharePrice
         - depositTokenIds
         - incentiveTokenIds
         - depositTokens
@@ -15197,17 +15231,6 @@ components:
         - underlyingIncentives
         - nativeIncentives
         - balanceUsd
-    SpecificBoringPositionRequest:
-      type: object
-      properties:
-        customTokenData:
-          title: Custom Token Data
-          description: >-
-            Array of custom token assumptions --  if not provided, the default
-            quote data will be used.
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomTokenDataElement'
     VaultPositionUnclaimedRewardToken:
       type: object
       properties:
@@ -15521,6 +15544,114 @@ components:
         - tokenAmount
         - tokenAmountUsd
         - rewardIds
+    BoringPosition:
+      type: object
+      properties:
+        id:
+          type: string
+          title: ID
+          description: >-
+            The global unique identifier of the position:
+            chainId_vaultAddress_accountAddress
+        rawVaultRefId:
+          type: string
+        name:
+          type: string
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        vaultAddress:
+          type: string
+          title: Vault Address
+          description: The address of the vault
+          example: '0x45088fb2ffebfdcf4dff7b7201bfa4cd2077c30e'
+        shares:
+          type: string
+        sharePrice:
+          type: string
+        accountAddress:
+          type: string
+          title: Account Address
+          description: Wallet address of the account
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        depositToken:
+          $ref: '#/components/schemas/BaseEnrichedTokenData'
+        unclaimedIncentiveTokens:
+          $ref: '#/components/schemas/BaseEnrichedTokenData'
+        claimedIncentiveTokens:
+          $ref: '#/components/schemas/BaseEnrichedTokenData'
+        unclaimedRewardTokens:
+          title: Unclaimed Reward Tokens
+          description: The unclaimed reward tokens for the position
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultPositionUnclaimedRewardToken'
+        claimedRewardTokens:
+          title: Claimed Reward Tokens
+          description: The claimed reward tokens for the position
+          type: array
+          items:
+            $ref: '#/components/schemas/VaultPositionClaimedRewardToken'
+        yieldRate:
+          type: number
+        unlockTimestamp:
+          type: string
+        isUnlocked:
+          type: boolean
+      required:
+        - id
+        - rawVaultRefId
+        - name
+        - chainId
+        - vaultAddress
+        - shares
+        - sharePrice
+        - accountAddress
+        - depositToken
+        - unclaimedIncentiveTokens
+        - claimedIncentiveTokens
+        - unclaimedRewardTokens
+        - claimedRewardTokens
+        - yieldRate
+        - unlockTimestamp
+        - isUnlocked
+    BoringPositionResponse:
+      type: object
+      properties:
+        page:
+          title: Response Page Object
+          description: Object type to respond with a page of results
+          example: *ref_16
+          allOf:
+            - $ref: '#/components/schemas/ResponsePage'
+        count:
+          type: number
+          title: Row Count
+          description: Total number of rows in the results
+          example: 234
+        data:
+          title: Boring positions
+          description: Boring positions
+          type: array
+          items:
+            $ref: '#/components/schemas/BoringPosition'
+      required:
+        - page
+        - count
+        - data
+    SpecificBoringPositionRequest:
+      type: object
+      properties:
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
     SpecificBoringPositionResponse:
       type: object
       properties:
@@ -15573,6 +15704,10 @@ components:
             $ref: '#/components/schemas/VaultPositionClaimedRewardToken'
         yieldRate:
           type: number
+        unlockTimestamp:
+          type: string
+        isUnlocked:
+          type: boolean
       required:
         - id
         - rawVaultRefId
@@ -15588,6 +15723,8 @@ components:
         - unclaimedRewardTokens
         - claimedRewardTokens
         - yieldRate
+        - unlockTimestamp
+        - isUnlocked
     ContractDataResponse:
       type: object
       properties:
