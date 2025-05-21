@@ -44,6 +44,7 @@ import {
   OfferControllerGetVaultOffersData,
   PointControllerGetPointDirectoryData,
   PointDirectoryRequestBody,
+  PositionControllerGetBoringPositionsData,
   PositionControllerGetBoycoPositionsData,
   PositionControllerGetGlobalPositionsData,
   PositionControllerGetRecipePositionsData,
@@ -504,6 +505,28 @@ export class Api<
   ) =>
     this.request<PositionControllerGetSpecificBoycoPositionData, any>({
       path: `/api/v1/position/boyco/${id}/${accountAddress}`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get positions for all boring markets. Use filters property in body to filter out by vault id, chain id, etc. Since response is paginated, use pagination properties in body to get next page based on size property of page. Do note: max page size for response is 500.
+   *
+   * @tags Position
+   * @name PositionControllerGetBoringPositions
+   * @summary Get boring positions
+   * @request POST:/api/v1/position/boring
+   * @secure
+   */
+  positionControllerGetBoringPositions = (
+    data?: BaseRequestBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<PositionControllerGetBoringPositionsData, any>({
+      path: `/api/v1/position/boring`,
       method: "POST",
       body: data,
       secure: true,
