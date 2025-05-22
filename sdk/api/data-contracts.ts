@@ -2429,6 +2429,31 @@ export interface ExploreMarketResponse {
 
 export interface ExploreSettingsMarketBody {
   /**
+   * Filters Array
+   * Array of filter objects to apply to the results
+   * @example [{"id":"chainId","value":1},{"id":"tvlUsd","value":1000000,"condition":"gte"}]
+   */
+  filters?: Filter[];
+  /**
+   * Search Key
+   * Key to search by
+   * @example "marketId"
+   */
+  searchKey?: string;
+  /**
+   * Sorting Object
+   * Object type to sort results with
+   * @example [{"id":"tvlUsd","desc":true}]
+   */
+  sorting?: Sorting[];
+  /**
+   * Request Page Object
+   * Object type to request a page of results
+   * @default {"index":1,"size":10}
+   * @example {"index":1,"size":3}
+   */
+  page?: RequestPage;
+  /**
    * Custom Token Data
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */

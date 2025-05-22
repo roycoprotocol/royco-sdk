@@ -13350,6 +13350,62 @@
       "ExploreSettingsMarketBody": {
         "type": "object",
         "properties": {
+          "filters": {
+            "title": "Filters Array",
+            "description": "Array of filter objects to apply to the results",
+            "example": [
+              {
+                "id": "chainId",
+                "value": 1
+              },
+              {
+                "id": "tvlUsd",
+                "value": 1000000,
+                "condition": "gte"
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Filter"
+            }
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
+          "sorting": {
+            "title": "Sorting Object",
+            "description": "Object type to sort results with",
+            "example": [
+              {
+                "id": "tvlUsd",
+                "desc": true
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Sorting"
+            }
+          },
+          "page": {
+            "title": "Request Page Object",
+            "description": "Object type to request a page of results",
+            "default": {
+              "index": 1,
+              "size": 10
+            },
+            "example": {
+              "index": 1,
+              "size": 3
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RequestPage"
+              }
+            ]
+          },
           "customTokenData": {
             "title": "Custom Token Data",
             "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
