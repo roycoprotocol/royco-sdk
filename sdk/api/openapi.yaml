@@ -11257,6 +11257,32 @@ components:
     ExploreSettingsMarketBody:
       type: object
       properties:
+        filters:
+          title: Filters Array
+          description: Array of filter objects to apply to the results
+          example: *ref_12
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        searchKey:
+          type: string
+          title: Search Key
+          description: Key to search by
+          example: marketId
+        sorting:
+          title: Sorting Object
+          description: Object type to sort results with
+          example: *ref_13
+          type: array
+          items:
+            $ref: '#/components/schemas/Sorting'
+        page:
+          title: Request Page Object
+          description: Object type to request a page of results
+          default: *ref_14
+          example: *ref_15
+          allOf:
+            - $ref: '#/components/schemas/RequestPage'
         customTokenData:
           title: Custom Token Data
           description: >-
