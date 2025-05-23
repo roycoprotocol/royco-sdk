@@ -13125,13 +13125,22 @@
             "type": "number"
           },
           "realIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "tokenIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "pointIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "inputTokenId": {
             "type": "string",
@@ -13500,13 +13509,22 @@
             "type": "number"
           },
           "realIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "tokenIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "pointIncentives": {
-            "$ref": "#/components/schemas/GenericIncentive"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
           },
           "inputTokenId": {
             "type": "string",

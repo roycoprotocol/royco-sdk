@@ -2204,9 +2204,9 @@ export interface InfoMarketResponse {
   realYieldRate: number;
   tokenYieldRate: number;
   pointYieldRate: number;
-  realIncentives: GenericIncentive;
-  tokenIncentives: GenericIncentive;
-  pointIncentives: GenericIncentive;
+  realIncentives: GenericIncentive[];
+  tokenIncentives: GenericIncentive[];
+  pointIncentives: GenericIncentive[];
   /**
    * Input Token ID
    * The ID of the input token for the market
@@ -2449,9 +2449,9 @@ export interface EnrichedMarket {
   realYieldRate: number;
   tokenYieldRate: number;
   pointYieldRate: number;
-  realIncentives: GenericIncentive;
-  tokenIncentives: GenericIncentive;
-  pointIncentives: GenericIncentive;
+  realIncentives: GenericIncentive[];
+  tokenIncentives: GenericIncentive[];
+  pointIncentives: GenericIncentive[];
   /**
    * Input Token ID
    * The ID of the input token for the market

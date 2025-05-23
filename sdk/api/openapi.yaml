@@ -11068,11 +11068,17 @@ components:
         pointYieldRate:
           type: number
         realIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         tokenIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         pointIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         inputTokenId:
           type: string
           title: Input Token ID
@@ -11356,11 +11362,17 @@ components:
         pointYieldRate:
           type: number
         realIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         tokenIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         pointIncentives:
-          $ref: '#/components/schemas/GenericIncentive'
+          type: array
+          items:
+            $ref: '#/components/schemas/GenericIncentive'
         inputTokenId:
           type: string
           title: Input Token ID
