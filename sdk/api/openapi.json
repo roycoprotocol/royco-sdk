@@ -9803,6 +9803,150 @@
         ]
       }
     },
+    "/v1/auth/nonce": {
+      "post": {
+        "operationId": "AuthController_getNonce",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NonceBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/user": {
+      "post": {
+        "operationId": "AuthController_editUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/verify/init": {
+      "post": {
+        "operationId": "AuthController_initWalletLink",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLinkInitBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/auth/verify/confirm": {
+      "post": {
+        "operationId": "AuthController_confirmWalletLink",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletLinkConfirmBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/api/v1/activity": {
       "post": {
         "description": "Get activities given filters and sorting",
@@ -11221,6 +11365,185 @@
             }
           }
         }
+      },
+      "GenericIncentive": {
+        "type": "object",
+        "properties": {
+          "rawMetadata": {
+            "type": "object",
+            "title": "Raw Metadata",
+            "description": "Raw metadata"
+          },
+          "id": {
+            "type": "string",
+            "title": "Token ID",
+            "description": "Unique identifier for the token: chainId-contractAddress",
+            "example": "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the token",
+            "example": "USDC"
+          },
+          "symbol": {
+            "type": "string",
+            "title": "Symbol",
+            "description": "The symbol of the token",
+            "example": "USDC"
+          },
+          "image": {
+            "type": "string",
+            "title": "Image",
+            "description": "The logo of the token",
+            "example": "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+          },
+          "decimals": {
+            "type": "number",
+            "title": "Decimals",
+            "description": "The number of decimals of the token",
+            "example": 6
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "The source for the price feed of the token",
+            "example": "coinmarketcap",
+            "enum": [
+              "coinmarketcap",
+              "coingecko",
+              "lp",
+              "enso",
+              "pendle",
+              "plume",
+              "external"
+            ]
+          },
+          "searchId": {
+            "type": "string",
+            "title": "Search ID",
+            "description": "The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema",
+            "example": "3408"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "The type of the token",
+            "example": "token",
+            "enum": [
+              "token",
+              "point",
+              "lp"
+            ]
+          },
+          "price": {
+            "type": "number",
+            "title": "Price",
+            "description": "The price of the token",
+            "example": 0.99999999
+          },
+          "fdv": {
+            "type": "number",
+            "title": "FDV",
+            "description": "The fully diluted valuation of the token",
+            "example": 59689964490.12
+          },
+          "totalSupply": {
+            "type": "number",
+            "title": "Total Supply",
+            "description": "The total supply of the token",
+            "example": 59689963893.2
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner",
+            "description": "The owner of the point program token",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "issuers": {
+            "title": "Issuers",
+            "description": "Authorized issuers of the point program token",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subTokens": {
+            "title": "Sub Tokens",
+            "description": "Array of sub tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuote"
+            }
+          },
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          },
+          "searchIndex": {
+            "type": "string",
+            "title": "Search Index",
+            "description": "Search index for the entity",
+            "example": "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "label": {
+            "type": "string"
+          },
+          "rawAmount": {
+            "type": "string"
+          },
+          "tokenAmount": {
+            "type": "number"
+          },
+          "tokenAmountUsd": {
+            "type": "number"
+          },
+          "yieldText": {
+            "type": "string"
+          },
+          "yieldRate": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "contractAddress",
+          "name",
+          "symbol",
+          "image",
+          "decimals",
+          "source",
+          "searchId",
+          "type",
+          "price",
+          "fdv",
+          "totalSupply",
+          "lastUpdated",
+          "yieldRate"
+        ]
       },
       "MarketInputTokenDetailed": {
         "type": "object",
@@ -12792,6 +13115,24 @@
             "description": "Variable yield rate from the market which will change based on deposits",
             "example": 0.1
           },
+          "realYieldRate": {
+            "type": "number"
+          },
+          "tokenYieldRate": {
+            "type": "number"
+          },
+          "pointYieldRate": {
+            "type": "number"
+          },
+          "realIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
+          "tokenIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
+          "pointIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
           "inputTokenId": {
             "type": "string",
             "title": "Input Token ID",
@@ -12946,6 +13287,12 @@
           "yieldRate",
           "yieldRate",
           "variableYieldRate",
+          "realYieldRate",
+          "tokenYieldRate",
+          "pointYieldRate",
+          "realIncentives",
+          "tokenIncentives",
+          "pointIncentives",
           "inputTokenId",
           "incentiveTokenIds",
           "inputToken",
@@ -13143,6 +13490,24 @@
             "description": "Variable yield rate from the market which will change based on deposits",
             "example": 0.1
           },
+          "realYieldRate": {
+            "type": "number"
+          },
+          "tokenYieldRate": {
+            "type": "number"
+          },
+          "pointYieldRate": {
+            "type": "number"
+          },
+          "realIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
+          "tokenIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
+          "pointIncentives": {
+            "$ref": "#/components/schemas/GenericIncentive"
+          },
           "inputTokenId": {
             "type": "string",
             "title": "Input Token ID",
@@ -13297,6 +13662,12 @@
           "yieldRate",
           "yieldRate",
           "variableYieldRate",
+          "realYieldRate",
+          "tokenYieldRate",
+          "pointYieldRate",
+          "realIncentives",
+          "tokenIncentives",
+          "pointIncentives",
           "inputTokenId",
           "incentiveTokenIds",
           "inputToken",
@@ -22088,6 +22459,128 @@
         },
         "required": [
           "simulatedTxns"
+        ]
+      },
+      "NonceBody": {
+        "type": "object",
+        "properties": {
+          "walletAddress": {
+            "type": "string",
+            "description": "Ethereum wallet address",
+            "example": "0x1234...5678"
+          }
+        },
+        "required": [
+          "walletAddress"
+        ]
+      },
+      "LoginBody": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "SIWE message to verify"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Signature of the SIWE message",
+            "example": "0x1234...5678"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address",
+            "example": "user@example.com"
+          }
+        },
+        "required": [
+          "message",
+          "signature"
+        ]
+      },
+      "EditUserBody": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string",
+            "description": "Session signature for authentication",
+            "example": "0x1234...5678"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name (max 50 characters)",
+            "example": "John Doe"
+          },
+          "description": {
+            "type": "string",
+            "description": "User description (max 1000 characters)",
+            "example": "Blockchain enthusiast and developer"
+          }
+        },
+        "required": [
+          "signature"
+        ]
+      },
+      "LogoutBody": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string",
+            "description": "Session signature to invalidate",
+            "example": "0x1234...5678"
+          }
+        },
+        "required": [
+          "signature"
+        ]
+      },
+      "WalletLinkInitBody": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string",
+            "description": "Session signature for authentication (signed by another wallet connected to a user)",
+            "example": "0x1234...abcd"
+          },
+          "walletAddress": {
+            "type": "string",
+            "description": "Wallet address to link",
+            "example": "0x5678...efgh"
+          }
+        },
+        "required": [
+          "signature",
+          "walletAddress"
+        ]
+      },
+      "WalletLinkConfirmBody": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string",
+            "description": "Session signature for authentication (signed by another wallet connected to a user)",
+            "example": "0x1234...abcd"
+          },
+          "walletAddress": {
+            "type": "string",
+            "description": "Wallet address to link",
+            "example": "0x5678...efgh"
+          },
+          "message": {
+            "type": "string",
+            "description": "SIWE message for the wallet we are linking",
+            "example": "...SIWE message..."
+          },
+          "verificationSignature": {
+            "type": "string",
+            "description": "Signature of the SIWE message by the wallet we are linking",
+            "example": "0x5678...efgh"
+          }
+        },
+        "required": [
+          "signature",
+          "walletAddress",
+          "message",
+          "verificationSignature"
         ]
       },
       "ActivityBody": {

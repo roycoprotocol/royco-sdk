@@ -852,6 +852,138 @@ export interface InfoMarketBody {
   customTokenData?: CustomTokenDataElement[];
 }
 
+export interface GenericIncentive {
+  /**
+   * Raw Metadata
+   * Raw metadata
+   */
+  rawMetadata?: object;
+  /**
+   * Token ID
+   * Unique identifier for the token: chainId-contractAddress
+   * @example "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Name
+   * The name of the token
+   * @example "USDC"
+   */
+  name: string;
+  /**
+   * Symbol
+   * The symbol of the token
+   * @example "USDC"
+   */
+  symbol: string;
+  /**
+   * Image
+   * The logo of the token
+   * @example "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+   */
+  image: string;
+  /**
+   * Decimals
+   * The number of decimals of the token
+   * @example 6
+   */
+  decimals: number;
+  /**
+   * Source
+   * The source for the price feed of the token
+   * @example "coinmarketcap"
+   */
+  source:
+    | "coinmarketcap"
+    | "coingecko"
+    | "lp"
+    | "enso"
+    | "pendle"
+    | "plume"
+    | "external";
+  /**
+   * Search ID
+   * The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema
+   * @example "3408"
+   */
+  searchId: string;
+  /**
+   * Type
+   * The type of the token
+   * @example "token"
+   */
+  type: "token" | "point" | "lp";
+  /**
+   * Price
+   * The price of the token
+   * @example 0.99999999
+   */
+  price: number;
+  /**
+   * FDV
+   * The fully diluted valuation of the token
+   * @example 59689964490.12
+   */
+  fdv: number;
+  /**
+   * Total Supply
+   * The total supply of the token
+   * @example 59689963893.2
+   */
+  totalSupply: number;
+  /**
+   * Owner
+   * The owner of the point program token
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  owner?: string;
+  /**
+   * Issuers
+   * Authorized issuers of the point program token
+   */
+  issuers?: string[];
+  /**
+   * Sub Tokens
+   * Array of sub tokens
+   */
+  subTokens?: TokenQuote[];
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  label?: string;
+  rawAmount?: string;
+  tokenAmount?: number;
+  tokenAmountUsd?: number;
+  yieldText?: string;
+  yieldRate: number;
+}
+
 export interface MarketInputTokenDetailed {
   /**
    * Raw Metadata
@@ -2069,6 +2201,12 @@ export interface InfoMarketResponse {
    * @example 0.1
    */
   variableYieldRate: number;
+  realYieldRate: number;
+  tokenYieldRate: number;
+  pointYieldRate: number;
+  realIncentives: GenericIncentive;
+  tokenIncentives: GenericIncentive;
+  pointIncentives: GenericIncentive;
   /**
    * Input Token ID
    * The ID of the input token for the market
@@ -2308,6 +2446,12 @@ export interface EnrichedMarket {
    * @example 0.1
    */
   variableYieldRate: number;
+  realYieldRate: number;
+  tokenYieldRate: number;
+  pointYieldRate: number;
+  realIncentives: GenericIncentive;
+  tokenIncentives: GenericIncentive;
+  pointIncentives: GenericIncentive;
   /**
    * Input Token ID
    * The ID of the input token for the market
@@ -7850,6 +7994,91 @@ export interface SimulateTransactionResponse {
   simulatedTxns: SimulatedTransaction[];
 }
 
+export interface NonceBody {
+  /**
+   * Ethereum wallet address
+   * @example "0x1234...5678"
+   */
+  walletAddress: string;
+}
+
+export interface LoginBody {
+  /** SIWE message to verify */
+  message: string;
+  /**
+   * Signature of the SIWE message
+   * @example "0x1234...5678"
+   */
+  signature: string;
+  /**
+   * Email address
+   * @example "user@example.com"
+   */
+  email?: string;
+}
+
+export interface EditUserBody {
+  /**
+   * Session signature for authentication
+   * @example "0x1234...5678"
+   */
+  signature: string;
+  /**
+   * User name (max 50 characters)
+   * @example "John Doe"
+   */
+  name?: string;
+  /**
+   * User description (max 1000 characters)
+   * @example "Blockchain enthusiast and developer"
+   */
+  description?: string;
+}
+
+export interface LogoutBody {
+  /**
+   * Session signature to invalidate
+   * @example "0x1234...5678"
+   */
+  signature: string;
+}
+
+export interface WalletLinkInitBody {
+  /**
+   * Session signature for authentication (signed by another wallet connected to a user)
+   * @example "0x1234...abcd"
+   */
+  signature: string;
+  /**
+   * Wallet address to link
+   * @example "0x5678...efgh"
+   */
+  walletAddress: string;
+}
+
+export interface WalletLinkConfirmBody {
+  /**
+   * Session signature for authentication (signed by another wallet connected to a user)
+   * @example "0x1234...abcd"
+   */
+  signature: string;
+  /**
+   * Wallet address to link
+   * @example "0x5678...efgh"
+   */
+  walletAddress: string;
+  /**
+   * SIWE message for the wallet we are linking
+   * @example "...SIWE message..."
+   */
+  message: string;
+  /**
+   * Signature of the SIWE message by the wallet we are linking
+   * @example "0x5678...efgh"
+   */
+  verificationSignature: string;
+}
+
 export interface ActivityBody {
   /**
    * Filters Array
@@ -8093,5 +8322,17 @@ export type SubscribeControllerSubscribeBoycoData = SubscribeBoycoResponse;
 
 export type SimulateControllerSimulateTransactionsData =
   SimulateTransactionResponse;
+
+export type AuthControllerGetNonceData = any;
+
+export type AuthControllerLoginData = any;
+
+export type AuthControllerEditUserData = any;
+
+export type AuthControllerLogoutData = any;
+
+export type AuthControllerInitWalletLinkData = any;
+
+export type AuthControllerConfirmWalletLinkData = any;
 
 export type ActivityControllerGetActivitiesData = ActivityResponse;
