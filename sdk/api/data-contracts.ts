@@ -14,6 +14,9 @@ export enum ActivitySubCategory {
   Deposit = "deposit",
   Withdraw = "withdraw",
   Claim = "claim",
+  WithdrawRequested = "withdraw-requested",
+  WithdrawCancelled = "withdraw-cancelled",
+  WithdrawComplete = "withdraw-complete",
 }
 
 export enum ActivityCategory {
@@ -6436,6 +6439,8 @@ export interface BoringPosition {
   yieldRate: number;
   unlockTimestamp: string;
   isUnlocked: boolean;
+  estimatedEarningTimestamp: string;
+  estimatedWithdrawalTimestamp: string;
 }
 
 export interface BoringPositionResponse {
@@ -6510,6 +6515,8 @@ export interface SpecificBoringPositionResponse {
   yieldRate: number;
   unlockTimestamp: string;
   isUnlocked: boolean;
+  estimatedEarningTimestamp: string;
+  estimatedWithdrawalTimestamp: string;
 }
 
 export interface ContractDataResponse {
@@ -8010,11 +8017,6 @@ export interface LoginBody {
    * @example "0x1234...5678"
    */
   signature: string;
-  /**
-   * Email address
-   * @example "user@example.com"
-   */
-  email?: string;
 }
 
 export interface EditUserBody {
@@ -8181,6 +8183,10 @@ export interface ActivityResponse {
   data: EnrichedActivity[];
 }
 
+export interface GetUserInfoBody {
+  signature: string;
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -8336,3 +8342,5 @@ export type AuthControllerInitWalletLinkData = any;
 export type AuthControllerConfirmWalletLinkData = any;
 
 export type ActivityControllerGetActivitiesData = ActivityResponse;
+
+export type UserControllerGetUserInfoData = any;

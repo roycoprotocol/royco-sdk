@@ -10043,6 +10043,41 @@
           "Activity"
         ]
       }
+    },
+    "/v1/user/info": {
+      "post": {
+        "operationId": "UserController_getUserInfo",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserInfoBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
@@ -19776,6 +19811,12 @@
           },
           "isUnlocked": {
             "type": "boolean"
+          },
+          "estimatedEarningTimestamp": {
+            "type": "string"
+          },
+          "estimatedWithdrawalTimestamp": {
+            "type": "string"
           }
         },
         "required": [
@@ -19794,7 +19835,9 @@
           "claimedRewardTokens",
           "yieldRate",
           "unlockTimestamp",
-          "isUnlocked"
+          "isUnlocked",
+          "estimatedEarningTimestamp",
+          "estimatedWithdrawalTimestamp"
         ]
       },
       "BoringPositionResponse": {
@@ -19919,6 +19962,12 @@
           },
           "isUnlocked": {
             "type": "boolean"
+          },
+          "estimatedEarningTimestamp": {
+            "type": "string"
+          },
+          "estimatedWithdrawalTimestamp": {
+            "type": "string"
           }
         },
         "required": [
@@ -19937,7 +19986,9 @@
           "claimedRewardTokens",
           "yieldRate",
           "unlockTimestamp",
-          "isUnlocked"
+          "isUnlocked",
+          "estimatedEarningTimestamp",
+          "estimatedWithdrawalTimestamp"
         ]
       },
       "ContractDataResponse": {
@@ -22503,11 +22554,6 @@
             "type": "string",
             "description": "Signature of the SIWE message",
             "example": "0x1234...5678"
-          },
-          "email": {
-            "type": "string",
-            "description": "Email address",
-            "example": "user@example.com"
           }
         },
         "required": [
@@ -22682,7 +22728,10 @@
         "enum": [
           "deposit",
           "withdraw",
-          "claim"
+          "claim",
+          "withdraw-requested",
+          "withdraw-cancelled",
+          "withdraw-complete"
         ]
       },
       "SourceInfo": {
@@ -22827,6 +22876,17 @@
           "page",
           "count",
           "data"
+        ]
+      },
+      "GetUserInfoBody": {
+        "type": "object",
+        "properties": {
+          "signature": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "signature"
         ]
       }
     }

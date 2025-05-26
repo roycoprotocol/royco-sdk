@@ -8620,6 +8620,25 @@ paths:
       summary: Get activities
       tags:
         - Activity
+  /v1/user/info:
+    post:
+      operationId: UserController_getUserInfo
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserInfoBody'
+      responses:
+        '201':
+          description: ''
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      tags:
+        - User
 info:
   title: Royco API
   description: >-
@@ -15901,6 +15920,10 @@ components:
           type: string
         isUnlocked:
           type: boolean
+        estimatedEarningTimestamp:
+          type: string
+        estimatedWithdrawalTimestamp:
+          type: string
       required:
         - id
         - rawVaultRefId
@@ -15918,6 +15941,8 @@ components:
         - yieldRate
         - unlockTimestamp
         - isUnlocked
+        - estimatedEarningTimestamp
+        - estimatedWithdrawalTimestamp
     BoringPositionResponse:
       type: object
       properties:
@@ -16009,6 +16034,10 @@ components:
           type: string
         isUnlocked:
           type: boolean
+        estimatedEarningTimestamp:
+          type: string
+        estimatedWithdrawalTimestamp:
+          type: string
       required:
         - id
         - rawVaultRefId
@@ -16026,6 +16055,8 @@ components:
         - yieldRate
         - unlockTimestamp
         - isUnlocked
+        - estimatedEarningTimestamp
+        - estimatedWithdrawalTimestamp
     ContractDataResponse:
       type: object
       properties:
@@ -17976,10 +18007,6 @@ components:
           type: string
           description: Signature of the SIWE message
           example: 0x1234...5678
-        email:
-          type: string
-          description: Email address
-          example: user@example.com
       required:
         - message
         - signature
@@ -18099,6 +18126,9 @@ components:
         - deposit
         - withdraw
         - claim
+        - withdraw-requested
+        - withdraw-cancelled
+        - withdraw-complete
     SourceInfo:
       type: object
       properties:
@@ -18197,3 +18227,10 @@ components:
         - page
         - count
         - data
+    GetUserInfoBody:
+      type: object
+      properties:
+        signature:
+          type: string
+      required:
+        - signature

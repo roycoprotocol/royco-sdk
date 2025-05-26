@@ -18,9 +18,11 @@ import {
   AuthControllerLoginData,
   AuthControllerLogoutData,
   EditUserBody,
+  GetUserInfoBody,
   LoginBody,
   LogoutBody,
   NonceBody,
+  UserControllerGetUserInfoData,
   WalletLinkConfirmBody,
   WalletLinkInitBody,
 } from "./data-contracts";
@@ -122,6 +124,26 @@ export class V1<
       path: `/v1/auth/verify/confirm`,
       method: "POST",
       body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags User
+   * @name UserControllerGetUserInfo
+   * @request POST:/v1/user/info
+   * @secure
+   */
+  userControllerGetUserInfo = (
+    data: GetUserInfoBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerGetUserInfoData, any>({
+      path: `/v1/user/info`,
+      method: "POST",
+      body: data,
+      secure: true,
       type: ContentType.Json,
       ...params,
     });
