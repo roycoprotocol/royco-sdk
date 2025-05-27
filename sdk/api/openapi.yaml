@@ -8735,6 +8735,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -8837,6 +8843,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -8874,6 +8881,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -8966,6 +8979,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -9203,6 +9217,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -9325,6 +9345,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -9444,6 +9465,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -9553,6 +9580,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -9681,6 +9709,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -9785,6 +9819,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -9823,6 +9858,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -9940,6 +9981,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -9980,6 +10022,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10127,6 +10175,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -10173,6 +10222,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10274,6 +10329,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -10312,6 +10368,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10413,6 +10475,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -10451,6 +10514,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10555,6 +10624,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -10627,6 +10697,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10752,6 +10828,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -10841,6 +10918,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -10948,6 +11031,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -11612,6 +11696,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -11713,6 +11803,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -11933,7 +12024,7 @@ components:
             Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO
             per USDC, then stake the GHO for stkGHO and lock for 1 month.
           example: Swap USDC to stkGHO for 1 mo
-        transactionHash:
+        txHash:
           type: string
           title: Transaction Hash
           description: Transaction hash associated with the entity
@@ -11943,7 +12034,7 @@ components:
         - marketType
         - name
         - description
-        - transactionHash
+        - txHash
     EnrichedMarketUserData:
       type: object
       properties:
@@ -12144,6 +12235,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -12236,6 +12333,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -12273,6 +12371,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -12422,6 +12526,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -12462,6 +12567,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -12574,6 +12685,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -13085,6 +13197,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -13205,6 +13323,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -13333,6 +13452,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -13444,6 +13569,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -13485,6 +13611,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -13601,6 +13733,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -13828,6 +13961,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -13955,6 +14094,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -13999,6 +14139,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -14126,6 +14272,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -14170,6 +14317,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -14277,6 +14430,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -14572,6 +14726,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -14684,6 +14844,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -14725,6 +14886,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -14832,6 +14999,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -15008,6 +15176,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -15108,6 +15282,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -15146,6 +15321,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -15246,6 +15427,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -15578,6 +15760,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -15695,6 +15883,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -15736,6 +15925,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -15850,6 +16045,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -16235,6 +16431,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -16357,6 +16559,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -16430,6 +16633,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -16565,6 +16774,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -16760,6 +16970,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -16871,6 +17087,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -17339,6 +17556,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -17452,6 +17675,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -17544,6 +17768,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -17657,6 +17887,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals
@@ -17737,6 +17968,12 @@ components:
           title: Name
           description: The name of the token
           example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
         symbol:
           type: string
           title: Symbol
@@ -17844,6 +18081,7 @@ components:
         - chainId
         - contractAddress
         - name
+        - description
         - symbol
         - image
         - decimals

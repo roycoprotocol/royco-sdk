@@ -10198,6 +10198,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -10314,6 +10321,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -10358,6 +10366,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -10474,6 +10489,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -10815,6 +10831,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -10967,6 +10990,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -11126,6 +11150,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -11263,6 +11294,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -11433,6 +11465,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -11567,6 +11606,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -11611,6 +11651,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -11758,6 +11805,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -11804,6 +11852,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -11983,6 +12038,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -12036,6 +12092,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -12163,6 +12226,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -12208,6 +12272,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -12335,6 +12406,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -12379,6 +12451,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -12511,6 +12590,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -12607,6 +12687,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -12757,6 +12844,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -12872,6 +12960,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -13007,6 +13102,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -13872,6 +13968,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -14000,6 +14103,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -14767,7 +14871,7 @@
             "description": "Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.",
             "example": "Swap USDC to stkGHO for 1 mo"
           },
-          "transactionHash": {
+          "txHash": {
             "type": "string",
             "title": "Transaction Hash",
             "description": "Transaction hash associated with the entity",
@@ -14779,7 +14883,7 @@
           "marketType",
           "name",
           "description",
-          "transactionHash"
+          "txHash"
         ]
       },
       "EnrichedMarketUserData": {
@@ -15021,6 +15125,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -15137,6 +15248,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -15180,6 +15292,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -15370,6 +15489,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -15416,6 +15536,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -15557,6 +15684,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -16281,6 +16409,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -16434,6 +16569,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -16596,6 +16732,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -16735,6 +16878,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -16782,6 +16926,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -16928,6 +17079,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -17209,6 +17361,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -17369,6 +17528,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -17420,6 +17580,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -17580,6 +17747,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -17630,6 +17798,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -17765,6 +17940,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -18134,6 +18310,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -18274,6 +18457,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -18321,6 +18505,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -18456,6 +18647,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -18674,6 +18866,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -18800,6 +18999,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -18845,6 +19045,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -18971,6 +19178,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -19382,6 +19590,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -19529,6 +19744,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -19577,6 +19793,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -19724,6 +19947,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -20226,6 +20450,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -20378,6 +20609,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -20465,6 +20697,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -20634,6 +20873,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -20871,6 +21111,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -21011,6 +21258,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -21663,6 +21911,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -21806,6 +22061,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -21924,6 +22180,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
+          },
           "symbol": {
             "type": "string",
             "title": "Symbol",
@@ -22067,6 +22330,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
@@ -22167,6 +22431,13 @@
             "title": "Name",
             "description": "The name of the token",
             "example": "USDC"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "The description of the token",
+            "example": "USDC is a stablecoin pegged to the US dollar",
+            "nullable": true
           },
           "symbol": {
             "type": "string",
@@ -22302,6 +22573,7 @@
           "chainId",
           "contractAddress",
           "name",
+          "description",
           "symbol",
           "image",
           "decimals",
