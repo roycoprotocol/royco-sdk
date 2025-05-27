@@ -1,9 +1,9 @@
 import { defineToken } from "@/sdk/constants";
 
 export default defineToken({
-  id: "98866-0x50bd6ea488260f79d49f819d4eac85cd2d9c06a9",
+  id: "98866-0x81555eA37b7082514241145e5AadaAB5ce6Ce13D",
   chain_id: 98866,
-  contract_address: "0x50bd6ea488260f79d49f819d4eac85cd2d9c06a9",
+  contract_address: "0x81555eA37b7082514241145e5AadaAB5ce6Ce13D",
   name: "RST0002-UAE-DUBAI-DAMAC Towers By Paramounts",
   symbol: "RST0002DB",
   image:
