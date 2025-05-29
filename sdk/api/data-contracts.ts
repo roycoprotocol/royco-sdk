@@ -90,6 +90,12 @@ export interface TokenQuote {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -215,6 +221,12 @@ export interface TokenQuoteResponse {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -505,6 +517,12 @@ export interface BaseEnrichedTokenDataWithRemainingAmounts {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -700,6 +718,12 @@ export interface VaultOfferIncentiveToken {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -886,6 +910,12 @@ export interface GenericIncentive {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -1017,6 +1047,12 @@ export interface MarketInputTokenDetailed {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -1173,6 +1209,12 @@ export interface MarketActiveIncentiveDetailed {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -1362,6 +1404,12 @@ export interface MarketUnderlyingIncentive {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -1499,6 +1547,12 @@ export interface MarketNativeIncentive {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -1635,6 +1689,12 @@ export interface MarketExternalIncentive {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -1797,6 +1857,12 @@ export interface MarketVaultBaseIncentiveTokenData {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -1981,6 +2047,12 @@ export interface BaseEnrichedTokenData {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -2638,6 +2710,12 @@ export interface TokenQuoteWithIds {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -2796,7 +2874,7 @@ export interface CreateMarketBody {
    * Transaction hash associated with the entity
    * @example "0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461"
    */
-  transactionHash: string;
+  txHash: string;
 }
 
 export interface EnrichedMarketUserData {
@@ -2973,6 +3051,12 @@ export interface VaultDepositToken {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -3098,6 +3182,12 @@ export interface VaultIncentiveToken {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -3286,6 +3376,12 @@ export interface VaultAllocationDepositToken {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -3808,6 +3904,12 @@ export interface BaseEnrichedTokenDataWithClaimInfo {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -4043,6 +4145,12 @@ export interface BaseEnrichedTokenDataWithWithdrawStatus {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -4191,6 +4299,12 @@ export interface MarketActiveIncentiveWithClaimStatus {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -4507,6 +4621,12 @@ export interface LockedInputTokenSpecificRecipePosition {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -4672,6 +4792,12 @@ export interface UnclaimedIncentiveTokenSpecificRecipePosition {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -4836,6 +4962,12 @@ export interface ClaimedIncentiveTokenSpecificRecipePosition {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -5197,6 +5329,12 @@ export interface LockedInputTokenSpecificVaultPosition {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -5346,6 +5484,12 @@ export interface UnclaimedIncentiveTokenSpecificVaultPosition {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -5604,6 +5748,12 @@ export interface BoycoUnderlyingIncentive {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -5739,6 +5889,12 @@ export interface BoycoNativeIncentive {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -6126,6 +6282,12 @@ export interface VaultPositionUnclaimedRewardToken {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -6275,6 +6437,12 @@ export interface VaultPositionClaimedRewardToken {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -6682,6 +6850,12 @@ export interface EnrichedOfferInputTokenData {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -6869,6 +7043,12 @@ export interface EnrichedOfferIncentiveTokenData {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -7171,6 +7351,12 @@ export interface V1ActionIncentiveToken {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -7472,6 +7658,12 @@ export interface IncentiveTokenVaultIPAddIncentives {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -7638,6 +7830,12 @@ export interface IncentiveTokenVaultIPExtendIncentives {
    */
   name: string;
   /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
    * Symbol
    * The symbol of the token
    * @example "USDC"
@@ -7800,6 +7998,12 @@ export interface IncentiveTokenVaultIPRefundIncentives {
    * @example "USDC"
    */
   name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
   /**
    * Symbol
    * The symbol of the token
@@ -8001,12 +8205,57 @@ export interface SimulateTransactionResponse {
   simulatedTxns: SimulatedTransaction[];
 }
 
-export interface NonceBody {
+export interface NonceResponse {
   /**
-   * Ethereum wallet address
+   * Nonce for SIWE message
+   * @example "a1b2c3d4..."
+   */
+  nonce: string;
+  /**
+   * When the nonce was issued
+   * @example "2024-03-20T12:00:00Z"
+   */
+  issuedAt: string;
+  /**
+   * When the nonce expires
+   * @example "2024-03-20T12:05:00Z"
+   */
+  expiresAt: string;
+}
+
+export interface SessionBody {
+  /** Session ID to check */
+  id: string;
+}
+
+export interface SessionResponse {
+  /**
+   * Session ID
+   * @example "123e4567-e89b-12d3-a456-426614174000"
+   */
+  id: string;
+  /**
+   * Wallet address
    * @example "0x1234...5678"
    */
   walletAddress: string;
+  /**
+   * User ID
+   * @example "123e4567-e89b-12d3-a456-426614174000"
+   */
+  userId: string;
+  /**
+   * Signature of the session
+   * @example "0x1234...5678"
+   */
+  signature: string;
+  /** Whether the session is active */
+  isActive: boolean;
+  /**
+   * When the session expires
+   * @example "2024-03-20T12:05:00Z"
+   */
+  expiresAt: string;
 }
 
 export interface LoginBody {
@@ -8017,6 +8266,56 @@ export interface LoginBody {
    * @example "0x1234...5678"
    */
   signature: string;
+}
+
+export interface Session {
+  /**
+   * Session ID
+   * @example "123e4567-e89b-12d3-a456-426614174000"
+   */
+  id: string;
+  /**
+   * Wallet address
+   * @example "0x1234...5678"
+   */
+  walletAddress: string;
+  /**
+   * User ID
+   * @example "123e4567-e89b-12d3-a456-426614174000"
+   */
+  userId: string;
+  /**
+   * Signature of the session
+   * @example "0x1234...5678"
+   */
+  signature: string;
+  /** Whether the session is active */
+  isActive: boolean;
+  /**
+   * When the session expires
+   * @example "2024-03-20T12:05:00Z"
+   */
+  expiresAt: string;
+}
+
+export interface LoginResponse {
+  session: Session;
+}
+
+export interface LogoutBody {
+  /**
+   * Session ID to invalidate
+   * @example "123e4567-e89b-12d3-a456-426614174000"
+   */
+  id: string;
+}
+
+export interface LogoutResponse {
+  /**
+   * Success message
+   * @example "Successfully logged out"
+   */
+  message: string;
 }
 
 export interface EditUserBody {
@@ -8035,14 +8334,6 @@ export interface EditUserBody {
    * @example "Blockchain enthusiast and developer"
    */
   description?: string;
-}
-
-export interface LogoutBody {
-  /**
-   * Session signature to invalidate
-   * @example "0x1234...5678"
-   */
-  signature: string;
 }
 
 export interface WalletLinkInitBody {
@@ -8329,13 +8620,15 @@ export type SubscribeControllerSubscribeBoycoData = SubscribeBoycoResponse;
 export type SimulateControllerSimulateTransactionsData =
   SimulateTransactionResponse;
 
-export type AuthControllerGetNonceData = any;
+export type AuthControllerGetNonceData = NonceResponse;
 
-export type AuthControllerLoginData = any;
+export type AuthControllerGetSessionData = SessionResponse;
+
+export type AuthControllerLoginData = LoginResponse;
+
+export type AuthControllerLogoutData = LogoutResponse;
 
 export type AuthControllerEditUserData = any;
-
-export type AuthControllerLogoutData = any;
 
 export type AuthControllerInitWalletLinkData = any;
 
