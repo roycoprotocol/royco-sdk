@@ -24,18 +24,29 @@ import {
   ActivityControllerGetActivitiesData,
   AddonsControllerGetIncentivesData,
   AddonsControllerRefreshIncentivesData,
+  AuthControllerConfirmWalletLinkData,
+  AuthControllerEditUserData,
+  AuthControllerGetNonceData,
+  AuthControllerGetSessionData,
+  AuthControllerInitWalletLinkData,
+  AuthControllerLoginData,
+  AuthControllerLogoutData,
   BaseRequestBody,
   ChartControllerGetMarketChartData,
   ChartRequestBody,
   ContractControllerGetContractData,
   CreateMarketBody,
+  EditUserBody,
   ExploreMarketBody,
   ExploreSettingsMarketBody,
   ExploreVaultBody,
+  GetUserInfoBody,
   GlobalPositionRequestBody,
   HealthControllerCheckData,
   HealthControllerCheckError,
   InfoMarketBody,
+  LoginBody,
+  LogoutBody,
   MarketControllerCreateMarketData,
   MarketControllerGetMarketData,
   MarketControllerGetMarketsData,
@@ -57,6 +68,7 @@ import {
   RecipeAPMarketActionBody,
   RecipeIPLimitActionBody,
   RecipeIPMarketActionBody,
+  SessionBody,
   SimulateControllerSimulateTransactionsData,
   SimulateTransactionBody,
   SpecificBoringPositionRequest,
@@ -69,6 +81,7 @@ import {
   TokenControllerGetTokenQuoteData,
   TokenDirectoryRequestBody,
   TokenQuoteRequestBody,
+  UserControllerGetUserInfoData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
   VaultControllerGetVaultInfoData,
@@ -77,6 +90,8 @@ import {
   VaultIPAddIncentivesActionBody,
   VaultIPExtendIncentivesActionBody,
   VaultIPRefundIncentivesActionBody,
+  WalletLinkConfirmBody,
+  WalletLinkInitBody,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -868,6 +883,131 @@ export class Api<
       ...params,
     });
   /**
+   * @description Get nonce for authentication
+   *
+   * @tags Auth
+   * @name AuthControllerGetNonce
+   * @summary Get nonce
+   * @request POST:/api/v1/auth/nonce
+   * @secure
+   */
+  authControllerGetNonce = (params: RequestParams = {}) =>
+    this.request<AuthControllerGetNonceData, any>({
+      path: `/api/v1/auth/nonce`,
+      method: "POST",
+      secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get session status
+   *
+   * @tags Auth
+   * @name AuthControllerGetSession
+   * @summary Get session
+   * @request POST:/api/v1/auth/session
+   * @secure
+   */
+  authControllerGetSession = (data: SessionBody, params: RequestParams = {}) =>
+    this.request<AuthControllerGetSessionData, any>({
+      path: `/api/v1/auth/session`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Login to the application
+   *
+   * @tags Auth
+   * @name AuthControllerLogin
+   * @summary Login
+   * @request POST:/api/v1/auth/login
+   * @secure
+   */
+  authControllerLogin = (data: LoginBody, params: RequestParams = {}) =>
+    this.request<AuthControllerLoginData, any>({
+      path: `/api/v1/auth/login`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Logout from the application
+   *
+   * @tags Auth
+   * @name AuthControllerLogout
+   * @summary Logout
+   * @request POST:/api/v1/auth/logout
+   * @secure
+   */
+  authControllerLogout = (data: LogoutBody, params: RequestParams = {}) =>
+    this.request<AuthControllerLogoutData, any>({
+      path: `/api/v1/auth/logout`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Auth
+   * @name AuthControllerEditUser
+   * @request POST:/api/v1/auth/user
+   */
+  authControllerEditUser = (data: EditUserBody, params: RequestParams = {}) =>
+    this.request<AuthControllerEditUserData, any>({
+      path: `/api/v1/auth/user`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Auth
+   * @name AuthControllerInitWalletLink
+   * @request POST:/api/v1/auth/verify/init
+   */
+  authControllerInitWalletLink = (
+    data: WalletLinkInitBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<AuthControllerInitWalletLinkData, any>({
+      path: `/api/v1/auth/verify/init`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Auth
+   * @name AuthControllerConfirmWalletLink
+   * @request POST:/api/v1/auth/verify/confirm
+   */
+  authControllerConfirmWalletLink = (
+    data: WalletLinkConfirmBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<AuthControllerConfirmWalletLinkData, any>({
+      path: `/api/v1/auth/verify/confirm`,
+      method: "POST",
+      body: data,
+      type: ContentType.Json,
+      ...params,
+    });
+  /**
    * @description Get activities given filters and sorting
    *
    * @tags Activity
@@ -887,6 +1027,26 @@ export class Api<
       secure: true,
       type: ContentType.Json,
       format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags User
+   * @name UserControllerGetUserInfo
+   * @request POST:/api/v1/user/info
+   * @secure
+   */
+  userControllerGetUserInfo = (
+    data: GetUserInfoBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerGetUserInfoData, any>({
+      path: `/api/v1/user/info`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
       ...params,
     });
 }
