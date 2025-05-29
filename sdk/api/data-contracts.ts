@@ -8228,7 +8228,7 @@ export interface SessionBody {
   id: string;
 }
 
-export interface SessionResponse {
+export interface Session {
   /**
    * Session ID
    * @example "123e4567-e89b-12d3-a456-426614174000"
@@ -8266,36 +8266,8 @@ export interface LoginBody {
    * @example "0x1234...5678"
    */
   signature: string;
-}
-
-export interface Session {
-  /**
-   * Session ID
-   * @example "123e4567-e89b-12d3-a456-426614174000"
-   */
-  id: string;
-  /**
-   * Wallet address
-   * @example "0x1234...5678"
-   */
-  walletAddress: string;
-  /**
-   * User ID
-   * @example "123e4567-e89b-12d3-a456-426614174000"
-   */
-  userId: string;
-  /**
-   * Signature of the session
-   * @example "0x1234...5678"
-   */
-  signature: string;
-  /** Whether the session is active */
-  isActive: boolean;
-  /**
-   * When the session expires
-   * @example "2024-03-20T12:05:00Z"
-   */
-  expiresAt: string;
+  /** Parent session */
+  parentSession?: Session;
 }
 
 export interface LoginResponse {
@@ -8316,24 +8288,6 @@ export interface LogoutResponse {
    * @example "Successfully logged out"
    */
   message: string;
-}
-
-export interface EditUserBody {
-  /**
-   * Session signature for authentication
-   * @example "0x1234...5678"
-   */
-  signature: string;
-  /**
-   * User name (max 50 characters)
-   * @example "John Doe"
-   */
-  name?: string;
-  /**
-   * User description (max 1000 characters)
-   * @example "Blockchain enthusiast and developer"
-   */
-  description?: string;
 }
 
 export interface WalletLinkInitBody {
@@ -8475,7 +8429,37 @@ export interface ActivityResponse {
 }
 
 export interface GetUserInfoBody {
-  signature: string;
+  session: Session;
+}
+
+export interface WalletInfo {
+  id: string;
+  balanceUsd: number;
+}
+
+export interface UserInfo {
+  id: string;
+  name: string;
+  description?: string;
+  pfpUrl?: string;
+  email: string;
+  subscribed: boolean;
+  wallets: WalletInfo[];
+}
+
+export interface EditUserBody {
+  session: Session;
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  name?: string;
+  /**
+   * @minLength 1
+   * @maxLength 1000
+   */
+  description?: string;
+  subscribed?: boolean;
 }
 
 export interface HealthControllerCheckData {
@@ -8622,13 +8606,11 @@ export type SimulateControllerSimulateTransactionsData =
 
 export type AuthControllerGetNonceData = NonceResponse;
 
-export type AuthControllerGetSessionData = SessionResponse;
+export type AuthControllerGetSessionData = Session;
 
 export type AuthControllerLoginData = LoginResponse;
 
 export type AuthControllerLogoutData = LogoutResponse;
-
-export type AuthControllerEditUserData = any;
 
 export type AuthControllerInitWalletLinkData = any;
 
@@ -8636,4 +8618,6 @@ export type AuthControllerConfirmWalletLinkData = any;
 
 export type ActivityControllerGetActivitiesData = ActivityResponse;
 
-export type UserControllerGetUserInfoData = any;
+export type UserControllerGetUserInfoData = UserInfo;
+
+export type UserControllerEditUserData = UserInfo;

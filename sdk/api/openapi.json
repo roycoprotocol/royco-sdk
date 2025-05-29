@@ -9858,7 +9858,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SessionResponse"
+                  "$ref": "#/components/schemas/Session"
                 }
               }
             }
@@ -9964,30 +9964,6 @@
           }
         ],
         "summary": "Logout",
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
-    "/api/v1/auth/user": {
-      "post": {
-        "operationId": "AuthController_editUser",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EditUserBody"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
         "tags": [
           "Auth"
         ]
@@ -10140,6 +10116,7 @@
     },
     "/api/v1/user/info": {
       "post": {
+        "description": "Get user info",
         "operationId": "UserController_getUserInfo",
         "parameters": [],
         "requestBody": {
@@ -10153,8 +10130,15 @@
           }
         },
         "responses": {
-          "201": {
-            "description": ""
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -10168,6 +10152,51 @@
             "api-key-query": []
           }
         ],
+        "summary": "Get user info",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/v1/user/edit": {
+      "post": {
+        "description": "Edit user",
+        "operationId": "UserController_editUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Edit user",
         "tags": [
           "User"
         ]
@@ -22933,7 +22962,7 @@
           "id"
         ]
       },
-      "SessionResponse": {
+      "Session": {
         "type": "object",
         "properties": {
           "id": {
@@ -22986,53 +23015,19 @@
             "type": "string",
             "description": "Signature of the SIWE message",
             "example": "0x1234...5678"
+          },
+          "parentSession": {
+            "description": "Parent session",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Session"
+              }
+            ]
           }
         },
         "required": [
           "message",
           "signature"
-        ]
-      },
-      "Session": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Session ID",
-            "example": "123e4567-e89b-12d3-a456-426614174000"
-          },
-          "walletAddress": {
-            "type": "string",
-            "description": "Wallet address",
-            "example": "0x1234...5678"
-          },
-          "userId": {
-            "type": "string",
-            "description": "User ID",
-            "example": "123e4567-e89b-12d3-a456-426614174000"
-          },
-          "signature": {
-            "type": "string",
-            "description": "Signature of the session",
-            "example": "0x1234...5678"
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "Whether the session is active"
-          },
-          "expiresAt": {
-            "type": "string",
-            "description": "When the session expires",
-            "example": "2024-03-20T12:05:00Z"
-          }
-        },
-        "required": [
-          "id",
-          "walletAddress",
-          "userId",
-          "signature",
-          "isActive",
-          "expiresAt"
         ]
       },
       "LoginResponse": {
@@ -23070,29 +23065,6 @@
         },
         "required": [
           "message"
-        ]
-      },
-      "EditUserBody": {
-        "type": "object",
-        "properties": {
-          "signature": {
-            "type": "string",
-            "description": "Session signature for authentication",
-            "example": "0x1234...5678"
-          },
-          "name": {
-            "type": "string",
-            "description": "User name (max 50 characters)",
-            "example": "John Doe"
-          },
-          "description": {
-            "type": "string",
-            "description": "User description (max 1000 characters)",
-            "example": "Blockchain enthusiast and developer"
-          }
-        },
-        "required": [
-          "signature"
         ]
       },
       "WalletLinkInitBody": {
@@ -23379,12 +23351,87 @@
       "GetUserInfoBody": {
         "type": "object",
         "properties": {
-          "signature": {
-            "type": "string"
+          "session": {
+            "$ref": "#/components/schemas/Session"
           }
         },
         "required": [
-          "signature"
+          "session"
+        ]
+      },
+      "WalletInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "balanceUsd"
+        ]
+      },
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "pfpUrl": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "subscribed": {
+            "type": "boolean"
+          },
+          "wallets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WalletInfo"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "subscribed",
+          "wallets"
+        ]
+      },
+      "EditUserBody": {
+        "type": "object",
+        "properties": {
+          "session": {
+            "$ref": "#/components/schemas/Session"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "subscribed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session"
         ]
       }
     }

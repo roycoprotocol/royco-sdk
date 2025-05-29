@@ -25,7 +25,6 @@ import {
   AddonsControllerGetIncentivesData,
   AddonsControllerRefreshIncentivesData,
   AuthControllerConfirmWalletLinkData,
-  AuthControllerEditUserData,
   AuthControllerGetNonceData,
   AuthControllerGetSessionData,
   AuthControllerInitWalletLinkData,
@@ -81,6 +80,7 @@ import {
   TokenControllerGetTokenQuoteData,
   TokenDirectoryRequestBody,
   TokenQuoteRequestBody,
+  UserControllerEditUserData,
   UserControllerGetUserInfoData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
@@ -960,21 +960,6 @@ export class Api<
    * No description
    *
    * @tags Auth
-   * @name AuthControllerEditUser
-   * @request POST:/api/v1/auth/user
-   */
-  authControllerEditUser = (data: EditUserBody, params: RequestParams = {}) =>
-    this.request<AuthControllerEditUserData, any>({
-      path: `/api/v1/auth/user`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Auth
    * @name AuthControllerInitWalletLink
    * @request POST:/api/v1/auth/verify/init
    */
@@ -1030,10 +1015,11 @@ export class Api<
       ...params,
     });
   /**
-   * No description
+   * @description Get user info
    *
    * @tags User
    * @name UserControllerGetUserInfo
+   * @summary Get user info
    * @request POST:/api/v1/user/info
    * @secure
    */
@@ -1047,6 +1033,26 @@ export class Api<
       body: data,
       secure: true,
       type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Edit user
+   *
+   * @tags User
+   * @name UserControllerEditUser
+   * @summary Edit user
+   * @request POST:/api/v1/user/edit
+   * @secure
+   */
+  userControllerEditUser = (data: EditUserBody, params: RequestParams = {}) =>
+    this.request<UserControllerEditUserData, any>({
+      path: `/api/v1/user/edit`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
       ...params,
     });
 }
