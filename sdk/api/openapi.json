@@ -9842,16 +9842,6 @@
         "description": "Get session status",
         "operationId": "AuthController_getSession",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SessionBody"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
@@ -9930,16 +9920,6 @@
         "description": "Logout from the application",
         "operationId": "AuthController_logout",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LogoutBody"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
@@ -22950,25 +22930,13 @@
           "expiresAt"
         ]
       },
-      "SessionBody": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Session ID to check"
-          }
-        },
-        "required": [
-          "id"
-        ]
-      },
       "Session": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Session ID",
-            "example": "123e4567-e89b-12d3-a456-426614174000"
+            "description": "Signature of the session",
+            "example": "0x1234...5678"
           },
           "walletAddress": {
             "type": "string",
@@ -22979,11 +22947,6 @@
             "type": "string",
             "description": "User ID",
             "example": "123e4567-e89b-12d3-a456-426614174000"
-          },
-          "signature": {
-            "type": "string",
-            "description": "Signature of the session",
-            "example": "0x1234...5678"
           },
           "isActive": {
             "type": "boolean",
@@ -22999,7 +22962,6 @@
           "id",
           "walletAddress",
           "userId",
-          "signature",
           "isActive",
           "expiresAt"
         ]
@@ -23039,19 +23001,6 @@
         },
         "required": [
           "session"
-        ]
-      },
-      "LogoutBody": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Session ID to invalidate",
-            "example": "123e4567-e89b-12d3-a456-426614174000"
-          }
-        },
-        "required": [
-          "id"
         ]
       },
       "LogoutResponse": {

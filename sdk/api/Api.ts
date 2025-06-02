@@ -45,7 +45,6 @@ import {
   HealthControllerCheckError,
   InfoMarketBody,
   LoginBody,
-  LogoutBody,
   MarketControllerCreateMarketData,
   MarketControllerGetMarketData,
   MarketControllerGetMarketsData,
@@ -67,7 +66,6 @@ import {
   RecipeAPMarketActionBody,
   RecipeIPLimitActionBody,
   RecipeIPMarketActionBody,
-  SessionBody,
   SimulateControllerSimulateTransactionsData,
   SimulateTransactionBody,
   SpecificBoringPositionRequest,
@@ -908,13 +906,11 @@ export class Api<
    * @request POST:/api/v1/auth/session
    * @secure
    */
-  authControllerGetSession = (data: SessionBody, params: RequestParams = {}) =>
+  authControllerGetSession = (params: RequestParams = {}) =>
     this.request<AuthControllerGetSessionData, any>({
       path: `/api/v1/auth/session`,
       method: "POST",
-      body: data,
       secure: true,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
@@ -946,13 +942,11 @@ export class Api<
    * @request POST:/api/v1/auth/logout
    * @secure
    */
-  authControllerLogout = (data: LogoutBody, params: RequestParams = {}) =>
+  authControllerLogout = (params: RequestParams = {}) =>
     this.request<AuthControllerLogoutData, any>({
       path: `/api/v1/auth/logout`,
       method: "POST",
-      body: data,
       secure: true,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
