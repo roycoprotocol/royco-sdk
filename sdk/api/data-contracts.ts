@@ -8223,15 +8223,10 @@ export interface NonceResponse {
   expiresAt: string;
 }
 
-export interface SessionBody {
-  /** Session ID to check */
-  id: string;
-}
-
 export interface Session {
   /**
-   * Session ID
-   * @example "123e4567-e89b-12d3-a456-426614174000"
+   * Signature of the session
+   * @example "0x1234...5678"
    */
   id: string;
   /**
@@ -8244,11 +8239,6 @@ export interface Session {
    * @example "123e4567-e89b-12d3-a456-426614174000"
    */
   userId: string;
-  /**
-   * Signature of the session
-   * @example "0x1234...5678"
-   */
-  signature: string;
   /** Whether the session is active */
   isActive: boolean;
   /**
@@ -8272,14 +8262,6 @@ export interface LoginBody {
 
 export interface LoginResponse {
   session: Session;
-}
-
-export interface LogoutBody {
-  /**
-   * Session ID to invalidate
-   * @example "123e4567-e89b-12d3-a456-426614174000"
-   */
-  id: string;
 }
 
 export interface LogoutResponse {
