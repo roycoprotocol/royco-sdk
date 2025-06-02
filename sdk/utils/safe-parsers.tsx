@@ -13,7 +13,7 @@ export const parseNumber = (value: number | undefined | null): number => {
 };
 
 export const parseRawAmount = (
-  value: string | number | bigint | undefined | null
+  value: string | number | bigint | undefined | null,
 ): string => {
   try {
     if (!value) throw new Error("Value is undefined");
@@ -28,7 +28,7 @@ export const parseRawAmount = (
 
 export const parseTokenAmountToRawAmount = (
   value: string | undefined | null,
-  decimals: number
+  decimals: number,
 ): string => {
   try {
     if (!value) throw new Error("Value is undefined");
@@ -36,7 +36,7 @@ export const parseTokenAmountToRawAmount = (
     const refinedValue = ethers.utils
       .parseUnits(
         parseFloat(value).toFixed(decimals), // Format to the correct number of decimals
-        decimals
+        decimals,
       )
       .toString();
 
@@ -48,13 +48,13 @@ export const parseTokenAmountToRawAmount = (
 
 export const parseRawAmountToTokenAmount = (
   value: string | undefined | null,
-  decimals: number
+  decimals: number,
 ): number => {
   try {
     if (!value) throw new Error("Value is undefined");
 
     const refinedValue = parseFloat(
-      ethers.utils.formatUnits(BigNumber.from(value), decimals)
+      ethers.utils.formatUnits(BigNumber.from(value), decimals),
     );
 
     if (isNaN(refinedValue)) throw new Error("Value is NaN");
@@ -67,7 +67,7 @@ export const parseRawAmountToTokenAmount = (
 
 export const parseTokenAmountToTokenAmountUsd = (
   value: number | undefined | null,
-  price: number
+  price: number,
 ): number => {
   try {
     if (!value) throw new Error("Value is undefined");
@@ -85,16 +85,16 @@ export const parseTokenAmountToTokenAmountUsd = (
 export const parseRawAmountToTokenAmountUsd = (
   value: string | undefined | null,
   decimals: number,
-  price: number
+  price: number,
 ): number => {
   return parseTokenAmountToTokenAmountUsd(
     parseRawAmountToTokenAmount(value, decimals),
-    price
+    price,
   );
 };
 
 export const parseTextToFormattedValue = (
-  value: string | undefined | null
+  value: string | undefined | null,
 ): string => {
   try {
     if (!value) return "";
@@ -104,7 +104,7 @@ export const parseTextToFormattedValue = (
     const [intPart, decimalPart] = value.split(".");
     // Format integer part with commas
     const formattedInt = Intl.NumberFormat("en-US").format(
-      parseFloat(intPart || "0")
+      parseFloat(intPart || "0"),
     );
     // Return formatted number with decimal part if it exists
     return decimalPart !== undefined
@@ -116,11 +116,18 @@ export const parseTextToFormattedValue = (
 };
 
 export const parseFormattedValueToText = (
-  value: string | undefined | null
+  value: string | undefined | null,
 ): string => {
   try {
     if (!value) throw new Error("Value is undefined");
     const refinedValue = value.replace(/,/g, "");
+
+    if (
+      refinedValue.endsWith(".") &&
+      refinedValue.indexOf(".") !== refinedValue.length - 1
+    ) {
+      return refinedValue.slice(0, -1);
+    }
 
     if (isNaN(Number(refinedValue))) {
       throw new Error("Invalid number");
