@@ -8410,10 +8410,6 @@ export interface ActivityResponse {
   data: EnrichedActivity[];
 }
 
-export interface GetUserInfoBody {
-  session: Session;
-}
-
 export interface WalletInfo {
   id: string;
   balanceUsd: number;
@@ -8430,7 +8426,6 @@ export interface UserInfo {
 }
 
 export interface EditUserBody {
-  session: Session;
   /**
    * @minLength 1
    * @maxLength 50
