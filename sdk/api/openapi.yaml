@@ -8647,12 +8647,6 @@ paths:
       description: Get user info
       operationId: UserController_getUserInfo
       parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetUserInfoBody'
       responses:
         '200':
           description: ''
@@ -18549,13 +18543,6 @@ components:
         - page
         - count
         - data
-    GetUserInfoBody:
-      type: object
-      properties:
-        session:
-          $ref: '#/components/schemas/Session'
-      required:
-        - session
     WalletInfo:
       type: object
       properties:
@@ -18594,8 +18581,6 @@ components:
     EditUserBody:
       type: object
       properties:
-        session:
-          $ref: '#/components/schemas/Session'
         name:
           type: string
           minLength: 1
@@ -18606,5 +18591,3 @@ components:
           maxLength: 1000
         subscribed:
           type: boolean
-      required:
-        - session

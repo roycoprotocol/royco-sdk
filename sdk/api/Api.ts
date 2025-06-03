@@ -39,7 +39,6 @@ import {
   ExploreMarketBody,
   ExploreSettingsMarketBody,
   ExploreVaultBody,
-  GetUserInfoBody,
   GlobalPositionRequestBody,
   HealthControllerCheckData,
   HealthControllerCheckError,
@@ -1017,16 +1016,11 @@ export class Api<
    * @request POST:/api/v1/user/info
    * @secure
    */
-  userControllerGetUserInfo = (
-    data: GetUserInfoBody,
-    params: RequestParams = {},
-  ) =>
+  userControllerGetUserInfo = (params: RequestParams = {}) =>
     this.request<UserControllerGetUserInfoData, any>({
       path: `/api/v1/user/info`,
       method: "POST",
-      body: data,
       secure: true,
-      type: ContentType.Json,
       format: "json",
       ...params,
     });
