@@ -871,14 +871,6 @@ export interface VaultOfferResponse {
   data: VaultOffer[];
 }
 
-export interface InfoMarketBody {
-  /**
-   * Custom Token Data
-   * Array of custom token assumptions --  if not provided, the default quote data will be used.
-   */
-  customTokenData?: CustomTokenDataElement[];
-}
-
 export interface GenericIncentive {
   /**
    * Raw Metadata
@@ -2173,7 +2165,7 @@ export interface MarketMetadata {
   minDepositToken?: BaseEnrichedTokenData;
 }
 
-export interface InfoMarketResponse {
+export interface EnrichedMarket {
   /**
    * ID
    * The global unique identifier of the market: chainId_marketType_marketId
@@ -2191,7 +2183,7 @@ export interface InfoMarketResponse {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -2383,6 +2375,332 @@ export interface InfoMarketResponse {
    * @example "marketId"
    */
   searchKey?: string;
+}
+
+export interface LabelledTokenQuote {
+  /**
+   * Raw Metadata
+   * Raw metadata
+   */
+  rawMetadata?: object;
+  /**
+   * Token ID
+   * Unique identifier for the token: chainId-contractAddress
+   * @example "1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Name
+   * The name of the token
+   * @example "USDC"
+   */
+  name: string;
+  /**
+   * Description
+   * The description of the token
+   * @example "USDC is a stablecoin pegged to the US dollar"
+   */
+  description: string | null;
+  /**
+   * Symbol
+   * The symbol of the token
+   * @example "USDC"
+   */
+  symbol: string;
+  /**
+   * Image
+   * The logo of the token
+   * @example "https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png"
+   */
+  image: string;
+  /**
+   * Decimals
+   * The number of decimals of the token
+   * @example 6
+   */
+  decimals: number;
+  /**
+   * Source
+   * The source for the price feed of the token
+   * @example "coinmarketcap"
+   */
+  source:
+    | "coinmarketcap"
+    | "coingecko"
+    | "lp"
+    | "enso"
+    | "pendle"
+    | "plume"
+    | "external";
+  /**
+   * Search ID
+   * The search id for the token on the source price feed: for CoinmarketCap, it's UCID (found under metadata section of the token page) -- for Coingecko, it's token slug (found in the URL of the token page) -- for all other sources, we have a custom search id according to their price feed API schema
+   * @example "3408"
+   */
+  searchId: string;
+  /**
+   * Type
+   * The type of the token
+   * @example "token"
+   */
+  type: "token" | "point" | "lp";
+  /**
+   * Price
+   * The price of the token
+   * @example 0.99999999
+   */
+  price: number;
+  /**
+   * FDV
+   * The fully diluted valuation of the token
+   * @example 59689964490.12
+   */
+  fdv: number;
+  /**
+   * Total Supply
+   * The total supply of the token
+   * @example 59689963893.2
+   */
+  totalSupply: number;
+  /**
+   * Owner
+   * The owner of the point program token
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  owner?: string;
+  /**
+   * Issuers
+   * Authorized issuers of the point program token
+   */
+  issuers?: string[];
+  /**
+   * Sub Tokens
+   * Array of sub tokens
+   */
+  subTokens?: TokenQuote[];
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+  /**
+   * Search Index
+   * Search index for the entity
+   * @example "0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d"
+   */
+  searchIndex?: string;
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  /**
+   * Label
+   * The label of the token
+   */
+  label?: string;
+}
+
+export interface CampaignMetadata {
+  campaignId: string;
+  protocol: string;
+  poolId: string;
+  startTime: string;
+  endTime: string;
+  status: string;
+  depositLink: string;
+}
+
+export interface EnrichedMarketV2 {
+  /**
+   * ID
+   * The global unique identifier of the market: chainId_marketType_marketId
+   * @example "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Market Type
+   * The type of market: 0 = Recipe, 1 = Vault
+   * @example 0
+   */
+  marketType: 0 | 1 | 2;
+  /**
+   * Market ID
+   * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
+   * @example "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  marketId: string;
+  /**
+   * Name
+   * The name of the market
+   * @example "Swap USDC to stkGHO for 1 mo"
+   */
+  name: string;
+  /**
+   * Description
+   * Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.
+   * @example "Swap USDC to stkGHO for 1 mo"
+   */
+  description: string;
+  /**
+   * Category
+   * The category of the market
+   * @example "default"
+   */
+  category: string;
+  /**
+   * TVL USD
+   * The total value locked in the market in USD
+   * @example 1456234.98
+   */
+  tvlUsd: number;
+  /**
+   * Incentives USD
+   * The total value of incentives in the market in USD
+   * @example 15689.23
+   */
+  incentivesUsd: number;
+  /**
+   * Yield Rate
+   * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
+   * @example "0.1"
+   */
+  yieldRate: number;
+  /**
+   * Variable Yield Rate
+   * Variable yield rate from the market which will change based on deposits
+   * @example 0.1
+   */
+  variableYieldRate: number;
+  tokenYieldRate: number;
+  pointYieldRate: number;
+  /**
+   * Real incentives
+   * @default []
+   */
+  realIncentives: GenericIncentive[];
+  /**
+   * Token incentives
+   * @default []
+   */
+  tokenIncentives: GenericIncentive[];
+  /**
+   * Point incentives
+   * @default []
+   */
+  pointIncentives: GenericIncentive[];
+  /**
+   * Active incentives
+   * @default []
+   */
+  activeIncentives: MarketActiveIncentiveDetailed[];
+  /**
+   * Native incentives
+   * @default []
+   */
+  nativeIncentives: MarketNativeIncentive[];
+  /**
+   * External incentives
+   * @default []
+   */
+  externalIncentives: MarketExternalIncentive[];
+  /**
+   * Underlying incentives
+   * @default []
+   */
+  underlyingIncentives: MarketUnderlyingIncentive[];
+  /**
+   * Input token IDs
+   * @example ["0x123...","0x456..."]
+   */
+  inputTokenIds: string[];
+  /**
+   * Incentive token IDs
+   * @example ["0xabc...","0xdef..."]
+   */
+  incentiveTokenIds: string[];
+  /**
+   * Input tokens
+   * @default []
+   */
+  inputTokens: TokenQuote[];
+  /**
+   * Incentive tokens
+   * @default []
+   */
+  incentiveTokens: LabelledTokenQuote[];
+  /** Recipe metadata */
+  recipeMetadata?: object;
+  /** Vault metadata */
+  vaultMetadata?: object;
+  /** Campaign metadata */
+  campaignMetadata?: CampaignMetadata;
+  /** Market metadata */
+  marketMetadata?: object;
+  /**
+   * Is verified
+   * @example false
+   */
+  isVerified: boolean;
+  /**
+   * Is active
+   * @example true
+   */
+  isActive: boolean;
+  /**
+   * Block number
+   * @example "12345678"
+   */
+  blockNumber: string;
+  /**
+   * Block timestamp
+   * @example "1678901234"
+   */
+  blockTimestamp: string;
+  /**
+   * Transaction hash
+   * @example "0x123..."
+   */
+  transactionHash: string;
+  /**
+   * Log index
+   * @example "0"
+   */
+  logIndex: string;
+  /** Search index */
+  searchIndex?: string;
+  /**
+   * Last updated timestamp
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+}
+
+export interface InfoMarketBody {
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
 }
 
 export interface ExploreMarketBody {
@@ -2416,218 +2734,6 @@ export interface ExploreMarketBody {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
-}
-
-export interface EnrichedMarket {
-  /**
-   * ID
-   * The global unique identifier of the market: chainId_marketType_marketId
-   * @example "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
-   */
-  id: string;
-  /**
-   * Chain ID
-   * Network ID of the blockchain
-   * @example 1
-   */
-  chainId: number;
-  /**
-   * Market Type
-   * The type of market: 0 = Recipe, 1 = Vault
-   * @example 0
-   */
-  marketType: 0 | 1;
-  /**
-   * Market ID
-   * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
-   * @example "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
-   */
-  marketId: string;
-  /**
-   * Name
-   * The name of the market
-   * @example "Swap USDC to stkGHO for 1 mo"
-   */
-  name: string;
-  /**
-   * Description
-   * Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.
-   * @example "Swap USDC to stkGHO for 1 mo"
-   */
-  description: string;
-  /**
-   * Category
-   * The category of the market
-   * @example "default"
-   */
-  category: string;
-  /**
-   * Underlying Vault Address
-   * The address of the underlying vault -- only vault markets have an underlying vault, while recipe markets don't
-   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
-   */
-  underlyingVaultAddress?: string;
-  /**
-   * Lockup Time
-   * The lockup time for the market in seconds. Note: vault markets always have a lockup time of "0"
-   * @example "31536000"
-   */
-  lockupTime: string;
-  /**
-   * Frontend Fee
-   * The frontend fee for the market in basis points in wei: 10^18 = 100%
-   * @example "10000000000000000"
-   */
-  frontendFee: string;
-  /**
-   * Reward Style
-   * The reward distribution style for the market: 0 = Upfront, 1 = Arrear, 2 = Forfeitable
-   * @example 0
-   */
-  rewardStyle: 0 | 1 | 2;
-  /**
-   * TVL USD
-   * The total value locked in the market in USD
-   * @example 1456234.98
-   */
-  tvlUsd: number;
-  /**
-   * Fillable USD
-   * The fillable USD for the market
-   * @example 1456234.98
-   */
-  fillableUsd: number;
-  /**
-   * Capacity Ratio
-   * The remaining capacity ratio for the market
-   * @example 0.5
-   */
-  capacityRatio: number;
-  /**
-   * Incentives USD
-   * The total value of incentives in the market in USD
-   * @example 15689.23
-   */
-  incentivesUsd: number;
-  /**
-   * Yield Rate
-   * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
-   * @example "0.1"
-   */
-  yieldRate: number;
-  /**
-   * Variable Yield Rate
-   * Variable yield rate from the market which will change based on deposits
-   * @example 0.1
-   */
-  variableYieldRate: number;
-  realYieldRate: number;
-  tokenYieldRate: number;
-  pointYieldRate: number;
-  realIncentives: GenericIncentive[];
-  tokenIncentives: GenericIncentive[];
-  pointIncentives: GenericIncentive[];
-  /**
-   * Input Token ID
-   * The ID of the input token for the market
-   */
-  inputTokenId: string;
-  /**
-   * Incentive Token IDs
-   * The IDs of the incentive tokens for the market
-   */
-  incentiveTokenIds: string[];
-  /**
-   * Input Token Data
-   * Token data for the market input token
-   */
-  inputToken: MarketInputTokenDetailed;
-  /**
-   * Incentive Tokens
-   * Incentive tokens
-   */
-  incentiveTokens: TokenQuote[];
-  /**
-   * Active Incentives
-   * Active incentive tokens
-   */
-  activeIncentives: MarketActiveIncentiveDetailed[];
-  /**
-   * Underlying Incentives
-   * Underlying incentive tokens
-   */
-  underlyingIncentives?: MarketUnderlyingIncentive[];
-  /**
-   * Native Incentives
-   * Native incentive tokens
-   */
-  nativeIncentives?: MarketNativeIncentive[];
-  /**
-   * External Incentives
-   * External incentive tokens
-   */
-  externalIncentives?: MarketExternalIncentive[];
-  /**
-   * Recipe Metadata
-   * The metadata for the recipe
-   */
-  recipeMetadata?: MarketRecipeMetadata;
-  /**
-   * Vault Metadata
-   * The metadata for the vault
-   */
-  vaultMetadata?: MarketVaultMetadata;
-  /**
-   * Market Metadata
-   * The metadata for the market
-   */
-  marketMetadata?: MarketMetadata;
-  /**
-   * Is Verified
-   * Whether the market is verified
-   */
-  isVerified: boolean;
-  /**
-   * Is Active
-   * Whether the market is active
-   */
-  isActive: boolean;
-  /**
-   * Block Number
-   * Block number associated with the entity
-   * @example "21910786"
-   */
-  blockNumber: string;
-  /**
-   * Block Timestamp
-   * Block timestamp associated with the entity
-   * @example "1743357424"
-   */
-  blockTimestamp: string;
-  /**
-   * Transaction Hash
-   * Transaction hash associated with the entity
-   * @example "0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461"
-   */
-  transactionHash: string;
-  /**
-   * Log Index
-   * Log index associated with the entity
-   * @example "12"
-   */
-  logIndex: string;
-  /**
-   * Last Updated
-   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
-   * @example "2025-03-17 17:52:10"
-   */
-  lastUpdated: string;
-  /**
-   * Search Key
-   * Key to search by
-   * @example "marketId"
-   */
-  searchKey?: string;
 }
 
 export interface ExploreMarketResponse {
@@ -2856,7 +2962,7 @@ export interface CreateMarketBody {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Name
    * The name of the market
@@ -2895,7 +3001,7 @@ export interface EnrichedMarketUserData {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -4453,7 +4559,7 @@ export interface RecipePosition {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -5105,7 +5211,7 @@ export interface SpecificRecipePositionResponse {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -5183,7 +5289,7 @@ export interface VaultPosition {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -5627,7 +5733,7 @@ export interface SpecificVaultPositionResponse {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -6030,7 +6136,7 @@ export interface BoycoPosition {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -6199,7 +6305,7 @@ export interface SpecificBoycoPositionResponse {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Market ID
    * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
@@ -7215,7 +7321,7 @@ export interface EnrichedOffer {
    * The type of market: 0 = Recipe, 1 = Vault
    * @example 0
    */
-  marketType: 0 | 1;
+  marketType: 0 | 1 | 2;
   /**
    * Offer Side
    * Side of the offer (0: AP, 1: IP)
@@ -8438,6 +8544,12 @@ export interface EditUserBody {
    */
   description?: string;
   subscribed?: boolean;
+  deleteEmail?: boolean;
+  deleteWallet?: string;
+}
+
+export interface VerifyUserEmailResponse {
+  id: string;
 }
 
 export interface HealthControllerCheckData {
@@ -8510,7 +8622,7 @@ export type AddonsControllerGetIncentivesData = any;
 
 export type AddonsControllerRefreshIncentivesData = any;
 
-export type MarketControllerGetMarketData = InfoMarketResponse;
+export type MarketControllerGetMarketData = EnrichedMarket | EnrichedMarketV2;
 
 export type MarketControllerGetMarketsData = ExploreMarketResponse;
 
@@ -8599,3 +8711,5 @@ export type ActivityControllerGetActivitiesData = ActivityResponse;
 export type UserControllerGetUserInfoData = UserInfo;
 
 export type UserControllerEditUserData = UserInfo;
+
+export type UserControllerVerifyUserEmailData = VerifyUserEmailResponse;

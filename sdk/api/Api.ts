@@ -79,6 +79,7 @@ import {
   TokenQuoteRequestBody,
   UserControllerEditUserData,
   UserControllerGetUserInfoData,
+  UserControllerVerifyUserEmailData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
   VaultControllerGetVaultInfoData,
@@ -1040,6 +1041,23 @@ export class Api<
       body: data,
       secure: true,
       type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Verify user email
+   *
+   * @tags User
+   * @name UserControllerVerifyUserEmail
+   * @summary Verify user email
+   * @request POST:/api/v1/user/verify/{id}
+   * @secure
+   */
+  userControllerVerifyUserEmail = (id: string, params: RequestParams = {}) =>
+    this.request<UserControllerVerifyUserEmailData, any>({
+      path: `/api/v1/user/verify/${id}`,
+      method: "POST",
+      secure: true,
       format: "json",
       ...params,
     });
