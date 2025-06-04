@@ -8431,6 +8431,7 @@ export interface EditUserBody {
    * @maxLength 50
    */
   name?: string;
+  email?: string;
   /**
    * @minLength 1
    * @maxLength 1000
