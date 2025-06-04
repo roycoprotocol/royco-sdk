@@ -483,7 +483,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InfoMarketResponse'
+                oneOf:
+                  - $ref: '#/components/schemas/EnrichedMarket'
+                  - $ref: '#/components/schemas/EnrichedMarketV2'
               example:
                 id: >-
                   146_0_0x7d1f2a66eabf9142dd30d1355efcbfd4cfbefd2872d24ca9855641434816a525
@@ -8685,6 +8687,29 @@ paths:
         - api-key-query: []
       summary: Edit user
       tags: *ref_11
+  /api/v1/user/verify/{id}:
+    post:
+      description: Verify user email
+      operationId: UserController_verifyUserEmail
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyUserEmailResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Verify user email
+      tags: *ref_11
 info:
   title: Royco API
   description: >-
@@ -9717,17 +9742,6 @@ components:
         - page
         - count
         - data
-    InfoMarketBody:
-      type: object
-      properties:
-        customTokenData:
-          title: Custom Token Data
-          description: >-
-            Array of custom token assumptions --  if not provided, the default
-            quote data will be used.
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomTokenDataElement'
     GenericIncentive:
       type: object
       properties:
@@ -10661,7 +10675,7 @@ components:
           type: string
           title: Yield Text
           description: Yield rate in string format to represent any arbitrary yields
-          examples: &ref_22
+          examples: &ref_21
             - 10x AAVE
             - 25 BTC pro-rata
             - 3x DAI per share
@@ -11100,7 +11114,7 @@ components:
           $ref: '#/components/schemas/MarketMetadataBoyco'
         minDepositToken:
           $ref: '#/components/schemas/BaseEnrichedTokenData'
-    InfoMarketResponse:
+    EnrichedMarket:
       type: object
       properties:
         id:
@@ -11124,6 +11138,7 @@ components:
           enum: &ref_19
             - 0
             - 1
+            - 2
         marketId:
           type: string
           title: Market ID
@@ -11174,7 +11189,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: &ref_20
+          enum: &ref_27
             - 0
             - 1
             - 2
@@ -11362,35 +11377,108 @@ components:
         - transactionHash
         - logIndex
         - lastUpdated
-    ExploreMarketBody:
+    LabelledTokenQuote:
       type: object
       properties:
-        filters:
-          title: Filters Array
-          description: Array of filter objects to apply to the results
-          example: *ref_14
-          type: array
-          items:
-            $ref: '#/components/schemas/Filter'
-        searchKey:
+        rawMetadata:
+          type: object
+          title: Raw Metadata
+          description: Raw metadata
+        id:
           type: string
-          title: Search Key
-          description: Key to search by
-          example: marketId
-        sorting:
-          title: Sorting Object
-          description: Object type to sort results with
-          example: *ref_15
+          title: Token ID
+          description: 'Unique identifier for the token: chainId-contractAddress'
+          example: 1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+        chainId:
+          type: number
+          title: Chain ID
+          description: Network ID of the blockchain
+          example: 1
+        contractAddress:
+          type: string
+          title: Contract Address
+          description: Deployment address of the contract
+          example: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+        name:
+          type: string
+          title: Name
+          description: The name of the token
+          example: USDC
+        description:
+          type: string
+          title: Description
+          description: The description of the token
+          example: USDC is a stablecoin pegged to the US dollar
+          nullable: true
+        symbol:
+          type: string
+          title: Symbol
+          description: The symbol of the token
+          example: USDC
+        image:
+          type: string
+          title: Image
+          description: The logo of the token
+          example: https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png
+        decimals:
+          type: number
+          title: Decimals
+          description: The number of decimals of the token
+          example: 6
+        source:
+          type: string
+          title: Source
+          description: The source for the price feed of the token
+          example: coinmarketcap
+          enum: *ref_12
+        searchId:
+          type: string
+          title: Search ID
+          description: >-
+            The search id for the token on the source price feed: for
+            CoinmarketCap, it's UCID (found under metadata section of the token
+            page) -- for Coingecko, it's token slug (found in the URL of the
+            token page) -- for all other sources, we have a custom search id
+            according to their price feed API schema
+          example: '3408'
+        type:
+          type: string
+          title: Type
+          description: The type of the token
+          example: token
+          enum: *ref_13
+        price:
+          type: number
+          title: Price
+          description: The price of the token
+          example: 0.99999999
+        fdv:
+          type: number
+          title: FDV
+          description: The fully diluted valuation of the token
+          example: 59689964490.12
+        totalSupply:
+          type: number
+          title: Total Supply
+          description: The total supply of the token
+          example: 59689963893.2
+        owner:
+          type: string
+          title: Owner
+          description: The owner of the point program token
+          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
+        issuers:
+          title: Issuers
+          description: Authorized issuers of the point program token
           type: array
           items:
-            $ref: '#/components/schemas/Sorting'
-        page:
-          title: Request Page Object
-          description: Object type to request a page of results
-          default: *ref_16
-          example: *ref_17
-          allOf:
-            - $ref: '#/components/schemas/RequestPage'
+            type: string
+        subTokens:
+          title: Sub Tokens
+          description: Array of sub tokens
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
         customTokenData:
           title: Custom Token Data
           description: >-
@@ -11399,7 +11487,62 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomTokenDataElement'
-    EnrichedMarket:
+        searchIndex:
+          type: string
+          title: Search Index
+          description: Search index for the entity
+          example: '0x6e1fcdd01bec1ac68a1a510408c844702c5793ffaf6f3117f7c42a9c555bc13d'
+        lastUpdated:
+          type: string
+          title: Last Updated
+          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          example: '2025-03-17 17:52:10'
+        label:
+          type: string
+          title: Label
+          description: The label of the token
+      required:
+        - id
+        - chainId
+        - contractAddress
+        - name
+        - description
+        - symbol
+        - image
+        - decimals
+        - source
+        - searchId
+        - type
+        - price
+        - fdv
+        - totalSupply
+        - lastUpdated
+    CampaignMetadata:
+      type: object
+      properties:
+        campaignId:
+          type: string
+        protocol:
+          type: string
+        poolId:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        status:
+          type: string
+        depositLink:
+          type: string
+      required:
+        - campaignId
+        - protocol
+        - poolId
+        - startTime
+        - endTime
+        - status
+        - depositLink
+    EnrichedMarketV2:
       type: object
       properties:
         id:
@@ -11445,48 +11588,11 @@ components:
           title: Category
           description: The category of the market
           example: default
-        underlyingVaultAddress:
-          type: string
-          title: Underlying Vault Address
-          description: >-
-            The address of the underlying vault -- only vault markets have an
-            underlying vault, while recipe markets don't
-          example: '0x77777cc68b333a2256b436d675e8d257699aa667'
-        lockupTime:
-          type: string
-          title: Lockup Time
-          description: >-
-            The lockup time for the market in seconds. Note: vault markets
-            always have a lockup time of "0"
-          example: '31536000'
-        frontendFee:
-          type: string
-          title: Frontend Fee
-          description: 'The frontend fee for the market in basis points in wei: 10^18 = 100%'
-          example: '10000000000000000'
-        rewardStyle:
-          type: number
-          title: Reward Style
-          description: >-
-            The reward distribution style for the market: 0 = Upfront, 1 =
-            Arrear, 2 = Forfeitable
-          example: 0
-          enum: *ref_20
         tvlUsd:
           type: number
           title: TVL USD
           description: The total value locked in the market in USD
           example: 1456234.98
-        fillableUsd:
-          type: number
-          title: Fillable USD
-          description: The fillable USD for the market
-          example: 1456234.98
-        capacityRatio:
-          type: number
-          title: Capacity Ratio
-          description: The remaining capacity ratio for the market
-          example: 0.5
         incentivesUsd:
           type: number
           title: Incentives USD
@@ -11504,122 +11610,124 @@ components:
             Variable yield rate from the market which will change based on
             deposits
           example: 0.1
-        realYieldRate:
-          type: number
         tokenYieldRate:
           type: number
         pointYieldRate:
           type: number
         realIncentives:
+          description: Real incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/GenericIncentive'
         tokenIncentives:
+          description: Token incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/GenericIncentive'
         pointIncentives:
+          description: Point incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/GenericIncentive'
-        inputTokenId:
-          type: string
-          title: Input Token ID
-          description: The ID of the input token for the market
-        incentiveTokenIds:
-          title: Incentive Token IDs
-          description: The IDs of the incentive tokens for the market
-          type: array
-          items:
-            type: string
-        inputToken:
-          title: Input Token Data
-          description: Token data for the market input token
-          allOf:
-            - $ref: '#/components/schemas/MarketInputTokenDetailed'
-        incentiveTokens:
-          title: Incentive Tokens
-          description: Incentive tokens
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenQuote'
         activeIncentives:
-          title: Active Incentives
-          description: Active incentive tokens
+          description: Active incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/MarketActiveIncentiveDetailed'
-        underlyingIncentives:
-          title: Underlying Incentives
-          description: Underlying incentive tokens
-          type: array
-          items:
-            $ref: '#/components/schemas/MarketUnderlyingIncentive'
         nativeIncentives:
-          title: Native Incentives
-          description: Native incentive tokens
+          description: Native incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/MarketNativeIncentive'
         externalIncentives:
-          title: External Incentives
-          description: External incentive tokens
+          description: External incentives
+          default: []
           type: array
           items:
             $ref: '#/components/schemas/MarketExternalIncentive'
+        underlyingIncentives:
+          description: Underlying incentives
+          default: []
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketUnderlyingIncentive'
+        inputTokenIds:
+          description: Input token IDs
+          example:
+            - 0x123...
+            - 0x456...
+          type: array
+          items:
+            type: string
+        incentiveTokenIds:
+          description: Incentive token IDs
+          example:
+            - 0xabc...
+            - 0xdef...
+          type: array
+          items:
+            type: string
+        inputTokens:
+          description: Input tokens
+          default: []
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenQuote'
+        incentiveTokens:
+          description: Incentive tokens
+          default: []
+          type: array
+          items:
+            $ref: '#/components/schemas/LabelledTokenQuote'
         recipeMetadata:
-          title: Recipe Metadata
-          description: The metadata for the recipe
-          allOf:
-            - $ref: '#/components/schemas/MarketRecipeMetadata'
+          type: object
+          description: Recipe metadata
         vaultMetadata:
-          title: Vault Metadata
-          description: The metadata for the vault
+          type: object
+          description: Vault metadata
+        campaignMetadata:
+          description: Campaign metadata
           allOf:
-            - $ref: '#/components/schemas/MarketVaultMetadata'
+            - $ref: '#/components/schemas/CampaignMetadata'
         marketMetadata:
-          title: Market Metadata
-          description: The metadata for the market
-          allOf:
-            - $ref: '#/components/schemas/MarketMetadata'
+          type: object
+          description: Market metadata
         isVerified:
           type: boolean
-          title: Is Verified
-          description: Whether the market is verified
+          description: Is verified
+          example: false
         isActive:
           type: boolean
-          title: Is Active
-          description: Whether the market is active
+          description: Is active
+          example: true
         blockNumber:
           type: string
-          title: Block Number
-          description: Block number associated with the entity
-          example: '21910786'
+          description: Block number
+          example: '12345678'
         blockTimestamp:
           type: string
-          title: Block Timestamp
-          description: Block timestamp associated with the entity
-          example: '1743357424'
+          description: Block timestamp
+          example: '1678901234'
         transactionHash:
           type: string
-          title: Transaction Hash
-          description: Transaction hash associated with the entity
-          example: '0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461'
+          description: Transaction hash
+          example: 0x123...
         logIndex:
           type: string
-          title: Log Index
-          description: Log index associated with the entity
-          example: '12'
+          description: Log index
+          example: '0'
+        searchIndex:
+          type: string
+          description: Search index
         lastUpdated:
           type: string
-          title: Last Updated
-          description: The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+          description: Last updated timestamp
           example: '2025-03-17 17:52:10'
-        searchKey:
-          type: string
-          title: Search Key
-          description: Key to search by
-          example: marketId
       required:
         - id
         - chainId
@@ -11628,27 +11736,25 @@ components:
         - name
         - description
         - category
-        - lockupTime
-        - frontendFee
-        - rewardStyle
         - tvlUsd
-        - fillableUsd
-        - capacityRatio
         - incentivesUsd
         - yieldRate
         - yieldRate
         - variableYieldRate
-        - realYieldRate
+        - yieldRate
         - tokenYieldRate
         - pointYieldRate
         - realIncentives
         - tokenIncentives
         - pointIncentives
-        - inputTokenId
-        - incentiveTokenIds
-        - inputToken
-        - incentiveTokens
         - activeIncentives
+        - nativeIncentives
+        - externalIncentives
+        - underlyingIncentives
+        - inputTokenIds
+        - incentiveTokenIds
+        - inputTokens
+        - incentiveTokens
         - isVerified
         - isActive
         - blockNumber
@@ -11656,6 +11762,54 @@ components:
         - transactionHash
         - logIndex
         - lastUpdated
+    InfoMarketBody:
+      type: object
+      properties:
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
+    ExploreMarketBody:
+      type: object
+      properties:
+        filters:
+          title: Filters Array
+          description: Array of filter objects to apply to the results
+          example: *ref_14
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        searchKey:
+          type: string
+          title: Search Key
+          description: Key to search by
+          example: marketId
+        sorting:
+          title: Sorting Object
+          description: Object type to sort results with
+          example: *ref_15
+          type: array
+          items:
+            $ref: '#/components/schemas/Sorting'
+        page:
+          title: Request Page Object
+          description: Object type to request a page of results
+          default: *ref_16
+          example: *ref_17
+          allOf:
+            - $ref: '#/components/schemas/RequestPage'
+        customTokenData:
+          title: Custom Token Data
+          description: >-
+            Array of custom token assumptions --  if not provided, the default
+            quote data will be used.
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomTokenDataElement'
     ExploreMarketResponse:
       type: object
       properties:
@@ -11867,7 +12021,7 @@ components:
         staticInputTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: &ref_21
+          example: &ref_20
             - id: 1-0xdac17f958d2ee523a2206206994597c13d831ec7
               chainId: 1
               contractAddress: '0xdac17f958d2ee523a2206206994597c13d831ec7'
@@ -12021,21 +12175,21 @@ components:
         dynamicInputTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_21
+          example: *ref_20
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
         staticIncentiveTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_21
+          example: *ref_20
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
         dynamicIncentiveTokenFilters:
           title: Token Quote with IDs
           description: Token quote with the IDs across chains
-          example: *ref_21
+          example: *ref_20
           type: array
           items:
             $ref: '#/components/schemas/TokenQuoteWithIds'
@@ -12558,7 +12712,7 @@ components:
           type: string
           title: Yield Text
           description: Yield rate in string format to represent any arbitrary yields
-          examples: *ref_22
+          examples: *ref_21
         scaleRatio:
           type: number
           title: Scale Ratio
@@ -12835,7 +12989,7 @@ components:
         chainIds:
           title: Chain IDs
           description: The chain IDs of the vault
-          example: &ref_23
+          example: &ref_22
             - 1
             - 146
           type: array
@@ -12844,7 +12998,7 @@ components:
         capacity:
           title: Capacity
           description: The capacity of the vault
-          example: &ref_24
+          example: &ref_23
             currentUsd: 1000000
             maxUsd: 20000000
             ratio: 0.5
@@ -12858,7 +13012,7 @@ components:
         managers:
           title: Managers
           description: The managers of the vault
-          example: &ref_25
+          example: &ref_24
             - id: veda
               name: VEDA
               symbol: VEDA
@@ -12873,7 +13027,7 @@ components:
         depositTokenIds:
           title: Deposit Token IDs
           description: The deposit token IDs of the vault
-          example: &ref_26
+          example: &ref_25
             - 146-0x29219dd400f2bf60e5a23d13be72b486d4038894
           type: array
           items:
@@ -12881,7 +13035,7 @@ components:
         incentiveTokenIds:
           title: Incentive Token IDs
           description: The incentive token IDs of the vault
-          example: &ref_27
+          example: &ref_26
             - 146-0x29219dd400f2bf60e5a23d13be72b486d4038894
           type: array
           items:
@@ -13013,14 +13167,14 @@ components:
         chainIds:
           title: Chain IDs
           description: The chain IDs of the vault
-          example: *ref_23
+          example: *ref_22
           type: array
           items:
             type: number
         capacity:
           title: Capacity
           description: The capacity of the vault
-          example: *ref_24
+          example: *ref_23
           allOf:
             - $ref: '#/components/schemas/VaultCapacity'
         maxLockup:
@@ -13031,7 +13185,7 @@ components:
         managers:
           title: Managers
           description: The managers of the vault
-          example: *ref_25
+          example: *ref_24
           type: array
           items:
             $ref: '#/components/schemas/VaultManager'
@@ -13040,14 +13194,14 @@ components:
         depositTokenIds:
           title: Deposit Token IDs
           description: The deposit token IDs of the vault
-          example: *ref_26
+          example: *ref_25
           type: array
           items:
             type: string
         incentiveTokenIds:
           title: Incentive Token IDs
           description: The incentive token IDs of the vault
-          example: *ref_27
+          example: *ref_26
           type: array
           items:
             type: string
@@ -13844,7 +13998,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_20
+          enum: *ref_27
         isForfeited:
           type: boolean
           title: Is Forfeited
@@ -14134,7 +14288,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_20
+          enum: *ref_27
       required:
         - id
         - chainId
@@ -14312,7 +14466,7 @@ components:
             The reward distribution style for the market: 0 = Upfront, 1 =
             Arrear, 2 = Forfeitable
           example: 0
-          enum: *ref_20
+          enum: *ref_27
       required:
         - id
         - chainId
@@ -18593,3 +18747,14 @@ components:
           maxLength: 1000
         subscribed:
           type: boolean
+        deleteEmail:
+          type: boolean
+        deleteWallet:
+          type: string
+    VerifyUserEmailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
