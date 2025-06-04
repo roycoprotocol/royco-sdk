@@ -18585,6 +18585,8 @@ components:
           type: string
           minLength: 1
           maxLength: 50
+        email:
+          type: string
         description:
           type: string
           minLength: 1
