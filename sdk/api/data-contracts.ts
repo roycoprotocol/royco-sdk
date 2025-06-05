@@ -8528,6 +8528,7 @@ export interface UserInfo {
   pfpUrl?: string;
   email: string;
   subscribed: boolean;
+  verified: boolean;
   wallets: WalletInfo[];
 }
 

@@ -18722,6 +18722,8 @@ components:
           type: string
         subscribed:
           type: boolean
+        verified:
+          type: boolean
         wallets:
           type: array
           items:
@@ -18731,6 +18733,7 @@ components:
         - name
         - email
         - subscribed
+        - verified
         - wallets
     EditUserBody:
       type: object
