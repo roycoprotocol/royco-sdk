@@ -185,6 +185,7 @@ export interface TokenQuote {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
 }
 
 export interface TokenQuoteResponse {
@@ -313,6 +314,7 @@ export interface TokenQuoteResponse {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
 }
 
 export interface Filter {
@@ -604,6 +606,7 @@ export interface BaseEnrichedTokenDataWithRemainingAmounts {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -801,6 +804,7 @@ export interface VaultOfferIncentiveToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -981,6 +985,7 @@ export interface GenericIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   rawAmount?: string;
   tokenAmount?: number;
   tokenAmountUsd?: number;
@@ -1114,6 +1119,7 @@ export interface MarketInputTokenDetailed {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -1272,6 +1278,7 @@ export interface MarketActiveIncentiveDetailed {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -1466,6 +1473,7 @@ export interface MarketUnderlyingIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Yield Rate
    * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
@@ -1604,6 +1612,7 @@ export interface MarketNativeIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Yield Rate
    * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
@@ -1742,6 +1751,7 @@ export interface MarketExternalIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Yield Text
    * Yield rate in string format to represent any arbitrary yields
@@ -1901,6 +1911,7 @@ export interface MarketVaultBaseIncentiveTokenData {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -2087,6 +2098,7 @@ export interface BaseEnrichedTokenData {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -2455,6 +2467,7 @@ export interface LabelledTokenQuote {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
 }
 
 export interface CampaignMetadata {
@@ -2854,6 +2867,7 @@ export interface TokenQuoteWithIds {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Token IDs
    * Array of token IDs
@@ -3191,6 +3205,7 @@ export interface VaultDepositToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
 }
 
 export interface VaultIncentiveToken {
@@ -3324,6 +3339,7 @@ export interface VaultIncentiveToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Incentive ID
    * The ID of the incentive
@@ -3508,6 +3524,7 @@ export interface VaultAllocationDepositToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -4031,6 +4048,7 @@ export interface BaseEnrichedTokenDataWithClaimInfo {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -4268,6 +4286,7 @@ export interface BaseEnrichedTokenDataWithWithdrawStatus {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -4419,6 +4438,7 @@ export interface MarketActiveIncentiveWithClaimStatus {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -4736,6 +4756,7 @@ export interface LockedInputTokenSpecificRecipePosition {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -4903,6 +4924,7 @@ export interface UnclaimedIncentiveTokenSpecificRecipePosition {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -5070,6 +5092,7 @@ export interface ClaimedIncentiveTokenSpecificRecipePosition {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -5432,6 +5455,7 @@ export interface LockedInputTokenSpecificVaultPosition {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -5584,6 +5608,7 @@ export interface UnclaimedIncentiveTokenSpecificVaultPosition {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -5843,6 +5868,7 @@ export interface BoycoUnderlyingIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Incentive Link
    * Incentive link
@@ -5981,6 +6007,7 @@ export interface BoycoNativeIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Incentive Link
    * Incentive link
@@ -6369,6 +6396,7 @@ export interface VaultPositionUnclaimedRewardToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -6521,6 +6549,7 @@ export interface VaultPositionClaimedRewardToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -6929,6 +6958,7 @@ export interface EnrichedOfferInputTokenData {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -7119,6 +7149,7 @@ export interface EnrichedOfferIncentiveTokenData {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -7422,6 +7453,7 @@ export interface V1ActionIncentiveToken {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -7725,6 +7757,7 @@ export interface IncentiveTokenVaultIPAddIncentives {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -7893,6 +7926,7 @@ export interface IncentiveTokenVaultIPExtendIncentives {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
@@ -8058,6 +8092,7 @@ export interface IncentiveTokenVaultIPRefundIncentives {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
+  tag?: string;
   /**
    * Raw Amount
    * Amount in wei
