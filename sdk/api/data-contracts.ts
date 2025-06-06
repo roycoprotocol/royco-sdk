@@ -8192,10 +8192,10 @@ export interface LoginBody {
    */
   signature: string;
   /**
-   * Add wallet to user
+   * Whether to link the wallet to the existing user
    * @example true
    */
-  addWallet?: boolean;
+  linkWallet?: boolean;
 }
 
 export interface LoginResponse {
@@ -8205,10 +8205,10 @@ export interface LoginResponse {
 
 export interface LogoutBody {
   /**
-   * Wallet address to delete
+   * Wallet address to unlink
    * @example "0x1234...5678"
    */
-  deleteWallet?: string;
+  unlinkWalletAddress?: string;
 }
 
 export interface LogoutResponse {
