@@ -9844,40 +9844,6 @@
         ]
       }
     },
-    "/api/v1/auth/session": {
-      "post": {
-        "description": "Get session status",
-        "operationId": "AuthController_getSession",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Session"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          },
-          {
-            "x-api-key": []
-          },
-          {
-            "api-key-query": []
-          }
-        ],
-        "summary": "Get session",
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
     "/api/v1/auth/login": {
       "post": {
         "description": "Login to the application",
@@ -9956,49 +9922,35 @@
         ]
       }
     },
-    "/api/v1/auth/verify/init": {
+    "/api/v1/auth/revalidate": {
       "post": {
-        "operationId": "AuthController_initWalletLink",
+        "description": "Revalidate the session",
+        "operationId": "AuthController_revalidateSession",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WalletLinkInitBody"
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevalidateSessionResponse"
+                }
               }
             }
           }
         },
-        "responses": {
-          "201": {
-            "description": ""
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
           }
-        },
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
-    "/api/v1/auth/verify/confirm": {
-      "post": {
-        "operationId": "AuthController_confirmWalletLink",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WalletLinkConfirmBody"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
+        ],
+        "summary": "Revalidate session",
         "tags": [
           "Auth"
         ]
@@ -10156,7 +10108,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserInfo"
+                  "$ref": "#/components/schemas/EditUserResponse"
                 }
               }
             }
@@ -10341,12 +10293,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -10464,7 +10415,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -10509,12 +10459,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -10632,7 +10581,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -10974,12 +10922,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -11133,7 +11080,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -11293,12 +11239,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -11437,7 +11382,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -11595,12 +11539,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -11712,9 +11655,6 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
-          "label": {
-            "type": "string"
-          },
           "rawAmount": {
             "type": "string"
           },
@@ -11736,7 +11676,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -11782,12 +11721,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -11935,7 +11873,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -11983,12 +11920,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -12168,7 +12104,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -12222,12 +12157,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
-          "description": {
+          "label": {
             "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "title": "Incentive Label",
+            "description": "The custom label for the incentive token"
+          },
+          "description": {
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -12339,11 +12275,6 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
-          "label": {
-            "type": "string",
-            "title": "Incentive Label",
-            "description": "The custom label for the incentive token"
-          },
           "yieldRate": {
             "type": "number",
             "title": "Yield Rate",
@@ -12356,7 +12287,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -12402,12 +12332,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
-          "description": {
+          "label": {
             "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "title": "Incentive Label",
+            "description": "The custom label for the incentive token"
+          },
+          "description": {
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -12519,11 +12450,6 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
-          "label": {
-            "type": "string",
-            "title": "Incentive Label",
-            "description": "The custom label for the incentive token"
-          },
           "yieldRate": {
             "type": "number",
             "title": "Yield Rate",
@@ -12536,7 +12462,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -12582,12 +12507,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
-          "description": {
+          "label": {
             "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "title": "Incentive Label",
+            "description": "The custom label for the incentive token"
+          },
+          "description": {
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -12699,11 +12625,6 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
-          "label": {
-            "type": "string",
-            "title": "Incentive Label",
-            "description": "The custom label for the incentive token"
-          },
           "yieldText": {
             "type": "string",
             "title": "Yield Text",
@@ -12720,7 +12641,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -12818,12 +12738,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -12974,7 +12893,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -13091,12 +13009,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -13232,7 +13149,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -13610,12 +13526,13 @@
             "description": "The name of the token",
             "example": "USDC"
           },
-          "description": {
+          "label": {
             "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "title": "Label",
+            "description": "The label of the token"
+          },
+          "description": {
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -13726,11 +13643,6 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
-          },
-          "label": {
-            "type": "string",
-            "title": "Label",
-            "description": "The label of the token"
           }
         },
         "required": [
@@ -13738,7 +13650,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -14275,12 +14186,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -14410,7 +14320,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -15434,12 +15343,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -15557,7 +15465,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -15602,12 +15509,14 @@
             "description": "The name of the token",
             "example": "USDC"
           },
-          "description": {
+          "label": {
             "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "title": "Label",
+            "description": "The label of the reward token",
+            "example": "Staked GHO Points"
+          },
+          "description": {
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -15736,12 +15645,6 @@
               "external"
             ]
           },
-          "label": {
-            "type": "string",
-            "title": "Label",
-            "description": "The label of the reward token",
-            "example": "Staked GHO Points"
-          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -15798,7 +15701,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -15846,12 +15748,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -15993,7 +15894,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -16718,12 +16618,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -16878,7 +16777,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -17041,12 +16939,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -17187,7 +17084,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -17236,12 +17132,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -17388,7 +17283,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -17671,12 +17565,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -17838,7 +17731,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -17890,12 +17782,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -18057,7 +17948,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -18109,12 +17999,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -18250,7 +18139,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -18622,12 +18510,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -18769,7 +18656,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -18818,12 +18704,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -18959,7 +18844,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -19179,12 +19063,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -19312,7 +19195,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -19358,12 +19240,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -19491,7 +19372,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -19905,12 +19785,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -20059,7 +19938,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -20108,12 +19986,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -20262,7 +20139,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -20765,12 +20641,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -20924,7 +20799,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -21013,12 +20887,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -21188,7 +21061,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -21427,12 +21299,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -21574,7 +21445,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -22227,12 +22097,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -22377,7 +22246,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -22496,12 +22364,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -22646,7 +22513,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -22748,12 +22614,11 @@
             "description": "The name of the token",
             "example": "USDC"
           },
+          "label": {
+            "type": "string"
+          },
           "description": {
-            "type": "string",
-            "title": "Description",
-            "description": "The description of the token",
-            "example": "USDC is a stablecoin pegged to the US dollar",
-            "nullable": true
+            "type": "string"
           },
           "symbol": {
             "type": "string",
@@ -22889,7 +22754,6 @@
           "chainId",
           "contractAddress",
           "name",
-          "description",
           "symbol",
           "image",
           "decimals",
@@ -23143,42 +23007,6 @@
           "expiresAt"
         ]
       },
-      "Session": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Signature of the session",
-            "example": "0x1234...5678"
-          },
-          "walletAddress": {
-            "type": "string",
-            "description": "Wallet address",
-            "example": "0x1234...5678"
-          },
-          "userId": {
-            "type": "string",
-            "description": "User ID",
-            "example": "123e4567-e89b-12d3-a456-426614174000"
-          },
-          "isActive": {
-            "type": "boolean",
-            "description": "Whether the session is active"
-          },
-          "expiresAt": {
-            "type": "string",
-            "description": "When the session expires",
-            "example": "2024-03-20T12:05:00Z"
-          }
-        },
-        "required": [
-          "id",
-          "walletAddress",
-          "userId",
-          "isActive",
-          "expiresAt"
-        ]
-      },
       "LoginBody": {
         "type": "object",
         "properties": {
@@ -23191,13 +23019,10 @@
             "description": "Signature of the SIWE message",
             "example": "0x1234...5678"
           },
-          "parentSession": {
-            "description": "Parent session",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Session"
-              }
-            ]
+          "addWallet": {
+            "type": "boolean",
+            "description": "Add wallet to user",
+            "example": true
           }
         },
         "required": [
@@ -23208,75 +23033,37 @@
       "LoginResponse": {
         "type": "object",
         "properties": {
-          "session": {
-            "$ref": "#/components/schemas/Session"
+          "status": {
+            "type": "boolean",
+            "description": "Status of the login"
           }
         },
         "required": [
-          "session"
+          "status"
         ]
       },
       "LogoutResponse": {
         "type": "object",
         "properties": {
-          "message": {
-            "type": "string",
-            "description": "Success message",
-            "example": "Successfully logged out"
+          "status": {
+            "type": "boolean",
+            "description": "Status of the logout"
           }
         },
         "required": [
-          "message"
+          "status"
         ]
       },
-      "WalletLinkInitBody": {
+      "RevalidateSessionResponse": {
         "type": "object",
         "properties": {
-          "signature": {
-            "type": "string",
-            "description": "Session signature for authentication (signed by another wallet connected to a user)",
-            "example": "0x1234...abcd"
-          },
-          "walletAddress": {
-            "type": "string",
-            "description": "Wallet address to link",
-            "example": "0x5678...efgh"
+          "status": {
+            "type": "boolean",
+            "description": "Status of the revalidation"
           }
         },
         "required": [
-          "signature",
-          "walletAddress"
-        ]
-      },
-      "WalletLinkConfirmBody": {
-        "type": "object",
-        "properties": {
-          "signature": {
-            "type": "string",
-            "description": "Session signature for authentication (signed by another wallet connected to a user)",
-            "example": "0x1234...abcd"
-          },
-          "walletAddress": {
-            "type": "string",
-            "description": "Wallet address to link",
-            "example": "0x5678...efgh"
-          },
-          "message": {
-            "type": "string",
-            "description": "SIWE message for the wallet we are linking",
-            "example": "...SIWE message..."
-          },
-          "verificationSignature": {
-            "type": "string",
-            "description": "Signature of the SIWE message by the wallet we are linking",
-            "example": "0x5678...efgh"
-          }
-        },
-        "required": [
-          "signature",
-          "walletAddress",
-          "message",
-          "verificationSignature"
+          "status"
         ]
       },
       "ActivityBody": {
@@ -23554,6 +23341,9 @@
             "items": {
               "$ref": "#/components/schemas/WalletInfo"
             }
+          },
+          "hasRoyaltyAccess": {
+            "type": "string"
           }
         },
         "required": [
@@ -23562,7 +23352,8 @@
           "email",
           "subscribed",
           "verified",
-          "wallets"
+          "wallets",
+          "hasRoyaltyAccess"
         ]
       },
       "EditUserBody": {
@@ -23591,6 +23382,17 @@
             "type": "string"
           }
         }
+      },
+      "EditUserResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status"
+        ]
       },
       "VerifyUserEmailResponse": {
         "type": "object",
