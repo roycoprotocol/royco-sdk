@@ -8337,7 +8337,7 @@ export interface UserInfo {
   subscribed: boolean;
   verified: boolean;
   wallets: WalletInfo[];
-  hasRoyaltyAccess: string;
+  hasRoyaltyAccess: boolean;
 }
 
 export interface EditUserBody {

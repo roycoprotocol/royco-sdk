@@ -23363,7 +23363,7 @@
             }
           },
           "hasRoyaltyAccess": {
-            "type": "string"
+            "type": "boolean"
           }
         },
         "required": [

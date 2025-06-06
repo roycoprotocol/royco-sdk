@@ -18535,7 +18535,7 @@ components:
           items:
             $ref: '#/components/schemas/WalletInfo'
         hasRoyaltyAccess:
-          type: string
+          type: boolean
       required:
         - id
         - name
