@@ -23029,9 +23029,9 @@
             "description": "Signature of the SIWE message",
             "example": "0x1234...5678"
           },
-          "addWallet": {
+          "linkWallet": {
             "type": "boolean",
-            "description": "Add wallet to user",
+            "description": "Whether to link the wallet to the existing user",
             "example": true
           }
         },
@@ -23055,9 +23055,9 @@
       "LogoutBody": {
         "type": "object",
         "properties": {
-          "deleteWallet": {
+          "unlinkWalletAddress": {
             "type": "string",
-            "description": "Wallet address to delete",
+            "description": "Wallet address to unlink",
             "example": "0x1234...5678"
           }
         }
