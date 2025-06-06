@@ -42,6 +42,7 @@ import {
   HealthControllerCheckError,
   InfoMarketBody,
   LoginBody,
+  LogoutBody,
   MarketControllerCreateMarketData,
   MarketControllerGetMarketData,
   MarketControllerGetMarketsData,
@@ -921,11 +922,13 @@ export class Api<
    * @request POST:/api/v1/auth/logout
    * @secure
    */
-  authControllerLogout = (params: RequestParams = {}) =>
+  authControllerLogout = (data: LogoutBody, params: RequestParams = {}) =>
     this.request<AuthControllerLogoutData, any>({
       path: `/api/v1/auth/logout`,
       method: "POST",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });
