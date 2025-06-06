@@ -24,12 +24,10 @@ import {
   ActivityControllerGetActivitiesData,
   AddonsControllerGetIncentivesData,
   AddonsControllerRefreshIncentivesData,
-  AuthControllerConfirmWalletLinkData,
   AuthControllerGetNonceData,
-  AuthControllerGetSessionData,
-  AuthControllerInitWalletLinkData,
   AuthControllerLoginData,
   AuthControllerLogoutData,
+  AuthControllerRevalidateSessionData,
   BaseRequestBody,
   ChartControllerGetMarketChartData,
   ChartRequestBody,
@@ -88,8 +86,6 @@ import {
   VaultIPAddIncentivesActionBody,
   VaultIPExtendIncentivesActionBody,
   VaultIPRefundIncentivesActionBody,
-  WalletLinkConfirmBody,
-  WalletLinkInitBody,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -898,23 +894,6 @@ export class Api<
       ...params,
     });
   /**
-   * @description Get session status
-   *
-   * @tags Auth
-   * @name AuthControllerGetSession
-   * @summary Get session
-   * @request POST:/api/v1/auth/session
-   * @secure
-   */
-  authControllerGetSession = (params: RequestParams = {}) =>
-    this.request<AuthControllerGetSessionData, any>({
-      path: `/api/v1/auth/session`,
-      method: "POST",
-      secure: true,
-      format: "json",
-      ...params,
-    });
-  /**
    * @description Login to the application
    *
    * @tags Auth
@@ -951,39 +930,20 @@ export class Api<
       ...params,
     });
   /**
-   * No description
+   * @description Revalidate the session
    *
    * @tags Auth
-   * @name AuthControllerInitWalletLink
-   * @request POST:/api/v1/auth/verify/init
+   * @name AuthControllerRevalidateSession
+   * @summary Revalidate session
+   * @request POST:/api/v1/auth/revalidate
+   * @secure
    */
-  authControllerInitWalletLink = (
-    data: WalletLinkInitBody,
-    params: RequestParams = {},
-  ) =>
-    this.request<AuthControllerInitWalletLinkData, any>({
-      path: `/api/v1/auth/verify/init`,
+  authControllerRevalidateSession = (params: RequestParams = {}) =>
+    this.request<AuthControllerRevalidateSessionData, any>({
+      path: `/api/v1/auth/revalidate`,
       method: "POST",
-      body: data,
-      type: ContentType.Json,
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Auth
-   * @name AuthControllerConfirmWalletLink
-   * @request POST:/api/v1/auth/verify/confirm
-   */
-  authControllerConfirmWalletLink = (
-    data: WalletLinkConfirmBody,
-    params: RequestParams = {},
-  ) =>
-    this.request<AuthControllerConfirmWalletLinkData, any>({
-      path: `/api/v1/auth/verify/confirm`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
+      secure: true,
+      format: "json",
       ...params,
     });
   /**

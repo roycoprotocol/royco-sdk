@@ -89,12 +89,8 @@ export interface TokenQuote {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -221,12 +217,8 @@ export interface TokenQuoteResponse {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -516,12 +508,8 @@ export interface BaseEnrichedTokenDataWithRemainingAmounts {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -717,12 +705,8 @@ export interface VaultOfferIncentiveToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -901,12 +885,8 @@ export interface GenericIncentive {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1001,7 +981,6 @@ export interface GenericIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-  label?: string;
   rawAmount?: string;
   tokenAmount?: number;
   tokenAmountUsd?: number;
@@ -1039,12 +1018,8 @@ export interface MarketInputTokenDetailed {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1201,12 +1176,8 @@ export interface MarketActiveIncentiveDetailed {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1396,11 +1367,11 @@ export interface MarketUnderlyingIncentive {
    */
   name: string;
   /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
+   * Incentive Label
+   * The custom label for the incentive token
    */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1495,11 +1466,6 @@ export interface MarketUnderlyingIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-  /**
-   * Incentive Label
-   * The custom label for the incentive token
-   */
-  label?: string;
   /**
    * Yield Rate
    * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
@@ -1539,11 +1505,11 @@ export interface MarketNativeIncentive {
    */
   name: string;
   /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
+   * Incentive Label
+   * The custom label for the incentive token
    */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1638,11 +1604,6 @@ export interface MarketNativeIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-  /**
-   * Incentive Label
-   * The custom label for the incentive token
-   */
-  label?: string;
   /**
    * Yield Rate
    * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
@@ -1682,11 +1643,11 @@ export interface MarketExternalIncentive {
    */
   name: string;
   /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
+   * Incentive Label
+   * The custom label for the incentive token
    */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -1781,11 +1742,6 @@ export interface MarketExternalIncentive {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-  /**
-   * Incentive Label
-   * The custom label for the incentive token
-   */
-  label?: string;
   /**
    * Yield Text
    * Yield rate in string format to represent any arbitrary yields
@@ -1849,12 +1805,8 @@ export interface MarketVaultBaseIncentiveTokenData {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -2039,12 +1991,8 @@ export interface BaseEnrichedTokenData {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -2408,11 +2356,11 @@ export interface LabelledTokenQuote {
    */
   name: string;
   /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
+   * Label
+   * The label of the token
    */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -2507,11 +2455,6 @@ export interface LabelledTokenQuote {
    * @example "2025-03-17 17:52:10"
    */
   lastUpdated: string;
-  /**
-   * Label
-   * The label of the token
-   */
-  label?: string;
 }
 
 export interface CampaignMetadata {
@@ -2815,12 +2758,8 @@ export interface TokenQuoteWithIds {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -3156,12 +3095,8 @@ export interface VaultDepositToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -3289,11 +3224,12 @@ export interface VaultIncentiveToken {
    */
   name: string;
   /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
+   * Label
+   * The label of the reward token
+   * @example "Staked GHO Points"
    */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -3400,12 +3336,6 @@ export interface VaultIncentiveToken {
    */
   category: "active" | "underlying" | "native" | "external";
   /**
-   * Label
-   * The label of the reward token
-   * @example "Staked GHO Points"
-   */
-  label?: string;
-  /**
    * Raw Amount
    * Amount in wei
    * @example "10000000000"
@@ -3482,12 +3412,8 @@ export interface VaultAllocationDepositToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -4009,12 +3935,8 @@ export interface BaseEnrichedTokenDataWithClaimInfo {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -4250,12 +4172,8 @@ export interface BaseEnrichedTokenDataWithWithdrawStatus {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -4405,12 +4323,8 @@ export interface MarketActiveIncentiveWithClaimStatus {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -4726,12 +4640,8 @@ export interface LockedInputTokenSpecificRecipePosition {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -4897,12 +4807,8 @@ export interface UnclaimedIncentiveTokenSpecificRecipePosition {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -5068,12 +4974,8 @@ export interface ClaimedIncentiveTokenSpecificRecipePosition {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -5434,12 +5336,8 @@ export interface LockedInputTokenSpecificVaultPosition {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -5590,12 +5488,8 @@ export interface UnclaimedIncentiveTokenSpecificVaultPosition {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -5853,12 +5747,8 @@ export interface BoycoUnderlyingIncentive {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -5995,12 +5885,8 @@ export interface BoycoNativeIncentive {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -6387,12 +6273,8 @@ export interface VaultPositionUnclaimedRewardToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -6543,12 +6425,8 @@ export interface VaultPositionClaimedRewardToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -6955,12 +6833,8 @@ export interface EnrichedOfferInputTokenData {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -7149,12 +7023,8 @@ export interface EnrichedOfferIncentiveTokenData {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -7456,12 +7326,8 @@ export interface V1ActionIncentiveToken {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -7763,12 +7629,8 @@ export interface IncentiveTokenVaultIPAddIncentives {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -7935,12 +7797,8 @@ export interface IncentiveTokenVaultIPExtendIncentives {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -8104,12 +7962,8 @@ export interface IncentiveTokenVaultIPRefundIncentives {
    * @example "USDC"
    */
   name: string;
-  /**
-   * Description
-   * The description of the token
-   * @example "USDC is a stablecoin pegged to the US dollar"
-   */
-  description: string | null;
+  label?: string;
+  description?: string;
   /**
    * Symbol
    * The symbol of the token
@@ -8329,31 +8183,6 @@ export interface NonceResponse {
   expiresAt: string;
 }
 
-export interface Session {
-  /**
-   * Signature of the session
-   * @example "0x1234...5678"
-   */
-  id: string;
-  /**
-   * Wallet address
-   * @example "0x1234...5678"
-   */
-  walletAddress: string;
-  /**
-   * User ID
-   * @example "123e4567-e89b-12d3-a456-426614174000"
-   */
-  userId: string;
-  /** Whether the session is active */
-  isActive: boolean;
-  /**
-   * When the session expires
-   * @example "2024-03-20T12:05:00Z"
-   */
-  expiresAt: string;
-}
-
 export interface LoginBody {
   /** SIWE message to verify */
   message: string;
@@ -8362,56 +8191,26 @@ export interface LoginBody {
    * @example "0x1234...5678"
    */
   signature: string;
-  /** Parent session */
-  parentSession?: Session;
+  /**
+   * Add wallet to user
+   * @example true
+   */
+  addWallet?: boolean;
 }
 
 export interface LoginResponse {
-  session: Session;
+  /** Status of the login */
+  status: boolean;
 }
 
 export interface LogoutResponse {
-  /**
-   * Success message
-   * @example "Successfully logged out"
-   */
-  message: string;
+  /** Status of the logout */
+  status: boolean;
 }
 
-export interface WalletLinkInitBody {
-  /**
-   * Session signature for authentication (signed by another wallet connected to a user)
-   * @example "0x1234...abcd"
-   */
-  signature: string;
-  /**
-   * Wallet address to link
-   * @example "0x5678...efgh"
-   */
-  walletAddress: string;
-}
-
-export interface WalletLinkConfirmBody {
-  /**
-   * Session signature for authentication (signed by another wallet connected to a user)
-   * @example "0x1234...abcd"
-   */
-  signature: string;
-  /**
-   * Wallet address to link
-   * @example "0x5678...efgh"
-   */
-  walletAddress: string;
-  /**
-   * SIWE message for the wallet we are linking
-   * @example "...SIWE message..."
-   */
-  message: string;
-  /**
-   * Signature of the SIWE message by the wallet we are linking
-   * @example "0x5678...efgh"
-   */
-  verificationSignature: string;
+export interface RevalidateSessionResponse {
+  /** Status of the revalidation */
+  status: boolean;
 }
 
 export interface ActivityBody {
@@ -8530,6 +8329,7 @@ export interface UserInfo {
   subscribed: boolean;
   verified: boolean;
   wallets: WalletInfo[];
+  hasRoyaltyAccess: string;
 }
 
 export interface EditUserBody {
@@ -8547,6 +8347,10 @@ export interface EditUserBody {
   subscribed?: boolean;
   deleteEmail?: boolean;
   deleteWallet?: string;
+}
+
+export interface EditUserResponse {
+  status: boolean;
 }
 
 export interface VerifyUserEmailResponse {
@@ -8697,20 +8501,16 @@ export type SimulateControllerSimulateTransactionsData =
 
 export type AuthControllerGetNonceData = NonceResponse;
 
-export type AuthControllerGetSessionData = Session;
-
 export type AuthControllerLoginData = LoginResponse;
 
 export type AuthControllerLogoutData = LogoutResponse;
 
-export type AuthControllerInitWalletLinkData = any;
-
-export type AuthControllerConfirmWalletLinkData = any;
+export type AuthControllerRevalidateSessionData = RevalidateSessionResponse;
 
 export type ActivityControllerGetActivitiesData = ActivityResponse;
 
 export type UserControllerGetUserInfoData = UserInfo;
 
-export type UserControllerEditUserData = UserInfo;
+export type UserControllerEditUserData = EditUserResponse;
 
 export type UserControllerVerifyUserEmailData = VerifyUserEmailResponse;
