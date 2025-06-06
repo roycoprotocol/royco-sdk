@@ -10418,6 +10418,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           }
         },
         "required": [
@@ -10584,6 +10587,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           }
         },
         "required": [
@@ -11048,6 +11054,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -11365,6 +11374,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -11665,6 +11677,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string"
           },
@@ -11846,6 +11861,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -12045,6 +12063,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -12285,6 +12306,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "yieldRate": {
             "type": "number",
             "title": "Yield Rate",
@@ -12460,6 +12484,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "yieldRate": {
             "type": "number",
             "title": "Yield Rate",
@@ -12634,6 +12661,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "yieldText": {
             "type": "string",
@@ -12863,6 +12893,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -13134,6 +13167,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -13653,6 +13689,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           }
         },
         "required": [
@@ -14311,6 +14350,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "ids": {
             "title": "Token IDs",
@@ -15468,6 +15510,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           }
         },
         "required": [
@@ -15637,6 +15682,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "incentiveId": {
             "type": "string",
@@ -15873,6 +15921,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -16744,6 +16795,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -17065,6 +17119,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -17257,6 +17314,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -17691,6 +17751,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -17908,6 +17971,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -18124,6 +18190,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -18636,6 +18705,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -18829,6 +18901,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -19189,6 +19264,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "incentiveLink": {
             "type": "string",
             "title": "Incentive Link",
@@ -19365,6 +19443,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "incentiveLink": {
             "type": "string",
@@ -19911,6 +19992,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -20111,6 +20195,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -20767,6 +20854,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -21012,6 +21102,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -21424,6 +21517,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
@@ -22223,6 +22319,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -22490,6 +22589,9 @@
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
           },
+          "tag": {
+            "type": "string"
+          },
           "rawAmount": {
             "type": "string",
             "title": "Raw Amount",
@@ -22739,6 +22841,9 @@
             "title": "Last Updated",
             "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
             "example": "2025-03-17 17:52:10"
+          },
+          "tag": {
+            "type": "string"
           },
           "rawAmount": {
             "type": "string",
