@@ -8203,6 +8203,14 @@ export interface LoginResponse {
   status: boolean;
 }
 
+export interface LogoutBody {
+  /**
+   * Wallet address to delete
+   * @example "0x1234...5678"
+   */
+  deleteWallet?: string;
+}
+
 export interface LogoutResponse {
   /** Status of the logout */
   status: boolean;

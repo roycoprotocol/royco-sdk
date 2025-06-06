@@ -9893,6 +9893,16 @@
         "description": "Logout from the application",
         "operationId": "AuthController_logout",
         "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -23041,6 +23051,16 @@
         "required": [
           "status"
         ]
+      },
+      "LogoutBody": {
+        "type": "object",
+        "properties": {
+          "deleteWallet": {
+            "type": "string",
+            "description": "Wallet address to delete",
+            "example": "0x1234...5678"
+          }
+        }
       },
       "LogoutResponse": {
         "type": "object",
