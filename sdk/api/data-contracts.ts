@@ -2605,13 +2605,13 @@ export interface EnrichedMarketV2 {
    */
   incentiveTokens: LabelledTokenQuote[];
   /** Recipe metadata */
-  recipeMetadata?: object;
+  recipeMetadata?: MarketRecipeMetadata;
   /** Vault metadata */
-  vaultMetadata?: object;
+  vaultMetadata?: MarketVaultMetadata;
   /** Campaign metadata */
   campaignMetadata?: CampaignMetadata;
   /** Market metadata */
-  marketMetadata?: object;
+  marketMetadata?: MarketMetadata;
   /**
    * Is verified
    * @example false
@@ -3916,10 +3916,22 @@ export interface GlobalPositionIncentiveTokenClaimInfoBoyco {
   rewardIds: string[];
 }
 
+export interface GlobalPositionIncentiveTokenClaimInfoV2 {
+  rawMarketRefId: string;
+  cumulativeAmounts: string[];
+  epoch: string;
+  proof: string[];
+  submissionChainId: string[];
+  submissionContract: string;
+  claimChainId: string;
+  claimContract: string;
+}
+
 export interface GlobalPositionIncentiveTokenClaimInfo {
   recipe?: GlobalPositionIncentiveTokenClaimInfoRecipe;
   vault?: GlobalPositionIncentiveTokenClaimInfoVault;
   boyco?: GlobalPositionIncentiveTokenClaimInfoBoyco;
+  v2?: GlobalPositionIncentiveTokenClaimInfoV2;
 }
 
 export interface BaseEnrichedTokenDataWithClaimInfo {
@@ -6700,6 +6712,105 @@ export interface SpecificBoringPositionResponse {
   estimatedWithdrawalTimestamp: string;
 }
 
+export interface V2Position {
+  /**
+   * ID
+   * The global unique identifier of the position: chainId_marketType_marketId_weirollWalletAddress
+   */
+  id: string;
+  /**
+   * Raw Market Ref ID
+   * The raw market reference ID
+   * @example "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  rawMarketRefId: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Market Type
+   * The type of market: 0 = Recipe, 1 = Vault
+   * @example 0
+   */
+  marketType: 0 | 1 | 2;
+  /**
+   * Market ID
+   * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
+   * @example "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  marketId: string;
+  /**
+   * Account Address
+   * Wallet address of the account
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  accountAddress: string;
+  /**
+   * Unlock Timestamp
+   * Block timestamp when the position will be unlocked
+   */
+  unlockTimestamp: string;
+  /**
+   * Is Unlocked
+   * Whether the position is unlocked
+   */
+  isUnlocked: boolean;
+  /**
+   * Block Number
+   * Block number associated with the entity
+   * @example "21910786"
+   */
+  blockNumber: string;
+  /**
+   * Block Timestamp
+   * Block timestamp associated with the entity
+   * @example "1743357424"
+   */
+  blockTimestamp: string;
+  /**
+   * Name
+   * The name of the market
+   * @example "Swap USDC to stkGHO for 1 mo"
+   */
+  name: string;
+  /**
+   * Input Token
+   * The input token for the position with withdraw status
+   */
+  inputToken: BaseEnrichedTokenDataWithWithdrawStatus;
+  unclaimedIncentiveTokens: BaseEnrichedTokenDataWithClaimInfo;
+  claimedIncentiveTokens: BaseEnrichedTokenData;
+  /**
+   * Yield Rate
+   * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
+   * @example "0.1"
+   */
+  yieldRate: number;
+}
+
+export interface V2PositionResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  /**
+   * V2 positions
+   * V2 positions
+   */
+  data: V2Position[];
+}
+
 export interface ContractDataResponse {
   /**
    * ID
@@ -8400,6 +8511,50 @@ export interface VerifyUserEmailResponse {
   id: string;
 }
 
+export interface GetUserBalanceBody {
+  /**
+   * Account Address
+   * Wallet address of the account
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  accountAddress: string;
+}
+
+export interface GetUserBalanceResponse {
+  id: string;
+  balanceUsd: number;
+}
+
+export interface UserLeaderboardInfo {
+  rank: number;
+  name: string;
+  balanceUsd: number;
+}
+
+export interface GetUserLeaderboardResponse {
+  /**
+   * Response Page Object
+   * Object type to respond with a page of results
+   * @example {"index":1,"size":3,"total":10}
+   */
+  page: ResponsePage;
+  /**
+   * Row Count
+   * Total number of rows in the results
+   * @example 234
+   */
+  count: number;
+  data: UserLeaderboardInfo[];
+}
+
+export interface GetExpectedRankBody {
+  balanceUsd: number;
+}
+
+export interface GetExpectedRankResponse {
+  rank: number;
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -8505,6 +8660,8 @@ export type PositionControllerGetBoringPositionsData = BoringPositionResponse;
 export type PositionControllerGetSpecificBoringPositionData =
   SpecificBoringPositionResponse;
 
+export type PositionControllerGetV2PositionsData = V2PositionResponse;
+
 export type ContractControllerGetContractData = ContractResponse;
 
 export type ChartControllerGetMarketChartData = ChartResponse;
@@ -8557,3 +8714,9 @@ export type UserControllerGetUserInfoData = UserInfo;
 export type UserControllerEditUserData = EditUserResponse;
 
 export type UserControllerVerifyUserEmailData = VerifyUserEmailResponse;
+
+export type UserControllerGetUserBalanceData = GetUserBalanceResponse;
+
+export type UserControllerGetUserLeaderboardData = GetUserLeaderboardResponse;
+
+export type UserControllerGetExpectedRankData = GetExpectedRankResponse;
