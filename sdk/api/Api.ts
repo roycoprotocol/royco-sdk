@@ -37,6 +37,8 @@ import {
   ExploreMarketBody,
   ExploreSettingsMarketBody,
   ExploreVaultBody,
+  GetExpectedRankBody,
+  GetUserBalanceBody,
   GlobalPositionRequestBody,
   HealthControllerCheckData,
   HealthControllerCheckError,
@@ -59,6 +61,7 @@ import {
   PositionControllerGetSpecificBoycoPositionData,
   PositionControllerGetSpecificRecipePositionData,
   PositionControllerGetSpecificVaultPositionData,
+  PositionControllerGetV2PositionsData,
   PositionControllerGetVaultPositionsData,
   RecipeAPLimitActionBody,
   RecipeAPMarketActionBody,
@@ -77,7 +80,10 @@ import {
   TokenDirectoryRequestBody,
   TokenQuoteRequestBody,
   UserControllerEditUserData,
+  UserControllerGetExpectedRankData,
+  UserControllerGetUserBalanceData,
   UserControllerGetUserInfoData,
+  UserControllerGetUserLeaderboardData,
   UserControllerVerifyUserEmailData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
@@ -218,6 +224,7 @@ export class Api<
    * @tags Addons
    * @name AddonsControllerRefreshIncentives
    * @request GET:/api/v1/addons/refresh/{id}
+   * @secure
    */
   addonsControllerRefreshIncentives = (
     id: string,
@@ -226,6 +233,7 @@ export class Api<
     this.request<AddonsControllerRefreshIncentivesData, any>({
       path: `/api/v1/addons/refresh/${id}`,
       method: "GET",
+      secure: true,
       ...params,
     });
   /**
@@ -561,6 +569,29 @@ export class Api<
   ) =>
     this.request<PositionControllerGetSpecificBoringPositionData, any>({
       path: `/api/v1/position/boring/${id}/${accountAddress}`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get positions for all v2 markets.
+   *
+   * @tags Position
+   * @name PositionControllerGetV2Positions
+   * @summary Get v2 positions
+   * @request POST:/api/v1/position/v2/{accountAddress}
+   * @secure
+   */
+  positionControllerGetV2Positions = (
+    accountAddress: string,
+    data?: BaseRequestBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<PositionControllerGetV2PositionsData, any>({
+      path: `/api/v1/position/v2/${accountAddress}`,
       method: "POST",
       body: data,
       secure: true,
@@ -1021,6 +1052,72 @@ export class Api<
       path: `/api/v1/user/verify/${id}`,
       method: "POST",
       secure: true,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get user balance
+   *
+   * @tags User
+   * @name UserControllerGetUserBalance
+   * @summary Get user balance
+   * @request POST:/api/v1/user/balance
+   * @secure
+   */
+  userControllerGetUserBalance = (
+    data: GetUserBalanceBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerGetUserBalanceData, any>({
+      path: `/api/v1/user/balance`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get user leaderboard
+   *
+   * @tags User
+   * @name UserControllerGetUserLeaderboard
+   * @summary Get user leaderboard
+   * @request POST:/api/v1/user/leaderboard
+   * @secure
+   */
+  userControllerGetUserLeaderboard = (
+    data?: BaseRequestBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerGetUserLeaderboardData, any>({
+      path: `/api/v1/user/leaderboard`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get expected rank
+   *
+   * @tags User
+   * @name UserControllerGetExpectedRank
+   * @summary Get expected rank
+   * @request POST:/api/v1/user/expected/rank
+   * @secure
+   */
+  userControllerGetExpectedRank = (
+    data: GetExpectedRankBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerGetExpectedRankData, any>({
+      path: `/api/v1/user/expected/rank`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     });

@@ -638,6 +638,17 @@
             "description": ""
           }
         },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
         "tags": [
           "Addons"
         ]
@@ -8929,6 +8940,62 @@
         ]
       }
     },
+    "/api/v1/position/v2/{accountAddress}": {
+      "post": {
+        "description": "Get positions for all v2 markets.",
+        "operationId": "PositionController_getV2Positions",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "required": true,
+            "in": "path",
+            "description": "Wallet address of the account",
+            "schema": {
+              "title": "Account Address",
+              "example": "0x77777cc68b333a2256b436d675e8d257699aa667",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2PositionResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get v2 positions",
+        "tags": [
+          "Position"
+        ]
+      }
+    },
     "/api/v1/contract/{chainId}/{contractAddress}": {
       "get": {
         "description": "Get basic contract data for a given contract address on a specific chain",
@@ -10179,6 +10246,138 @@
           }
         ],
         "summary": "Verify user email",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/v1/user/balance": {
+      "post": {
+        "description": "Get user balance",
+        "operationId": "UserController_getUserBalance",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserBalanceBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserBalanceResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get user balance",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/v1/user/leaderboard": {
+      "post": {
+        "description": "Get user leaderboard",
+        "operationId": "UserController_getUserLeaderboard",
+        "parameters": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserLeaderboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get user leaderboard",
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/v1/user/expected/rank": {
+      "post": {
+        "description": "Get expected rank",
+        "operationId": "UserController_getExpectedRank",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetExpectedRankBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExpectedRankResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get expected rank",
         "tags": [
           "User"
         ]
@@ -13921,12 +14120,20 @@
             }
           },
           "recipeMetadata": {
-            "type": "object",
-            "description": "Recipe metadata"
+            "description": "Recipe metadata",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketRecipeMetadata"
+              }
+            ]
           },
           "vaultMetadata": {
-            "type": "object",
-            "description": "Vault metadata"
+            "description": "Vault metadata",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketVaultMetadata"
+              }
+            ]
           },
           "campaignMetadata": {
             "description": "Campaign metadata",
@@ -13937,8 +14144,12 @@
             ]
           },
           "marketMetadata": {
-            "type": "object",
-            "description": "Market metadata"
+            "description": "Market metadata",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketMetadata"
+              }
+            ]
           },
           "isVerified": {
             "type": "boolean",
@@ -16633,6 +16844,54 @@
           "rewardIds"
         ]
       },
+      "GlobalPositionIncentiveTokenClaimInfoV2": {
+        "type": "object",
+        "properties": {
+          "rawMarketRefId": {
+            "type": "string"
+          },
+          "cumulativeAmounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "epoch": {
+            "type": "string"
+          },
+          "proof": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "submissionChainId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "submissionContract": {
+            "type": "string"
+          },
+          "claimChainId": {
+            "type": "string"
+          },
+          "claimContract": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "rawMarketRefId",
+          "cumulativeAmounts",
+          "epoch",
+          "proof",
+          "submissionChainId",
+          "submissionContract",
+          "claimChainId",
+          "claimContract"
+        ]
+      },
       "GlobalPositionIncentiveTokenClaimInfo": {
         "type": "object",
         "properties": {
@@ -16644,6 +16903,9 @@
           },
           "boyco": {
             "$ref": "#/components/schemas/GlobalPositionIncentiveTokenClaimInfoBoyco"
+          },
+          "v2": {
+            "$ref": "#/components/schemas/GlobalPositionIncentiveTokenClaimInfoV2"
           }
         }
       },
@@ -20503,6 +20765,155 @@
           "estimatedWithdrawalTimestamp"
         ]
       },
+      "V2Position": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The global unique identifier of the position: chainId_marketType_marketId_weirollWalletAddress"
+          },
+          "rawMarketRefId": {
+            "type": "string",
+            "title": "Raw Market Ref ID",
+            "description": "The raw market reference ID",
+            "example": "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "marketType": {
+            "type": "number",
+            "title": "Market Type",
+            "description": "The type of market: 0 = Recipe, 1 = Vault",
+            "example": 0,
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          },
+          "marketId": {
+            "type": "string",
+            "title": "Market ID",
+            "description": "The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address",
+            "example": "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "accountAddress": {
+            "type": "string",
+            "title": "Account Address",
+            "description": "Wallet address of the account",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "unlockTimestamp": {
+            "type": "string",
+            "title": "Unlock Timestamp",
+            "description": "Block timestamp when the position will be unlocked"
+          },
+          "isUnlocked": {
+            "type": "boolean",
+            "title": "Is Unlocked",
+            "description": "Whether the position is unlocked"
+          },
+          "blockNumber": {
+            "type": "string",
+            "title": "Block Number",
+            "description": "Block number associated with the entity",
+            "example": "21910786"
+          },
+          "blockTimestamp": {
+            "type": "string",
+            "title": "Block Timestamp",
+            "description": "Block timestamp associated with the entity",
+            "example": "1743357424"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the market",
+            "example": "Swap USDC to stkGHO for 1 mo"
+          },
+          "inputToken": {
+            "title": "Input Token",
+            "description": "The input token for the position with withdraw status",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEnrichedTokenDataWithWithdrawStatus"
+              }
+            ]
+          },
+          "unclaimedIncentiveTokens": {
+            "$ref": "#/components/schemas/BaseEnrichedTokenDataWithClaimInfo"
+          },
+          "claimedIncentiveTokens": {
+            "$ref": "#/components/schemas/BaseEnrichedTokenData"
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          }
+        },
+        "required": [
+          "id",
+          "rawMarketRefId",
+          "chainId",
+          "marketType",
+          "marketId",
+          "accountAddress",
+          "unlockTimestamp",
+          "isUnlocked",
+          "blockNumber",
+          "blockTimestamp",
+          "name",
+          "inputToken",
+          "unclaimedIncentiveTokens",
+          "claimedIncentiveTokens",
+          "yieldRate"
+        ]
+      },
+      "V2PositionResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "title": "Response Page Object",
+            "description": "Object type to respond with a page of results",
+            "example": {
+              "index": 1,
+              "size": 3,
+              "total": 10
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponsePage"
+              }
+            ]
+          },
+          "count": {
+            "type": "number",
+            "title": "Row Count",
+            "description": "Total number of rows in the results",
+            "example": 234
+          },
+          "data": {
+            "title": "V2 positions",
+            "description": "V2 positions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/V2Position"
+            }
+          }
+        },
+        "required": [
+          "page",
+          "count",
+          "data"
+        ]
+      },
       "ContractDataResponse": {
         "type": "object",
         "properties": {
@@ -23528,6 +23939,112 @@
         },
         "required": [
           "id"
+        ]
+      },
+      "GetUserBalanceBody": {
+        "type": "object",
+        "properties": {
+          "accountAddress": {
+            "type": "string",
+            "title": "Account Address",
+            "description": "Wallet address of the account",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          }
+        },
+        "required": [
+          "accountAddress"
+        ]
+      },
+      "GetUserBalanceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "balanceUsd"
+        ]
+      },
+      "UserLeaderboardInfo": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rank",
+          "name",
+          "balanceUsd"
+        ]
+      },
+      "GetUserLeaderboardResponse": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "title": "Response Page Object",
+            "description": "Object type to respond with a page of results",
+            "example": {
+              "index": 1,
+              "size": 3,
+              "total": 10
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponsePage"
+              }
+            ]
+          },
+          "count": {
+            "type": "number",
+            "title": "Row Count",
+            "description": "Total number of rows in the results",
+            "example": 234
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserLeaderboardInfo"
+            }
+          }
+        },
+        "required": [
+          "page",
+          "count",
+          "data"
+        ]
+      },
+      "GetExpectedRankBody": {
+        "type": "object",
+        "properties": {
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "balanceUsd"
+        ]
+      },
+      "GetExpectedRankResponse": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rank"
         ]
       }
     }
