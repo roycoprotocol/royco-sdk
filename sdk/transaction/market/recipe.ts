@@ -19,11 +19,11 @@ export const manualExecuteWeirollTxOptions = ({
 
     return [
       {
-        id: `${chainId}_${weirollWallet}_input_token_complete`,
+        id: `${chainId}_${weirollWallet}_recover_funds`,
         chainId,
         contractId: "WeirollWallet",
         label: "Recover Funds",
-        category: "withdraw",
+        category: "recover",
         address: weirollWallet as Address,
         abi: weirollWalletAbi as Abi,
         functionName: "manualExecuteWeiroll",
