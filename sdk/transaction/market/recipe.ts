@@ -3,14 +3,58 @@ import { type Address, type Abi } from "viem";
 import { type EnrichedTxOption } from "@/sdk/transaction/types";
 
 export const withdrawRecipeInputTokenTxOptions = ({
+  rawMarketRefId,
   chainId,
   weirollWallet,
 }: {
+  rawMarketRefId?: string;
   chainId: number;
   weirollWallet: string;
 }): EnrichedTxOption[] => {
   const address = AddressMap.get(`${chainId}_RecipeMarketHub`);
   const abi = AbiMap.get("RecipeMarketHub");
+
+  if (
+    rawMarketRefId ===
+    "98866_0_0xa1d68accf80e16047bf8c609e9da79a7ad75576d7fec71f490d73ff1f7d1eee7"
+  ) {
+    const weirollWalletAbi = AbiMap.get("WeirollWallet");
+
+    return [
+      {
+        id: `${chainId}_${weirollWallet}_input_token`,
+        chainId,
+        contractId: "RecipeMarketHub",
+        label: "Withdraw Deposit",
+        category: "withdraw",
+        address: address as Address,
+        abi: abi as Abi,
+        functionName: "executeWithdrawalScript",
+        args: [weirollWallet],
+        txStatus: "idle",
+      },
+      {
+        id: `${chainId}_${weirollWallet}_input_token_complete`,
+        chainId,
+        contractId: "WeirollWallet",
+        label: "Complete Withdrawal",
+        category: "withdraw",
+        address: weirollWallet as Address,
+        abi: weirollWalletAbi as Abi,
+        functionName: "manualExecuteWeiroll",
+        args: [
+          [
+            "0x8da5cb5b02ffffffffffff0007899ac8be7462151d6515fcd4773dd9267c9911",
+            "0xb65d95ec02ffffffffffff0107899ac8be7462151d6515fcd4773dd9267c9911",
+            "0x70a082310201ffffffffff01fc3bd0e01b4e755aedd2a4087ccdb90c4d28f038",
+            "0xa9059cbb010001fffffffffffc3bd0e01b4e755aedd2a4087ccdb90c4d28f038",
+          ],
+          ["0x", "0x"],
+        ],
+        txStatus: "idle",
+      },
+    ];
+  }
 
   return [
     {

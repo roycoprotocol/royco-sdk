@@ -84,6 +84,7 @@ import {
   UserControllerGetUserBalanceData,
   UserControllerGetUserInfoData,
   UserControllerGetUserLeaderboardData,
+  UserControllerGetUserStatsData,
   UserControllerVerifyUserEmailData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
@@ -1096,6 +1097,23 @@ export class Api<
       body: data,
       secure: true,
       type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get user stats
+   *
+   * @tags User
+   * @name UserControllerGetUserStats
+   * @summary Get user stats
+   * @request POST:/api/v1/user/stats
+   * @secure
+   */
+  userControllerGetUserStats = (params: RequestParams = {}) =>
+    this.request<UserControllerGetUserStatsData, any>({
+      path: `/api/v1/user/stats`,
+      method: "POST",
+      secure: true,
       format: "json",
       ...params,
     });
