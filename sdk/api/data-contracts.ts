@@ -8529,6 +8529,7 @@ export interface UserLeaderboardInfo {
   rank: number;
   name: string;
   balanceUsd: number;
+  duration: number;
 }
 
 export interface GetUserLeaderboardResponse {
@@ -8545,6 +8546,11 @@ export interface GetUserLeaderboardResponse {
    */
   count: number;
   data: UserLeaderboardInfo[];
+}
+
+export interface GetUserStatsResponse {
+  balanceUsd: number;
+  users: number;
 }
 
 export interface GetExpectedRankBody {
@@ -8718,5 +8724,7 @@ export type UserControllerVerifyUserEmailData = VerifyUserEmailResponse;
 export type UserControllerGetUserBalanceData = GetUserBalanceResponse;
 
 export type UserControllerGetUserLeaderboardData = GetUserLeaderboardResponse;
+
+export type UserControllerGetUserStatsData = GetUserStatsResponse;
 
 export type UserControllerGetExpectedRankData = GetExpectedRankResponse;

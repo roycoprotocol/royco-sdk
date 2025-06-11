@@ -8772,6 +8772,24 @@ paths:
         - api-key-query: []
       summary: Get user leaderboard
       tags: *ref_11
+  /api/v1/user/stats:
+    post:
+      description: Get user stats
+      operationId: UserController_getUserStats
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserStatsResponse'
+      security:
+        - bearer: []
+        - x-api-key: []
+        - api-key-query: []
+      summary: Get user stats
+      tags: *ref_11
   /api/v1/user/expected/rank:
     post:
       description: Get expected rank
@@ -18938,10 +18956,13 @@ components:
           type: string
         balanceUsd:
           type: number
+        duration:
+          type: number
       required:
         - rank
         - name
         - balanceUsd
+        - duration
     GetUserLeaderboardResponse:
       type: object
       properties:
@@ -18964,6 +18985,16 @@ components:
         - page
         - count
         - data
+    GetUserStatsResponse:
+      type: object
+      properties:
+        balanceUsd:
+          type: number
+        users:
+          type: number
+      required:
+        - balanceUsd
+        - users
     GetExpectedRankBody:
       type: object
       properties:
