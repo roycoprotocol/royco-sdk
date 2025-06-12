@@ -687,14 +687,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/EnrichedMarket"
-                    },
-                    {
-                      "$ref": "#/components/schemas/EnrichedMarketV2"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/EnrichedMarketMerged"
                 },
                 "example": {
                   "id": "146_0_0x7d1f2a66eabf9142dd30d1355efcbfd4cfbefd2872d24ca9855641434816a525",
@@ -10416,6 +10409,50 @@
           "User"
         ]
       }
+    },
+    "/api/v1/user/register": {
+      "post": {
+        "description": "Register user",
+        "operationId": "UserController_registerUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Register user",
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "info": {
@@ -13967,6 +14004,12 @@
           },
           "depositLink": {
             "type": "string"
+          },
+          "rewardAddress": {
+            "type": "string"
+          },
+          "rewardPerHour": {
+            "type": "string"
           }
         },
         "required": [
@@ -14273,6 +14316,351 @@
             }
           }
         }
+      },
+      "EnrichedMarketMerged": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The global unique identifier of the market: chainId_marketType_marketId",
+            "example": "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "marketType": {
+            "type": "number",
+            "title": "Market Type",
+            "description": "The type of market: 0 = Recipe, 1 = Vault",
+            "example": 0,
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          },
+          "marketId": {
+            "type": "string",
+            "title": "Market ID",
+            "description": "The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address",
+            "example": "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "The name of the market",
+            "example": "Swap USDC to stkGHO for 1 mo"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.",
+            "example": "Swap USDC to stkGHO for 1 mo"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "description": "The category of the market",
+            "example": "default"
+          },
+          "underlyingVaultAddress": {
+            "type": "string",
+            "title": "Underlying Vault Address",
+            "description": "The address of the underlying vault -- only vault markets have an underlying vault, while recipe markets don't",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          },
+          "lockupTime": {
+            "type": "string",
+            "title": "Lockup Time",
+            "description": "The lockup time for the market in seconds. Note: vault markets always have a lockup time of \"0\"",
+            "example": "31536000"
+          },
+          "frontendFee": {
+            "type": "string",
+            "title": "Frontend Fee",
+            "description": "The frontend fee for the market in basis points in wei: 10^18 = 100%",
+            "example": "10000000000000000"
+          },
+          "rewardStyle": {
+            "type": "number",
+            "title": "Reward Style",
+            "description": "The reward distribution style for the market: 0 = Upfront, 1 = Arrear, 2 = Forfeitable",
+            "example": 0,
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          },
+          "tvlUsd": {
+            "type": "number",
+            "title": "TVL USD",
+            "description": "The total value locked in the market in USD",
+            "example": 1456234.98
+          },
+          "fillableUsd": {
+            "type": "number",
+            "title": "Fillable USD",
+            "description": "The fillable USD for the market",
+            "example": 1456234.98
+          },
+          "capacityRatio": {
+            "type": "number",
+            "title": "Capacity Ratio",
+            "description": "The remaining capacity ratio for the market",
+            "example": 0.5
+          },
+          "incentivesUsd": {
+            "type": "number",
+            "title": "Incentives USD",
+            "description": "The total value of incentives in the market in USD",
+            "example": 15689.23
+          },
+          "yieldRate": {
+            "type": "number",
+            "title": "Yield Rate",
+            "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
+            "example": "0.1"
+          },
+          "variableYieldRate": {
+            "type": "number",
+            "title": "Variable Yield Rate",
+            "description": "Variable yield rate from the market which will change based on deposits",
+            "example": 0.1
+          },
+          "realYieldRate": {
+            "type": "number"
+          },
+          "tokenYieldRate": {
+            "type": "number"
+          },
+          "pointYieldRate": {
+            "type": "number"
+          },
+          "realIncentives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
+          },
+          "tokenIncentives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
+          },
+          "pointIncentives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GenericIncentive"
+            }
+          },
+          "inputTokenId": {
+            "type": "string",
+            "title": "Input Token ID",
+            "description": "The ID of the input token for the market"
+          },
+          "incentiveTokenIds": {
+            "title": "Incentive Token IDs",
+            "description": "The IDs of the incentive tokens for the market",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inputToken": {
+            "title": "Input Token Data",
+            "description": "Token data for the market input token",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketInputTokenDetailed"
+              }
+            ]
+          },
+          "incentiveTokens": {
+            "title": "Incentive Tokens",
+            "description": "Incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TokenQuote"
+            }
+          },
+          "activeIncentives": {
+            "title": "Active Incentives",
+            "description": "Active incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketActiveIncentiveDetailed"
+            }
+          },
+          "underlyingIncentives": {
+            "title": "Underlying Incentives",
+            "description": "Underlying incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketUnderlyingIncentive"
+            }
+          },
+          "nativeIncentives": {
+            "title": "Native Incentives",
+            "description": "Native incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketNativeIncentive"
+            }
+          },
+          "externalIncentives": {
+            "title": "External Incentives",
+            "description": "External incentive tokens",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketExternalIncentive"
+            }
+          },
+          "recipeMetadata": {
+            "title": "Recipe Metadata",
+            "description": "The metadata for the recipe",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketRecipeMetadata"
+              }
+            ]
+          },
+          "vaultMetadata": {
+            "title": "Vault Metadata",
+            "description": "The metadata for the vault",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketVaultMetadata"
+              }
+            ]
+          },
+          "marketMetadata": {
+            "title": "Market Metadata",
+            "description": "The metadata for the market",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MarketMetadata"
+              }
+            ]
+          },
+          "isVerified": {
+            "type": "boolean",
+            "title": "Is Verified",
+            "description": "Whether the market is verified"
+          },
+          "isActive": {
+            "type": "boolean",
+            "title": "Is Active",
+            "description": "Whether the market is active"
+          },
+          "blockNumber": {
+            "type": "string",
+            "title": "Block Number",
+            "description": "Block number associated with the entity",
+            "example": "21910786"
+          },
+          "blockTimestamp": {
+            "type": "string",
+            "title": "Block Timestamp",
+            "description": "Block timestamp associated with the entity",
+            "example": "1743357424"
+          },
+          "transactionHash": {
+            "type": "string",
+            "title": "Transaction Hash",
+            "description": "Transaction hash associated with the entity",
+            "example": "0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461"
+          },
+          "logIndex": {
+            "type": "string",
+            "title": "Log Index",
+            "description": "Log index associated with the entity",
+            "example": "12"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "title": "Last Updated",
+            "description": "The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format",
+            "example": "2025-03-17 17:52:10"
+          },
+          "searchKey": {
+            "type": "string",
+            "title": "Search Key",
+            "description": "Key to search by",
+            "example": "marketId"
+          },
+          "inputTokenIds": {
+            "description": "Input token IDs",
+            "example": [
+              "0x123...",
+              "0x456..."
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inputTokens": {
+            "description": "Input tokens",
+            "default": [],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketInputTokenDetailed"
+            }
+          },
+          "campaignMetadata": {
+            "description": "Campaign metadata",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CampaignMetadata"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "marketType",
+          "marketId",
+          "name",
+          "description",
+          "category",
+          "lockupTime",
+          "frontendFee",
+          "rewardStyle",
+          "tvlUsd",
+          "fillableUsd",
+          "capacityRatio",
+          "incentivesUsd",
+          "yieldRate",
+          "yieldRate",
+          "variableYieldRate",
+          "realYieldRate",
+          "tokenYieldRate",
+          "pointYieldRate",
+          "realIncentives",
+          "tokenIncentives",
+          "pointIncentives",
+          "inputTokenId",
+          "incentiveTokenIds",
+          "inputToken",
+          "incentiveTokens",
+          "activeIncentives",
+          "isVerified",
+          "isActive",
+          "blockNumber",
+          "blockTimestamp",
+          "transactionHash",
+          "logIndex",
+          "lastUpdated",
+          "inputTokenIds",
+          "inputTokens"
+        ]
       },
       "ExploreMarketBody": {
         "type": "object",
@@ -23590,16 +23978,45 @@
           "signature"
         ]
       },
+      "WalletInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "balanceUsd"
+        ]
+      },
       "LoginResponse": {
         "type": "object",
         "properties": {
           "status": {
             "type": "boolean",
             "description": "Status of the login"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Signature of the session"
+          },
+          "walletInfo": {
+            "description": "Wallet info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WalletInfo"
+              }
+            ]
           }
         },
         "required": [
-          "status"
+          "status",
+          "signature",
+          "walletInfo"
         ]
       },
       "LogoutBody": {
@@ -23630,10 +24047,24 @@
           "status": {
             "type": "boolean",
             "description": "Status of the revalidation"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Session signature"
+          },
+          "walletInfo": {
+            "description": "Wallet info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WalletInfo"
+              }
+            ]
           }
         },
         "required": [
-          "status"
+          "status",
+          "signature",
+          "walletInfo"
         ]
       },
       "ActivityBody": {
@@ -23867,21 +24298,6 @@
           "data"
         ]
       },
-      "WalletInfo": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "balanceUsd": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "id",
-          "balanceUsd"
-        ]
-      },
       "UserInfo": {
         "type": "object",
         "properties": {
@@ -24098,6 +24514,41 @@
         },
         "required": [
           "rank"
+        ]
+      },
+      "RegisterUserBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "email": {
+            "type": "string"
+          },
+          "signatures": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "signatures"
+        ]
+      },
+      "RegisterUserResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status"
         ]
       }
     }

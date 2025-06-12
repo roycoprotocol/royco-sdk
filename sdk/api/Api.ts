@@ -67,6 +67,7 @@ import {
   RecipeAPMarketActionBody,
   RecipeIPLimitActionBody,
   RecipeIPMarketActionBody,
+  RegisterUserBody,
   SimulateControllerSimulateTransactionsData,
   SimulateTransactionBody,
   SpecificBoringPositionRequest,
@@ -85,6 +86,7 @@ import {
   UserControllerGetUserInfoData,
   UserControllerGetUserLeaderboardData,
   UserControllerGetUserStatsData,
+  UserControllerRegisterUserData,
   UserControllerVerifyUserEmailData,
   VaultAPLimitActionBody,
   VaultAPMarketActionBody,
@@ -1132,6 +1134,28 @@ export class Api<
   ) =>
     this.request<UserControllerGetExpectedRankData, any>({
       path: `/api/v1/user/expected/rank`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Register user
+   *
+   * @tags User
+   * @name UserControllerRegisterUser
+   * @summary Register user
+   * @request POST:/api/v1/user/register
+   * @secure
+   */
+  userControllerRegisterUser = (
+    data: RegisterUserBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<UserControllerRegisterUserData, any>({
+      path: `/api/v1/user/register`,
       method: "POST",
       body: data,
       secure: true,

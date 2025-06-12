@@ -2478,6 +2478,8 @@ export interface CampaignMetadata {
   endTime: string;
   status: string;
   depositLink: string;
+  rewardAddress?: string;
+  rewardPerHour?: string;
 }
 
 export interface EnrichedMarketV2 {
@@ -2657,6 +2659,230 @@ export interface InfoMarketBody {
    * Array of custom token assumptions --  if not provided, the default quote data will be used.
    */
   customTokenData?: CustomTokenDataElement[];
+}
+
+export interface EnrichedMarketMerged {
+  /**
+   * ID
+   * The global unique identifier of the market: chainId_marketType_marketId
+   * @example "1_0_0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Market Type
+   * The type of market: 0 = Recipe, 1 = Vault
+   * @example 0
+   */
+  marketType: 0 | 1 | 2;
+  /**
+   * Market ID
+   * The on-chain identifier of the market: For recipe market, it's market hash -- for vault market, it's wrapped vault address
+   * @example "0x83c459782b2ff36629401b1a592354fc085f29ae00cf97b803f73cac464d389b"
+   */
+  marketId: string;
+  /**
+   * Name
+   * The name of the market
+   * @example "Swap USDC to stkGHO for 1 mo"
+   */
+  name: string;
+  /**
+   * Description
+   * Swap USDC for GHO on Balancer V2, receiving a minimum of .999 GHO per USDC, then stake the GHO for stkGHO and lock for 1 month.
+   * @example "Swap USDC to stkGHO for 1 mo"
+   */
+  description: string;
+  /**
+   * Category
+   * The category of the market
+   * @example "default"
+   */
+  category: string;
+  /**
+   * Underlying Vault Address
+   * The address of the underlying vault -- only vault markets have an underlying vault, while recipe markets don't
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  underlyingVaultAddress?: string;
+  /**
+   * Lockup Time
+   * The lockup time for the market in seconds. Note: vault markets always have a lockup time of "0"
+   * @example "31536000"
+   */
+  lockupTime: string;
+  /**
+   * Frontend Fee
+   * The frontend fee for the market in basis points in wei: 10^18 = 100%
+   * @example "10000000000000000"
+   */
+  frontendFee: string;
+  /**
+   * Reward Style
+   * The reward distribution style for the market: 0 = Upfront, 1 = Arrear, 2 = Forfeitable
+   * @example 0
+   */
+  rewardStyle: 0 | 1 | 2;
+  /**
+   * TVL USD
+   * The total value locked in the market in USD
+   * @example 1456234.98
+   */
+  tvlUsd: number;
+  /**
+   * Fillable USD
+   * The fillable USD for the market
+   * @example 1456234.98
+   */
+  fillableUsd: number;
+  /**
+   * Capacity Ratio
+   * The remaining capacity ratio for the market
+   * @example 0.5
+   */
+  capacityRatio: number;
+  /**
+   * Incentives USD
+   * The total value of incentives in the market in USD
+   * @example 15689.23
+   */
+  incentivesUsd: number;
+  /**
+   * Yield Rate
+   * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
+   * @example "0.1"
+   */
+  yieldRate: number;
+  /**
+   * Variable Yield Rate
+   * Variable yield rate from the market which will change based on deposits
+   * @example 0.1
+   */
+  variableYieldRate: number;
+  realYieldRate: number;
+  tokenYieldRate: number;
+  pointYieldRate: number;
+  realIncentives: GenericIncentive[];
+  tokenIncentives: GenericIncentive[];
+  pointIncentives: GenericIncentive[];
+  /**
+   * Input Token ID
+   * The ID of the input token for the market
+   */
+  inputTokenId: string;
+  /**
+   * Incentive Token IDs
+   * The IDs of the incentive tokens for the market
+   */
+  incentiveTokenIds: string[];
+  /**
+   * Input Token Data
+   * Token data for the market input token
+   */
+  inputToken: MarketInputTokenDetailed;
+  /**
+   * Incentive Tokens
+   * Incentive tokens
+   */
+  incentiveTokens: TokenQuote[];
+  /**
+   * Active Incentives
+   * Active incentive tokens
+   */
+  activeIncentives: MarketActiveIncentiveDetailed[];
+  /**
+   * Underlying Incentives
+   * Underlying incentive tokens
+   */
+  underlyingIncentives?: MarketUnderlyingIncentive[];
+  /**
+   * Native Incentives
+   * Native incentive tokens
+   */
+  nativeIncentives?: MarketNativeIncentive[];
+  /**
+   * External Incentives
+   * External incentive tokens
+   */
+  externalIncentives?: MarketExternalIncentive[];
+  /**
+   * Recipe Metadata
+   * The metadata for the recipe
+   */
+  recipeMetadata?: MarketRecipeMetadata;
+  /**
+   * Vault Metadata
+   * The metadata for the vault
+   */
+  vaultMetadata?: MarketVaultMetadata;
+  /**
+   * Market Metadata
+   * The metadata for the market
+   */
+  marketMetadata?: MarketMetadata;
+  /**
+   * Is Verified
+   * Whether the market is verified
+   */
+  isVerified: boolean;
+  /**
+   * Is Active
+   * Whether the market is active
+   */
+  isActive: boolean;
+  /**
+   * Block Number
+   * Block number associated with the entity
+   * @example "21910786"
+   */
+  blockNumber: string;
+  /**
+   * Block Timestamp
+   * Block timestamp associated with the entity
+   * @example "1743357424"
+   */
+  blockTimestamp: string;
+  /**
+   * Transaction Hash
+   * Transaction hash associated with the entity
+   * @example "0xbd48c4956ca72ebca29e517f556676170f78914b786518854c3c57be933af461"
+   */
+  transactionHash: string;
+  /**
+   * Log Index
+   * Log index associated with the entity
+   * @example "12"
+   */
+  logIndex: string;
+  /**
+   * Last Updated
+   * The last updated timestamp of the data in YYYY-MM-DD HH:MM:SS format
+   * @example "2025-03-17 17:52:10"
+   */
+  lastUpdated: string;
+  /**
+   * Search Key
+   * Key to search by
+   * @example "marketId"
+   */
+  searchKey?: string;
+  /**
+   * Input token IDs
+   * @example ["0x123...","0x456..."]
+   */
+  inputTokenIds: string[];
+  /**
+   * Input tokens
+   * @default []
+   */
+  inputTokens: MarketInputTokenDetailed[];
+  /** Campaign metadata */
+  campaignMetadata?: CampaignMetadata;
 }
 
 export interface ExploreMarketBody {
@@ -8344,9 +8570,18 @@ export interface LoginBody {
   linkWallet?: boolean;
 }
 
+export interface WalletInfo {
+  id: string;
+  balanceUsd: number;
+}
+
 export interface LoginResponse {
   /** Status of the login */
   status: boolean;
+  /** Signature of the session */
+  signature: string;
+  /** Wallet info */
+  walletInfo: WalletInfo;
 }
 
 export interface LogoutBody {
@@ -8365,6 +8600,10 @@ export interface LogoutResponse {
 export interface RevalidateSessionResponse {
   /** Status of the revalidation */
   status: boolean;
+  /** Session signature */
+  signature: string;
+  /** Wallet info */
+  walletInfo: WalletInfo;
 }
 
 export interface ActivityBody {
@@ -8469,11 +8708,6 @@ export interface ActivityResponse {
   data: EnrichedActivity[];
 }
 
-export interface WalletInfo {
-  id: string;
-  balanceUsd: number;
-}
-
 export interface UserInfo {
   id: string;
   name: string;
@@ -8561,6 +8795,20 @@ export interface GetExpectedRankResponse {
   rank: number;
 }
 
+export interface RegisterUserBody {
+  /**
+   * @minLength 1
+   * @maxLength 50
+   */
+  name: string;
+  email: string;
+  signatures: string[];
+}
+
+export interface RegisterUserResponse {
+  status: boolean;
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -8631,7 +8879,7 @@ export type AddonsControllerGetIncentivesData = any;
 
 export type AddonsControllerRefreshIncentivesData = any;
 
-export type MarketControllerGetMarketData = EnrichedMarket | EnrichedMarketV2;
+export type MarketControllerGetMarketData = EnrichedMarketMerged;
 
 export type MarketControllerGetMarketsData = ExploreMarketResponse;
 
@@ -8728,3 +8976,5 @@ export type UserControllerGetUserLeaderboardData = GetUserLeaderboardResponse;
 export type UserControllerGetUserStatsData = GetUserStatsResponse;
 
 export type UserControllerGetExpectedRankData = GetExpectedRankResponse;
+
+export type UserControllerRegisterUserData = RegisterUserResponse;
