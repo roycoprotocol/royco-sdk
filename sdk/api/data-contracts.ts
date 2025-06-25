@@ -2480,6 +2480,8 @@ export interface CampaignMetadata {
   depositLink: string;
   rewardAddress?: string;
   rewardPerHour?: string;
+  incentiveLocker?: string;
+  lastRewardAttestationTime?: string;
 }
 
 export interface EnrichedMarketV2 {
@@ -4151,6 +4153,7 @@ export interface GlobalPositionIncentiveTokenClaimInfoV2 {
   submissionContract: string;
   claimChainId: string;
   claimContract: string;
+  incentiveLocker: string;
 }
 
 export interface GlobalPositionIncentiveTokenClaimInfo {
@@ -7002,19 +7005,17 @@ export interface V2Position {
    * @example "Swap USDC to stkGHO for 1 mo"
    */
   name: string;
-  /**
-   * Input Token
-   * The input token for the position with withdraw status
-   */
-  inputToken: BaseEnrichedTokenDataWithWithdrawStatus;
-  unclaimedIncentiveTokens: BaseEnrichedTokenDataWithClaimInfo;
-  claimedIncentiveTokens: BaseEnrichedTokenData;
+  inputTokens: BaseEnrichedTokenDataWithWithdrawStatus[];
+  unclaimedIncentiveTokens: BaseEnrichedTokenDataWithClaimInfo[];
+  claimedIncentiveTokens: BaseEnrichedTokenData[];
   /**
    * Yield Rate
    * Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.
    * @example "0.1"
    */
   yieldRate: number;
+  type: string;
+  campaignMetadata: CampaignMetadata;
 }
 
 export interface V2PositionResponse {
@@ -8537,6 +8538,11 @@ export interface SimulateTransactionResponse {
   simulatedTxns: SimulatedTransaction[];
 }
 
+export interface WalletInfo {
+  id: string;
+  balanceUsd: number;
+}
+
 export interface NonceResponse {
   /**
    * Nonce for SIWE message
@@ -8553,6 +8559,15 @@ export interface NonceResponse {
    * @example "2024-03-20T12:05:00Z"
    */
   expiresAt: string;
+  /**
+   * Whether the user is already logged in
+   * @example false
+   */
+  isAlreadyLoggedIn?: boolean;
+  /** Session signature */
+  signature: string;
+  /** Wallet info */
+  walletInfo: WalletInfo;
 }
 
 export interface LoginBody {
@@ -8568,11 +8583,6 @@ export interface LoginBody {
    * @example true
    */
   linkWallet?: boolean;
-}
-
-export interface WalletInfo {
-  id: string;
-  balanceUsd: number;
 }
 
 export interface LoginResponse {
@@ -8809,6 +8819,27 @@ export interface RegisterUserResponse {
   status: boolean;
 }
 
+export interface EnrichedUserSafeInfoBody {
+  /**
+   * Custom Token Data
+   * Array of custom token assumptions --  if not provided, the default quote data will be used.
+   */
+  customTokenData?: CustomTokenDataElement[];
+}
+
+export interface EnrichedSafe {
+  id: string;
+  chainId: number;
+  safeAddress: string;
+  threshold: number;
+  owners: string[];
+}
+
+export interface EnrichedUserSafeInfo {
+  id: string;
+  safes: EnrichedSafe[];
+}
+
 export interface HealthControllerCheckData {
   /** @example "ok" */
   status?: string;
@@ -8978,3 +9009,5 @@ export type UserControllerGetUserStatsData = GetUserStatsResponse;
 export type UserControllerGetExpectedRankData = GetExpectedRankResponse;
 
 export type UserControllerRegisterUserData = RegisterUserResponse;
+
+export type SafeControllerGetEnrichedUserSafeInfoData = EnrichedUserSafeInfo;
