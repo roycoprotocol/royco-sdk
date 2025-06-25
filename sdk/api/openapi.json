@@ -10453,11 +10453,67 @@
           "User"
         ]
       }
+    },
+    "/api/v1/safe/info/{accountAddress}": {
+      "post": {
+        "description": "Get user safe info by account address",
+        "operationId": "SafeController_getEnrichedUserSafeInfo",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "required": true,
+            "in": "path",
+            "description": "Wallet address of the account",
+            "schema": {
+              "title": "Account Address",
+              "example": "0x77777cc68b333a2256b436d675e8d257699aa667",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrichedUserSafeInfoBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrichedUserSafeInfo"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get user safe info",
+        "tags": [
+          "Safe"
+        ]
+      }
     }
   },
   "info": {
     "title": "Royco API",
-    "description": "APIs for interacting with the Royco protocol. For testing purposes, you can use this public API Key: 8efbdc2513f31866c6f5e6aa7d1ae3506843e2a874eb9284dcb3dbb8969c77de",
+    "description": "APIs for interacting with the Royco protocol. For testing purposes, you can use this public API Key: ROYCO_DEMO",
     "version": "1.0",
     "contact": {}
   },
@@ -14010,6 +14066,12 @@
           },
           "rewardPerHour": {
             "type": "string"
+          },
+          "incentiveLocker": {
+            "type": "string"
+          },
+          "lastRewardAttestationTime": {
+            "type": "string"
           }
         },
         "required": [
@@ -17301,6 +17363,9 @@
           },
           "claimContract": {
             "type": "string"
+          },
+          "incentiveLocker": {
+            "type": "string"
           }
         },
         "required": [
@@ -17311,7 +17376,8 @@
           "submissionChainId",
           "submissionContract",
           "claimChainId",
-          "claimContract"
+          "claimContract",
+          "incentiveLocker"
         ]
       },
       "GlobalPositionIncentiveTokenClaimInfo": {
@@ -21258,26 +21324,35 @@
             "description": "The name of the market",
             "example": "Swap USDC to stkGHO for 1 mo"
           },
-          "inputToken": {
-            "title": "Input Token",
-            "description": "The input token for the position with withdraw status",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/BaseEnrichedTokenDataWithWithdrawStatus"
-              }
-            ]
+          "inputTokens": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseEnrichedTokenDataWithWithdrawStatus"
+            }
           },
           "unclaimedIncentiveTokens": {
-            "$ref": "#/components/schemas/BaseEnrichedTokenDataWithClaimInfo"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseEnrichedTokenDataWithClaimInfo"
+            }
           },
           "claimedIncentiveTokens": {
-            "$ref": "#/components/schemas/BaseEnrichedTokenData"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseEnrichedTokenData"
+            }
           },
           "yieldRate": {
             "type": "number",
             "title": "Yield Rate",
             "description": "Yield rate as a ratio: 0.1 = 10%, 1 = 100%, etc.",
             "example": "0.1"
+          },
+          "type": {
+            "type": "string"
+          },
+          "campaignMetadata": {
+            "$ref": "#/components/schemas/CampaignMetadata"
           }
         },
         "required": [
@@ -21292,10 +21367,12 @@
           "blockNumber",
           "blockTimestamp",
           "name",
-          "inputToken",
+          "inputTokens",
           "unclaimedIncentiveTokens",
           "claimedIncentiveTokens",
-          "yieldRate"
+          "yieldRate",
+          "type",
+          "campaignMetadata"
         ]
       },
       "V2PositionResponse": {
@@ -23930,6 +24007,21 @@
           "simulatedTxns"
         ]
       },
+      "WalletInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "balanceUsd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "balanceUsd"
+        ]
+      },
       "NonceResponse": {
         "type": "object",
         "properties": {
@@ -23947,12 +24039,31 @@
             "type": "string",
             "description": "When the nonce expires",
             "example": "2024-03-20T12:05:00Z"
+          },
+          "isAlreadyLoggedIn": {
+            "type": "boolean",
+            "description": "Whether the user is already logged in",
+            "example": false
+          },
+          "signature": {
+            "type": "string",
+            "description": "Session signature"
+          },
+          "walletInfo": {
+            "description": "Wallet info",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WalletInfo"
+              }
+            ]
           }
         },
         "required": [
           "nonce",
           "issuedAt",
-          "expiresAt"
+          "expiresAt",
+          "signature",
+          "walletInfo"
         ]
       },
       "LoginBody": {
@@ -23976,21 +24087,6 @@
         "required": [
           "message",
           "signature"
-        ]
-      },
-      "WalletInfo": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "balanceUsd": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "id",
-          "balanceUsd"
         ]
       },
       "LoginResponse": {
@@ -24549,6 +24645,67 @@
         },
         "required": [
           "status"
+        ]
+      },
+      "EnrichedUserSafeInfoBody": {
+        "type": "object",
+        "properties": {
+          "customTokenData": {
+            "title": "Custom Token Data",
+            "description": "Array of custom token assumptions --  if not provided, the default quote data will be used.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomTokenDataElement"
+            }
+          }
+        }
+      },
+      "EnrichedSafe": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "chainId": {
+            "type": "number"
+          },
+          "safeAddress": {
+            "type": "string"
+          },
+          "threshold": {
+            "type": "number"
+          },
+          "owners": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "safeAddress",
+          "threshold",
+          "owners"
+        ]
+      },
+      "EnrichedUserSafeInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "safes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedSafe"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "safes"
         ]
       }
     }

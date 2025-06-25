@@ -34,6 +34,7 @@ import {
   ContractControllerGetContractData,
   CreateMarketBody,
   EditUserBody,
+  EnrichedUserSafeInfoBody,
   ExploreMarketBody,
   ExploreSettingsMarketBody,
   ExploreVaultBody,
@@ -68,6 +69,7 @@ import {
   RecipeIPLimitActionBody,
   RecipeIPMarketActionBody,
   RegisterUserBody,
+  SafeControllerGetEnrichedUserSafeInfoData,
   SimulateControllerSimulateTransactionsData,
   SimulateTransactionBody,
   SpecificBoringPositionRequest,
@@ -1156,6 +1158,29 @@ export class Api<
   ) =>
     this.request<UserControllerRegisterUserData, any>({
       path: `/api/v1/user/register`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get user safe info by account address
+   *
+   * @tags Safe
+   * @name SafeControllerGetEnrichedUserSafeInfo
+   * @summary Get user safe info
+   * @request POST:/api/v1/safe/info/{accountAddress}
+   * @secure
+   */
+  safeControllerGetEnrichedUserSafeInfo = (
+    accountAddress: string,
+    data?: EnrichedUserSafeInfoBody,
+    params: RequestParams = {},
+  ) =>
+    this.request<SafeControllerGetEnrichedUserSafeInfoData, any>({
+      path: `/api/v1/safe/info/${accountAddress}`,
       method: "POST",
       body: data,
       secure: true,
