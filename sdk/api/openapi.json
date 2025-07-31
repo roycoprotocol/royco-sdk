@@ -25363,6 +25363,10 @@
           "isClaimed": {
             "type": "boolean",
             "description": "Whether the incentive token has been claimed completely"
+          },
+          "merkleContractRefId": {
+            "type": "string",
+            "description": "The merkle contract ref ID"
           }
         },
         "required": [
@@ -25371,7 +25375,8 @@
           "merkleProof",
           "unclaimedIncentiveTokenData",
           "claimedIncentiveTokenData",
-          "isClaimed"
+          "isClaimed",
+          "merkleContractRefId"
         ]
       },
       "MerkleClaimInfoResponse": {
