@@ -33,6 +33,8 @@ import {
   ChartRequestBody,
   ContractControllerGetContractData,
   CreateMarketBody,
+  DecodeActionsRequestDto,
+  DecoderControllerDecodeActionsData,
   EditUserBody,
   EnrichedUserSafeInfoBody,
   ExploreMarketBody,
@@ -50,6 +52,10 @@ import {
   MarketControllerGetMarketData,
   MarketControllerGetMarketsData,
   MarketControllerGetMarketSettingsData,
+  MerkleClaimInfoRequest,
+  MerkleControllerGetMerkleClaimInfoData,
+  MerkleControllerGetMerkleMetadataData,
+  MerkleMetadataRequest,
   OfferControllerGetRecipeOffersData,
   OfferControllerGetVaultOffersData,
   PointControllerGetPointDirectoryData,
@@ -1166,6 +1172,28 @@ export class Api<
       ...params,
     });
   /**
+   * @description Decode hex commands into readable contract actions with function signatures and contract names
+   *
+   * @tags Decoder
+   * @name DecoderControllerDecodeActions
+   * @summary Decode Weiroll script actions
+   * @request POST:/api/v1/decoder/decode
+   * @secure
+   */
+  decoderControllerDecodeActions = (
+    data: DecodeActionsRequestDto,
+    params: RequestParams = {},
+  ) =>
+    this.request<DecoderControllerDecodeActionsData, any>({
+      path: `/api/v1/decoder/decode`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
    * @description Get user safe info by account address
    *
    * @tags Safe
@@ -1181,6 +1209,50 @@ export class Api<
   ) =>
     this.request<SafeControllerGetEnrichedUserSafeInfoData, any>({
       path: `/api/v1/safe/info/${accountAddress}`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get merkle metadata for a given batch ID.
+   *
+   * @tags Merkle
+   * @name MerkleControllerGetMerkleMetadata
+   * @summary Get merkle metadata
+   * @request POST:/api/v1/merkle/metadata
+   * @secure
+   */
+  merkleControllerGetMerkleMetadata = (
+    data?: MerkleMetadataRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<MerkleControllerGetMerkleMetadataData, any>({
+      path: `/api/v1/merkle/metadata`,
+      method: "POST",
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * @description Get merkle claim info for a given batch ID and account address.
+   *
+   * @tags Merkle
+   * @name MerkleControllerGetMerkleClaimInfo
+   * @summary Get merkle claim info
+   * @request POST:/api/v1/merkle/claim
+   * @secure
+   */
+  merkleControllerGetMerkleClaimInfo = (
+    data?: MerkleClaimInfoRequest,
+    params: RequestParams = {},
+  ) =>
+    this.request<MerkleControllerGetMerkleClaimInfoData, any>({
+      path: `/api/v1/merkle/claim`,
       method: "POST",
       body: data,
       secure: true,

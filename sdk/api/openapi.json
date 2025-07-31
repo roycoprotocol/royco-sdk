@@ -10454,6 +10454,50 @@
         ]
       }
     },
+    "/api/v1/decoder/decode": {
+      "post": {
+        "description": "Decode hex commands into readable contract actions with function signatures and contract names",
+        "operationId": "DecoderController_decodeActions",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecodeActionsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecodedRecipeResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Decode Weiroll script actions",
+        "tags": [
+          "Decoder"
+        ]
+      }
+    },
     "/api/v1/safe/info/{accountAddress}": {
       "post": {
         "description": "Get user safe info by account address",
@@ -10507,6 +10551,94 @@
         "summary": "Get user safe info",
         "tags": [
           "Safe"
+        ]
+      }
+    },
+    "/api/v1/merkle/metadata": {
+      "post": {
+        "description": "Get merkle metadata for a given batch ID.",
+        "operationId": "MerkleController_getMerkleMetadata",
+        "parameters": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerkleMetadataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerkleMetadataResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get merkle metadata",
+        "tags": [
+          "Merkle"
+        ]
+      }
+    },
+    "/api/v1/merkle/claim": {
+      "post": {
+        "description": "Get merkle claim info for a given batch ID and account address.",
+        "operationId": "MerkleController_getMerkleClaimInfo",
+        "parameters": [],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MerkleClaimInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MerkleClaimInfoResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          },
+          {
+            "x-api-key": []
+          },
+          {
+            "api-key-query": []
+          }
+        ],
+        "summary": "Get merkle claim info",
+        "tags": [
+          "Merkle"
         ]
       }
     }
@@ -24647,6 +24779,226 @@
           "status"
         ]
       },
+      "WeirollScriptDto": {
+        "type": "object",
+        "properties": {
+          "commands": {
+            "title": "Commands",
+            "description": "Array of Weiroll commands (bytes32 values)",
+            "example": [
+              "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "state": {
+            "title": "State",
+            "description": "Array of state variables (bytes values)",
+            "example": [
+              "0x0000000000000000000000000000000000000000000000000000000000000001"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "commands",
+          "state"
+        ]
+      },
+      "DecodeActionsRequestDto": {
+        "type": "object",
+        "properties": {
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "script": {
+            "description": "Weiroll script with commands and state",
+            "example": {
+              "commands": [
+                "0x..."
+              ],
+              "state": [
+                "0x..."
+              ]
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WeirollScriptDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "chainId",
+          "script"
+        ]
+      },
+      "DynamicValueDto": {
+        "type": "object",
+        "properties": {
+          "actionId": {
+            "type": "string",
+            "description": "ID of the previous action",
+            "example": "1_0x1234567890abcdef12345678_0"
+          },
+          "actionIndex": {
+            "type": "number",
+            "description": "Index of the previous action in the actions array",
+            "example": 0
+          }
+        },
+        "required": [
+          "actionId",
+          "actionIndex"
+        ]
+      },
+      "InputDto": {
+        "type": "object",
+        "properties": {
+          "inputType": {
+            "type": "string",
+            "description": "Type of input: fixed or dynamic",
+            "example": "fixed",
+            "enum": [
+              "fixed",
+              "dynamic"
+            ]
+          },
+          "fixedValue": {
+            "type": "string",
+            "description": "Fixed value if inputType is fixed",
+            "example": "0x1234567890abcdef1234567890abcdef12345678"
+          },
+          "dynamicValue": {
+            "description": "Dynamic value if inputType is dynamic",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DynamicValueDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "inputType"
+        ]
+      },
+      "ActionDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the action",
+            "example": "1_0x1234567890abcdef12345678_0"
+          },
+          "chainId": {
+            "type": "number",
+            "title": "Chain ID",
+            "description": "Network ID of the blockchain",
+            "example": 1
+          },
+          "explorerUrl": {
+            "type": "string",
+            "description": "Explorer URL for the contract address that was called",
+            "example": "https://etherscan.io/address/0x1234567890abcdef1234567890abcdef12345678"
+          },
+          "contractAddress": {
+            "type": "string",
+            "title": "Contract Address",
+            "description": "Deployment address of the contract",
+            "example": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          "contractFunction": {
+            "type": "string",
+            "description": "Contract function selector",
+            "example": "0x12345678"
+          },
+          "calldata": {
+            "type": "string",
+            "description": "Complete calldata for the function call",
+            "example": "0x123456780000000000000000000000000000000000000000000000000000000000000001"
+          },
+          "contractName": {
+            "type": "string",
+            "description": "Contract name",
+            "example": "ERC20"
+          },
+          "functionName": {
+            "type": "string",
+            "description": "Function name",
+            "example": "transfer"
+          },
+          "functionSignature": {
+            "type": "string",
+            "description": "Function signature",
+            "example": "transfer(address,uint256)"
+          },
+          "inputs": {
+            "description": "Input parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InputDto"
+            }
+          },
+          "ethValue": {
+            "type": "string",
+            "description": "ETH value (wei) sent with the call when callType is CALL_WITH_VALUE",
+            "example": "1000000000000000000",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "chainId",
+          "explorerUrl",
+          "contractAddress",
+          "contractFunction",
+          "calldata",
+          "inputs",
+          "ethValue"
+        ]
+      },
+      "DecodedRecipeResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "description": "True if the recipe is decoded successfully, false otherwise",
+            "example": true
+          },
+          "actions": {
+            "description": "Array of decoded actions",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionDto"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "Message of the decoding process",
+            "example": "Recipe decoded successfully"
+          },
+          "cause": {
+            "type": "string",
+            "description": "Error message if decoding fails",
+            "example": "Failed to decode recipe",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "actions",
+          "message",
+          "cause"
+        ]
+      },
       "EnrichedUserSafeInfoBody": {
         "type": "object",
         "properties": {
@@ -24903,6 +25255,153 @@
         "required": [
           "id",
           "safes"
+        ]
+      },
+      "MerkleMetadataRequest": {
+        "type": "object",
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID of the merkle allocation"
+          }
+        },
+        "required": [
+          "batchId"
+        ]
+      },
+      "MerkleMetadataResponse": {
+        "type": "object",
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID of the merkle allocation"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the merkle allocation"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "The subtitle of the merkle allocation"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the merkle allocation"
+          },
+          "incentiveTokenData": {
+            "description": "The incentive token quote of the merkle allocation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TokenQuote"
+              }
+            ]
+          },
+          "bannerUrl": {
+            "type": "string",
+            "description": "The banner URL of the merkle allocation"
+          }
+        },
+        "required": [
+          "batchId",
+          "title",
+          "subtitle",
+          "description",
+          "incentiveTokenData",
+          "bannerUrl"
+        ]
+      },
+      "MerkleClaimInfoRequest": {
+        "type": "object",
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID of the merkle allocation"
+          },
+          "accountAddress": {
+            "type": "string",
+            "title": "Account Address",
+            "description": "Wallet address of the account",
+            "example": "0x77777cc68b333a2256b436d675e8d257699aa667"
+          }
+        },
+        "required": [
+          "batchId",
+          "accountAddress"
+        ]
+      },
+      "MerkleClaimInfo": {
+        "type": "object",
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID of the merkle allocation"
+          },
+          "merkleRoot": {
+            "type": "string",
+            "description": "The merkle root of the merkle allocation"
+          },
+          "merkleProof": {
+            "type": "string",
+            "description": "The merkle proof of the merkle allocation"
+          },
+          "unclaimedIncentiveTokenData": {
+            "description": "The unclaimed incentive token data",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEnrichedTokenData"
+              }
+            ]
+          },
+          "claimedIncentiveTokenData": {
+            "description": "The claimed incentive token data",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseEnrichedTokenData"
+              }
+            ]
+          },
+          "isClaimed": {
+            "type": "boolean",
+            "description": "Whether the incentive token has been claimed completely"
+          }
+        },
+        "required": [
+          "batchId",
+          "merkleRoot",
+          "merkleProof",
+          "unclaimedIncentiveTokenData",
+          "claimedIncentiveTokenData",
+          "isClaimed"
+        ]
+      },
+      "MerkleClaimInfoResponse": {
+        "type": "object",
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "description": "The batch ID of the merkle allocation"
+          },
+          "accountAddress": {
+            "type": "string",
+            "description": "The account address"
+          },
+          "isEligible": {
+            "type": "boolean",
+            "description": "Whether the account is eligible for the merkle allocation"
+          },
+          "claimInfo": {
+            "description": "The claim info for the merkle allocation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MerkleClaimInfo"
+              }
+            ]
+          }
+        },
+        "required": [
+          "batchId",
+          "accountAddress",
+          "isEligible"
         ]
       }
     }

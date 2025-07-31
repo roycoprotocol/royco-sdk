@@ -8819,6 +8819,140 @@ export interface RegisterUserResponse {
   status: boolean;
 }
 
+export interface WeirollScriptDto {
+  /**
+   * Commands
+   * Array of Weiroll commands (bytes32 values)
+   * @example ["0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]
+   */
+  commands: string[];
+  /**
+   * State
+   * Array of state variables (bytes values)
+   * @example ["0x0000000000000000000000000000000000000000000000000000000000000001"]
+   */
+  state: string[];
+}
+
+export interface DecodeActionsRequestDto {
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Weiroll script with commands and state
+   * @example {"commands":["0x..."],"state":["0x..."]}
+   */
+  script: WeirollScriptDto;
+}
+
+export interface DynamicValueDto {
+  /**
+   * ID of the previous action
+   * @example "1_0x1234567890abcdef12345678_0"
+   */
+  actionId: string;
+  /**
+   * Index of the previous action in the actions array
+   * @example 0
+   */
+  actionIndex: number;
+}
+
+export interface InputDto {
+  /**
+   * Type of input: fixed or dynamic
+   * @example "fixed"
+   */
+  inputType: "fixed" | "dynamic";
+  /**
+   * Fixed value if inputType is fixed
+   * @example "0x1234567890abcdef1234567890abcdef12345678"
+   */
+  fixedValue?: string;
+  /** Dynamic value if inputType is dynamic */
+  dynamicValue?: DynamicValueDto;
+}
+
+export interface ActionDto {
+  /**
+   * Unique identifier for the action
+   * @example "1_0x1234567890abcdef12345678_0"
+   */
+  id: string;
+  /**
+   * Chain ID
+   * Network ID of the blockchain
+   * @example 1
+   */
+  chainId: number;
+  /**
+   * Explorer URL for the contract address that was called
+   * @example "https://etherscan.io/address/0x1234567890abcdef1234567890abcdef12345678"
+   */
+  explorerUrl: string;
+  /**
+   * Contract Address
+   * Deployment address of the contract
+   * @example "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+   */
+  contractAddress: string;
+  /**
+   * Contract function selector
+   * @example "0x12345678"
+   */
+  contractFunction: string;
+  /**
+   * Complete calldata for the function call
+   * @example "0x123456780000000000000000000000000000000000000000000000000000000000000001"
+   */
+  calldata: string;
+  /**
+   * Contract name
+   * @example "ERC20"
+   */
+  contractName?: string;
+  /**
+   * Function name
+   * @example "transfer"
+   */
+  functionName?: string;
+  /**
+   * Function signature
+   * @example "transfer(address,uint256)"
+   */
+  functionSignature?: string;
+  /** Input parameters */
+  inputs: InputDto[];
+  /**
+   * ETH value (wei) sent with the call when callType is CALL_WITH_VALUE
+   * @example "1000000000000000000"
+   */
+  ethValue: string | null;
+}
+
+export interface DecodedRecipeResponseDto {
+  /**
+   * True if the recipe is decoded successfully, false otherwise
+   * @example true
+   */
+  status: boolean;
+  /** Array of decoded actions */
+  actions: ActionDto[];
+  /**
+   * Message of the decoding process
+   * @example "Recipe decoded successfully"
+   */
+  message: string;
+  /**
+   * Error message if decoding fails
+   * @example "Failed to decode recipe"
+   */
+  cause: string | null;
+}
+
 export interface EnrichedUserSafeInfoBody {
   /**
    * Custom Token Data
@@ -8986,6 +9120,63 @@ export interface EnrichedSafe {
 export interface EnrichedUserSafeInfo {
   id: string;
   safes: EnrichedSafe[];
+}
+
+export interface MerkleMetadataRequest {
+  /** The batch ID of the merkle allocation */
+  batchId: string;
+}
+
+export interface MerkleMetadataResponse {
+  /** The batch ID of the merkle allocation */
+  batchId: string;
+  /** The title of the merkle allocation */
+  title: string;
+  /** The subtitle of the merkle allocation */
+  subtitle: string;
+  /** The description of the merkle allocation */
+  description: string;
+  /** The incentive token quote of the merkle allocation */
+  incentiveTokenData: TokenQuote;
+  /** The banner URL of the merkle allocation */
+  bannerUrl: string;
+}
+
+export interface MerkleClaimInfoRequest {
+  /** The batch ID of the merkle allocation */
+  batchId: string;
+  /**
+   * Account Address
+   * Wallet address of the account
+   * @example "0x77777cc68b333a2256b436d675e8d257699aa667"
+   */
+  accountAddress: string;
+}
+
+export interface MerkleClaimInfo {
+  /** The batch ID of the merkle allocation */
+  batchId: string;
+  /** The merkle root of the merkle allocation */
+  merkleRoot: string;
+  /** The merkle proof of the merkle allocation */
+  merkleProof: string;
+  /** The unclaimed incentive token data */
+  unclaimedIncentiveTokenData: BaseEnrichedTokenData;
+  /** The claimed incentive token data */
+  claimedIncentiveTokenData: BaseEnrichedTokenData;
+  /** Whether the incentive token has been claimed completely */
+  isClaimed: boolean;
+}
+
+export interface MerkleClaimInfoResponse {
+  /** The batch ID of the merkle allocation */
+  batchId: string;
+  /** The account address */
+  accountAddress: string;
+  /** Whether the account is eligible for the merkle allocation */
+  isEligible: boolean;
+  /** The claim info for the merkle allocation */
+  claimInfo?: MerkleClaimInfo;
 }
 
 export interface HealthControllerCheckData {
@@ -9158,4 +9349,10 @@ export type UserControllerGetExpectedRankData = GetExpectedRankResponse;
 
 export type UserControllerRegisterUserData = RegisterUserResponse;
 
+export type DecoderControllerDecodeActionsData = DecodedRecipeResponseDto;
+
 export type SafeControllerGetEnrichedUserSafeInfoData = EnrichedUserSafeInfo;
+
+export type MerkleControllerGetMerkleMetadataData = MerkleMetadataResponse;
+
+export type MerkleControllerGetMerkleClaimInfoData = MerkleClaimInfoResponse;
