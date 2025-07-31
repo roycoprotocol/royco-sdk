@@ -9166,6 +9166,8 @@ export interface MerkleClaimInfo {
   claimedIncentiveTokenData: BaseEnrichedTokenData;
   /** Whether the incentive token has been claimed completely */
   isClaimed: boolean;
+  /** The merkle contract ref ID */
+  merkleContractRefId: string;
 }
 
 export interface MerkleClaimInfoResponse {

@@ -19931,6 +19931,9 @@ components:
         isClaimed:
           type: boolean
           description: Whether the incentive token has been claimed completely
+        merkleContractRefId:
+          type: string
+          description: The merkle contract ref ID
       required:
         - batchId
         - merkleRoot
@@ -19938,6 +19941,7 @@ components:
         - unclaimedIncentiveTokenData
         - claimedIncentiveTokenData
         - isClaimed
+        - merkleContractRefId
     MerkleClaimInfoResponse:
       type: object
       properties:
