@@ -19918,8 +19918,10 @@ components:
           type: string
           description: The merkle root of the merkle allocation
         merkleProof:
-          type: string
           description: The merkle proof of the merkle allocation
+          type: array
+          items:
+            type: string
         unclaimedIncentiveTokenData:
           description: The unclaimed incentive token data
           allOf:
