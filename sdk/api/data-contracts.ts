@@ -9159,7 +9159,7 @@ export interface MerkleClaimInfo {
   /** The merkle root of the merkle allocation */
   merkleRoot: string;
   /** The merkle proof of the merkle allocation */
-  merkleProof: string;
+  merkleProof: string[];
   /** The unclaimed incentive token data */
   unclaimedIncentiveTokenData: BaseEnrichedTokenData;
   /** The claimed incentive token data */
